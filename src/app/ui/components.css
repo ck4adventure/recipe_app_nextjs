@@ -1,0 +1,28 @@
+.headerbar {
+	display: flex;
+	justify-content: space-between;
+	background-color: white;
+	align-items: center;
+	padding: 10px;
+}
+
+.logo {
+	height: 48px;
+	width: 48px;
+}
+
+.headerbar-left {
+	width: 300px;
+	display: flex;
+}
+
+.headerbar-middle {
+	justify-content: center;
+	align-items: center;
+}
+
+.headerbar-right {
+	display: flex;
+	justify-content: right;
+	width: 300px;
+}
