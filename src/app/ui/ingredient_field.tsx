@@ -15,7 +15,7 @@ const IngredientField: React.FC<IngredientFieldProps> = ({ value, onChange, onDe
 		<div className='flex justify-between mb-2'>
 			<input
 				className='w-16 mr-2 border-b border-slate-300'
-				type='number' min='0' value={measure}
+				type='number' min='0.01' step='0.01' value={measure}
 				onChange={e => onChange("measure", e.target.value)} />
 			<select className='mx-2 border-b border-slate-300' value={unit} onChange={e => onChange("unit", e.target.value)}>
 				<option value=''>Select unit</option>

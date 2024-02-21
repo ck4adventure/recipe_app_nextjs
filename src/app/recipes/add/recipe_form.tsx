@@ -24,7 +24,6 @@ const RecipeForm: React.FC = () => {
 		} else if (type === 'ingredient') {
 			ingrArray[2] = value;
 		}
-		console.log(ingrArray)
 		newIngredients[index] = ingrArray;
 		setIngredients(newIngredients);
 	};
@@ -58,16 +57,18 @@ const RecipeForm: React.FC = () => {
 
 	const handleSubmit = (event: React.FormEvent) => {
 		event.preventDefault();
-		const displayIngredients = ingredients.filter(ingr => ingr.length > 0).map(ingr => ingr.join(' '));
+		// validation goes here
 
+		// for now just display the recipe
+		const displayIngredients = ingredients.filter(ingr => ingr.length > 0).map(ingr => ingr.join(' '));
+		const displayDirections = directions.filter(dir => dir.length > 0);
 		const recipe = {
 			name: name,
 			description: description,
 			ingredients: displayIngredients,
-			directions: directions
+			directions: displayDirections,
 		}
 		console.log(recipe)
-
 	}
 
 	return (

@@ -46,7 +46,11 @@ label {
 	margin-right: 0.5rem;
 }
 
-input, select {
+input, select, textarea {
 	font-size: small;
 	padding-left: 8px;
+}
+
+label, fieldset {
+	font-size: smaller;
 }

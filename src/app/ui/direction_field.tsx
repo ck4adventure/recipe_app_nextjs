@@ -13,7 +13,7 @@ const DirectionField: React.FC<DirectionFieldProps> = ({ ordinal, value, onChang
 	return (
 		<div className='flex justify-between mb-2'>
 			<label className='w-4'>{ordinal}  </label>
-			<textarea className='flex-grow mx-2 border-b border-slate-300' value={value} onChange={e => onChange(e.target.value)} ></textarea>
+			<textarea className='flex-grow h-6 mx-2 border-b border-slate-300' value={value} onChange={e => onChange(e.target.value)} ></textarea>
 			<button className='w-4' onClick={onDelete}><Image src='/trash.png' height={16} width={16} alt="delete button" /></button>
 		</div>
 	);
