@@ -1,4 +1,4 @@
-import RecipeForm from "../../ui/forms/recipe_form";
+import RecipeForm from "../ui/forms/recipe_form";
 
 
 export default function Page() {

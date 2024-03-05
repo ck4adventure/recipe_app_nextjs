@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { BakingUnits } from '../../lib/constants'
+import { BakingUnits } from '../../../lib/constants'
 
 interface IngredientFieldProps {
 	value: string[];
