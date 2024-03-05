@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-import IngredientField from '@/app/recipes/ui/forms/ingredient_field'
-import DirectionField from '@/app/recipes/ui/forms/direction_field'
+import IngredientField from './ingredient_field'
+import DirectionField from './direction_field'
 // RecipeForm should display a form with dynamic fields
 // ingredients is a list of strings
 // directions is a list of strings
