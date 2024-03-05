@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import './components.css'
+// import './components.css'
 export default function HeaderBar() {
 	return (
 		<div className="flex justify-between bg-white items-center m-4">

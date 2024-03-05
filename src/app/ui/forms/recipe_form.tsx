@@ -1,14 +1,15 @@
 'use client'
 import React, { useState } from 'react'
-import IngredientField from '@/app/ui/ingredient_field'
-import DirectionField from '@/app/ui/direction_field'
+import IngredientField from '@/app/ui/forms/ingredient_field'
+import DirectionField from '@/app/ui/forms/direction_field'
 // RecipeForm should display a form with dynamic fields
 // ingredients is a list of strings
 // directions is a list of strings
 // handleChange, handleDelete
 const RecipeForm: React.FC = () => {
 	const [name, setName] = useState<string>('')
-	const [description, setDescription] = useState<string>('')
+	const [source, setSource] = useState<string>('')
+	const [notes, setNotes] = useState<string>('')
 	const [ingredients, setIngredients] = useState<string[][]>([['','',''], ['','',''], ['','','']])
 	const [directions, setDirections] = useState<string[]>(['', '', ''])
 
@@ -64,7 +65,7 @@ const RecipeForm: React.FC = () => {
 		const displayDirections = directions.filter(dir => dir.length > 0);
 		const recipe = {
 			name: name,
-			description: description,
+			notes: notes,
 			ingredients: displayIngredients,
 			directions: displayDirections,
 		}
@@ -80,8 +81,8 @@ const RecipeForm: React.FC = () => {
 					<input className='flex-grow border-b border-slate-300' id='name' onChange={e => setName(e.target.value)} value={name}></input>
 				</div>
 				<div className='my-2 flex'>
-					<label htmlFor='description' >Description</label>
-					<input className='flex-grow border-b border-slate-300' id='description' onChange={e => setDescription(e.target.value)} value={description}></input>
+					<label htmlFor='notes' >Notes</label>
+					<input className='flex-grow border-b border-slate-300' id='notes' onChange={e => setNotes(e.target.value)} value={notes}></input>
 				</div>
 				<fieldset className='my-2'>Ingredients
 					{ingredients.map((ingredient, i) => (

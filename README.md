@@ -1,3 +1,16 @@
+## Recipe App Notes
+
+Routes
+/recipes - Main homepage for recipes section
+/recipes/[slug] - unique slugs to provide human readable url (helpful in bookmarks, autofills)
+/recipes/add - create form for new recipes
+/recipes/[slug]/edit
+
+/recipes/search 
+
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

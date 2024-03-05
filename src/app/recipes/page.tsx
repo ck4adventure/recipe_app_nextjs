@@ -28,9 +28,9 @@ export default function Page() {
 				<div>
 					Latest Recipes
 					<ul>
-						{recipes.map(recipe => {
+						{recipes.map((recipe, i) => {
 							return (
-							<li>
+							<li key={i}>
 								<Link href={`/recipes/${recipe.slug}`}>{recipe.name}</Link>
 							</li>
 							)
