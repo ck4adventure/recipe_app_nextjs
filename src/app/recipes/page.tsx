@@ -1,50 +1,18 @@
-import Image from "next/image";
-import Link from "next/link";
-
-const recipes = [
-	{
-		name: "Meringue Puffs",
-		slug: "meringue-puffs"
-	},
-	{
-		name: "Tart Pastry",
-		slug: "tart-pastry"
-	}
-]
-
+// Recipe Index Page
 export default function Page() {
-	return (
-		<>
-			<title>Recipes</title>
-			<main className="flex min-h-screen flex-col items-left justify-between p-24">
-				<div>
-					<h1>Recipes Page</h1>
-				</div>
-				<div>
-					<ul>
-						<li><Link href="recipes/add">Add a Recipe</Link></li>
-					</ul>
-				</div>
-				<div>
-					Latest Recipes
-					<ul>
-						{recipes.map((recipe, i) => {
-							return (
-							<li key={i}>
-								<Link href={`/recipes/${recipe.slug}`}>{recipe.name}</Link>
-							</li>
-							)
-						})}
-					</ul>
-				</div>
-				<div>
-					TODO: add Search box/functionality
-				</div>
-				<div>
-					TODO: create links by tags (nationality, gf, vegan, etc)
-				</div>
-
-			</main>
-		</>
-	);
-}
+  return (
+    <div>
+      <title>Recipes</title>
+      <main className='flex flex-col items-center'>
+        <h1 className='m-4' data-cy='recipes-header'>Recipes</h1>
+        <div className='m-4' data-cy='recipe-list-component'>
+          <ul data-cy='recipe-list'>
+            <li className="p-1">Recipe Title</li>
+            <li className="p-1">Recipe Title</li>
+            <li className="p-1">Recipe Title</li>
+          </ul>
+        </div>
+      </main>
+    </div>
+  );
+}	
