@@ -1,26 +1,10 @@
-// Recipe Index Page
-async function getData() {
-  // const res = await fetch('https://api.example.com/...')
-  // // The return value is *not* serialized
-  // // You can return Date, Map, Set, etc.
+import { getRecipeTitles } from "../lib/data";
+// export const revalidate = 3600 // revalidate the data at most every hour
 
-  // if (!res.ok) {
-  //   // This will activate the closest `error.js` Error Boundary
-  //   throw new Error('Failed to fetch data')
-  // }
 
-  // return res.json()
-  return {
-    recipes: [
-      { id: 1, title: 'Recipe Title' },
-      { id: 2, title: 'Recipe Title' },
-      { id: 3, title: 'Recipe Title' }
-    ]
-  };
-}
-
+// Recipe Index Page should display a list of recipes
 export default async function Page() {
-  const data = await getData()
+  const data = await getRecipeTitles();
   return (
     <div>
       <title>Recipes</title>
@@ -28,9 +12,9 @@ export default async function Page() {
         <h1 className='m-4' data-cy='recipes-header'>Recipes</h1>
         <div className='m-4' data-cy='recipe-list-component'>
           <ul data-cy='recipe-list'>
-            {data.recipes.map(recipe => (
-              <li className="p-1" key={recipe.id}>{recipe.title}</li>
-            ))}
+            {data.rows.map((resObj: any, index: number) => (
+                <li className="p-1" key={index}>{resObj.title}</li>
+              ))}
           </ul>
         </div>
       </main>
