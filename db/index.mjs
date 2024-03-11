@@ -1,5 +1,5 @@
-import { pool } from './db.js'; 
+import { pool } from './db.mjs'; 
  
-export const query = (text, params, callback) => {
-  return pool.query(text, params, callback)
+export const query = async (text, params, callback) => {
+  return await pool.query(text, params, callback)
 }
