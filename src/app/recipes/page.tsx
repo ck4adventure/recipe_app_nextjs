@@ -1,24 +1,24 @@
-import { recipes_data } from "../../../cypress/fixtures/recipes_data";
+import { getCategoriesAndRecipes } from "../../../db/actions/recipes.mjs";
+import CategoryCard from "./category_card";
 
-const RecipeList = ({ category, categoryRecipes }: { category: string, categoryRecipes: any }) => {
-	const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
-	return (
-		<div className="m-4 border-2 rounded-md p-2">
-			<h2 className="font-bold">{formattedCategory}</h2>
-			<ul>
-				{categoryRecipes.map((recipe: any, index: number) => {
-					return (
-						<li key={index}>{recipe.title}</li>
-					);
-				})}
-			</ul>
-		</div>
-	);
-
+// formatCategoryAndRecipes takes a list of recipes and formats them 
+// into a dictionary of categories and their respective recipes
+const formatCategoryAndRecipes = (row_data: any) => {
+	const formattedData: any = {};
+	row_data.forEach((row: any) => {
+		const category = row.category_name;
+		if (!formattedData[category]) {
+			formattedData[category] = [];
+		}
+		formattedData[category].push(row);
+	});
+	return formattedData;
 }
-
 // Recipe Index Page should display a list of recipes
 export default async function Page() {
+	const row_data = await getCategoriesAndRecipes()
+	const recipes_data = formatCategoryAndRecipes(row_data);
+
 	return (
 		<div>
 			<title>Recipes</title>
@@ -28,7 +28,7 @@ export default async function Page() {
 					{Object.keys(recipes_data).map((catName, index) => {
 						const catGroup: any = recipes_data[catName];
 						return (
-							<RecipeList key={index} category={catName} categoryRecipes={catGroup} />
+							<CategoryCard key={index} category={catName} categoryRecipes={catGroup} />
 						);
 					})}
 				</div>

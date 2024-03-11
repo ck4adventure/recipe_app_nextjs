@@ -2,7 +2,7 @@
 
 // categories table should exist
 // columns id, name 
-// name is required
+// name is required and unique
 
 // recipes table should exist
 // columns id, slug:text, title:text
