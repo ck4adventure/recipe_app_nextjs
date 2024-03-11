@@ -24,7 +24,7 @@ export default async function Page() {
 			<title>Recipes</title>
 			<main className='flex flex-col items-center'>
 				<h1 className='m-4' data-cy='recipes-header'>Recipes</h1>
-				<div data-cy='recipe-categories' className="m-2 flex flex-row">
+				<div data-cy='recipe-categories' className="m-2 flex justify-center flex-wrap">
 					{Object.keys(recipes_data).map((catName, index) => {
 						const catGroup: any = recipes_data[catName];
 						return (

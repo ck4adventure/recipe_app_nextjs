@@ -1,0 +1,50 @@
+ {
+	"breakfast": [{
+			"title": "Egg McMuffin",
+			"slug": "egg-mcmuffin",
+			"id": 1
+		},
+		{
+			"title": "Pancakes",
+			"slug": "pancakes",
+			"id": 2
+		}
+	],
+	"main": [{
+			"title": "Big Mac",
+			"slug": "big-mac",
+			"id": 3
+		},
+		{
+			"title": "Quarter Pounder",
+			"slug": "quarter-pounder",
+			"id": 4
+		}
+	],
+	"dessert": [{
+			"title": "Apple Pie",
+			"slug": "apple-pie",
+			"id": 5
+		},
+		{
+			"title": "Sundae",
+			"slug": "sundae",
+			"id": 6
+		}
+	],
+	"salad": [{
+			"title": "Garden Salad",
+			"slug": "garden-salad",
+			"id": 7
+		},
+		{
+			"title": "Caesar Salad",
+			"slug": "caesar-salad",
+			"id": 8
+		}
+	],
+	"drink": [],
+	"bread": [],
+	"pastry": [],
+	"sauce": []
+}
