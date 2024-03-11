@@ -1,5 +1,6 @@
 
-import { Pool, Client } from 'pg';
+import pkg from 'pg';
+const { Pool, Client } = pkg;
 
 export const pool = new Pool({
   user: 'synthesisdev',
