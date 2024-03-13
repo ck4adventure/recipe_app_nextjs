@@ -49,6 +49,8 @@ label {
 input, select, textarea {
 	font-size: small;
 	padding-left: 8px;
+	border: 2px solid #ccc;
+	border-radius: 6px;
 }
 
 label, fieldset {

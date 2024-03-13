@@ -1,19 +1,16 @@
 // import { cache } from 'react'
-import { query } from '../../../db/index.mjs'
+import { query } from '../../../db/index.mjs';
+// getCategories returns rows containing category data
+export const getCategories = async () => {
+	const res = await query(`SELECT * FROM categories`);
+	return res.rows;
+}
 
-export const getRecipeCategoriesTitles = (async () => {
-	const results: { [key: string]: any } = {}
-	// wraps pool.query(text, params, callback) in a promise
-	const { rows } = await query('SELECT id, name FROM categories ORDER BY name ASC;')
-	await rows.forEach(async (row: any) => {
-		const recipeResults = await query(`
-		SELECT categories.name as category, recipes.title, recipes.id
-		FROM recipes
-		JOIN recipe_categories ON recipes.id = recipe_categories.recipe_id
-		JOIN categories ON recipe_categories.category_id = categories.id;
-		`)
-		results[row.name] = recipeResults.rows
-	})
-
-	return results
-})
+// getCategoriesAndRecipes returns rows containing category and recipe data
+export const getCategoriesAndRecipes = async () => {
+	const res = await query(`
+	  SELECT c.id AS category_id, c.name AS category_name, r.id AS recipe_id, r.title AS recipe_title, r.slug AS recipe_slug
+	  FROM categories c LEFT JOIN recipe_categories rc ON c.id = rc.category_id LEFT JOIN recipes r ON rc.recipe_id = r.id
+	`);
+	return res.rows;
+}

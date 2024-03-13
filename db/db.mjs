@@ -1,4 +1,4 @@
-
+// db file sets up connection to the database
 import pkg from 'pg';
 const { Pool, Client } = pkg;
 

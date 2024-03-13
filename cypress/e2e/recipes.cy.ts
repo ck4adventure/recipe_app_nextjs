@@ -14,6 +14,17 @@ describe('recipes page', () => {
 		// it should display a list of category cards
 		// each card should have a category name
 		// and a list of recipes, if there are any
+		context('Recipes Header Section', () => {
+			it('should display a header section', () => {
+				cy.getByData('recipes-headerbar').should('exist')
+			});
+			it('should display a header with the correct text', () => {
+				cy.getByData('recipes-header-type').contains("Recipes By Category")
+			});
+			it('should display an add recipe button', () => {
+				cy.getByData('add-recipe-button').should('exist')
+			});
+		});
 		context('Display Recipes by Category', () => {
 			it('should display recipes by category', () => {
 				cy.getByData('recipe-categories').should('exist')
