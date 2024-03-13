@@ -7,8 +7,7 @@ import { useState } from "react";
 
 export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 	const [recipeTitle, setRecipeTitle] = useState<string>('');
-	const [categoryID, setCategoryID] = useState<number>(0);
-	console.log(categoryID)
+	const [categoryID, setCategoryID] = useState<number>(1);
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		await createRecipeWithCategory(recipeTitle, categoryID);
@@ -20,27 +19,33 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 			<h1 className="m-4">Add Recipe</h1>
 			<form data-cy='recipe-form' className="m-4 flex flex-col" onSubmit={handleSubmit}>
 				{/* Recipe Title */}
-				<label htmlFor="recipe-title">Recipe Title
-					<input
-						id="recipe-title"
-						className="border-b border-slate-300"
-						onChange={e => setRecipeTitle(e.target.value)}
-						value={recipeTitle}>
-					</input>
-				</label>
-				{/* Category Select */}
-				<label htmlFor="category-select">Category
-					<select id="category-select" onChange={e => setCategoryID(parseInt(e.target.value))}>
-						{categoryRows.map((row: any) => (
-							<option
-								key={row.category_id}
-								value={row.category_id}>
-								{row.category_name}
-							</option>))}
-					</select>
-				</label>
+				<div className="m-4">
+					<label htmlFor="recipe-title">Recipe Title
+						<input
+							id="recipe-title"
+							className="border-b border-slate-300"
+							onChange={e => setRecipeTitle(e.target.value)}
+							value={recipeTitle}>
+						</input>
+					</label>
+				</div>
+				<div className="m-4">
+					{/* Category Select */}
+					<label htmlFor="category-select">Category
+						<select id="category-select" onChange={e => setCategoryID(parseInt(e.target.value))}>
+							{categoryRows.map((row: any) => (
+								<option
+									key={row.id}
+									value={row.id + 1}>
+									{row.name}
+								</option>))}
+						</select>
+					</label>
+				</div>
 				{/* Submit button */}
-				<button type="submit" className="m-4">Create Recipe</button>
+				<div className="m-4">
+					<button type="submit" className="m-4">Create Recipe</button>
+				</div>
 			</form>
 		</div>
 	);

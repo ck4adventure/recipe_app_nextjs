@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getCategoriesAndRecipes } from "@/app/lib/data";
 import CategoryCard from "../ui/headerbar/recipes/category_card";
 
@@ -25,7 +26,11 @@ export default async function Page() {
 			<main className='flex flex-col'>
 				<div data-cy='recipes-headerbar' className='flex justify-between my-4 mx-8'>
 					<h1 className='' data-cy='recipes-header-type'>Recipes By Category</h1>
-					<button className='' data-cy='add-recipe-button'>Add Recipe</button>
+					<Link 
+					  className='' 
+						data-cy='add-recipe-link'
+						href={'/recipes/add-recipe'}
+						>Add Recipe</Link>
 				</div>
 				<div data-cy='recipe-categories' className="m-2 flex justify-center flex-wrap">
 					{Object.keys(recipes_data).map((catName, index) => {
