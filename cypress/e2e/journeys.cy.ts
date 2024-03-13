@@ -2,21 +2,21 @@
 describe('User Journeys', () => {
 	it('a user can find the add recipe button and successfully add a recipe', () => {
 		cy.visit("http://localhost:3000/recipes")
-		cy.getByData('add-recipe-button').click()
-		cy.location("pathname").should("equal", "/add-recipe")
+		cy.getByData('add-recipe-link').click()
+		cy.location("pathname").should("equal", "/recipes/add-recipe")
 		// recipe form has fields for the recipe title and a select dropdown to choose its category
 		cy.getByData('add-recipe-form').should('exist')
 		cy.getByData('recipe-title-input').should('exist')
 		cy.getByData('recipe-category-select').should('exist')
-		cy.getByData('submit-recipe-button').should('exist')
+		cy.getByData('recipe-submit-button').should('exist')
 		// user can fill out the form and submit
 		cy.getByData('recipe-title-input').type('Test Recipe')
-		cy.getByData('recipe-category-select').select('Breakfast')
-		cy.getByData('submit-recipe-button').click()
+		cy.getByData('recipe-category-select').select('breakfast')
+		cy.getByData('recipe-submit-button').click()
 		// on successful submit, user is redirected to the recipes page
 		cy.location("pathname").should("equal", "/recipes")
 		// the recipe should be displayed on the recipes page
-		cy.getByData('recipe-card').should('exist')
-		cy.getByData('recipe-card').contains('Test Recipe')
+		cy.getByData('category-card').should('exist')
+		cy.getByData('category-card').contains('Test Recipe')
 	})
 })

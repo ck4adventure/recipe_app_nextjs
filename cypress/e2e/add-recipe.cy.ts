@@ -4,16 +4,16 @@ describe("Add Recipe Page/Form", () => {
   })
   context("page layout", () => {
     it("has a recipe form", () => {
-      cy.getByData("recipe-form").should("exist")
+      cy.getByData("add-recipe-form").should("exist")
     });
     it("has a form with a title input", () => {
-      cy.getByData("recipe-title").should("exist")
+      cy.getByData("recipe-title-input").should("exist")
     })
     it("has a form with a category select", () => {
-      cy.getByData("recipe-category").should("exist")
+      cy.getByData("recipe-category-select").should("exist")
     })
     it("has a form with a submit button", () => {
-      cy.getByData("submit-button").should("exist")
+      cy.getByData("recipe-submit-button").should("exist")
     })
   });
   // context("form functionality", () => {

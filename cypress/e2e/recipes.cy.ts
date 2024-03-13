@@ -6,9 +6,6 @@ describe('recipes page', () => {
 		it('should have a headerbar', () => {
 			cy.getByData('headerbar').should('exist')
 		})
-		it('should have a header with the correct text', () => {
-			cy.getByData('recipes-header').contains("Recipes")
-		})
 	});
 	context('Main section', () => {
 		// it should display a list of category cards
@@ -21,8 +18,8 @@ describe('recipes page', () => {
 			it('should display a header with the correct text', () => {
 				cy.getByData('recipes-header-type').contains("Recipes By Category")
 			});
-			it('should display an add recipe button', () => {
-				cy.getByData('add-recipe-button').should('exist')
+			it('should display an add recipe link', () => {
+				cy.getByData('add-recipe-link').should('exist')
 			});
 		});
 		context('Display Recipes by Category', () => {

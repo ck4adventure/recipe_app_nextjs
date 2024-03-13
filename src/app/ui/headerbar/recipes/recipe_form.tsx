@@ -17,12 +17,13 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 	return (
 		<div>
 			<h1 className="m-4">Add Recipe</h1>
-			<form data-cy='recipe-form' className="m-4 flex flex-col" onSubmit={handleSubmit}>
+			<form data-cy='add-recipe-form' className="m-4 flex flex-col" onSubmit={handleSubmit}>
 				{/* Recipe Title */}
 				<div className="m-4">
 					<label htmlFor="recipe-title">Recipe Title
 						<input
 							id="recipe-title"
+							data-cy='recipe-title-input'
 							className="border-b border-slate-300"
 							onChange={e => setRecipeTitle(e.target.value)}
 							value={recipeTitle}>
@@ -32,7 +33,11 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 				<div className="m-4">
 					{/* Category Select */}
 					<label htmlFor="category-select">Category
-						<select id="category-select" onChange={e => setCategoryID(parseInt(e.target.value))}>
+						<select 
+						  id="category-select" 
+							onChange={e => setCategoryID(parseInt(e.target.value))}
+							data-cy='recipe-category-select'
+						>
 							{categoryRows.map((row: any) => (
 								<option
 									key={row.id}
@@ -44,7 +49,11 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 				</div>
 				{/* Submit button */}
 				<div className="m-4">
-					<button type="submit" className="m-4">Create Recipe</button>
+					<button 
+					  type="submit" 
+						className="m-4"
+						data-cy='recipe-submit-button'
+					>Create Recipe</button>
 				</div>
 			</form>
 		</div>
