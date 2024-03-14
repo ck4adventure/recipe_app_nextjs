@@ -32,7 +32,7 @@ export default async function Page() {
 						href={'/recipes/add-recipe'}
 						>Add Recipe</Link>
 				</div>
-				<div data-cy='recipe-categories' className="m-2 flex justify-center flex-wrap">
+				<div data-cy='recipe-categories' className="m-2 grid grid-flow-row grid-cols-3">
 					{Object.keys(recipes_data).map((catName, index) => {
 						const catGroup: any = recipes_data[catName];
 						return (

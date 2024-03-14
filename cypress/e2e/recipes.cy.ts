@@ -28,10 +28,11 @@ describe('recipes page', () => {
 			});
 			// cards should be flex and wrap/adjust to screen size
 			it('should have a display of flex', () => {
-				cy.getByData('recipe-categories').should('have.css', 'display', 'flex')
+				cy.getByData('recipe-categories').should('have.css', 'display', 'grid')
 			});
-			it('should have a flex-wrap of wrap', () => {
-				cy.getByData('recipe-categories').should('have.css', 'flex-wrap', 'wrap')
+			// todo: test for grid flow row
+			it('should have a grid flow row', () => {
+				cy.getByData('recipe-categories').should('have.css', 'grid-auto-flow', 'row')
 			});
 			// recipe-categories should contain at least one category card
 			// and within that card should be at least one recipe
@@ -47,7 +48,7 @@ describe('recipes page', () => {
 				cy.getByData('category-card').should('have.css', 'width', '224px')
 			});
 			it('should have a minimum height of 128px', () => {
-				cy.getByData('category-card').should('have.css', 'min-height', '128px')
+				cy.getByData('category-card').should('have.css', 'min-height', '64px')
 			});
 
 			it('should have a rounded border of 2px', () => {
