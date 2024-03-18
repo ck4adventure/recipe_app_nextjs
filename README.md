@@ -1,49 +1,64 @@
-## Recipe App Notes
-
-Routes
-/recipes - Main homepage for recipes section
-/recipes/[slug] - unique slugs to provide human readable url (helpful in bookmarks, autofills)
-/recipes/add - create form for new recipes
-/recipes/[slug]/edit
-
-/recipes/search 
-
-
-
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Recipe Manager App
 
 ## Getting Started
+- clone the repo
+- ensure Node 20
+- `npm run install`
+- TODO: how to create, migrate and seed db
+- and/or create a DEMO flag that allows FE to display sample data
+- `npm run dev`
 
-First, run the development server:
+Visit `localhost:3000/recipes` to go to the recipe app main page.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Current Schema/Stories
+As a user I want to view all available recipes.  
+As a user I want to view recipes by their category (ie find breakfast recipes).  
+As a user I want to add new recipes with one or more categories.  
+As a user I want to delete recipes.  
+
+### FE
+- `/recipes` - Main homepage for recipes section
+- `/recipes/[slug]` - unique slugs to provide human readable url (helpful in bookmarks, autofills)
+- `/recipes/add-recipe` - create form for new recipes
+- `/recipes/[slug]/edit`
+- `/recipes/search `
+
+
+## Backend
+Postgresql DB by `pg` aka postgres node
+
+### Schemas
+Categories
+- name
+- has many recipes through recipe_categories
+
+Recipes
+- title
+- belongs to many categories through recipe_categories
+
+Recipe Categories
+- FK recipe id
+- FK category id
+
+### DB Instance
+Currently hooking into my local postgres using a `practice` db with no authentication. 
+TODO: create a script similar to rails that actually creates the db by name and setting valid credentials.  
+
+`node ./scripts/migrate.js` will create the tables, associations and db level validations.  
+
+`node ./scripts/seed.js` will seed the db with a few sample recipe titles.  
+
+`node ./scripts/drop.js` will drop all tables and data. 
+
+## App Structure
+This is a next.js app, following the bleeding-edge `app` server functionality over the old `pages` logic. 
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+/cypress is the e2e testing suite
+/db holds db logic
+  /seeds is sample data for easier dev
+  /migrations holds sql migration files (up only)
+  /test to hold mocha/chai db tests
+/public
+/scripts
+/src/app
+  /recipes

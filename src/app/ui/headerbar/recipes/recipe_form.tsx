@@ -41,7 +41,7 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 							{categoryRows.map((row: any) => (
 								<option
 									key={row.id}
-									value={row.id + 1}>
+									value={row.id}>
 									{row.name}
 								</option>))}
 						</select>
