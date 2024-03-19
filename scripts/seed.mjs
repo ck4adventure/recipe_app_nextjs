@@ -1,7 +1,7 @@
 import { client, pool } from '../db/db.mjs';
 import recipes_data from '../db/seeds/categories_recipes_seeds.json' assert { type: 'json' };
 // seedTables uses client rather than pool because it's a one-off operation
-export async function seedTables(inClient = client) {
+export const seedTables = async (inClient = client) => {
 	try {
 		await inClient.connect();
 		// create every category that exists

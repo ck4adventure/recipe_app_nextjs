@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "db/index.mjs", "db/db.mjs", "db/test/recipes.test.mjs", "db/test/categories.spec.mjs"],
   "exclude": ["node_modules"]
 }
