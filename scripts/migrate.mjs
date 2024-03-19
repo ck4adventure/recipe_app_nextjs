@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { client } from '../db/db.mjs';
 
-export const migrateTables = async () => {
+
+export const migrateTables = async (pool) => {
 	try {
 		// first read in the files
 		// then sort
@@ -13,20 +13,17 @@ export const migrateTables = async () => {
 		const files = fs.readdirSync(path.join(process.cwd(), 'db', 'migrations'));
 		const sortedFiles = files.sort((a, b) => a.split('_')[0] - b.split('_')[0]);
 		
-		await client.connect();
+		// await client.connect();
 		console.log('Client connected successfully');
 		
 		for (const file of sortedFiles) {
 			const sql = fs.readFileSync(path.join(process.cwd(), 'db', 'migrations', file), 'utf-8');
-			await client.query(sql);
+			await pool.query(sql);
 		}
 		console.log('Tables created successfully');
 	} catch (error) {
 		console.error(error);
-	} finally {
-		await client.end();
-		console.log('Client disconnected successfully');
-	}
+	} 
 }
 
-migrateTables();
+// migrateTables();

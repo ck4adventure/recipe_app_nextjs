@@ -2,32 +2,18 @@
 // should exist
 // columns: id, name 
 // name is required and unique
+import { testPool } from '../db/db.mjs';
+import { expect } from 'chai';
 
-import { client } from '../db/db.mjs';
+
+
 describe("categories table", () => {
-	// import the client
+	// import the testPool
 	// test the name column
-	before(async () => {
-		try {
-			await client.connect();
-			// run the migrations
-		} catch (error) {
-			console.error('Error connecting client', error);
-		}
-	});
-
-	after(async () => {
-		try {
-			// drop it all
-			await client.end();
-		} catch (error) {
-			console.error('Error closing client', error);
-		}
-	});
 
 	context("columns", () => {
 		it("has a name column", async () => {
-			const result = await client.query(`
+			const result = await testPool.query(`
 				SELECT column_name
 				FROM information_schema.columns
 				WHERE table_name = 'categories'
@@ -40,29 +26,31 @@ describe("categories table", () => {
 		it("name is required", async () => {
 			let error;
 			try {
-				await client.query(`
+				await testPool.query(`
 					INSERT INTO categories (name) VALUES (null)
 				`);
 			} catch (e) {
 				error = e;
 			}
-			expect(error).to.be.true;
+			// TODO better error check to ensure it's a not null constraint error
+			expect(error).to.exist;
 		});
 
 		// test the name column is unique
 		it("name is unique", async () => {
-			await client.query(`
+			await testPool.query(`
 				INSERT INTO categories (name) VALUES ('breakfast')
 			`);
 			let error;
 			try {
-				await client.query(`
+				await testPool.query(`
 					INSERT INTO categories (name) VALUES ('breakfast')
 				`);
 			} catch (e) {
 				error = e;
 			}
-			expect(error).to.be.true;
+			// TODO better error check to ensure it's a unique constraint error
+			expect(error).to.exist;
 		});
 	});
 });

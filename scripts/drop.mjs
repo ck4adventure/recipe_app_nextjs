@@ -1,23 +1,21 @@
-import { client } from '../db/db.mjs';
 
-export const dropTables = async () => {
+
+export const dropTables = async (pool) => {
 	try {
-		await client.connect();
-		await client.query(`
+
+		await pool.query(`
 	  DROP TABLE IF EXISTS recipe_categories;
 	`);
-		await client.query(`
+		await pool.query(`
 	  DROP TABLE IF EXISTS recipes;
 	`);
-		await client.query(`
+		await pool.query(`
 	  DROP TABLE IF EXISTS categories;
 	`);
 		console.log('db table drops complete');
 	} catch (error) {
 		console.error('Error dropping tables', error);
-	} finally {
-		client.end();
-	}
+	} 
 }
 
-dropTables();
+// dropTables();

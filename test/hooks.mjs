@@ -3,19 +3,23 @@
 import { dropTables } from "../scripts/drop.mjs";
 import { migrateTables } from "../scripts/migrate.mjs";
 
+// note testPool has a maxClient of 1 and a timeout of 1 sec
+import { testPool } from "../db/db.mjs";
+
+
 
 export const mochaHooks = {
   beforeAll: async  function () {
     // global setup for all tests
-		// each file should connect to the client and the end of the file should close the client
-		await dropTables();
-		await migrateTables();
-		console.log("finished beforeAll, hopefully client is closed")
+		await dropTables(testPool);
+		await migrateTables(testPool);
+		console.log("finished beforeAll")
 
   },
   afterAll: async function () {
     // one-time final cleanup
-		await dropTables();
+		await dropTables(testPool);
+		await testPool.end();
 
   }
 };

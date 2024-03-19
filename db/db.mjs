@@ -9,6 +9,16 @@ export const pool = new Pool({
   port: 5432,
 });
 
+
+export const testPool = new Pool({
+  user: 'synthesisdev',
+  host: 'localhost',
+  database: 'test_practice',
+  port: 5432,
+	max: 1,
+	idleTimeoutMillis: 1000,
+});
+
 export const client = new Client({
   host: 'localhost',
   port: 5432,
