@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-
+// migrateTables takes a pool/client and runs all sql migrations in numerical order
 export const migrateTables = async (pool) => {
 	try {
 		// first read in the files
@@ -12,15 +12,13 @@ export const migrateTables = async (pool) => {
 		// and finallly end the client connection
 		const files = fs.readdirSync(path.join(process.cwd(), 'db', 'migrations'));
 		const sortedFiles = files.sort((a, b) => a.split('_')[0] - b.split('_')[0]);
-		
-		// await client.connect();
-		console.log('Client connected successfully');
-		
+
+		// read and run each file		
 		for (const file of sortedFiles) {
 			const sql = fs.readFileSync(path.join(process.cwd(), 'db', 'migrations', file), 'utf-8');
 			await pool.query(sql);
 		}
-		console.log('Tables created successfully');
+		console.log('Tables migrated successfully');
 	} catch (error) {
 		console.error(error);
 	} 

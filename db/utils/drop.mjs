@@ -1,5 +1,4 @@
-
-
+// dropTables takes a pool (or client) and drops all tables in the database
 export const dropTables = async (pool) => {
 	try {
 
@@ -12,7 +11,7 @@ export const dropTables = async (pool) => {
 		await pool.query(`
 	  DROP TABLE IF EXISTS categories;
 	`);
-		console.log('db table drops complete');
+		console.log('db tables dropped');
 	} catch (error) {
 		console.error('Error dropping tables', error);
 	} 

@@ -2,8 +2,7 @@
 // should exist
 // columns: id, name 
 // name is required and unique
-import { testPool } from '../db/db.mjs';
-import { expect } from 'chai';
+import { testPool } from '../../db/db.mjs';
 
 
 
