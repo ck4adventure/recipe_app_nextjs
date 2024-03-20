@@ -24,4 +24,4 @@ export const seedTables = async (pool) => {
 	} 
 }
 
-seedTables();
+// seedTables();
