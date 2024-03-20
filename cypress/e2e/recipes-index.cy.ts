@@ -1,4 +1,4 @@
-describe('recipes page', () => {
+describe('recipes index page', () => {
 	beforeEach(() => {
 		cy.visit("http://localhost:3000/recipes")
 	})

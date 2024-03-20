@@ -15,3 +15,13 @@ export const getCategoriesAndRecipes = async () => {
 	`);
 	return res.rows;
 }
+
+// getRecipeById returns a single row containing recipe and category data
+export const getRecipeById = async (id: number) => {
+	const res = await query(`
+	  SELECT r.id AS recipe_id, r.title AS recipe_title, c.id AS category_id, c.name AS category_name
+	  FROM recipes r LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id LEFT JOIN categories c ON rc.category_id = c.id
+	  WHERE r.id = $1
+	`, [id]);
+	return res.rows[0];
+}

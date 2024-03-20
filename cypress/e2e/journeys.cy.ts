@@ -1,5 +1,17 @@
 // journeys is a collection of tests that re-create the steps a user would take to accomplish a task.
 describe('User Journeys', () => {
+	it('a user can find the recipes page and see a list of recipes', () => {
+		cy.visit("http://localhost:3000/recipes")
+		cy.location("pathname").should("equal", "/recipes")
+		cy.getByData('recipe-link').should('exist')
+	});
+	it('a user can click on a recipe and see its details', () => {
+		cy.visit("http://localhost:3000/recipes")
+		cy.getByData('recipe-link').first().click()
+		cy.location("pathname").should("include", "/recipes/")
+		cy.getByData('recipe-detail-title').should('exist')
+		cy.getByData('recipe-detail-category').should('exist')
+	});
 	it('a user can find the add recipe button and successfully add a recipe', () => {
 		cy.visit("http://localhost:3000/recipes")
 		cy.getByData('add-recipe-link').click()

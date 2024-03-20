@@ -1,3 +1,6 @@
+
+import Link from 'next/link';
+
 // CategoryCard takes a category and array of recipes and displays them in a list
 const CategoryCard = ({ category, categoryRecipes }: { category: string, categoryRecipes: any }) => {
 	const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
@@ -8,7 +11,14 @@ const CategoryCard = ({ category, categoryRecipes }: { category: string, categor
 			<ul data-cy='recipe-list'>
 				{categoryRecipes.map((recipe: any, index: number) => {
 					return (
-						<li data-cy='recipe-link' key={index} className="font-light">{recipe.recipe_title}</li>
+						<li key={index} className="font-light m-2">
+							<Link
+								data-cy='recipe-link'
+								href={`/recipes/${recipe.recipe_id}`}
+							>
+								{recipe.recipe_title}
+							</Link>
+						</li>
 					);
 				})}
 			</ul>
