@@ -15,3 +15,10 @@ export const createRecipeWithCategory = async (title: string, categoryID: number
 	revalidatePath('/recipes');
 	redirect('/recipes');
 }
+
+// deleteRecipeById takes a recipeID 
+export const deleteRecipeById = async (recipeID: number) => {
+	await query(`DELETE FROM recipes WHERE id = $1`, [recipeID]);
+	revalidatePath('/recipes');
+	redirect('/recipes');
+}

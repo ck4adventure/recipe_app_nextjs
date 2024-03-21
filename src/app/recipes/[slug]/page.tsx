@@ -1,11 +1,12 @@
 import { getRecipeBySlug } from '@/app/lib/data';
 import { Recipe } from '@/app/lib/definitions';
+import { DeleteRecipeButton } from '@/app/ui/headerbar/recipes/delete_recipe_button';
 
 // RecipeDetailPage should fetch the recipe by id
 export default async function Page({ params }: { params: { slug: string } }) {
 	const recipe = await getRecipeBySlug(params.slug) as unknown as Recipe;
 	return (
-		<div>
+		<div id='recipe_page'>
 			<title>Recipe</title>
 			<main className='max-w-screen-sm m-auto flex flex-col'>
 				{/* header section */}
@@ -34,7 +35,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						<li className='my-1 pl-2'>Bake</li>
 					</ol>
 				</div>
-			</main>
+				<div className='flex justify-center'>
+					<DeleteRecipeButton id={recipe.recipe_id} />
+					</div>
+								</main>
 		</div>
 	);
 }

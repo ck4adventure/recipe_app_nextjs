@@ -25,5 +25,8 @@ describe('Recipes Detail Page', () => {
 		it('should have a recipe directions section', () => {
 			cy.getByData('recipe-detail-directions').should('exist')
 		});
+		it('should have a delete button', () => {
+			cy.getByData('recipe-detail-delete-button').should('exist')
+		});
 	});
 });

@@ -53,12 +53,12 @@ TODO: create a script similar to rails that actually creates the db by name and 
 ## App Structure
 This is a next.js app, following the bleeding-edge `app` server functionality over the old `pages` logic. 
 ```
-/cypress is the e2e testing suite
+/cypress is the e2e testing suite for the FE
 /db holds db logic
   /seeds is sample data for easier dev
   /migrations holds sql migration files (up only)
-  /test to hold mocha/chai db tests
 /public
 /scripts
 /src/app
   /recipes
+/tests holds the db tests using mocha
