@@ -1,11 +1,12 @@
 // recipes tests
 // table should exist
-// columns: id, title
-// title is required
+// columns: id, title, slug
+// title is required, and unique
+// slug is generated from title and is unique
 import { testPool } from '../../db/db.mjs';
 
 describe('recipes model', () => {
-	context('columns', () => {
+	context('title', () => {
 		it('has a title column', async () => {
 			const result = await testPool.query(`
 				SELECT column_name
@@ -26,6 +27,38 @@ describe('recipes model', () => {
 				error = e;
 			}
 			expect(error).to.exist;
+		});
+		it('title must be unique', async () => {
+			let error;
+			try {
+				await testPool.query(`
+					INSERT INTO recipes (title) VALUES ('test')
+				`);
+				await testPool.query(`
+					INSERT INTO recipes (title) VALUES ('test')
+				`);
+			} catch (e) {
+				error = e;
+			}
+			expect(error).to.exist;
+		});
+	});
+	context('slug', async () => {
+		it('has a slug column', async () => {
+			const result = await testPool.query(`
+				SELECT column_name
+				FROM information_schema.columns
+				WHERE table_name = 'recipes'
+			`);
+			const columnNames = result.rows.map((row) => row.column_name);
+			expect(columnNames).to.include('slug');
+		});
+		it('slug is generated from title', async () => {
+			const result = await testPool.query(`
+				INSERT INTO recipes (title) VALUES ('testing-123')
+				RETURNING slug
+			`);
+			expect(result.rows[0].slug).to.equal('testing-123');
 		});
 	});
 

@@ -1,9 +1,9 @@
-import { getRecipeById } from '@/app/lib/data';
+import { getRecipeBySlug } from '@/app/lib/data';
 import { Recipe } from '@/app/lib/definitions';
 
 // RecipeDetailPage should fetch the recipe by id
-export default async function Page({ params }: { params: { id: number } }) {
-	const recipe = await getRecipeById(params.id) as unknown as Recipe;
+export default async function Page({ params }: { params: { slug: string } }) {
+	const recipe = await getRecipeBySlug(params.slug) as unknown as Recipe;
 	return (
 		<div>
 			<title>Recipe</title>

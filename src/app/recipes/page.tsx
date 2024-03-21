@@ -17,8 +17,8 @@ const formatCategoryAndRecipes = (row_data: any) => {
 }
 // Recipe Index Page should display a list of recipes
 export default async function Page() {
-	const row_data = await getCategoriesAndRecipes()
-	const recipes_data = formatCategoryAndRecipes(row_data);
+	const result = await getCategoriesAndRecipes()
+	const recipes_data = formatCategoryAndRecipes(result);
 
 	return (
 		<div>

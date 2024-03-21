@@ -7,6 +7,13 @@ describe('User Journeys', () => {
 	});
 	it('a user can click on a recipe and see its details', () => {
 		cy.visit("http://localhost:3000/recipes")
+		cy.getByData('recipe-link').first().invoke('attr', 'href').then((href) => {
+			if (href) {
+			const slug = href.split('/').pop();
+			// slug should be a string not a number
+			expect(isNaN(Number(slug))).to.be.true;
+			}
+		});
 		cy.getByData('recipe-link').first().click()
 		cy.location("pathname").should("include", "/recipes/")
 		cy.getByData('recipe-detail-title').should('exist')
