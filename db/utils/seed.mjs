@@ -23,5 +23,3 @@ export const seedTables = async (pool) => {
 		console.error('error seeding tables', error);
 	} 
 }
-
-// seedTables();

@@ -6,6 +6,9 @@
 // it should display a recipe detail section
 
 describe('Recipes Detail Page', () => {
+	beforeEach(() => {
+		cy.visit("http://localhost:3000/recipes/1")
+	})
 	context('layout', () => {
 		it('should display a header section', () => {
 			cy.getByData('recipe-detail-header').should('exist')
@@ -16,12 +19,11 @@ describe('Recipes Detail Page', () => {
 		it('should display a header with the recipe category', () => {
 			cy.getByData('recipe-detail-category').should('exist')
 		});
-		it('should display a recipe detail section', () => {
-			cy.getByData('recipe-detail-section').should('exist')
+		it('should display a ingredients section', () => {
+			cy.getByData('recipe-detail-ingredients').should('exist')
 		});
-		it('recipe detail section should have a left and right margin of 12', () => {
-			cy.getByData('recipe-detail-section').should('have.css', 'margin-left', '12px')
-			cy.getByData('recipe-detail-section').should('have.css', 'margin-right', '12px')
+		it('should have a recipe directions section', () => {
+			cy.getByData('recipe-detail-directions').should('exist')
 		});
 	});
 });

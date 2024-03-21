@@ -1,4 +1,5 @@
 // dropTables takes a pool (or client) and drops all tables in the database
+
 export const dropTables = async (pool) => {
 	try {
 
@@ -16,5 +17,3 @@ export const dropTables = async (pool) => {
 		console.error('Error dropping tables', error);
 	} 
 }
-
-// dropTables();
