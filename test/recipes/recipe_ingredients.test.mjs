@@ -4,8 +4,17 @@
 // FK recipe_id references recipes.id, on delete cascade
 // ingredient is required, varchar(255) (simple string for now)
 // deleting an ingredient does NOT delete the recipe
+import { expect } from 'chai';
+import { testPool } from '../../db/db.mjs';
 
 describe('RecipeIngredients table', () => {
+	afterEach(async () => {
+		// delete all entries in the recipes, categories, recipe_categories and recipe_ingredients table
+		await testPool.query('DELETE FROM recipe_ingredients');
+		await testPool.query('DELETE FROM recipe_categories');
+		await testPool.query('DELETE FROM recipes');
+		await testPool.query('DELETE FROM categories');
+	});
 	context('columns', () => {
 		it('has a recipe_id column', async () => {
 			const result = await testPool.query(`
@@ -61,9 +70,14 @@ describe('RecipeIngredients table', () => {
 			const recipeId = recipeResult.rows[0].id;
 			expect(recipeId).to.be.a('number');
 			// add ingredients to the recipe
-			const ingredientResult = await testPool.query('INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES ($1, $2), ($1, $2)', [recipeId, 'ingredient1']);
-			// probably this will need to be changed, likely db will error out before this point
-			expect(ingredientResult.rowCount).to.equal(1);
+			let error;
+			try {
+				await testPool.query('INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES ($1, $2), ($1, $2)', [recipeId, 'ingredient1']);
+			} catch (e) {
+				error = e;
+			}
+			expect(error).to.exist;
+
 		});
 	});
 	context('deleting entries', () => {
