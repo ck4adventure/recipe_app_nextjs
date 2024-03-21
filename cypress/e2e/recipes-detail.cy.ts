@@ -7,7 +7,7 @@
 
 describe('Recipes Detail Page', () => {
 	beforeEach(() => {
-		cy.visit("http://localhost:3000/recipes/1")
+		cy.visit("http://localhost:3000/recipes/sundae")
 	})
 	context('layout', () => {
 		it('should display a header section', () => {
