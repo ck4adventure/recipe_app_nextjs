@@ -30,5 +30,10 @@ Action: getRecipeByID
 Story: As a user, I want to see the recipe title in the URL
 FE: change links to use slugs
 Action: getRecipeBySlug
-BE: add col slug to recipes table, unique
-BE: add function to slugify a recipe title
+BE: add unique to title, add col slug to recipes table, generated from title
+
+### Delete a Recipe
+FE: add a delete button on the detail page
+FE: add a modal to confirm the delete
+Action: delete recipe by slug/id
+BE: Ensure entries in recipe_categories deleted when recipe deleted DONE

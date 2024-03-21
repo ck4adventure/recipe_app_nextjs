@@ -38,4 +38,13 @@ describe('User Journeys', () => {
 		cy.getByData('category-card').should('exist')
 		cy.getByData('category-card').contains('Test Recipe')
 	})
+	it('a user can delete a recipe', () => {
+		cy.visit("http://localhost:3000/recipes/test-recipe")
+		cy.getByData('recipe-detail-delete-button').first().click()
+		// on successful delete, user is redirected to the recipes page
+		cy.location("pathname").should("equal", "/recipes")
+		// the recipe should not be displayed on the recipes page
+		cy.getByData('category-card').should('exist')
+		cy.getByData('category-card').contains('Test Recipe').should('not.exist')
+	})
 })
