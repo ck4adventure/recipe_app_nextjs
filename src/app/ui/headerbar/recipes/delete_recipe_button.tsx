@@ -56,7 +56,9 @@ export const DeleteRecipeButton = ({ id }: { id: number }) => {
 						padding: '20px'
 					}
 				}}
-			><div className="flex justify-end" >
+			>
+				<div 				data-cy='delete-recipe-modal'>
+				<div className="flex justify-end" >
 					<button onClick={setIsOpen.bind(null, false)}>X</button>
 				</div>
 
@@ -69,8 +71,9 @@ export const DeleteRecipeButton = ({ id }: { id: number }) => {
 						<button onClick={setIsOpen.bind(null, false)}>Close</button>
 					</div>
 					<div className="m-2 bottom-3">
-						<button onClick={handleDeleteRecipe}>Delete</button>
+						<button data-cy="delete-recipe-button"  onClick={handleDeleteRecipe}>Delete</button>
 					</div>
+				</div>
 				</div>
 			</Modal>
 		</div>
