@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 					{/* ingredients section */}
 					<div className='sm:my-4' data-cy="recipe-detail-ingredients">
 						<div className='m-2 text-lg' data-cy="recipe-detail-ingredients-header">Ingredients</div>
-						<ul className={`mx-8 list-disc`}>
+						<ul className={`mx-8 list-disc`} data-cy='recipe-detail-ingredients-list'>
 							{recipe.ingredients && recipe.ingredients.map((ingredient, index) => {
 								return (
 									<li key={index} className='my-1 pl-2 min-w-max' data-cy="recipe-detail-ingredient">{ingredient}</li>
