@@ -8,39 +8,41 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	return (
 		<div id='recipe_page'>
 			<title>Recipe</title>
-			<main className='max-w-screen-sm m-auto flex flex-col'>
+			<main className='flex flex-col items-center'>
 				{/* header section */}
-				<div className='flex flex-col items-center' data-cy="recipe-detail-header">
+				<div className='flex flex-col items-center m-8' data-cy="recipe-detail-header">
 					<div className='text-xl' data-cy="recipe-detail-title">{recipe.recipe_title}</div>
 					<div className='font-light text-xs' data-cy="recipe-detail-category">{recipe.category_name}</div>
 				</div>
-				
-				{/* ingredients section */}
-				<div className='my-4' data-cy="recipe-detail-ingredients">
-					<div className='text-lg' data-cy="recipe-detail-ingredients-header">Ingredients</div>
-					<ul className={`my-4 mx-8 list-disc`}>
-						{recipe.ingredients && recipe.ingredients.map((ingredient, index) => {
-							return (
-								<li key={index} className='my-1 pl-2' data-cy="recipe-detail-ingredient">{ingredient}</li>
-							);
-						})}
-					</ul>
+				{/* responsive sections */}
+				<div className='flex flex-col sm:items-center sm:w-[500px] md:flex-row md:items-start'>
+					{/* ingredients section */}
+					<div className='sm:my-4' data-cy="recipe-detail-ingredients">
+						<div className='m-2 text-lg' data-cy="recipe-detail-ingredients-header">Ingredients</div>
+						<ul className={`mx-8 list-disc`}>
+							{recipe.ingredients && recipe.ingredients.map((ingredient, index) => {
+								return (
+									<li key={index} className='my-1 pl-2 min-w-max' data-cy="recipe-detail-ingredient">{ingredient}</li>
+								);
+							})}
+						</ul>
+					</div>
+
+					{/* directions section */}
+					<div className='sm:my-4' data-cy="recipe-detail-directions">
+						<div className='m-2 text-lg' data-cy="recipe-detail-directions-header">Directions</div>
+						<ol className={`mx-8 list-decimal`} data-cy="recipe-detail-directions-list">
+							<li className='my-1 pl-2 min-w-max'>Preheat oven to 350°F</li>
+							<li className='my-1 pl-2 min-w-max'>Mix flour and sugar together</li>
+							<li className='my-1 pl-2 min-w-max'>Add eggs</li>
+							<li className='my-1 pl-2 min-w-max'>Bake</li>
+						</ol>
+					</div>
 				</div>
-				
-				{/* directions section */}
-				<div className='my-4' data-cy="recipe-detail-directions">
-					<div className='text-lg' data-cy="recipe-detail-directions-header">Directions</div>
-					<ol className={`my-4 mx-8 list-decimal`} data-cy="recipe-detail-directions-list">
-						<li className='my-1 pl-2'>Preheat oven to 350°F</li>
-						<li className='my-1 pl-2'>Mix flour and sugar together</li>
-						<li className='my-1 pl-2'>Add eggs</li>
-						<li className='my-1 pl-2'>Bake</li>
-					</ol>
-				</div>
-				<div className='flex justify-center mb-4'>
+				<div className='flex justify-center m-4 mt-8'>
 					<DeleteRecipeButton id={recipe.recipe_id} />
 				</div>
-				</main>
+			</main>
 		</div>
 	);
 }
