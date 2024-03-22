@@ -10,12 +10,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
 			<title>Recipe</title>
 			<main className='flex flex-col items-center'>
 				{/* header section */}
-				<div className='flex flex-col items-center m-8' data-cy="recipe-detail-header">
+				<div className='flex flex-col items-center' data-cy="recipe-detail-header">
 					<div className='text-xl' data-cy="recipe-detail-title">{recipe.recipe_title}</div>
 					<div className='font-light text-xs' data-cy="recipe-detail-category">{recipe.category_name}</div>
 				</div>
 				{/* responsive sections */}
-				<div className='flex flex-col sm:items-center sm:w-[500px] md:flex-row md:items-start'>
+				<div className='flex flex-col md:flex-row my-8 mx-16'>
 					{/* ingredients section */}
 					<div className='sm:my-4' data-cy="recipe-detail-ingredients">
 						<div className='m-2 text-lg' data-cy="recipe-detail-ingredients-header">Ingredients</div>
@@ -32,10 +32,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
 					<div className='sm:my-4' data-cy="recipe-detail-directions">
 						<div className='m-2 text-lg' data-cy="recipe-detail-directions-header">Directions</div>
 						<ol className={`mx-8 list-decimal`} data-cy="recipe-detail-directions-list">
-							<li className='my-1 pl-2 min-w-max'>Preheat oven to 350°F</li>
-							<li className='my-1 pl-2 min-w-max'>Mix flour and sugar together</li>
-							<li className='my-1 pl-2 min-w-max'>Add eggs</li>
-							<li className='my-1 pl-2 min-w-max'>Bake</li>
+							{recipe.steps && recipe.steps.map((step, index) => {
+								return (
+									<li key={index} className='my-1 pl-2' data-cy="recipe-detail-step">{step}</li>
+								);
+							})}
 						</ol>
 					</div>
 				</div>
