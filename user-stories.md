@@ -47,3 +47,12 @@ BE: Add recipe_ingredients table
 - ingredient varchar255
 - FK recipe_id (r has many i, i belongs to 1 r, unique)
 BE: Update seeds data
+
+### Recipes have Directions/Steps/Method
+Directions are a sequence of steps to follow
+FE: Detail page has Directions section, listed in order numerical
+FE: each step is just text for now
+FE: Update fetch and create actions
+FE: update add form to have dynamic steps
+BE: Add recipes directions table
+BE: Update seeds data

@@ -21,6 +21,12 @@ export const seedTables = async (pool) => {
 						await pool.query(`INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES ('${recipeId}','${ingredient}')`);
 					}
 				}
+				// only do if steps exist
+				if (recipe.steps && recipe.steps.length > 0) {
+					for (const step of recipe.steps) {
+						await pool.query(`INSERT INTO recipe_steps (recipe_id, step) VALUES ('${recipeId}','${step}')`);
+					}
+				}
 			}
 		}
 		console.log('db tables seeded')
