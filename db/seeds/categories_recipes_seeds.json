@@ -1,46 +1,130 @@
- {
-	"breakfast": [{
+{
+	"breakfast": [
+		{
 			"title": "Egg McMuffin",
-			"slug": "egg-mcmuffin",
-			"id": 1
+			"ingrs": [
+				"2 english muffins",
+				"2 eggs",
+				"2 slices of cheese",
+				"2 slices of canadian bacon",
+				"butter, for spreading"
+			]
 		},
 		{
 			"title": "Pancakes",
-			"slug": "pancakes",
-			"id": 2
+			"ingrs": [
+				"1 cup all-purpose flour",
+				"2 tablespoons sugar",
+				"2 teaspoons baking powder",
+				"1/2 teaspoon salt",
+				"1 cup milk"
+			]
 		}
 	],
-	"main": [{
-			"title": "Big Mac",
-			"slug": "big-mac",
-			"id": 3
+	"main": [
+		{
+			"title": "Steak n Potatoes",
+			"ingrs": [
+				"2 beef steaks",
+				"1/2 cup of steak sauce",
+				"1/2 cup of butter",
+				"1/2 cup of sour cream",
+				"1/2 cup of chives",
+				"1/2 cup of bacon bits",
+				"1/2 cup of shredded cheddar cheese",
+				"1/2 cup of chopped green onions",
+				"1/2 cup of chopped tomatoes",
+				"1/2 cup of chopped jalapenos",
+				"1/2 cup of chopped olives",
+				"1/2 cup of chopped mushrooms",
+				"1/2 cup of chopped bell peppers",
+				"1/2 cup of chopped onions",
+				"1/2 cup of chopped garlic",
+				"1/2 cup of chopped cilantro",
+				"1/2 cup of chopped parsley",
+				"1/2 cup of chopped basil",
+				"1/2 cup of chopped oregano",
+				"1/2 cup of chopped thyme",
+				"1/2 cup of chopped rosemary",
+				"1/2 cup of chopped sage",
+				"1/2 cup of chopped marjoram",
+				"1/2 cup of chopped tarragon",
+				"1/2 cup of chopped dill",
+				"1/2 cup of chopped fennel",
+				"1/2 cup of chopped lemongrass",
+				"1/2 cup of chopped ginger",
+				"1/2 cup of chopped turmeric",
+				"1/2 cup of chopped cumin",
+				"1/2 cup of chopped coriander",
+				"1/2 cup of chopped cardamom",
+				"1/2 cup of chopped cinnamon",
+				"1/2 cup of chopped cloves",
+				"1/2 cup of chopped nutmeg",
+				"1/2 cup of chopped allspice",
+				"1/2 cup of chopped mace",
+				"1/2 cup of chopped mustard",
+				"1/2 cup of chopped horseradish",
+				"1/2 cup of chopped wasabi",
+				"1/2 cup of chopped chili peppers",
+				"1/2 cup of chopped black pepper"
+			]
 		},
 		{
-			"title": "Quarter Pounder",
-			"slug": "quarter-pounder",
-			"id": 4
+			"title": "Spaghetti with Meatballs",
+			"ingrs": [
+				"1 pound ground beef",
+				"2 cups prepared spaghetti sauce",
+				"4 servings noodles, cooked"
+			]
 		}
 	],
-	"dessert": [{
+	"dessert": [
+		{
 			"title": "Apple Pie",
-			"slug": "apple-pie",
-			"id": 5
+			"ingrs": [
+				"1/2 cup sugar",
+				"1/2 cup light corn syrup",
+				"1/4 cup all-purpose flour",
+				"1/2 teaspoon ground cinnamon",
+				"1/4 teaspoon ground nutmeg",
+				"6 cups thinly sliced peeled tart apples",
+				"1 tablespoon butter",
+				"1 unbaked pastry shell (9 inches)"
+			]
 		},
 		{
 			"title": "Sundae",
-			"slug": "sundae",
-			"id": 6
+			"ingrs": [
+				"3 scoops vanilla ice cream",
+				"1/4 cup chocolate syrup",
+				"1/4 cup whipped cream",
+				"1 cherry",
+				"1/4 cup chopped nuts, optional"
+			]
 		}
 	],
-	"salad": [{
+	"salad": [
+		{
 			"title": "Garden Salad",
-			"slug": "garden-salad",
-			"id": 7
+			"ingrs": [
+				"1 head lettuce",
+				"1/2 cup chopped celery",
+				"1/2 cup chopped green pepper",
+				"1/2 cup chopped onion",
+				"1/2 cup mayonnaise",
+				"1/2 cup sour cream",
+				"1/2 cup grated Parmesan cheese",
+				"1/2 cup bacon bits"
+			]
 		},
 		{
 			"title": "Caesar Salad",
-			"slug": "caesar-salad",
-			"id": 8
+			"ingrs": [
+				"1 head romaine lettuce",
+				"1/4 cup grated Parmesan cheese",
+				"1/2 cup croutons",
+				"1/4 cup Caesar dressing"
+			]
 		}
 	],
 	"drink": [],

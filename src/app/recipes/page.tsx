@@ -21,9 +21,9 @@ export default async function Page() {
 	const recipes_data = formatCategoryAndRecipes(result);
 
 	return (
-		<div>
+		<div className='flex flex-col max-w-screen-md justify-center items-center m-auto'>
 			<title>Recipes</title>
-			<main className='flex flex-col'>
+			<main >
 				<div data-cy='recipes-headerbar' className='flex justify-between my-4 mx-8'>
 					<h1 className='' data-cy='recipes-header-type'>Recipes By Category</h1>
 					<Link 
@@ -32,7 +32,7 @@ export default async function Page() {
 						href={'/recipes/add-recipe'}
 						>Add Recipe</Link>
 				</div>
-				<div data-cy='recipe-categories' className="m-2 grid grid-flow-row grid-cols-3">
+				<div data-cy='recipe-categories' className="m-2 grid grid-flow-row grid-cols-2">
 					{Object.keys(recipes_data).map((catName, index) => {
 						const catGroup: any = recipes_data[catName];
 						return (

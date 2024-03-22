@@ -1,4 +1,4 @@
-
+'use client';
 import Link from 'next/link';
 
 // CategoryCard takes a category and array of recipes and displays them in a list

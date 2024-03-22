@@ -9,7 +9,7 @@ export default async function Page() {
   return (
     <div>
       <title>Add Recipe</title>
-      <main>
+      <main className="max-w-screen-sm">
 				<RecipeForm categoryRows={categoryRows} />
       </main>
     </div>

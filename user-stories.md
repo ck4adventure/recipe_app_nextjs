@@ -37,3 +37,13 @@ FE: add a delete button on the detail page
 FE: add a modal to confirm the delete
 Action: delete recipe by slug/id
 BE: Ensure entries in recipe_categories deleted when recipe deleted DONE
+
+### Recipes have Ingredients
+FE: DetailPage gets Ingredients Section, should list them as bullet points
+FE: each ingredient is just a text string for now
+FE: update functions that get or update recipes to include ingredients logic
+FE: update AddRecipeForm to use dynamic form fields
+BE: Add recipe_ingredients table
+- ingredient varchar255
+- FK recipe_id (r has many i, i belongs to 1 r, unique)
+BE: Update seeds data
