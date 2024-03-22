@@ -18,7 +18,6 @@ export const seedTables = async (pool) => {
 				// only do if ingredients exist
 				if (recipe.ingrs && recipe.ingrs.length > 0) {
 					for (const ingredient of recipe.ingrs) {
-						console.log('ingredient', ingredient);
 						await pool.query(`INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES ('${recipeId}','${ingredient}')`);
 					}
 				}

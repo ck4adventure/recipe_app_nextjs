@@ -19,9 +19,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				<div className='my-4' data-cy="recipe-detail-ingredients">
 					<div className='text-lg' data-cy="recipe-detail-ingredients-header">Ingredients</div>
 					<ul className={`my-4 mx-8 list-disc`}>
-						<li className='my-1 pl-2'>4 cups flour</li>
-						<li className='my-1 pl-2'>1 cup sugar</li>
-						<li className='my-1 pl-2'>2 eggs</li>
+						{recipe.ingredients && recipe.ingredients.map((ingredient, index) => {
+							return (
+								<li key={index} className='my-1 pl-2' data-cy="recipe-detail-ingredient">{ingredient}</li>
+							);
+						})}
 					</ul>
 				</div>
 				
@@ -35,10 +37,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						<li className='my-1 pl-2'>Bake</li>
 					</ol>
 				</div>
-				<div className='flex justify-center'>
+				<div className='flex justify-center mb-4'>
 					<DeleteRecipeButton id={recipe.recipe_id} />
-					</div>
-								</main>
+				</div>
+				</main>
 		</div>
 	);
 }
