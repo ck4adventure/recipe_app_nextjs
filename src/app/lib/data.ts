@@ -32,12 +32,22 @@ export const getRecipeById = async (id: number) => {
 // getRecipeBySlug returns a single row containing recipe, ingrs and category data
 export const getRecipeBySlug = async (slug: string) => {
 	const result = await query(`
-	  SELECT r.id AS recipe_id, r.title AS recipe_title, r.slug as recipe_slug, c.id AS category_id, c.name AS category_name, array_agg(ri.ingredient) AS ingredients
+	  SELECT r.id AS recipe_id, r.title AS recipe_title, r.slug as recipe_slug, c.id AS category_id, c.name AS category_name, ingredients, steps
 	  FROM recipes r 
-		LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id LEFT JOIN categories c ON rc.category_id = c.id
-		LEFT JOIN recipe_ingredients ri ON r.id = ri.recipe_id
+		LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id 
+		LEFT JOIN categories c ON rc.category_id = c.id
+		LEFT JOIN (
+			SELECT recipe_id, array_agg(ingredient) AS ingredients
+			FROM recipe_ingredients
+			GROUP BY recipe_id 
+		) ri ON r.id = ri.recipe_id
+		LEFT JOIN (
+			SELECT recipe_id, array_agg(step) AS steps
+			FROM recipe_steps
+			GROUP BY recipe_id
+		) rs ON r.id = rs.recipe_id
 	  WHERE r.slug = $1
-		GROUP BY c.id, r.id
+		GROUP BY c.id, r.id, ri.ingredients, rs.steps
 	`, [slug]);
 	return result.rows[0];
 }

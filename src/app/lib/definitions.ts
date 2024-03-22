@@ -4,6 +4,7 @@ export interface Recipe {
 	category_id?: number;
 	category_name?: string;
 	ingredients?: string[];
+	steps?: string[];
 }
 
 export interface Category {

@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation'
 
 // createRecipe takea a title and categoryID and creates the recipe and adds it to the category
-export const createRecipe = async (title: string, categoryID: number, ingredients: string[]) => {
+export const createRecipe = async (title: string, categoryID: number, ingredients: string[], steps: string[]) => {
 	// TODO write validations for incoming data
 	// first add the recipe, then grab the id to add an entry into the joins table
 	console.log('begin createRecipe');
@@ -17,6 +17,11 @@ export const createRecipe = async (title: string, categoryID: number, ingredient
 	if (ingredients && ingredients.length > 0) {
 		for (const ingr of ingredients) {
 			await query(`INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES ($1, $2)`, [newRecipeID, ingr]);
+		}
+	}
+	if (steps && steps.length > 0) {
+		for (const step of steps) {
+			await query(`INSERT INTO recipe_steps (recipe_id, step) VALUES ($1, $2)`, [newRecipeID, step]);
 		}
 	}
 

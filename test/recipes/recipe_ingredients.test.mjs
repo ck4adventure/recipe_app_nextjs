@@ -7,7 +7,7 @@
 import { expect } from 'chai';
 import { testPool } from '../../db/db.mjs';
 
-describe('RecipeIngredients table', () => {
+describe('recipe_ingredients table', () => {
 	afterEach(async () => {
 		// delete all entries in the recipes, categories, recipe_categories and recipe_ingredients table
 		await testPool.query('DELETE FROM recipe_ingredients');
