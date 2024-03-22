@@ -5,12 +5,20 @@
 import { createRecipe } from "@/app/lib/actions";
 import { useState } from "react";
 import IngredientField from "./ingredient_field";
-import { act } from "react-dom/test-utils";
+import DirectionField from "./direction_field";
 
 export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 	const [recipeTitle, setRecipeTitle] = useState<string>('');
 	const [categoryID, setCategoryID] = useState<number>(1);
-	const [ingredients, setIngredients] = useState<string[]>(['','']);
+	const [ingredients, setIngredients] = useState<string[]>(['', '']);
+	const [directions, setDirections] = useState<string[]>(['', '',]);
+
+	const addField = (type: 'ingredients' | 'directions') => {
+		if (type === 'directions') {
+			setDirections([...directions, '']);
+		}
+		setIngredients([...ingredients, '']);
+	}
 
 	const handleIngredientChange = (index: number, value: string) => {
 		const newIngredients = [...ingredients];
@@ -24,22 +32,31 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 		setIngredients(newIngredients);
 	}
 
-	const addField = () => {
-		setIngredients([...ingredients, '']);
+	const handleDirectionChange = (index: number, value: string) => {
+		const newDirections = [...directions];
+		newDirections[index] = value;
+		setDirections(newDirections);
+	}
+
+	const handleDirectionDelete = (index: number) => {
+		const newDirections = [...directions];
+		newDirections.splice(index, 1);
+		setDirections(newDirections);
 	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const actualIngredients = ingredients.filter(ingr => ingr.length > 0);
-		await createRecipe(recipeTitle, categoryID, actualIngredients);
+		const actualDirections = directions.filter(dir => dir.length > 0);
+		await createRecipe(recipeTitle, categoryID, actualIngredients, actualDirections);
 	};
 
 	return (
 		<div>
 			<h1 className="m-4">Add Recipe</h1>
-			<form data-cy='add-recipe-form' className="m-4 flex flex-col" onSubmit={handleSubmit}>
+			<form data-cy='add-recipe-form' className="m-4 flex flex-col justify-center" onSubmit={handleSubmit}>
 				{/* Recipe Title */}
-				<div className="m-4">
+				<div className="my-4">
 					<label htmlFor="recipe-title">Recipe Title
 						<input
 							id="recipe-title"
@@ -51,7 +68,7 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 					</label>
 				</div>
 				{/* Category Select */}
-				<div className="m-4">
+				<div className="my-4">
 					<label htmlFor="category-select">Category
 						<select
 							id="category-select"
@@ -76,8 +93,20 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 							onChange={(value) => handleIngredientChange(i, value)}
 							onDelete={() => handleIngredientDelete(i)} />
 					))}
-					<button type="button"  data-cy='add-ingr-button' onClick={addField}>+ Add Ingredient</button>
+					<button type="button" data-cy='add-ingr-button' onClick={() => addField("ingredients")}>+ Add Ingredient</button>
 				</fieldset>
+				{/* Directions Section */}
+				<fieldset className='my-2'>Directions
+					{directions.map((direction, i) => (
+						<DirectionField 
+							key={i}
+							value={direction}
+							onChange={(value) => handleDirectionChange(i, value)}
+							onDelete={() => handleDirectionDelete(i)} />
+						
+					))}
+				</fieldset>
+				<button type="button" data-cy='add-dir-button' onClick={() => addField("directions")}>+ Add Step</button>
 				{/* Submit button */}
 				<div className="m-4">
 					<button
