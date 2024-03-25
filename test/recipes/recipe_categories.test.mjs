@@ -1,7 +1,6 @@
 // recipe_categories
 // schema/table tests
 // columns: id, FK recipe_id, FK category_id
-import exp from 'constants';
 import { testPool } from '../../db/db.mjs';
 import { expect } from 'chai';
 describe('recipe_categories joins table', () => {
