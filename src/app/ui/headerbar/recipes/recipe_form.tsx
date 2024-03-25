@@ -2,7 +2,7 @@
 // with a recipe title input and a select dropdown to choose a category
 // it should manage the state and submit the form
 'use client'
-import { createRecipe } from "@/app/lib/actions";
+import { createRecipeAndRedirect } from "@/app/lib/actions";
 import { useState } from "react";
 import IngredientField from "./ingredient_field";
 import DirectionField from "./direction_field";
@@ -48,7 +48,7 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 		e.preventDefault();
 		const actualIngredients = ingredients.filter(ingr => ingr.length > 0);
 		const actualDirections = directions.filter(dir => dir.length > 0);
-		await createRecipe(recipeTitle, categoryID, actualIngredients, actualDirections);
+		await createRecipeAndRedirect(recipeTitle, categoryID, actualIngredients, actualDirections);
 	};
 
 	return (

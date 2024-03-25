@@ -2,7 +2,7 @@
 'use client'
 import React from "react";
 import Modal from 'react-modal';
-import { deleteRecipeById } from "@/app/lib/actions";
+import { deleteRecipeByIdAndRedirect } from "@/app/lib/actions";
 
 Modal.setAppElement('#corner_root');
 
@@ -15,7 +15,7 @@ export const DeleteRecipeButton = ({ id }: { id: number }) => {
 
 	const handleDeleteRecipe = async () => {
 		setIsOpen(false);
-		await deleteRecipeById(id);
+		await deleteRecipeByIdAndRedirect(id);
 	}
 
 	return (
