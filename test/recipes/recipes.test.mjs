@@ -4,6 +4,7 @@
 // title is required, and unique
 // slug is generated from title and is unique
 import { testPool } from '../../db/db.mjs';
+import { expect } from 'chai';
 
 describe('recipes model', () => {
 	context('title', () => {

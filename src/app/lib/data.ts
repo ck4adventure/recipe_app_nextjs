@@ -1,53 +1,71 @@
 'use server';
 // import { cache } from 'react'
 import { query } from '../../../db/index.mjs';
+import { pool } from '../../../db/db.mjs';
+import { 
+	ADD_INGREDIENT_TO_RECIPE, 
+	ADD_RECIPE_TO_CATEGORY, 
+	ADD_STEP_TO_RECIPE, 
+	CREATE_RECIPE, 
+	GET_CATEGORIES, 
+	GET_CATEGORIES_AND_RECIPES, 
+	GET_RECIPE_BY_ID, 
+	GET_RECIPE_BY_SLUG 
+} from './sqlQueries';
 // getCategories returns rows containing category data
 export const getCategories = async () => {
-	const result = await query(`SELECT * FROM categories`, null);
+	const result = await query(GET_CATEGORIES, null);
 	return result.rows;
 }
 
 // getCategoriesAndRecipes returns rows containing category and recipe data
 export const getCategoriesAndRecipes = async () => {
-	const result = await query(`
-	  SELECT c.id AS category_id, c.name AS category_name, r.id AS recipe_id, r.title AS recipe_title, r.slug AS recipe_slug
-	  FROM categories c LEFT JOIN recipe_categories rc ON c.id = rc.category_id LEFT JOIN recipes r ON rc.recipe_id = r.id
-	`, null);
+	const result = await query(GET_CATEGORIES_AND_RECIPES, null);
 	return result.rows;
 }
 
 // getRecipeById returns a single row containing recipe and category data
 export const getRecipeById = async (id: number) => {
-	const result = await query(`
-	  SELECT r.id AS recipe_id, r.title AS recipe_title, r.slug as recipe_slug, c.id AS category_id, c.name AS category_name, array_agg(ri.ingredient) AS ingredients
-	  FROM recipes r 
-		LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id LEFT JOIN categories c ON rc.category_id = c.id
-	  LEFT JOIN recipe_ingredients ri ON r.id = ri.recipe_id
-		WHERE r.id = $1
-		GROUP BY r.id, c.id
-	`, [id]);
+	const result = await query(GET_RECIPE_BY_ID, [id]);
 	return result.rows[0];
 }
 
 // getRecipeBySlug returns a single row containing recipe, ingrs and category data
 export const getRecipeBySlug = async (slug: string) => {
-	const result = await query(`
-	  SELECT r.id AS recipe_id, r.title AS recipe_title, r.slug as recipe_slug, c.id AS category_id, c.name AS category_name, ingredients, steps
-	  FROM recipes r 
-		LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id 
-		LEFT JOIN categories c ON rc.category_id = c.id
-		LEFT JOIN (
-			SELECT recipe_id, array_agg(ingredient) AS ingredients
-			FROM recipe_ingredients
-			GROUP BY recipe_id 
-		) ri ON r.id = ri.recipe_id
-		LEFT JOIN (
-			SELECT recipe_id, array_agg(step) AS steps
-			FROM recipe_steps
-			GROUP BY recipe_id
-		) rs ON r.id = rs.recipe_id
-	  WHERE r.slug = $1
-		GROUP BY c.id, r.id, ri.ingredients, rs.steps
-	`, [slug]);
+	const result = await query(GET_RECIPE_BY_SLUG, [slug]);
 	return result.rows[0];
+}
+
+// createRecipeWithCategory takes a title, categoryID, ingredients and steps and creates a recipe
+export const createRecipeWithCategory = async (title: string, categoryID: number, ingredients: string[], steps: string[]) => {
+	// TODO write validations for incoming data
+	// first add the recipe, then grab the id to add an entry into the joins table
+	console.log('begin createRecipeWithCategory transaction');
+	const client = await pool.connect();
+	try {
+		await client.query('BEGIN');
+		const results = await client.query(CREATE_RECIPE, [title]);
+		const data = results.rows as any[];
+		const newRecipeID = data[0].id as Number;
+		console.log(`newRecipeID: ${newRecipeID}; categoryID: ${categoryID}`);
+
+		await client.query(ADD_RECIPE_TO_CATEGORY, [newRecipeID, categoryID]);
+		// add recipe ingredients to recipe_ingredients table
+		if (ingredients && ingredients.length > 0) {
+			for (const ingr of ingredients) {
+				await client.query(ADD_INGREDIENT_TO_RECIPE, [newRecipeID, ingr]);
+			}
+		}
+		if (steps && steps.length > 0) {
+			for (const step of steps) {
+				await client.query(ADD_STEP_TO_RECIPE, [newRecipeID, step]);
+			}
+		}
+		await client.query('COMMIT');
+	} catch (e) {
+		await client.query('ROLLBACK')
+		console.error(e);
+	} finally {
+		client.release()
+	}
 }

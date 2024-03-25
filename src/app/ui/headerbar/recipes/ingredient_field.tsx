@@ -12,8 +12,8 @@ interface IngredientFieldProps {
 const IngredientField: React.FC<IngredientFieldProps> = ({ value, onChange, onDelete }) => {
 
 	return (
-		<div className='flex justify-between mb-2'>
-			<input className='flex-grow mr-2 border-b border-slate-300' type='text' value={value} onChange={e => onChange(e.target.value)} ></input>
+		<div className='flex mb-2'>
+			<input className='grow mr-2 border-b border-slate-300' type='text' value={value} onChange={e => onChange(e.target.value)} ></input>
 			<button className='w-4' onClick={onDelete}><Image src='/trash.png' height={16} width={16} alt="delete button" /></button>
 		</div>
 	);

@@ -1,7 +1,22 @@
 # User Stories
+## TODO
+### Add unit tests to FE
+### Edit a Recipe
+### Convert between Imperial/US/Metric Units
+- store recipes in original units of measure (harder, but more accurate)
+- if in metric, no real need (for me) to put in imperial
+- toggle button to switch between
+### Add Recipe button on every page
+- material style round plus sign button that hovers at z+1
+### Recipes Index View All
+- toggle buttons to switch between category cards and full list
+### Category Pages
+### Recipe has a Source
+- Author, Book/Website, Page/Link
+### Add a recipe from a text file
+### Easily Half, Double, Triple... a recipe's quantities
 
-## Recipes
-
+## Recipes Features
 ### Recipes Index Page
 Story: As a user, I want to see all of my available recipes.
 FE: create RecipeIndexPage with a heading and list all recipes by title
