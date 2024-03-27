@@ -69,8 +69,9 @@ describe('recipes index page', () => {
 		});
 		context('It can also display a full list of recipes', () => {
 			it('should have a button to toggle between catageory and full list views', () => {
-				cy.getByData('recipe-toggle-switch').should('exist').click()
-				cy.getByData('recipe-list').should('exist')
+				cy.getByData('recipe-toggle-switch').should('exist')
+				cy.getByData('recipe-toggle-list').should('exist').click()
+				cy.getByData('recipes-list').should('exist')
 				cy.getByData('category-card').should('not.exist')
 			});
 		});

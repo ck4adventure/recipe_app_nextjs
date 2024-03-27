@@ -18,10 +18,10 @@ const RecipeIndexView = ({recipes}: {recipes: any}) => {
 		<div>
 			<div className="mx-8" data-cy='recipe-toggle-switch'>
 				{/* button goes here */}
-				<button className="border-2 p-2" onClick={() => handleToggle("cards")}>Category</button>
-				<button className="border-2 p-2" onClick={() => handleToggle("list")}>List View</button>
+				<button className="border-2 p-2" data-cy='recipe-toggle-cards' onClick={() => handleToggle("cards")}>Category</button>
+				<button className="border-2 p-2" data-cy='recipe-toggle-list' onClick={() => handleToggle("list")}>List View</button>
 			</div>
-				<div>
+				<div className="min-w-fit">
 					{viewCards ? <CategoryView data={recipes} /> : <ListView data={recipes} /> }
 				</div>
 		</div>

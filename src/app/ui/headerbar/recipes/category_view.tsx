@@ -20,7 +20,6 @@ const CategoryView = ({data}: {data: any}) => {
 		<div data-cy='recipe-categories' className="grid grid-flow-row sm:grid-cols-2 md:grid-cols-3">
 			{Object.keys(recipes_by_category).map((catName: string, index: number) => {
 				const recipeList: any = recipes_by_category[catName];
-				console.log('recipeList: ', recipeList);
 				return (
 					<CategoryCard key={index} category={catName} categoryRecipes={recipeList} />
 				);

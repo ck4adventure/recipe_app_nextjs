@@ -2,11 +2,11 @@
 
 const ListView = ({data}: {data: any[]}) => {
 	return (
-		<div data-cy='recipe-categories' className="m-2 grid grid-flow-row sm:grid-cols-2 md:grid-cols-3">
+		<div data-cy='recipes-list' className="m-2">
 			<ul>
 			{data.map((recipe: any, index: number) => {
 				return (
-					<li key={index}>{recipe.recipe_title}</li>
+					<li className='min-w-8 my-1' key={index}>{recipe.recipe_title}</li>
 				);
 			})}
 			</ul>
