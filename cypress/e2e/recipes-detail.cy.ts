@@ -34,6 +34,9 @@ describe('Recipes Detail Page', () => {
 		it('should have a delete button', () => {
 			cy.getByData('recipe-detail-delete-button').should('exist')
 		});
+		it('should have an add recipe button', () => {
+			cy.getByData('add-recipe-link').should('exist')
+		});
 	});
 	context('ingredients section', () => {
 		it('should display a ingredients header', () => {

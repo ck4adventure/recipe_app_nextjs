@@ -4,12 +4,8 @@
 - store recipes in original units of measure (harder, but more accurate)
 - if in metric, no real need (for me) to put in imperial
 - toggle button to switch between
-### Display 'Add Recipe' button on every page
-- material style round plus sign button that hovers at z+1
-- links to create recipe page
-- don't show on recipe add/edit pages
-### Recipes Index View All
-- toggle buttons to switch between category cards and full list
+
+
 ### Category Pages
 ROUTE: `/recipes/category/[slug]` or `/category?breads`
 
@@ -94,3 +90,15 @@ FE: Recipe display page updated with "Update Recipe" link
 FE: Recipe form updated to take a recipe
 FE: action created to update a recipe and redirect back to its page
 BE: Ensure no cascade deletes if ingrs or steps deleted
+
+### Recipes Index View All
+- toggle buttons to switch between category cards and full list
+FE: add component to display as a list, sorted alphabetically
+
+### Display 'Add Recipe' button on every page
+- material style round plus sign button that hovers at z+1
+- links to create recipe page
+- don't show on recipe add/edit pages
+FE: find an icon that works and create component
+FE: figure out where to put component into pages/layouts to give it a z-index and drop shadow
+FE: link it to the create recipe page
