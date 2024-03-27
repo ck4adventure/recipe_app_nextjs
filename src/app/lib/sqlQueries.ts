@@ -8,6 +8,14 @@ export const GET_CATEGORIES_AND_RECIPES = `
 	LEFT JOIN recipes r ON rc.recipe_id = r.id
 `;
 
+export const GET_RECIPES_FOR_CATEGORY = `
+	SELECT r.id AS recipe_id, r.title AS recipe_title, r.slug AS recipe_slug, c.id AS category_id, c.name AS category_name
+	FROM recipes r 
+	LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id
+	LEFT JOIN categories c ON rc.category_id = c.id
+	WHERE c.name = $1
+`;
+
 export const GET_RECIPE_BY_ID = `
 	SELECT r.id AS recipe_id, r.title AS recipe_title, r.slug as recipe_slug, c.id AS category_id, c.name AS category_name, array_agg(ri.ingredient) AS ingredients
 	FROM recipes r 

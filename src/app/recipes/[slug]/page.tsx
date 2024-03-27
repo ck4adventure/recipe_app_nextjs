@@ -1,7 +1,7 @@
 import { getRecipeBySlug } from '@/app/lib/data';
 import { Recipe } from '@/app/lib/definitions';
-import { DeleteRecipeButton } from '@/app/ui/headerbar/recipes/delete_recipe_button';
-import AddRecipeButton from '@/app/ui/headerbar/recipes/add_recipe_button';
+import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
+import AddRecipeButton from '@/app/ui/recipes/add_recipe_button';
 import Link from 'next/link';
 
 // RecipeDetailPage should fetch the recipe by id
@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				{/* header section */}
 				<div className='flex flex-col items-center' data-cy="recipe-detail-header">
 					<div className='text-xl' data-cy="recipe-detail-title">{recipe.recipe_title}</div>
-					<div className='font-light text-xs' data-cy="recipe-detail-category">{recipe.category_name}</div>
+					<div className='font-light text-xs' data-cy="recipe-detail-category"><Link href={`/recipes/category/${recipe.category_name}`}>{recipe.category_name}</Link></div>
 				</div>
 				{/* responsive sections */}
 				<div className='flex flex-col md:flex-row my-8 mx-16'>
@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 					</div>
 				</div>
 				<div>
-					<Link data-cy="recipe-detail-update-button" href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
+					<Link data-cy="recipe-detail-edit-button" href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
 				</div>
 				<div className='flex justify-center m-4 mt-8'>
 					<DeleteRecipeButton id={recipe.recipe_id} />

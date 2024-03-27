@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getCategoriesAndRecipes } from "@/app/lib/data";
-import CategoryView from "../ui/headerbar/recipes/category_view";
-import RecipeIndexView from "../ui/headerbar/recipes/recipe_index_view";
-import AddRecipeButton from "../ui/headerbar/recipes/add_recipe_button";
+import CategoryView from "../ui/recipes/category_view";
+import RecipeIndexView from "../ui/recipes/recipe_index_view";
+import AddRecipeButton from "../ui/recipes/add_recipe_button";
 
 
 

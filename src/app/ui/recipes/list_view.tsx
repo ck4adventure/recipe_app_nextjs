@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 
-const ListView = ({ data }: { data: any[] }) => {
+const RecipesListView = ({ data }: { data: any[] }) => {
 	const sortedData = data.sort((a, b) => {
 		if (a.recipe_title < b.recipe_title) {
 			return -1;
@@ -25,4 +25,4 @@ const ListView = ({ data }: { data: any[] }) => {
 	);
 }
 
-export default ListView;
+export default RecipesListView;

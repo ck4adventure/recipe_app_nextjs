@@ -19,6 +19,9 @@ describe('Recipes Detail Page', () => {
 		it('should display a header with the recipe category', () => {
 			cy.getByData('recipe-detail-category').should('exist')
 		});
+		it('recipe category should be a link', () => {
+			cy.getByData('recipe-detail-category-link').should('exist')
+		});
 		it('should display a ingredients section', () => {
 			cy.getByData('recipe-detail-ingredients').should('exist')
 		});

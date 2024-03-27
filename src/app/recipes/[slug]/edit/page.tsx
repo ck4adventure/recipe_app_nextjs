@@ -2,7 +2,7 @@
 // just need the recipe slug from the path params
 // then fetch it properly using next's app features (not page features)
 // then pass the recipe into the client component
-import { RecipeForm } from "@/app/ui/headerbar/recipes/recipe_form";
+import { RecipeForm } from "@/app/ui/recipes/recipe_form";
 import { getRecipeBySlug, getCategories } from "@/app/lib/data";
 import { Recipe } from "@/app/lib/definitions";
 
