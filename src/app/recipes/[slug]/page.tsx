@@ -42,7 +42,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 					</div>
 				</div>
 				<div>
-					<Link href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
+					<Link data-cy="recipe-detail-update-button" href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
 				</div>
 				<div className='flex justify-center m-4 mt-8'>
 					<DeleteRecipeButton id={recipe.recipe_id} />

@@ -13,8 +13,10 @@ export const DeleteRecipeButton = ({ id }: { id: number }) => {
 		setIsOpen(true);
 	}
 
-	const handleDeleteRecipe = async () => {
+	const handleDeleteRecipe = async (e: React.MouseEvent) => {
+		e.preventDefault();
 		setIsOpen(false);
+		console.log("handling delete recipe from react component")
 		await deleteRecipeByIdAndRedirect(id);
 	}
 
@@ -68,7 +70,7 @@ export const DeleteRecipeButton = ({ id }: { id: number }) => {
 				<div className="flex justify-center" ><span className="text-6xl">!</span></div>
 				<div className="flex justify-center">
 					<div className="m-2">
-						<button onClick={setIsOpen.bind(null, false)}>Close</button>
+						<button data-cy='close-modal-button' onClick={setIsOpen.bind(null, false)}>Close</button>
 					</div>
 					<div className="m-2 bottom-3">
 						<button data-cy="delete-recipe-button"  onClick={handleDeleteRecipe}>Delete</button>

@@ -93,7 +93,7 @@ export const RecipeForm = ({ categoryRows, recipe }: { categoryRows: any, recipe
 					</label>
 				</div>
 				{/* Ingredients Section */}
-				<fieldset className='my-4'>Ingredients
+				<fieldset data-cy='recipe-ingredients-section' className='my-4'>Ingredients
 					{ingredients.map((ingredient, i) => (
 						<IngredientField
 							key={i}
@@ -104,7 +104,7 @@ export const RecipeForm = ({ categoryRows, recipe }: { categoryRows: any, recipe
 					<button type="button" data-cy='add-ingr-button' onClick={() => addField("ingredients")}>+ Add Ingredient</button>
 				</fieldset>
 				{/* Steps Section */}
-				<fieldset className='my-4'>Steps
+				<fieldset data-cy='recipe-steps-section' className='my-4'>Steps
 					{steps.map((direction, i) => (
 						<DirectionField
 							key={i}

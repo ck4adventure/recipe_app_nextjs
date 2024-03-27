@@ -17,16 +17,16 @@ export const updateRecipeAndRedirect = async (recipeID: number, title: string, c
 	const slug = await updateRecipe(recipeID, title, categoryID, ingredients, steps);
 	revalidatePath(`/recipes/${slug}`);
 	redirect(`/recipes/${slug}`);
-}
+};
 
 
 // deleteRecipeByIdAndRedirect takes a recipeID 
 export const deleteRecipeByIdAndRedirect = async (recipeID: number) => {
 	try {
 		await query(`DELETE FROM recipes WHERE id = $1`, [recipeID]);
-		revalidatePath('/recipes');
-		redirect('/recipes');
 	} catch (e) {
 		console.error(e);
 	}
+	revalidatePath('/recipes');
+	redirect('/recipes');
 };
