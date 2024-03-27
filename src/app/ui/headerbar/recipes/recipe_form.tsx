@@ -17,8 +17,9 @@ export const RecipeForm = ({ categoryRows, recipe }: { categoryRows: any, recipe
 	const addField = (type: 'ingredients' | 'steps') => {
 		if (type === 'steps') {
 			setSteps([...steps, '']);
+		} else {
+			setIngredients([...ingredients, '']);
 		}
-		setIngredients([...ingredients, '']);
 	}
 
 	const handleIngredientChange = (index: number, value: string) => {

@@ -79,6 +79,7 @@ export const createRecipeWithCategory = async (title: string, categoryID: number
 export const updateRecipe = async (recipeID: number, title: string, categoryID: number, ingredients: string[], steps: string[]) => {
 	// TODO write validations for incoming data
 	const client = await pool.connect();
+	let newSlug = '';
 	try {
 		await client.query('BEGIN');
 		// currently a bit brute force
@@ -88,7 +89,9 @@ export const updateRecipe = async (recipeID: number, title: string, categoryID: 
 		await client.query(DELETE_RECIPE_INGREDIENTS, [recipeID]);
 		await client.query(DELETE_RECIPE_STEPS, [recipeID]);
 		
-		await client.query(UPDATE_RECIPE_TITLE, [title, recipeID]);
+		const results = await client.query(UPDATE_RECIPE_TITLE, [title, recipeID]);
+		const data = results.rows as any[];
+		newSlug = data[0].slug as string;
 		await client.query(ADD_RECIPE_TO_CATEGORY, [recipeID, categoryID]);
 		// add recipe ingredients to recipe_ingredients table
 		if (ingredients && ingredients.length > 0) {
@@ -108,4 +111,5 @@ export const updateRecipe = async (recipeID: number, title: string, categoryID: 
 	} finally {
 		client.release()
 	}
+	return newSlug;
 }
