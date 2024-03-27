@@ -1,14 +1,11 @@
 import { query } from '../db/index.mjs';
 import { getCategories, getCategoriesAndRecipes, getRecipeById, getRecipeBySlug, createRecipeWithCategory } from '@/app/lib/data';
 import {
+	CREATE_RECIPE,
 	GET_CATEGORIES, 
 	GET_CATEGORIES_AND_RECIPES, 
 	GET_RECIPE_BY_ID, 
-	GET_RECIPE_BY_SLUG,
-	ADD_INGREDIENT_TO_RECIPE,
-	ADD_RECIPE_TO_CATEGORY,
-	ADD_STEP_TO_RECIPE,
-	CREATE_RECIPE,
+	GET_RECIPE_BY_SLUG
 } from '@/app/lib/sqlQueries';
 import { expect as jestExpect } from '@jest/globals';
 

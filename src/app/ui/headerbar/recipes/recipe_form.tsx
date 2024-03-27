@@ -2,22 +2,24 @@
 // with a recipe title input and a select dropdown to choose a category
 // it should manage the state and submit the form
 'use client'
-import { createRecipeAndRedirect } from "@/app/lib/actions";
+import { createRecipeAndRedirect, updateRecipeAndRedirect } from "@/app/lib/actions";
 import { useState } from "react";
 import IngredientField from "./ingredient_field";
 import DirectionField from "./direction_field";
 
-export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
-	const [recipeTitle, setRecipeTitle] = useState<string>('');
-	const [categoryID, setCategoryID] = useState<number>(1);
-	const [ingredients, setIngredients] = useState<string[]>(['', '']);
-	const [directions, setDirections] = useState<string[]>(['', '',]);
+export const RecipeForm = ({ categoryRows, recipe }: { categoryRows: any, recipe?: any }) => {
+	const [recipeTitle, setRecipeTitle] = useState<string>(recipe ? recipe.recipe_title : '');
+	const [categoryID, setCategoryID] = useState<number>(recipe ? recipe.category_id : 1);
+	const [ingredients, setIngredients] = useState<string[]>((recipe && recipe.ingredients) ? recipe.ingredients : ['', '']);
+	const [steps, setSteps] = useState<string[]>((recipe && recipe.steps) ? recipe.steps : ['', '']);
 
-	const addField = (type: 'ingredients' | 'directions') => {
-		if (type === 'directions') {
-			setDirections([...directions, '']);
+
+	const addField = (type: 'ingredients' | 'steps') => {
+		if (type === 'steps') {
+			setSteps([...steps, '']);
+		} else {
+			setIngredients([...ingredients, '']);
 		}
-		setIngredients([...ingredients, '']);
 	}
 
 	const handleIngredientChange = (index: number, value: string) => {
@@ -33,28 +35,32 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 	}
 
 	const handleDirectionChange = (index: number, value: string) => {
-		const newDirections = [...directions];
-		newDirections[index] = value;
-		setDirections(newDirections);
+		const newSteps = [...steps];
+		newSteps[index] = value;
+		setSteps(newSteps);
 	}
 
 	const handleDirectionDelete = (index: number) => {
-		const newDirections = [...directions];
-		newDirections.splice(index, 1);
-		setDirections(newDirections);
+		const newSteps = [...steps];
+		newSteps.splice(index, 1);
+		setSteps(newSteps);
 	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const actualIngredients = ingredients.filter(ingr => ingr.length > 0);
-		const actualDirections = directions.filter(dir => dir.length > 0);
-		await createRecipeAndRedirect(recipeTitle, categoryID, actualIngredients, actualDirections);
+		const actualSteps = steps.filter(step => step.length > 0);
+		if (recipe) {
+			await updateRecipeAndRedirect(recipe.recipe_id, recipeTitle, categoryID, actualIngredients, actualSteps);
+		} else {
+			await createRecipeAndRedirect(recipeTitle, categoryID, actualIngredients, actualSteps);
+		}
 	};
 
 	return (
 		<div>
-			<h1 className="my-2 font-bold">Add Recipe</h1>
-			<form data-cy='add-recipe-form' className="my-4 flex flex-col justify-center" onSubmit={handleSubmit}>
+			<h1 className="my-2 font-bold">{ recipe ? 'Update': 'Add'} Recipe</h1>
+			<form data-cy='recipe-form' className="my-4 flex flex-col justify-center" onSubmit={handleSubmit}>
 				{/* Recipe Title */}
 				<div className="my-2">
 					<label className='flex items-center' htmlFor="recipe-title">Recipe Title
@@ -75,6 +81,7 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 							className="w-[150px]"
 							onChange={e => setCategoryID(parseInt(e.target.value))}
 							data-cy='recipe-category-select'
+							value={categoryID}
 						>
 							{categoryRows.map((row: any) => (
 								<option
@@ -86,7 +93,7 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 					</label>
 				</div>
 				{/* Ingredients Section */}
-				<fieldset className='my-4'>Ingredients
+				<fieldset data-cy='recipe-ingredients-section' className='my-4'>Ingredients
 					{ingredients.map((ingredient, i) => (
 						<IngredientField
 							key={i}
@@ -96,9 +103,9 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 					))}
 					<button type="button" data-cy='add-ingr-button' onClick={() => addField("ingredients")}>+ Add Ingredient</button>
 				</fieldset>
-				{/* Directions Section */}
-				<fieldset className='my-4'>Directions
-					{directions.map((direction, i) => (
+				{/* Steps Section */}
+				<fieldset data-cy='recipe-steps-section' className='my-4'>Steps
+					{steps.map((direction, i) => (
 						<DirectionField
 							key={i}
 							value={direction}
@@ -106,7 +113,7 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 							onDelete={() => handleDirectionDelete(i)} />
 
 					))}
-					<button type="button" data-cy='add-dir-button' onClick={() => addField("directions")}>+ Add Step</button>
+					<button type="button" data-cy='add-dir-button' onClick={() => addField("steps")}>+ Add Step</button>
 
 				</fieldset>
 				{/* Submit button */}
@@ -115,7 +122,7 @@ export const RecipeForm = ({ categoryRows }: { categoryRows: any }) => {
 						type="submit"
 						className="m-4"
 						data-cy='recipe-submit-button'
-					>Create Recipe</button>
+					>{recipe ? 'Update' : 'Add'} Recipe</button>
 				</div>
 			</form>
 		</div>

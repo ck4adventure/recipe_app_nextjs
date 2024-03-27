@@ -15,6 +15,11 @@
 - Author, Book/Website, Page/Link
 ### Add a recipe from a text file
 ### Easily Half, Double, Triple... a recipe's quantities
+### Cost Calculator
+- flour cost per lb (1.30)
+- water negligable
+- salt negligable
+- baking time (gas bill)
 
 ## Recipes Features
 ### Recipes Index Page
@@ -69,5 +74,5 @@ FE: Detail page has Directions section, listed in order numerical
 FE: each step is just text for now
 FE: Update fetch and create actions
 FE: update add form to have dynamic steps
-BE: Add recipes directions table
+BE: Add recipes steps table
 BE: Update seeds data

@@ -34,7 +34,6 @@ export const GET_RECIPE_BY_SLUG = `
 	) rs ON r.id = rs.recipe_id
 	WHERE r.slug = $1
 	GROUP BY c.id, r.id, ri.ingredients, rs.steps
-
 `;
 
 export const CREATE_RECIPE = `
@@ -49,6 +48,19 @@ export const ADD_INGREDIENT_TO_RECIPE = `
   INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES ($1, $2)
 `;
 
+// Add a step to a recipe
 export const ADD_STEP_TO_RECIPE = `
 	INSERT INTO recipe_steps (recipe_id, step) VALUES ($1, $2)
 `;
+
+// Delete recipe steps
+export const DELETE_RECIPE_STEPS = 'DELETE FROM recipe_steps WHERE recipe_id = $1';
+
+// Update recipe title and return slug
+export const UPDATE_RECIPE_TITLE = 'UPDATE recipes SET title = $1 WHERE id = $2 RETURNING slug';
+
+// Delete recipe from categories
+export const DELETE_RECIPE_FROM_CATEGORIES = 'DELETE FROM recipe_categories WHERE recipe_id = $1';
+
+// Delete recipe ingredients
+export const DELETE_RECIPE_INGREDIENTS = 'DELETE FROM recipe_ingredients WHERE recipe_id = $1';
