@@ -1,11 +1,12 @@
 import { query } from '../db/index.mjs';
-import { getCategories, getCategoriesAndRecipes, getRecipeById, getRecipeBySlug, createRecipeWithCategory } from '@/app/lib/data';
+import { getCategories, getCategoriesAndRecipes, getRecipeById, getRecipeBySlug, createRecipeWithCategory, getRecipesForCategory } from '@/app/lib/data';
 import {
 	CREATE_RECIPE,
 	GET_CATEGORIES, 
 	GET_CATEGORIES_AND_RECIPES, 
 	GET_RECIPE_BY_ID, 
-	GET_RECIPE_BY_SLUG
+	GET_RECIPE_BY_SLUG,
+	GET_RECIPES_FOR_CATEGORY
 } from '@/app/lib/sqlQueries';
 import { expect as jestExpect } from '@jest/globals';
 
@@ -105,5 +106,31 @@ describe('data', () => {
 		const result = await getRecipeBySlug(slug);
 		jestExpect((query as jest.Mock)).toHaveBeenCalledWith(GET_RECIPE_BY_SLUG, [slug]);
 		jestExpect(result).toEqual(mockResult.rows[0]);
+	});
+
+	it('getRecipesForCategory calls the query function with the correct SQL and parameters', async () => {
+		const mockResult = {
+			rows: [
+				{
+					recipe_id: 1,
+					recipe_title: 'Recipe 1',
+					recipe_slug: 'recipe-1',
+					category_id: 1,
+					category_name: 'Category 1',
+				},
+				{
+					recipe_id: 2,
+					recipe_title: 'Recipe 2',
+					recipe_slug: 'recipe-2',
+					category_id: 1,
+					category_name: 'Category 1',
+				},
+			],
+		};
+		const category = 'bread';
+		(query as jest.Mock).mockResolvedValue(mockResult);
+		const result = await getRecipesForCategory(category);
+		jestExpect((query as jest.Mock)).toHaveBeenCalledWith(GET_RECIPES_FOR_CATEGORY, [category]);
+		jestExpect(result).toEqual(mockResult.rows);
 	});
 });

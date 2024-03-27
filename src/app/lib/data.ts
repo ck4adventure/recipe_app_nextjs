@@ -12,6 +12,7 @@ import {
 	DELETE_RECIPE_STEPS,
 	GET_CATEGORIES,
 	GET_CATEGORIES_AND_RECIPES,
+	GET_RECIPES_FOR_CATEGORY,
 	GET_RECIPE_BY_ID,
 	GET_RECIPE_BY_SLUG,
 	UPDATE_RECIPE_TITLE
@@ -25,6 +26,11 @@ export const getCategories = async () => {
 // getCategoriesAndRecipes returns rows containing category and recipe data
 export const getCategoriesAndRecipes = async () => {
 	const result = await query(GET_CATEGORIES_AND_RECIPES, null);
+	return result.rows;
+}
+
+export const getRecipesForCategory = async (name: string) => {
+	const result = await query(GET_RECIPES_FOR_CATEGORY, [name]);
 	return result.rows;
 }
 

@@ -38,8 +38,22 @@ describe('User Journeys', () => {
 		cy.getByData('category-card').should('exist')
 		cy.getByData('category-card').contains('Test Recipe')
 	})
-	it('a user can delete a recipe', () => {
+		it('a user can edit a recipe', () => {
 		cy.visit("http://localhost:3000/recipes/test-recipe")
+		cy.getByData('recipe-detail-edit-button').first().click()
+		cy.getByData('recipe-title-input').should('exist')
+		cy.getByData('recipe-category-select').should('exist')
+		cy.getByData('recipe-submit-button').should('exist')
+		// user can fill out the form and submit
+		cy.getByData('recipe-title-input').clear().type('Test Recipe Updated')
+		cy.getByData('recipe-category-select').select('salad')
+		cy.getByData('recipe-submit-button').contains('Update Recipe').click()
+		// on successful submit, user is redirected to the recipes detail page
+		cy.location("pathname").should("equal", "/recipes/test-recipe-updated")
+
+	});
+	it('a user can delete a recipe', () => {
+		cy.visit("http://localhost:3000/recipes/test-recipe-updated")
 		cy.getByData('recipe-detail-delete-button').first().click()
 		// on successful delete, user is redirected to the recipes page
 		// modal should open
@@ -50,6 +64,15 @@ describe('User Journeys', () => {
 		cy.location("pathname").should("equal", "/recipes")
 		// the recipe should not be displayed on the recipes page
 		cy.getByData('category-card').should('exist')
-		cy.getByData('category-card').contains('Test Recipe').should('not.exist')
+		cy.getByData('category-card').contains('Test Recipe Updated').should('not.exist')
 	})
+	it('a user can find the categories page and see a list of categories', () => {
+		cy.visit("http://localhost:3000/recipes")
+		cy.getByData('category-link').should('exist')
+		cy.getByData('category-link').contains("Breakfast").click()
+		cy.location("pathname").should("equal", "/recipes/category/breakfast")
+		cy.getByData('category-name').should('exist')
+		cy.getByData('category-name').contains('Breakfast')
+	});
+
 })

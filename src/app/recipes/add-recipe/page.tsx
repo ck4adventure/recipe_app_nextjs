@@ -1,6 +1,6 @@
 
 import { getCategories } from "@/app/lib/data";
-import { RecipeForm } from "../../ui/headerbar/recipes/recipe_form";
+import { RecipeForm } from "../../ui/recipes/recipe_form";
 
 
 export default async function Page() {
