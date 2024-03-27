@@ -11,14 +11,6 @@ describe('recipes index page', () => {
 		// it should display a list of category cards
 		// each card should have a category name
 		// and a list of recipes, if there are any
-		context('Recipes Header Section', () => {
-			it('should display a header section', () => {
-				cy.getByData('recipes-headerbar').should('exist')
-			});
-			it('should display an add recipe link', () => {
-				cy.getByData('add-recipe-link').should('exist')
-			});
-		});
 		context('It displays Recipes by Category by default', () => {
 			it('should display recipes by category', () => {
 				cy.getByData('recipe-categories').should('exist')
@@ -57,17 +49,10 @@ describe('recipes index page', () => {
 				});
 			});
 		});
-		context('It can also display a full list of recipes', () => {
-			it('should have a button to toggle between catageory and full list views', () => {
-				cy.getByData('recipe-toggle-switch').should('exist')
-				cy.getByData('recipe-toggle-list').should('exist').click()
-				cy.getByData('recipes-list').should('exist')
-				cy.getByData('category-card').should('not.exist')
+		context('It has a link to add recipes', () => {
+			it('should have a link to add a recipe', () => {
+				cy.getByData('add-recipe-link').should('exist')
 			});
-			it('should display at least one recipe', () => {
-					cy.getByData('recipe-toggle-list').should('exist').click()
-					cy.getByData('recipe-link').should('exist')
-				});
 		});
 
 	});

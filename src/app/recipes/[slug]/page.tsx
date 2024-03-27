@@ -1,6 +1,7 @@
 import { getRecipeBySlug } from '@/app/lib/data';
 import { Recipe } from '@/app/lib/definitions';
 import { DeleteRecipeButton } from '@/app/ui/headerbar/recipes/delete_recipe_button';
+import AddRecipeButton from '@/app/ui/headerbar/recipes/add_recipe_button';
 import Link from 'next/link';
 
 // RecipeDetailPage should fetch the recipe by id
@@ -48,6 +49,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 					<DeleteRecipeButton id={recipe.recipe_id} />
 				</div>
 			</main>
+					<AddRecipeButton />
 		</div>
 	);
 }
