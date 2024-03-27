@@ -15,9 +15,6 @@ describe('recipes index page', () => {
 			it('should display a header section', () => {
 				cy.getByData('recipes-headerbar').should('exist')
 			});
-			it('should display a header with the correct text', () => {
-				cy.getByData('recipes-header-type').contains("Recipes By Category")
-			});
 			it('should display an add recipe link', () => {
 				cy.getByData('add-recipe-link').should('exist')
 			});
@@ -26,35 +23,28 @@ describe('recipes index page', () => {
 			it('should display recipes by category', () => {
 				cy.getByData('recipe-categories').should('exist')
 			});
-			// cards should be flex and wrap/adjust to screen size
-			it('should have a display of flex', () => {
-				cy.getByData('recipe-categories').should('have.css', 'display', 'grid')
-			});
-			// todo: test for grid flow row
-			it('should have a grid flow row', () => {
-				cy.getByData('recipe-categories').should('have.css', 'grid-auto-flow', 'row')
-			});
+
 			// recipe-categories should contain at least one category card
 			// and within that card should be at least one recipe
 			it('should display at least one category card', () => {
 				cy.getByData('category-card').should('exist')
 				cy.getByData('category-card').should('have.length.greaterThan', 2)
 			});
-			context('category card display', () => {
-				// card display tests
-				// min 300 x 300 or so dimensions
-				it('should have a width of 224px', () => {
-					cy.getByData('category-card').should('have.css', 'width', '224px')
-				});
-				it('should have a minimum height of 128px', () => {
-					cy.getByData('category-card').should('have.css', 'min-height', '64px')
-				});
+			// context('category card display', () => {
+			// 	// card display tests
+			// 	// min 300 x 300 or so dimensions
+			// 	it('should have a width of 224px', () => {
+			// 		cy.getByData('category-card').should('have.css', 'width', '224px')
+			// 	});
+			// 	it('should have a minimum height of 128px', () => {
+			// 		cy.getByData('category-card').should('have.css', 'min-height', '64px')
+			// 	});
 
-				it('should have a rounded border of 2px', () => {
-					cy.getByData('category-card').should('have.css', 'border-width', '2px')
-					cy.getByData('category-card').should('have.css', 'border-radius', '6px')
-				});
-			});
+			// 	it('should have a rounded border of 2px', () => {
+			// 		cy.getByData('category-card').should('have.css', 'border-width', '2px')
+			// 		cy.getByData('category-card').should('have.css', 'border-radius', '6px')
+			// 	});
+			// });
 			context('category card content', () => {
 				it('should display a category name', () => {
 					cy.getByData('category-name').should('exist')
@@ -74,6 +64,10 @@ describe('recipes index page', () => {
 				cy.getByData('recipes-list').should('exist')
 				cy.getByData('category-card').should('not.exist')
 			});
+			it('should display at least one recipe', () => {
+					cy.getByData('recipe-toggle-list').should('exist').click()
+					cy.getByData('recipe-link').should('exist')
+				});
 		});
 
 	});

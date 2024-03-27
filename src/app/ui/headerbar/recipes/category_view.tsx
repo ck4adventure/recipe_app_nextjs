@@ -17,7 +17,7 @@ const formatCategoryAndRecipes = (row_data: any) => {
 const CategoryView = ({data}: {data: any}) => {
 	const recipes_by_category = formatCategoryAndRecipes(data);
 	return (
-		<div data-cy='recipe-categories' className="grid grid-flow-row sm:grid-cols-2 md:grid-cols-3">
+		<div data-cy='recipe-categories' className="flex flex-col">
 			{Object.keys(recipes_by_category).map((catName: string, index: number) => {
 				const recipeList: any = recipes_by_category[catName];
 				return (
