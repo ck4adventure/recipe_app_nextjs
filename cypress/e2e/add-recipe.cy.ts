@@ -4,7 +4,7 @@ describe("Add Recipe Page/Form", () => {
   })
   context("page layout", () => {
     it("has a recipe form", () => {
-      cy.getByData("add-recipe-form").should("exist")
+      cy.getByData("recipe-form").should("exist")
     });
     it("has a form with a title input", () => {
       cy.getByData("recipe-title-input").should("exist")

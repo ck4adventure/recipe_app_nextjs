@@ -4,14 +4,14 @@ import IngredientField from './ingredient_field'
 import DirectionField from './direction_field'
 // RecipeForm should display a form with dynamic fields
 // ingredients is a list of strings
-// directions is a list of strings
+// steps is a list of strings
 // handleChange, handleDelete
 const RecipeForm: React.FC = () => {
 	const [name, setName] = useState<string>('')
 	const [source, setSource] = useState<string>('')
 	const [notes, setNotes] = useState<string>('')
 	const [ingredients, setIngredients] = useState<string[][]>([['','',''], ['','',''], ['','','']])
-	const [directions, setDirections] = useState<string[]>(['', '', ''])
+	const [steps, setDirections] = useState<string[]>(['', '', ''])
 
 	// change and delete are standard object manipulations
 	// good patterns to know
@@ -36,13 +36,13 @@ const RecipeForm: React.FC = () => {
 	};
 
 	const handleDirectionChange = (index: number, value: string) => {
-		const newDirections = [...directions];
+		const newDirections = [...steps];
 		newDirections[index] = value;
 		setDirections(newDirections);
 	};
 
 	const handleDirectionDelete = (index: number) => {
-		const newDirections = [...directions]
+		const newDirections = [...steps]
 		newDirections.splice(index, 1);
 		setDirections(newDirections);
 	};
@@ -52,7 +52,7 @@ const RecipeForm: React.FC = () => {
 		if (type === 'ingredient') {
 			setIngredients([...ingredients, []])
 		} else {
-			setDirections([...directions, ''])
+			setDirections([...steps, ''])
 		}
 	};
 
@@ -62,12 +62,12 @@ const RecipeForm: React.FC = () => {
 
 		// for now just display the recipe
 		const displayIngredients = ingredients.filter(ingr => ingr.length > 0).map(ingr => ingr.join(' '));
-		const displayDirections = directions.filter(dir => dir.length > 0);
+		const displayDirections = steps.filter(dir => dir.length > 0);
 		const recipe = {
 			name: name,
 			notes: notes,
 			ingredients: displayIngredients,
-			directions: displayDirections,
+			steps: displayDirections,
 		}
 		console.log(recipe)
 	}
@@ -95,7 +95,7 @@ const RecipeForm: React.FC = () => {
 					<button onClick={() => addField('ingredient')}>+ Add Ingredient</button>
 				</fieldset>
 				<fieldset className='my-2'>Directions
-					{directions.map((direction, i) => (
+					{steps.map((direction, i) => (
 						<DirectionField
 							key={i}
 							ordinal={i + 1}

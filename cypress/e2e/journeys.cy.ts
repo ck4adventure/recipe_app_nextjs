@@ -24,7 +24,7 @@ describe('User Journeys', () => {
 		cy.getByData('add-recipe-link').click()
 		cy.location("pathname").should("equal", "/recipes/add-recipe")
 		// recipe form has fields for the recipe title and a select dropdown to choose its category
-		cy.getByData('add-recipe-form').should('exist')
+		cy.getByData('recipe-form').should('exist')
 		cy.getByData('recipe-title-input').should('exist')
 		cy.getByData('recipe-category-select').should('exist')
 		cy.getByData('recipe-submit-button').should('exist')

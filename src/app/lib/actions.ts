@@ -2,7 +2,7 @@
 import { query } from '../../../db/index.mjs';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { createRecipeWithCategory } from './data';
+import { createRecipeWithCategory, updateRecipe } from './data';
 
 // createRecipeAndRedirect takea a title and categoryID and creates the recipe and adds it to the category
 export const createRecipeAndRedirect = async (title: string, categoryID: number, ingredients: string[], steps: string[]) => {
@@ -11,6 +11,13 @@ export const createRecipeAndRedirect = async (title: string, categoryID: number,
 	revalidatePath('/recipes');
 	redirect('/recipes');
 };
+
+export const updateRecipeAndRedirect = async (recipeID: number, title: string, categoryID: number, ingredients: string[], steps: string[]) => {
+	// TODO write validations for incoming data
+	await updateRecipe(recipeID, title, categoryID, ingredients, steps);
+	revalidatePath('/recipes');
+	redirect('/recipes');
+}
 
 
 // deleteRecipeByIdAndRedirect takes a recipeID 

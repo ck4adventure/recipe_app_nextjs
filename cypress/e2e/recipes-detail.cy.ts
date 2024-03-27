@@ -22,11 +22,11 @@ describe('Recipes Detail Page', () => {
 		it('should display a ingredients section', () => {
 			cy.getByData('recipe-detail-ingredients').should('exist')
 		});
-		it('should display a directions section', () => {
-			cy.getByData('recipe-detail-directions').should('exist')
+		it('should display a steps section', () => {
+			cy.getByData('recipe-detail-steps').should('exist')
 		});
-		it('should have a recipe directions section', () => {
-			cy.getByData('recipe-detail-directions').should('exist')
+		it('should have a recipe steps section', () => {
+			cy.getByData('recipe-detail-steps').should('exist')
 		});
 		it('should have a delete button', () => {
 			cy.getByData('recipe-detail-delete-button').should('exist')
@@ -43,12 +43,12 @@ describe('Recipes Detail Page', () => {
 			cy.getByData('recipe-detail-ingredients').should('exist')
 		});
 	});
-	context('directions section', () => {
-		it('should display a directions header', () => {
-			cy.getByData('recipe-detail-directions-header').should('exist')
+	context('steps section', () => {
+		it('should display a steps header', () => {
+			cy.getByData('recipe-detail-steps-header').should('exist')
 		});
-		it('should display a list of directions', () => {
-			cy.getByData('recipe-detail-directions-list').should('exist')
+		it('should display a list of steps', () => {
+			cy.getByData('recipe-detail-steps-list').should('exist')
 		});
 		it('should have a least one direction', () => {
 			cy.getByData('recipe-detail-step').should('exist')

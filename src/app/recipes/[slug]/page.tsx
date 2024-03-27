@@ -1,6 +1,7 @@
 import { getRecipeBySlug } from '@/app/lib/data';
 import { Recipe } from '@/app/lib/definitions';
 import { DeleteRecipeButton } from '@/app/ui/headerbar/recipes/delete_recipe_button';
+import Link from 'next/link';
 
 // RecipeDetailPage should fetch the recipe by id
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -28,10 +29,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						</ul>
 					</div>
 
-					{/* directions section */}
-					<div className='sm:my-4' data-cy="recipe-detail-directions">
-						<div className='m-2 text-lg' data-cy="recipe-detail-directions-header">Directions</div>
-						<ol className={`mx-8 list-decimal`} data-cy="recipe-detail-directions-list">
+					{/* steps section */}
+					<div className='sm:my-4' data-cy="recipe-detail-steps">
+						<div className='m-2 text-lg' data-cy="recipe-detail-steps-header">Directions</div>
+						<ol className={`mx-8 list-decimal`} data-cy="recipe-detail-steps-list">
 							{recipe.steps && recipe.steps.map((step, index) => {
 								return (
 									<li key={index} className='my-1 pl-2' data-cy="recipe-detail-step">{step}</li>
@@ -39,6 +40,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 							})}
 						</ol>
 					</div>
+				</div>
+				<div>
+					<Link href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
 				</div>
 				<div className='flex justify-center m-4 mt-8'>
 					<DeleteRecipeButton id={recipe.recipe_id} />
