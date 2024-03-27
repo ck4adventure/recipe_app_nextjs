@@ -22,7 +22,7 @@ describe('recipes index page', () => {
 				cy.getByData('add-recipe-link').should('exist')
 			});
 		});
-		context('Display Recipes by Category', () => {
+		context('It displays Recipes by Category by default', () => {
 			it('should display recipes by category', () => {
 				cy.getByData('recipe-categories').should('exist')
 			});
@@ -40,33 +40,41 @@ describe('recipes index page', () => {
 				cy.getByData('category-card').should('exist')
 				cy.getByData('category-card').should('have.length.greaterThan', 2)
 			});
-		});
-		context('category card display', () => {
-			// card display tests
-			// min 300 x 300 or so dimensions
-			it('should have a width of 224px', () => {
-				cy.getByData('category-card').should('have.css', 'width', '224px')
-			});
-			it('should have a minimum height of 128px', () => {
-				cy.getByData('category-card').should('have.css', 'min-height', '64px')
-			});
+			context('category card display', () => {
+				// card display tests
+				// min 300 x 300 or so dimensions
+				it('should have a width of 224px', () => {
+					cy.getByData('category-card').should('have.css', 'width', '224px')
+				});
+				it('should have a minimum height of 128px', () => {
+					cy.getByData('category-card').should('have.css', 'min-height', '64px')
+				});
 
-			it('should have a rounded border of 2px', () => {
-				cy.getByData('category-card').should('have.css', 'border-width', '2px')
-				cy.getByData('category-card').should('have.css', 'border-radius', '6px')
+				it('should have a rounded border of 2px', () => {
+					cy.getByData('category-card').should('have.css', 'border-width', '2px')
+					cy.getByData('category-card').should('have.css', 'border-radius', '6px')
+				});
+			});
+			context('category card content', () => {
+				it('should display a category name', () => {
+					cy.getByData('category-name').should('exist')
+				});
+				it('should display a list of recipes', () => {
+					cy.getByData('recipe-list').should('exist')
+				});
+				it('should display at least one recipe', () => {
+					cy.getByData('recipe-link').should('exist')
+				});
 			});
 		});
-		context('category card content', () => {
-			it('should display a category name', () => {
-				cy.getByData('category-name').should('exist')
-			});
-			it('should display a list of recipes', () => {
+		context('It can also display a full list of recipes', () => {
+			it('should have a button to toggle between catageory and full list views', () => {
+				cy.getByData('recipe-toggle-switch').should('exist').click()
 				cy.getByData('recipe-list').should('exist')
-			});
-			it('should display at least one recipe', () => {
-				cy.getByData('recipe-link').should('exist')
+				cy.getByData('category-card').should('not.exist')
 			});
 		});
+
 	});
 
 })
