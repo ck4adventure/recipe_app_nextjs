@@ -4,36 +4,6 @@
 As a baker, longer recipes often leave me scanning the same paragraphs over and over to find my place. I want a checkbox to the left of each numbered step that when I check it, it grays out the step so I can know to ignore it. The text for a checked step should be grayed out significantly, but still be readable if I need to confirm my work.
 There should be a "clear all" box somewhere with a confirmation modal to reset my progress as needed. 
 
-### Recipe has a Source
-I get recipes from books.
-I get recipes from the internet.
-I get recipes from friends / random one-offs.
-
-#### Recipe has a type
-"Professional" recipes have sources and can be traced
-"Family" recipes are anything picked up over the years that's lost its source
-Might set this on Author as a flag, isProfi
-
-Author
-- name: prolly do first and last fields and do a virtual full name
-- isProfi: bool, opt, default true
-
-Source
-- type: personal collection, book, or website
-- title: required if book or site, "Personal Collection" if personal collection
-- year: year published, optional
-- base_url: required if site
-
-SourceAuthors joins
-- id, author_id, source_id
-- if source is type personal collection, can only have one entry per author
-
-RecipeSource
-- id, recipe_id, source_id, page
-- if source is type personal collection, could be null or sequentially indexed
-- if source is book, requires a page number
-- if source is website, requires a URL
-
 ### Convert between Imperial/US/Metric Units
 - store recipes in original units of measure (harder, but more accurate)
 - if in metric, no real need (for me) to put in imperial
@@ -52,6 +22,37 @@ As a baker, I want to know what time it will be done if started at a given time.
 As a baker, I want to know how early I need to start in order to be done by a given time.  
 
 ## Completed Recipes App Features
+
+### Recipe has a Source
+I get recipes from books.
+I get recipes from the internet.
+I get recipes from friends / random one-offs.
+
+#### Recipe has a type
+"Professional" recipes have sources and can be traced
+"Family" recipes are anything picked up over the years that's lost its source
+Might set this on Author as a flag, is_profi
+
+Author
+- name: prolly do first and last fields and do a virtual full name
+- is_profi: bool, opt, default true
+
+Source
+- type: personal collection, book, or website
+- title: required if book or site, "Personal Collection" if personal collection
+- year: year published, optional
+- base_url: required if site
+
+SourceAuthors joins
+- id, author_id, source_id
+- if source is type personal collection, can only have one entry per author
+
+RecipeSource joins
+- id, recipe_id, source_id, page
+- if source is type personal collection, could be null or sequentially indexed
+- if source is book, requires a page number
+- if source is website, requires a URL
+
 ### Category Index Page
 Cards can only show the top 5 recipes fo reach before becoming unwieldy. A category index page should show all the recipes for a category in alphabetical order.
 - ROUTE: `/recipes/category/[slug]`

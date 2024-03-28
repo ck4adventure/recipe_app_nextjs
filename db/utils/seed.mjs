@@ -1,9 +1,18 @@
 import recipes_data from '../seeds/categories_recipes_seeds.json' assert { type: 'json' };
+import authors_data from '../seeds/authors_seeds.json' assert { type: 'json' };
 // seedTables uses client rather than pool because it's a one-off operation
 export const seedTables = async (pool) => {
 	try {
+    // create authors
+		for (const author of Object.values(authors_data)) {
+			await pool.query(`INSERT INTO authors (first_name, last_name, is_profi) VALUES ('${author.first_name}', '${author.last_name}', ${author.is_profi})`);
+		}
+		console.log('authors seeded')
+
+
 		// create every category that exists
 		for (const categoryName of Object.keys(recipes_data)) {
+			console.log('creating category: ', categoryName);
 			const { rows } = await pool.query(`INSERT INTO categories (name) VALUES ('${categoryName}') RETURNING id`);
 			const categoryId = rows[0].id;
 			const categoryRecipes = recipes_data[categoryName];

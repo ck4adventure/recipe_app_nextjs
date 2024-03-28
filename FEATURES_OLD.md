@@ -12,7 +12,7 @@ I get recipes from friends / random one-offs.
 #### Recipe has a type
 "Professional" recipes have sources and can be traced
 "Family" recipes are anything picked up over the years that's lost its source
-Might set this on Author as a flag, isProfi
+Might set this on Author as a flag, is_profi
 
 #### Adding Recipes from Books
 BOOK
@@ -21,7 +21,7 @@ Book has a Year Published
 
 AUTHORS
 Author has a First and Last Name
-Author isProfi? t/f
+Author is_profi? t/f
 
 RELATIONS
 Book has many Authors, Authors can have many Books
