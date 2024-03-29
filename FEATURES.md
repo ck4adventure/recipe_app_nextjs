@@ -38,10 +38,9 @@ Author
 - is_profi: bool, opt, default true
 
 Source
-- type: personal collection, book, or website
-- title: required if book or site, "Personal Collection" if personal collection
-- year: year published, optional
-- base_url: required if site
+- source_type: personal collection, book, or website
+- source_title: required if book or site, "[first_name]'s Personal Collection" if personal collection
+- source_url: required if site
 
 SourceAuthors joins
 - id, author_id, source_id

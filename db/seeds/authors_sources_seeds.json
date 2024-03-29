@@ -6,7 +6,17 @@
 		"sources": [
 			{
 				"source_type": "BOOK",
-				"title": "Paul Hollywood's Bread"
+				"title": "Paul Hollywood's Bread",
+				"recipes": [
+					{
+						"title": "White Cob",
+						"page": "42"
+					},
+					{
+						"title": "Rye, Ale and Oat Bread",
+						"page": "56"
+					}
+				]
 			},
 			{				
 				"source_type": "SITE",
@@ -35,7 +45,8 @@
 		"is_profi": false,
 		"sources": [
 			{
-				"source_type": "PERSONAL"
+				"source_type": "PERSONAL",
+				"source_title": "Dekka's Personal Collection"
 			}
 		]
 	},

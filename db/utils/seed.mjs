@@ -5,23 +5,25 @@ export const seedTables = async (pool) => {
 	try {
     // create authors and sources
 		for (const author of Object.values(authors_sources_data)) {
-			await pool.query(`INSERT INTO authors (first_name, last_name, is_profi) VALUES ('${author.first_name}', '${author.last_name}', ${author.is_profi})`);
+			const authorResult = await pool.query(`INSERT INTO authors (first_name, last_name, is_profi) VALUES ('${author.first_name}', '${author.last_name}', ${author.is_profi}) RETURNING id`);
+			const authorId = authorResult.rows[0].id;
 			if (author.sources && author.sources.length > 0) {
-				console.log(author.sources)
 				for (const source of author.sources) {
 					const stype = source.source_type;
 					const stitle = source.title | null;
 					const surl = source.url | null;
-					await pool.query(`INSERT INTO sources (source_type, source_title, source_url) VALUES ('${stype}', '${stitle}', '${surl}')`);
+					const sourceResult = await pool.query(`INSERT INTO sources (source_type, source_title, source_url) VALUES ('${stype}', '${stitle}', '${surl}') RETURNING id`);
+					const sourceId = sourceResult.rows[0].id;
+
+					await pool.query(`INSERT INTO source_authors (source_id, author_id) VALUES ('${sourceId}','${authorId}')`);
 				}
 			}
 		}
 		console.log('authors and sources seeded')
 
 
-		// create every category that exists
+		// create every category that exists and its recipes
 		for (const categoryName of Object.keys(recipes_data)) {
-			console.log('creating category: ', categoryName);
 			const { rows } = await pool.query(`INSERT INTO categories (name) VALUES ('${categoryName}') RETURNING id`);
 			const categoryId = rows[0].id;
 			const categoryRecipes = recipes_data[categoryName];
@@ -47,7 +49,7 @@ export const seedTables = async (pool) => {
 				}
 			}
 		}
-		console.log('db tables seeded')
+		console.log('categories and recipes seeded');
 
 	} catch (error) {
 		console.error('error seeding tables', error);

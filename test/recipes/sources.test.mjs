@@ -58,6 +58,17 @@ describe('sources table', () => {
 			}
 			expect(error).to.exist;
 		});
+		it('source_title is required if source_type is PERSONAL', async () => {
+			let error;
+			try {
+				await testPool.query(`
+					INSERT INTO sources (source_type) VALUES ('PERSONAL')
+				`);
+			} catch (e) {
+				error = e;
+			}
+			expect(error).to.exist;
+		});
 		it('source_url is required if source is SITE', async () => {
 			let error;
 			try {
