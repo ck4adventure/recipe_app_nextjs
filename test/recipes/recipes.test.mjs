@@ -7,6 +7,9 @@ import { testPool } from '../../db/db.mjs';
 import { expect } from 'chai';
 
 describe('recipes model', () => {
+	afterEach(async () => {
+		await testPool.query('DELETE FROM recipes');
+	});
 	context('title', () => {
 		it('has a title column', async () => {
 			const result = await testPool.query(`
@@ -56,11 +59,33 @@ describe('recipes model', () => {
 		});
 		it('slug is generated from title', async () => {
 			const result = await testPool.query(`
-				INSERT INTO recipes (title) VALUES ('testing-123')
+				INSERT INTO recipes (title) VALUES ('testing 123')
 				RETURNING slug
 			`);
 			expect(result.rows[0].slug).to.equal('testing-123');
 		});
+		it('slug should remove commas before joining together', async () => {
+			const result = await testPool.query(`
+				INSERT INTO recipes (title) VALUES ('testing, 123')
+				RETURNING slug
+			`);
+			expect(result.rows[0].slug).to.equal('testing-123');
+		});
+		it('slug should also be unique', async () => {
+			let error;
+			try {
+				await testPool.query(`
+					INSERT INTO recipes (title) VALUES ('testing 123')
+				`);
+				await testPool.query(`
+					INSERT INTO recipes (title) VALUES ('testing, 123')
+				`);
+			} catch (e) {
+				error = e;
+			}
+			expect(error).to.exist;
+		});
+
 	});
 
 });

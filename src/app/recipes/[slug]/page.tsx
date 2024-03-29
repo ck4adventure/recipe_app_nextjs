@@ -14,7 +14,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				{/* header section */}
 				<div className='flex flex-col items-center' data-cy="recipe-detail-header">
 					<div className='text-xl' data-cy="recipe-detail-title">{recipe.recipe_title}</div>
-					<div className='font-light text-xs' data-cy="recipe-detail-category"><Link href={`/recipes/category/${recipe.category_name}`}>{recipe.category_name}</Link></div>
+					<div className='font-light text-xs' data-cy="recipe-detail-category-link"><Link href={`/recipes/category/${recipe.category_name}`}>{recipe.category_name}</Link></div>
 				</div>
 				{/* responsive sections */}
 				<div className='flex flex-col md:flex-row my-8 mx-16'>
@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 					</div>
 				</div>
 				<div>
-					<Link data-cy="recipe-detail-edit-button" href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
+					<Link data-cy="recipe-detail-update-button" href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
 				</div>
 				<div className='flex justify-center m-4 mt-8'>
 					<DeleteRecipeButton id={recipe.recipe_id} />
