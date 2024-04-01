@@ -1,8 +1,13 @@
 import { pool } from './db.mjs';
 
 export const query = async (text, params) => {
+	try {
 	const res = await pool.query(text, params);
 	return res
+	} catch (error) {
+		console.error('error running query', error)
+		throw error
+	}
 }
 
 export const loggedQuery = async (text, params) => {

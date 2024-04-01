@@ -10,4 +10,7 @@ CREATE TABLE source_authors (
 		UNIQUE (source_id, author_id)
 );
 
+ALTER TABLE recipes ADD COLUMN source_id INTEGER; 
+ALTER TABLE recipes ADD FOREIGN KEY (source_id) REFERENCES sources (id) ON DELETE CASCADE;
+
 COMMIT;

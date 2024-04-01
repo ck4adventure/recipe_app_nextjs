@@ -7,11 +7,13 @@ import { useState } from "react";
 import IngredientField from "./ingredient_field";
 import DirectionField from "./direction_field";
 
-export const RecipeForm = ({ categoryRows, recipe }: { categoryRows: any, recipe?: any }) => {
+export const RecipeForm = ({ authorsSources, categoryRows, recipe }: { authorsSources: any, categoryRows: any, recipe?: any }) => {
 	const [recipeTitle, setRecipeTitle] = useState<string>(recipe ? recipe.recipe_title : '');
 	const [categoryID, setCategoryID] = useState<number>(recipe ? recipe.category_id : 1);
 	const [ingredients, setIngredients] = useState<string[]>((recipe && recipe.ingredients) ? recipe.ingredients : ['', '']);
 	const [steps, setSteps] = useState<string[]>((recipe && recipe.steps) ? recipe.steps : ['', '']);
+	const [authorID, setAuthorID] = useState<number>(recipe ? recipe.author_id : 1);
+	const [sourceID, setSourceID] = useState<number>(recipe ? recipe.source_id : 1);
 
 
 	const addField = (type: 'ingredients' | 'steps') => {

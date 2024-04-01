@@ -21,6 +21,8 @@ As a baker, I want to know how long it will take me to get something from start 
 As a baker, I want to know what time it will be done if started at a given time.  
 As a baker, I want to know how early I need to start in order to be done by a given time.  
 
+----------------
+
 ## Completed Recipes App Features
 
 ### Recipe has a Source
@@ -28,10 +30,13 @@ I get recipes from books.
 I get recipes from the internet.
 I get recipes from friends / random one-offs.
 
-#### Recipe has a type
-"Professional" recipes have sources and can be traced
-"Family" recipes are anything picked up over the years that's lost its source
-Might set this on Author as a flag, is_profi
+#### BE
+A recipe has only one source.
+A source has many recipes.
+A source has one or more authors.
+A recipe has authors through it's source.
+An author has a name and is_profi? t/f
+A source has a type, title, and optional source_url.
 
 Author
 - name: prolly do first and last fields and do a virtual full name
@@ -39,18 +44,40 @@ Author
 
 Source
 - source_type: personal collection, book, or website
-- source_title: required if book or site, "[first_name]'s Personal Collection" if personal collection
+- title: required if book or site, "[first_name]'s Personal Collection" if personal collection
 - source_url: required if site
 
 SourceAuthors joins
 - id, author_id, source_id
 - if source is type personal collection, can only have one entry per author
 
-RecipeSource joins
-- id, recipe_id, source_id, page
-- if source is type personal collection, could be null or sequentially indexed
-- if source is book, requires a page number
-- if source is website, requires a URL
+
+
+#### FE
+Add Recipe Form
+- updates to choose Author from a select menu
+	- if need to add new Author, that will be done somewhere else
+- once Author selected, runs a query to load Author's sources
+  - sources are also a select menu, adding sources will be done somewhere else
+- I think it is possible to build a react component that could handle the author/source crud alongside the select, but will keep it simple for now
+
+Recipe Detail Page
+  - should show source information if present
+
+Author Detail Page
+  - shows full name
+	- sites section with list of sites, then by category and recipe
+	- books section with list of book titles, then by category and recipe
+	- OR, could combine both lists and display with RecipeView
+
+Source Detail Page
+  - type of source
+  - title of source if present
+	- url of source if present
+	- author(s) names
+	- RecipeView with list or categories
+
+
 
 ### Category Index Page
 Cards can only show the top 5 recipes fo reach before becoming unwieldy. A category index page should show all the recipes for a category in alphabetical order.

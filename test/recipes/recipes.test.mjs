@@ -87,5 +87,27 @@ describe('recipes model', () => {
 		});
 
 	});
+	context('source', () => {
+		it("source_id is a FK to the sources table", async () => {
+			const result = await testPool.query(`
+				SELECT column_name
+				FROM information_schema.columns
+				WHERE table_name = 'recipes'
+			`);
+			const columnNames = result.rows.map((row) => row.column_name);
+			expect(columnNames).to.include('source_id');
+		});
+		it('source_id is optional (for now)', async () => {
+			let error;
+			try {
+				await testPool.query(`
+					INSERT INTO recipes (title) VALUES ('test')
+				`);
+			} catch (e) {
+				error = e;
+			}
+			expect(error).to.not.exist;
+		});
+	});
 
 });

@@ -1,3 +1,11 @@
+export const GET_AUTHORS = `
+  SELECT * FROM authors
+`;
+
+export const GET_SOURCES = `
+	SELECT * FROM sources
+`;
+
 export const GET_CATEGORIES = `
 	SELECT * FROM categories
 `;
@@ -26,22 +34,31 @@ export const GET_RECIPE_BY_ID = `
 `;
 
 export const GET_RECIPE_BY_SLUG = `
-	SELECT r.id AS recipe_id, r.title AS recipe_title, r.slug as recipe_slug, c.id AS category_id, c.name AS category_name, ingredients, steps
-	FROM recipes r 
-	LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id 
-	LEFT JOIN categories c ON rc.category_id = c.id
-	LEFT JOIN (
-		SELECT recipe_id, array_agg(ingredient) AS ingredients
-		FROM recipe_ingredients
-		GROUP BY recipe_id 
-	) ri ON r.id = ri.recipe_id
-	LEFT JOIN (
-		SELECT recipe_id, array_agg(step) AS steps
-		FROM recipe_steps
-		GROUP BY recipe_id
-	) rs ON r.id = rs.recipe_id
+SELECT r.id as recipe_id, r.title as recipe_title, 
+       s.id as source_id, s.title as source_title,
+			 c.id as category_id, c.name as category_name,
+       author_ids, authors, ingredients, steps
+FROM recipes r
+LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id
+LEFT JOIN categories c ON rc.category_id = c.id
+LEFT JOIN sources s ON r.source_id = s.id
+LEFT JOIN (
+    SELECT source_id, array_agg(author_id) AS author_ids, array_agg(full_name) as authors
+    FROM source_authors sa
+		JOIN authors a ON sa.author_id = a.id
+    GROUP BY source_id
+) sa ON r.source_id = sa.source_id
+LEFT JOIN (
+	SELECT recipe_id, array_agg(ingredient) as ingredients
+	FROM recipe_ingredients
+	GROUP BY recipe_id
+) ri ON r.id = ri.recipe_id
+LEFT JOIN (
+    SELECT recipe_id, array_agg(step) as steps
+    FROM recipe_steps
+    GROUP BY recipe_id
+) rs ON r.id = rs.recipe_id
 	WHERE r.slug = $1
-	GROUP BY c.id, r.id, ri.ingredients, rs.steps
 `;
 
 export const CREATE_RECIPE = `

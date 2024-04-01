@@ -1,44 +1,4 @@
 {
-	"1": {
-		"first_name": "Paul",
-		"last_name": "Hollywood",
-		"is_profi": true,
-		"sources": [
-			{
-				"source_type": "BOOK",
-				"title": "Paul Hollywood's Bread",
-				"recipes": [
-					{
-						"title": "White Cob",
-						"page": "42"
-					},
-					{
-						"title": "Rye, Ale and Oat Bread",
-						"page": "56"
-					}
-				]
-			},
-			{				
-				"source_type": "SITE",
-				"url": "https://www.paulhollywood.com"
-			}
-		]
-	},
-	"2": {
-		"first_name": "Mary",
-		"last_name": "Berry",
-		"is_profi": true,
-		"sources": [
-			{
-				"source_type": "BOOK",
-				"title": "Mary Berry's Baking Bible"
-			},
-			{
-				"source_type": "SITE",
-				"url": "https://www.maryberry.co.uk"
-			}
-		]
-	},
 	"3": {
 		"first_name": "Dekka",
 		"last_name": "",
@@ -46,7 +6,7 @@
 		"sources": [
 			{
 				"source_type": "PERSONAL",
-				"source_title": "Dekka's Personal Collection"
+				"title": "Dekka's Personal Collection"
 			}
 		]
 	},
@@ -57,10 +17,23 @@
 		"sources": [
 			{
 				"source_type": "BOOK",
+				"title": "Good Eats: The Early Years"
+			},
+			{
+				"source_type": "BOOK",
+				"title": "Good Eats 2: The Middle Years"
+			},
+			{
+				"source_type": "BOOK",
 				"title": "Good Eats 3: The Later Years"
 			},
 			{
+				"source_type": "BOOK",
+				"title": "Good Eats 4: The Return"
+			},
+			{
 				"source_type": "SITE",
+				"title": "Alton Brown's Official Website",
 				"url": "https://altonbrown.com"
 			}
 		]

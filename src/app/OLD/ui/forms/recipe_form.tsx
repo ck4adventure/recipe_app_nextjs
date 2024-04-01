@@ -69,7 +69,6 @@ const RecipeForm: React.FC = () => {
 			ingredients: displayIngredients,
 			steps: displayDirections,
 		}
-		console.log(recipe)
 	}
 
 	return (

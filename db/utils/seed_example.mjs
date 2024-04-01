@@ -3,7 +3,6 @@ import example from '../seeds/complete_example.json' assert { type: "json" };
 export const seedExample = async (pool) => {
 	try {
 		// loop over entries in example
-		console.log(Object.values(example));
 		for (const authorEntry of Object.values(example)) {
 
 			const { first_name, last_name, is_profi, books, sites } = authorEntry;
@@ -18,7 +17,7 @@ export const seedExample = async (pool) => {
 					const { title, recipes } = book;
 
 					// create source of type BOOK
-					const sourceResult = await pool.query(`INSERT INTO sources (source_type, source_title) VALUES ('BOOK',$1) RETURNING id`, [title]);
+					const sourceResult = await pool.query(`INSERT INTO sources (source_type, title) VALUES ('BOOK',$1) RETURNING id`, [title]);
 					const sourceId = sourceResult.rows[0].id;
 
 					// create source_author entry
@@ -29,16 +28,15 @@ export const seedExample = async (pool) => {
 						for (const recipe of recipes) {
 
 							// create recipe entry
-							const recipeResult = await pool.query(`INSERT INTO recipes (title) VALUES ($1) RETURNING id`, [recipe.title]);
+
+							const recipeResult = await pool.query(`INSERT INTO recipes (title, source_id) VALUES ($1, $2) RETURNING id`, [recipe.title, sourceId]);
 							const recipeId = recipeResult.rows[0].id;
-							
-							// create recipe_source entry
-							await pool.query(`INSERT INTO recipe_source (source_id, recipe_id) VALUES ($1, $2)`, [sourceId, recipeId]);
 							
 							// create recipe_categories entries
 							if (recipe.categories && recipe.categories.length > 0) {
 								for (const category of recipe.categories) {
 									// get Category ID
+									console.log('category', category);
 									const categoryResult = await pool.query(`SELECT id FROM categories WHERE name LIKE $1`, [category]);
 									const categoryId = categoryResult.rows[0].id;
 
@@ -48,8 +46,8 @@ export const seedExample = async (pool) => {
 							}
 							
 							// only do if ingredients exist
-							if (recipe.ingrs && recipe.ingrs.length > 0) {
-								for (const ingredient of recipe.ingrs) {
+							if (recipe.ingredients && recipe.ingredients.length > 0) {
+								for (const ingredient of recipe.ingredients) {
 									await pool.query(`INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES ('${recipeId}','${ingredient}')`);
 								}
 							}
@@ -70,7 +68,7 @@ export const seedExample = async (pool) => {
 					const { title, url, recipes } = site;
 
 					// create source of type SITE
-					const sourceResult = await pool.query(`INSERT INTO sources (source_type, source_url, source_title) VALUES ('SITE',$1, $2) RETURNING id`, [url, title]);
+					const sourceResult = await pool.query(`INSERT INTO sources (source_type, source_url, title) VALUES ('SITE',$1, $2) RETURNING id`, [url, title]);
 					const sourceId = sourceResult.rows[0].id;
 
 					// create source_author entry
@@ -79,14 +77,11 @@ export const seedExample = async (pool) => {
 					// create recipes
 					if (recipes && recipes.length > 0) {
 						for (const recipe of recipes) {
-							const { title, url, categories, ingrs, steps } = recipe;
+							const { title, url, categories, ingredients, steps } = recipe;
 
 							// create recipe entry
-							const recipeResult = await pool.query(`INSERT INTO recipes (title) VALUES ($1) RETURNING id`, [title]);
+							const recipeResult = await pool.query(`INSERT INTO recipes (title, source_id) VALUES ($1, $2) RETURNING id`, [title, sourceId]);
 							const recipeId = recipeResult.rows[0].id;
-
-							// create recipe_source entry
-							await pool.query(`INSERT INTO recipe_source (source_id, recipe_id, page) VALUES ($1, $2, $3)`, [sourceId, recipeId, url || null]);
 
 							// create recipe_categories entries
 							if (categories && categories.length > 0) {
@@ -99,13 +94,13 @@ export const seedExample = async (pool) => {
 							}
 
 							// only do if ingredients exist
-							if (recipe.ingrs && recipe.ingrs.length > 0) {
-								for (const ingredient of recipe.ingrs) {
+							if (ingredients && ingredients.length > 0) {
+								for (const ingredient of ingredients) {
 									await pool.query(`INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES ('${recipeId}','${ingredient}')`);
 								}
 							}
 							// only do if steps exist
-							if (recipe.steps && recipe.steps.length > 0) {
+							if (steps && steps.length > 0) {
 								for (const step of recipe.steps) {
 									await pool.query(`INSERT INTO recipe_steps (recipe_id, step) VALUES ('${recipeId}','${step}')`);
 								}

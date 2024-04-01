@@ -7,6 +7,9 @@ import { expect } from 'chai';
 import { testPool } from '../../db/db.mjs';
 
 describe('source authors', () => {
+	afterEach(async () => {
+		await testPool.query('DELETE FROM source_authors');
+	});
 	context('columns', () => {
 		it('has an id column which is the primary key', async () => {
 			const result = await testPool.query(`
@@ -63,7 +66,7 @@ context('when an author is deleted', () => {
 			const authorResult = await testPool.query('INSERT INTO authors (first_name, last_name, is_profi) VALUES ($1, $2, $3) RETURNING id', ['delete', 'me', false]);
 			const authorId = authorResult.rows[0].id;
 			// create a source
-			const sourceResult = await testPool.query('INSERT INTO sources (source_type, source_title, source_url) VALUES ($1, $2, $3) RETURNING id', ['BOOK', 'delete me', 'http://delete.me']);
+			const sourceResult = await testPool.query('INSERT INTO sources (source_type, title, source_url) VALUES ($1, $2, $3) RETURNING id', ['BOOK', 'delete me', 'http://delete.me']);
 			const sourceId = sourceResult.rows[0].id;
 			// create a source_author entry
 			await testPool.query('INSERT INTO source_authors (source_id, author_id) VALUES ($1, $2)', [sourceId, authorId]);
@@ -80,7 +83,7 @@ context('when an author is deleted', () => {
 			const authorResult = await testPool.query('INSERT INTO authors (first_name, last_name, is_profi) VALUES ($1, $2, $3) RETURNING id', ['delete', 'me', false]);
 			const authorId = authorResult.rows[0].id;
 			// create a source
-			const sourceResult = await testPool.query('INSERT INTO sources (source_type, source_title, source_url) VALUES ($1, $2, $3) RETURNING id', ['BOOK', 'delete me', 'http://delete.me']);
+			const sourceResult = await testPool.query('INSERT INTO sources (source_type, title, source_url) VALUES ($1, $2, $3) RETURNING id', ['BOOK', 'delete me', 'http://delete.me']);
 			const sourceId = sourceResult.rows[0].id;
 			// create a source_author entry
 			await testPool.query('INSERT INTO source_authors (source_id, author_id) VALUES ($1, $2)', [sourceId, authorId]);

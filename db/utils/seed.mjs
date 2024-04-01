@@ -9,10 +9,12 @@ export const seedTables = async (pool) => {
 			const authorId = authorResult.rows[0].id;
 			if (author.sources && author.sources.length > 0) {
 				for (const source of author.sources) {
-					const stype = source.source_type;
-					const stitle = source.title | null;
-					const surl = source.url | null;
-					const sourceResult = await pool.query(`INSERT INTO sources (source_type, source_title, source_url) VALUES ('${stype}', '${stitle}', '${surl}') RETURNING id`);
+					console.log('source: ', source);
+					const stype = source["source_type"];
+					const stitle = source["title"] || '';
+					const surl = source["url"] || '';
+					console.log('stype: ', stype, 'stitle: ', stitle, 'surl: ', surl)
+					const sourceResult = await pool.query(`INSERT INTO sources (source_type, title, source_url) VALUES ($1, $2, $3) RETURNING id`, [stype, stitle, surl]);
 					const sourceId = sourceResult.rows[0].id;
 
 					await pool.query(`INSERT INTO source_authors (source_id, author_id) VALUES ('${sourceId}','${authorId}')`);

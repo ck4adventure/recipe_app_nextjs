@@ -17,7 +17,7 @@ describe('User Journeys', () => {
 		cy.getByData('recipe-link').first().click()
 		cy.location("pathname").should("include", "/recipes/")
 		cy.getByData('recipe-detail-title').should('exist')
-		cy.getByData('recipe-detail-category').should('exist')
+		cy.getByData('recipe-detail-category-link').should('exist')
 	});
 	it('a user can find the add recipe button and successfully add a recipe', () => {
 		cy.visit("http://localhost:3000/recipes")
@@ -40,7 +40,7 @@ describe('User Journeys', () => {
 	})
 		it('a user can edit a recipe', () => {
 		cy.visit("http://localhost:3000/recipes/test-recipe")
-		cy.getByData('recipe-detail-edit-button').first().click()
+		cy.getByData('recipe-detail-update-button').first().click()
 		cy.getByData('recipe-title-input').should('exist')
 		cy.getByData('recipe-category-select').should('exist')
 		cy.getByData('recipe-submit-button').should('exist')

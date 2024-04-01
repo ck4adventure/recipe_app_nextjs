@@ -7,6 +7,7 @@ import Link from 'next/link';
 // RecipeDetailPage should fetch the recipe by id
 export default async function Page({ params }: { params: { slug: string } }) {
 	const recipe = await getRecipeBySlug(params.slug) as unknown as Recipe;
+
 	return (
 		<div id='recipe_page'>
 			<title>Recipe</title>
@@ -15,6 +16,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				<div className='flex flex-col items-center' data-cy="recipe-detail-header">
 					<div className='text-xl' data-cy="recipe-detail-title">{recipe.recipe_title}</div>
 					<div className='font-light text-xs' data-cy="recipe-detail-category-link"><Link href={`/recipes/category/${recipe.category_name}`}>{recipe.category_name}</Link></div>
+				</div>
+				<div data-cy="recipe-source-header" >
+					{recipe.source_title && <div className='m-2 text-sm' data-cy="recipe-source-title">Taken from: {recipe.source_title}</div>}
+					{recipe.authors && <div className='m-2 text-sm' data-cy="recipe-source-authors">By: {recipe.authors.join(", ")}</div>}
 				</div>
 				{/* responsive sections */}
 				<div className='flex flex-col md:flex-row my-8 mx-16'>
