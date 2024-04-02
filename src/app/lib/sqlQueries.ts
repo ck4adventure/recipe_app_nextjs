@@ -3,11 +3,10 @@ export const GET_AUTHORS = `
 `;
 
 export const GET_AUTHOR_AND_INFO = `
-	SELECT a.id as author_id, a.full_name as author_name, s.title as source_title, s.source_type, s.source_url, s.id as source_id, r.title as recipe_title, r.slug as recipe_slug
+	SELECT a.id as author_id, a.full_name as author_name, a.is_profi, s.title as source_title, s.source_type, s.source_url, s.id as source_id
 	FROM authors a
 	LEFT JOIN source_authors sa on sa.author_id = a.id
 	LEFT JOIN sources s on s.id = sa.source_id
-	LEFT JOIN recipes r on r.source_id = s.id
 	WHERE a.id = $1
 `;
 
@@ -15,18 +14,23 @@ export const GET_SOURCES = `
 	SELECT * FROM sources
 `;
 
-export const GET_CATEGORIES = `
-	SELECT * FROM categories
-`;
-
-export const GET_SOURCE_AUTHORS_RECIPES = `
-	SELECT s.id as source_id, s.source_type, s.title, s.source_url, a.full_name, a.is_profi, a.id as author_id, r.title as recipe_title, r.slug as recipe_slug
+export const GET_SOURCE_BY_ID = `
+	SELECT s.id as source_id, s.source_type, s.title, s.source_url, a.full_name, a.is_profi, a.id as author_id
 	FROM sources s
 	JOIN source_authors sa on sa.source_id = s.id
 	JOIN authors a on sa.author_id = a.id
-	LEFT JOIN recipes r on r.source_id = s.id
 	WHERE s.id = $1
 `
+
+export const GET_RECIPES_FOR_SOURCE = `
+  SELECT r.id as recipe_id, r.title as recipe_title, r.slug as recipe_slug, s.id as source_id
+	FROM recipes r
+	JOIN sources s on r.source_id = s.id
+	WHERE s.id = $1
+`
+export const GET_CATEGORIES = `
+	SELECT * FROM categories
+`;
 
 export const GET_CATEGORIES_AND_RECIPES = `
   SELECT c.id AS category_id, c.name AS category_name, r.id AS recipe_id, r.title AS recipe_title, r.slug AS recipe_slug

@@ -6,7 +6,7 @@ import {
 	GET_AUTHORS,
 	GET_AUTHOR_AND_INFO,
 	GET_SOURCES,
-	GET_SOURCE_AUTHORS_RECIPES,
+	GET_SOURCE_BY_ID,
 	GET_SOURCE_AND_AUTHOR_FOR_RECIPE,
 	ADD_INGREDIENT_TO_RECIPE,
 	ADD_RECIPE_TO_CATEGORY,
@@ -20,7 +20,8 @@ import {
 	GET_RECIPES_FOR_CATEGORY,
 	GET_RECIPE_BY_ID,
 	GET_RECIPE_BY_SLUG,
-	UPDATE_RECIPE_TITLE
+	UPDATE_RECIPE_TITLE,
+	GET_RECIPES_FOR_SOURCE
 } from './sqlQueries';
 
 // getAuthors returns rows containing author data
@@ -40,8 +41,13 @@ export const getSources = async () => {
 	return result.rows;
 };
 
-export const getSourceAuthorRecipes = async (sourceID: number) => {
-	const result = await query(GET_SOURCE_AUTHORS_RECIPES, [sourceID]);
+export const getSourceInfoById = async (sourceID: number) => {
+	const result = await query(GET_SOURCE_BY_ID, [sourceID]);
+	return result.rows[0];
+}
+
+export const getRecipesForSource = async (sourceID: number) => {
+	const result = await query(GET_RECIPES_FOR_SOURCE, [sourceID]);
 	return result.rows;
 }
 

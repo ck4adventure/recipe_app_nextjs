@@ -22,50 +22,36 @@ const filterSourcesAndRecipes = (rows: any[]) => {
 export default async function Page({ params }: { params: { id: number } }) {
 	const recipeRows = await getAuthorInfo(params.id);
 	const info = recipeRows[0] as any;
-	console.log(info)
-	const { id, author_name } = info;
+	const { author_name, is_profi } = info;
 	const { books, sites, collections } = filterSourcesAndRecipes(recipeRows);
-	console.log('books', books);
 	return (
-		<div>
-			<div>Author: {author_name}</div>
+		<div className='flex flex-col items-center'>
+			<div className='text-2xl'>{author_name}</div>
+			<div className='text-sm italic'>{ is_profi ? 'Professional' : 'Amateur'} Chef</div>
+			{/* Display by source_type then list the recipes */}
+			<div className='m-4'>
 			{books.length > 0 && (
-				<div>
-					<div>Books</div>
+				<div className='m-4'>
+					<div className='font-bold'>Books</div>
 					{books.map((book) => (
 						<div key={book.source_id}>
 							<Link href={`/recipes/sources/${book.source_id}`}>{book.source_title}</Link>
-							{/* <ul>
-								{book.recipes.map((recipe: any, i: number) => (
-									<li key={i}>
-										<Link href={`/recipes/${recipe.recipe_slug}`}>{recipe.recipe_title}</Link>
-									</li>
-								))}
-							</ul> */}
 						</div>
 					))}
 				</div>
 			)}
 			{sites.length > 0 && (
-				<div>
-					<div>Books</div>
+				<div className='m-4'>
+					<div className='font-bold'>Recipes on the Web</div>
 					{sites.map((item) => (
 						<div key={item.source_id}>
 							<Link href={`/recipes/sources/${item.source_id}`}>{item.source_title}</Link>
-							{/* <ul>
-								{book.recipes.map((recipe: any, i: number) => (
-									<li key={i}>
-										<Link href={`/recipes/${recipe.recipe_slug}`}>{recipe.recipe_title}</Link>
-									</li>
-								))}
-							</ul> */}
 						</div>
 					))}
 				</div>
 			)}
 			{collections.length > 0 && (
 				<div>
-					<div>Books</div>
 					{collections.map((item) => (
 						<div key={item.source_id}>
 							<Link href={`/recipes/sources/${item.source_id}`}>{item.source_title}</Link>
@@ -73,6 +59,7 @@ export default async function Page({ params }: { params: { id: number } }) {
 					))}
 				</div>
 			)}
+			</div>
 		</div>
 	)
 }

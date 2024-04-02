@@ -1,6 +1,6 @@
 import { getRecipesForCategory } from "@/app/lib/data";
 import AddRecipeButton from "@/app/ui/recipes/add_recipe_button";
-import RecipesListView from "@/app/ui/recipes/list_view";
+import RecipesListView from "@/app/ui/recipes/recipe_list_view";
 export default async function Page({ params }: {params: {slug: string}}) {
 	const result = await getRecipesForCategory(params.slug) as any[];
 	const displayCategory = params.slug[0].toUpperCase() + params.slug.slice(1);

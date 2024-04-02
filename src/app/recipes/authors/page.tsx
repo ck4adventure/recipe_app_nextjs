@@ -5,14 +5,13 @@ import { getAuthors } from '@/app/lib/data';
 export default async function Page() {
 	const authorsRows = await getAuthors();
 	return (
-		<div>
-			<div data-cy="authors-header">Authors Index Page</div>
-			<div data-cy="authors-list">Authors List: </div>
-			<ul>
-				{authorsRows.map((author: any) => (
-					<li key={author.id}><Link href={`/recipes/authors/${author.id}`}>{author.full_name}</Link></li>
-				))}
-			</ul>
+		<div className='flex flex-col items-center'>
+			<div className='font-bold text-lg' data-cy="authors-header">Authors</div>
+				<ul className='m-4 flex flex-col items-center'>
+					{authorsRows.map((author: any) => (
+						<li className='m-2' key={author.id}><Link href={`/recipes/authors/${author.id}`}>{author.full_name}</Link></li>
+					))}
+				</ul>
 		</div>
 	);
 }
