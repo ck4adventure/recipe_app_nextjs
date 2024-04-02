@@ -2,6 +2,15 @@ export const GET_AUTHORS = `
   SELECT * FROM authors
 `;
 
+export const GET_AUTHOR_AND_INFO = `
+	SELECT a.id as author_id, a.full_name as author_name, s.title as source_title, s.source_type, s.source_url, s.id as source_id, r.title as recipe_title, r.slug as recipe_slug
+	FROM authors a
+	LEFT JOIN source_authors sa on sa.author_id = a.id
+	LEFT JOIN sources s on s.id = sa.source_id
+	LEFT JOIN recipes r on r.source_id = s.id
+	WHERE a.id = $1
+`;
+
 export const GET_SOURCES = `
 	SELECT * FROM sources
 `;
@@ -9,6 +18,15 @@ export const GET_SOURCES = `
 export const GET_CATEGORIES = `
 	SELECT * FROM categories
 `;
+
+export const GET_SOURCE_AUTHORS_RECIPES = `
+	SELECT s.id as source_id, s.source_type, s.title, s.source_url, a.full_name, a.is_profi, a.id as author_id, r.title as recipe_title, r.slug as recipe_slug
+	FROM sources s
+	JOIN source_authors sa on sa.source_id = s.id
+	JOIN authors a on sa.author_id = a.id
+	LEFT JOIN recipes r on r.source_id = s.id
+	WHERE s.id = $1
+`
 
 export const GET_CATEGORIES_AND_RECIPES = `
   SELECT c.id AS category_id, c.name AS category_name, r.id AS recipe_id, r.title AS recipe_title, r.slug AS recipe_slug
@@ -34,20 +52,12 @@ export const GET_RECIPE_BY_ID = `
 `;
 
 export const GET_RECIPE_BY_SLUG = `
-SELECT r.id as recipe_id, r.title as recipe_title, 
-       s.id as source_id, s.title as source_title,
+SELECT r.id as recipe_id, r.title as recipe_title, r.source_id,
 			 c.id as category_id, c.name as category_name,
-       author_ids, authors, ingredients, steps
+       ingredients, steps
 FROM recipes r
 LEFT JOIN recipe_categories rc ON r.id = rc.recipe_id
 LEFT JOIN categories c ON rc.category_id = c.id
-LEFT JOIN sources s ON r.source_id = s.id
-LEFT JOIN (
-    SELECT source_id, array_agg(author_id) AS author_ids, array_agg(full_name) as authors
-    FROM source_authors sa
-		JOIN authors a ON sa.author_id = a.id
-    GROUP BY source_id
-) sa ON r.source_id = sa.source_id
 LEFT JOIN (
 	SELECT recipe_id, array_agg(ingredient) as ingredients
 	FROM recipe_ingredients
@@ -59,6 +69,15 @@ LEFT JOIN (
     GROUP BY recipe_id
 ) rs ON r.id = rs.recipe_id
 	WHERE r.slug = $1
+`;
+
+export const GET_SOURCE_AND_AUTHOR_FOR_RECIPE = `
+	SELECT r.id as recipe_id, a.full_name as author_name, a.id as author_id, s.id as source_id, s.title as source_title, s.source_type, s.source_url, s.source_type
+	FROM sources s
+	JOIN recipes r on r.source_id = s.id
+	JOIN source_authors sa on sa.source_id = s.id
+	JOIN authors a on sa.author_id = a.id
+	WHERE r.id = $1
 `;
 
 export const CREATE_RECIPE = `

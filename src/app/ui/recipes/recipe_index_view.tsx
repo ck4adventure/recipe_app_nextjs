@@ -15,8 +15,8 @@ const RecipeIndexView = ({ recipes }: { recipes: any }) => {
 		}
 	}
 	return (
-		<div className="">
-			<div className="m-4" data-cy='recipe-toggle-switch'>
+		<div className="flex flex-col">
+			<div className="m-4 flex flex-row justify-center" data-cy='recipe-toggle-switches'>
 				{/* button goes here */}
 				<button
 					className="border-2 p-2"

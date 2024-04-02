@@ -6,14 +6,14 @@ const CategoryCard = ({ category, categoryRecipes }: { category: string, categor
 	const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
 	return (
-		<div data-cy='category-card' className="m-4 border-2 rounded-md p-2 w-1/2 min-h-16">
+		<div data-cy='category-card' className="m-4 border-2 rounded-md p-2 w-1/3 min-h-16">
 			
 			<h2 
 			  data-cy='category-name' 
 				className="font-bold">
 					<Link
 					data-cy='category-link'
-						href={`/recipes/category/${encodeURI(category)}`}
+						href={`/recipes/categories/${encodeURI(category)}`}
 					>
 					{formattedCategory}
 					</Link>

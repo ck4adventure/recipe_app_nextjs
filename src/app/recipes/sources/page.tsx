@@ -1,4 +1,5 @@
 import { getSources } from '@/app/lib/data';
+import Link from 'next/link';
 export default async function Page() {
 	const sourcesRows = await getSources();
 	return (
@@ -8,8 +9,8 @@ export default async function Page() {
 			<div data-cy="sources-list-sites">Sites</div>
 			<div data-cy="sources-list-collections">Collections</div>
 			<ul>
-				{sourcesRows.map((source: any) => (
-					<li key={source.id}>{source.title}</li>
+				{sourcesRows.map((source: any, i) => (
+					<li key={i}><Link href={`/recipes/sources/${source.id}`}>{source.title}</Link></li>
 				))}
 			</ul>
 		</div>

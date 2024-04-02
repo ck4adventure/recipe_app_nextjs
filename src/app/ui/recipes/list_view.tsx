@@ -13,8 +13,8 @@ const RecipesListView = ({ data }: { data: any[] }) => {
 		}
 	);
 	return (
-		<div data-cy='recipes-list' className="m-4">
-			<ul>
+		<div data-cy='recipes-list' className="">
+			<ul className="flex flex-col items-center">
 				{sortedData.map((recipe: any, index: number) => {
 					return (
 						<li className='my-2' key={index}><Link data-cy='recipe-link' href={`/recipes/${recipe.recipe_slug}`}>{recipe.recipe_title}</Link></li>

@@ -81,7 +81,7 @@ Source Detail Page
 
 ### Category Index Page
 Cards can only show the top 5 recipes fo reach before becoming unwieldy. A category index page should show all the recipes for a category in alphabetical order.
-- ROUTE: `/recipes/category/[slug]`
+- ROUTE: `/recipes/categories/[slug]`
 - FE: Create category index page for route
 - FE: Index page should show the category name and list of recipes
 - ACTION: getRecipeForCategory(cat)
