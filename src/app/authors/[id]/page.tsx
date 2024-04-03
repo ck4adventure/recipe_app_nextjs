@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: { id: number } }) {
 					<div className='font-bold'>Books</div>
 					{books.map((book) => (
 						<div key={book.source_id}>
-							<Link href={`/recipes/sources/${book.source_id}`}>{book.source_title}</Link>
+							<Link href={`/sources/${book.source_id}`}>{book.source_title}</Link>
 						</div>
 					))}
 				</div>
@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: { id: number } }) {
 					<div className='font-bold'>Recipes on the Web</div>
 					{sites.map((item) => (
 						<div key={item.source_id}>
-							<Link href={`/recipes/sources/${item.source_id}`}>{item.source_title}</Link>
+							<Link href={`/sources/${item.source_id}`}>{item.source_title}</Link>
 						</div>
 					))}
 				</div>
@@ -54,7 +54,7 @@ export default async function Page({ params }: { params: { id: number } }) {
 				<div>
 					{collections.map((item) => (
 						<div key={item.source_id}>
-							<Link href={`/recipes/sources/${item.source_id}`}>{item.source_title}</Link>
+							<Link href={`/sources/${item.source_id}`}>{item.source_title}</Link>
 						</div>
 					))}
 				</div>

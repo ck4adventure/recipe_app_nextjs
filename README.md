@@ -1,5 +1,7 @@
 # Recipe Manager App
 
+See [features](FEATURES.md)
+
 ## Getting Started
 - clone the repo
 - ensure Node 20
@@ -17,28 +19,16 @@ As a user I want to add new recipes with one or more categories.
 As a user I want to delete recipes.  
 
 ### FE
+- `/authors`
+- `/categories`
 - `/recipes` - Main homepage for recipes section
 - `/recipes/[slug]` - unique slugs to provide human readable url (helpful in bookmarks, autofills)
-- `/recipes/add-recipe` - create form for new recipes
-- `/recipes/[slug]/edit`
-- `/recipes/search `
+- `/sources`
 
 
 ## Backend
 Postgresql DB by `pg` aka postgres node
 
-### Schemas
-Categories
-- name
-- has many recipes through recipe_categories
-
-Recipes
-- title
-- belongs to many categories through recipe_categories
-
-Recipe Categories
-- FK recipe id
-- FK category id
 
 ### DB Instance
 Currently hooking into my local postgres using a `practice` db with no authentication. 
@@ -52,7 +42,9 @@ TODO: create a script similar to rails that actually creates the db by name and 
 
 ## App Structure
 This is a next.js app, following the bleeding-edge `app` server functionality over the old `pages` logic. 
+
 ```
+/__test__ is the jest component testing
 /cypress is the e2e testing suite for the FE
 /db holds db logic
   /seeds is sample data for easier dev
@@ -60,5 +52,9 @@ This is a next.js app, following the bleeding-edge `app` server functionality ov
 /public
 /scripts
 /src/app
+	/authors
+	/categories
   /recipes
+	/sources
 /tests holds the db tests using mocha
+```

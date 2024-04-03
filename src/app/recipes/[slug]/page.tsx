@@ -1,6 +1,6 @@
 import { getRecipeBySlug, getSourceAndAuthorForRecipe } from '@/app/lib/data';
 import { Recipe } from '@/app/lib/definitions';
-import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
+// import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
 
 import Link from 'next/link';
 
@@ -16,13 +16,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				{/* Title and Category */}
 				<div className='flex flex-col items-center' data-cy="recipe-detail-header">
 					<div className='text-xl' data-cy="recipe-title">{recipe.recipe_title}</div>
-					<div className='font-light text-xs' data-cy="recipe-category-link"><Link href={`/recipes/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
+					<div className='font-light text-xs' data-cy="recipe-category-link"><Link href={`/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
 				</div>
 				
 				{/* Source and Author */}
 				<div data-cy="recipe-source-header" >
-					{sourceInfo && <div className='m-2 text-sm' data-cy="recipe-source-title">Taken from: <Link href={`/recipes/sources/${sourceInfo.source_id}`}>{sourceInfo.source_title}</Link></div>}
-					{sourceInfo && <div className='m-2 text-sm' data-cy="recipe-source-author">By: <Link href={`/recipes/authors/${sourceInfo.author_id}`}>{sourceInfo.author_name}</Link></div>}
+					{sourceInfo && <div className='m-2 text-sm' data-cy="recipe-source-title">Taken from: <Link href={`/sources/${sourceInfo.source_id}`}>{sourceInfo.source_title}</Link></div>}
+					{sourceInfo && <div className='m-2 text-sm' data-cy="recipe-source-author">By: <Link href={`/authors/${sourceInfo.author_id}`}>{sourceInfo.author_name}</Link></div>}
 				</div>
 				
 				
@@ -55,9 +55,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				{/* <div>
 					<Link data-cy="recipe-update-button" href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
 				</div> */}
-				<div className='flex justify-center m-4 mt-8'>
+				{/* <div className='flex justify-center m-4 mt-8'>
 					<DeleteRecipeButton id={recipe.recipe_id} />
-				</div>
+				</div> */}
 			</main>			
 		</div>
 	);

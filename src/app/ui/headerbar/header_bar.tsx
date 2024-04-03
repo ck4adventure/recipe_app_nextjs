@@ -9,10 +9,10 @@ export default function HeaderBar() {
 
 			</div>
 			<div className='flex flex-row'>
-				<div className="m-2"><Link href="/recipes">Recipes</Link> </div>
-				<div className="m-2"><Link href="/recipes/categories">Categories</Link> </div>
-				<div className="m-2"><Link href="/recipes/authors">Authors</Link> </div>
-				<div className="m-2"><Link href="/recipes/sources">Sources</Link> </div>
+				<div className="m-2"><Link href="/recipes/">Recipes</Link> </div>
+				<div className="m-2"><Link href="/categories/">Categories</Link> </div>
+				<div className="m-2"><Link href="/authors/">Authors</Link> </div>
+				<div className="m-2"><Link href="/sources/">Sources</Link> </div>
 			</div>
 		</div>
 	)

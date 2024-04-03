@@ -1,4 +1,6 @@
 ## Upcoming Features
+#### Note
+Due to wanting to publish this project without auth, removing all db interaction and leaving this as more of a static site with cool react features. Recipes are easily managed as json/yaml files. Later on I will add auth and bring back direct updates.
 
 ### Directions have checkmark boxes to keep your place
 As a baker, longer recipes often leave me scanning the same paragraphs over and over to find my place. I want a checkbox to the left of each numbered step that when I check it, it grays out the step so I can know to ignore it. The text for a checked step should be grayed out significantly, but still be readable if I need to confirm my work.
@@ -54,7 +56,7 @@ SourceAuthors joins
 
 
 #### FE
-Add Recipe Form
+Add Recipe Form - DELETED FOR NOW
 - updates to choose Author from a select menu
 	- if need to add new Author, that will be done somewhere else
 - once Author selected, runs a query to load Author's sources
@@ -81,13 +83,14 @@ Source Detail Page
 
 ### Category Index Page
 Cards can only show the top 5 recipes fo reach before becoming unwieldy. A category index page should show all the recipes for a category in alphabetical order.
-- ROUTE: `/recipes/categories/[slug]`
+- ROUTE: `/categories/[slug]`
 - FE: Create category index page for route
 - FE: Index page should show the category name and list of recipes
 - ACTION: getRecipeForCategory(cat)
 
 
 ### Display 'Add Recipe' button on every page
+DISABLED FOR NOW
 Material style round plus sign button that hovers at z+1  
 Links to create recipe page.
 Don't show on recipe add/edit pages. 
@@ -100,6 +103,7 @@ Toggle buttons to switch between category cards and full list.
 - FE: add component to display as a list, sorted alphabetically
 
 ### Edit a Recipe
+DISABLED FOR NOW
 Editing reuses the recipe form and shows any existing data.  
 Recipes should be able to be saved w/o steps or ingredients.  
 - ROUTE: `/recipes/[slug]/edit`

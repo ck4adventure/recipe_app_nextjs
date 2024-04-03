@@ -1,7 +1,7 @@
 // recipes index page
 import { getCategoriesAndRecipes } from "@/app/lib/data";
-import RecipeIndexView from "../ui/recipes/recipe_index_view";
-import AddRecipeButton from "../ui/recipes/add_recipe_button";
+import RecipeIndexView from "@/app/ui/recipes/recipe_index_view";
+
 
 
 
