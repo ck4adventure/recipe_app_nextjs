@@ -13,11 +13,18 @@ const createAuthorQuery = `
 	INSERT INTO authors (author_name, author_slug, is_profi) VALUES ($1, $2, $3) RETURNING id
 `;
 
-export const loadData = async (pool) => {
+export const loadData = async (client) => {
 	// first read in authors and sources data
-	for (const authorObject of authorsData) {
-		const { author_name, author_slug, is_profi, sources } = authorObject;
-
-	}
+	try {
+		for (const authorObject of authorsData) {
+			const { author_name, author_slug, is_profi, sources } = authorObject;
+			const authorResult = await client.query(createAuthorQuery, [author_name, author_slug, is_profi]);
+			const authorId = authorResult.rows[0].id;
+			console.log(`Author ${author_name} inserted with id ${authorId}`);
+		}
+	} catch (error) {
+		console.error('Error loading authors and sources', error);
+		throw error;
+	} 
 
 }

@@ -1,7 +1,6 @@
 {
 	"3": {
-		"first_name": "Dekka",
-		"last_name": "",
+		"name": "Dekka Denz",
 		"is_profi": false,
 		"sources": [
 			{
@@ -11,8 +10,7 @@
 		]
 	},
 	"4": {
-		"first_name": "Alton",
-		"last_name": "Brown",
+		"name": "Alton Brown",
 		"is_profi": true,
 		"sources": [
 			{

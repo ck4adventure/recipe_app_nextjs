@@ -8,13 +8,14 @@ import path from 'path';
 // migrateTables takes a pool/client and runs all sql migrations in numerical order
 export const migrateTables = async (pool) => {
 	try {
+
 		const files = fs.readdirSync(path.join(process.cwd(), 'db', 'migrations'));
 		const sortedFiles = files.sort((a, b) => a.split('_')[0] - b.split('_')[0]);
-
 		// read and run each file		
 		for (const file of sortedFiles) {
 			const sql = fs.readFileSync(path.join(process.cwd(), 'db', 'migrations', file), 'utf-8');
 			await pool.query(sql);
+			console.log(`Migrated ${file}`);
 		}
 		console.log('Tables migrated successfully');
 	} catch (error) {
