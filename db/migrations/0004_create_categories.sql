@@ -1,0 +1,8 @@
+BEGIN;
+
+CREATE TABLE IF NOT EXISTS categories (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(40) NOT NULL CONSTRAINT must_be_different UNIQUE
+);
+
+COMMIT;
