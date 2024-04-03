@@ -8,7 +8,6 @@ export default async function Page({ params }: {params: {slug: string}}) {
 		<div>
 			<h1 data-cy='category-name' className="text-xl m-4 text-center">{displayCategory}</h1>
 			<RecipesListView data={result} />
-			<AddRecipeButton />
 		</div>
 	);
 }

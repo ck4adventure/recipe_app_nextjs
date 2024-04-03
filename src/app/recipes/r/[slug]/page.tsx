@@ -1,14 +1,13 @@
 import { getRecipeBySlug, getSourceAndAuthorForRecipe } from '@/app/lib/data';
 import { Recipe } from '@/app/lib/definitions';
 import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
-import AddRecipeButton from '@/app/ui/recipes/add_recipe_button';
+
 import Link from 'next/link';
 
 // RecipeDetailPage should fetch the recipe by id
 export default async function Page({ params }: { params: { slug: string } }) {
 	const recipe = await getRecipeBySlug(params.slug) as unknown as Recipe;
 	const sourceInfo: any = await getSourceAndAuthorForRecipe(recipe.recipe_id);
-	console.log(sourceInfo);
 
 	return (
 		<div id='recipe_page'>
@@ -53,14 +52,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						</ol>
 					</div>
 				</div>
-				<div>
+				{/* <div>
 					<Link data-cy="recipe-update-button" href={`/recipes/${encodeURI(params.slug)}/edit`}>Edit Recipe</Link>
-				</div>
+				</div> */}
 				<div className='flex justify-center m-4 mt-8'>
 					<DeleteRecipeButton id={recipe.recipe_id} />
 				</div>
-			</main>
-					<AddRecipeButton />
+			</main>			
 		</div>
 	);
 }
