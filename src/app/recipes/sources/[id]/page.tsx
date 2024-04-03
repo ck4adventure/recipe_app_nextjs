@@ -13,7 +13,7 @@ export default async function Page ({ params }: { params: { id: number }}) {
 			{source_url && <div className="text-sm m-2"><Link href={encodeURI(source_url)}>{source_url}</Link></div>}
 			<ul className="w-2/3 m-4">
 				{sourceRecipes.map((data: any, i) => (
-					<li className='m-2' key={i}><Link href={`/recipes/${data.recipe_slug}`}>{data.recipe_title}</Link></li>
+					<li className='m-2' key={i}><Link href={`/recipes/r/${data.recipe_slug}`}>{data.recipe_title}</Link></li>
 				))}
 			</ul>
 		</div>

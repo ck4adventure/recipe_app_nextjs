@@ -25,7 +25,7 @@ const CategoryCard = ({ category, categoryRecipes }: { category: string, categor
 						<li key={index} className="font-light m-2">
 							<Link
 								data-cy='recipe-link'
-								href={`/recipes/${encodeURI(recipe.recipe_slug)}`}
+								href={`/recipes/r/${encodeURI(recipe.recipe_slug)}`}
 							>
 								{recipe.recipe_title}
 							</Link>

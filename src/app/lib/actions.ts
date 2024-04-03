@@ -15,8 +15,8 @@ export const createRecipeAndRedirect = async (title: string, categoryID: number,
 export const updateRecipeAndRedirect = async (recipeID: number, title: string, categoryID: number, ingredients: string[], steps: string[]) => {
 	// TODO write validations for incoming data
 	const slug = await updateRecipe(recipeID, title, categoryID, ingredients, steps);
-	revalidatePath(`/recipes/${slug}`);
-	redirect(`/recipes/${slug}`);
+	revalidatePath(`/recipes/r/${slug}`);
+	redirect(`/recipes/r/${slug}`);
 };
 
 
