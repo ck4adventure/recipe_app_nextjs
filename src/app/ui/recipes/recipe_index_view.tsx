@@ -3,7 +3,7 @@
 // with toggle button to switch between list and category view
 import { useState } from "react";
 import CategoryView from "./category_view";
-import RecipesListView from "./list_view";
+import RecipesListView from "./recipe_list_view";
 const RecipeIndexView = ({ recipes }: { recipes: any }) => {
 	const [viewCards, setViewCards] = useState(true);
 
@@ -15,15 +15,15 @@ const RecipeIndexView = ({ recipes }: { recipes: any }) => {
 		}
 	}
 	return (
-		<div className="">
-			<div className="m-4" data-cy='recipe-toggle-switch'>
+		<div className="flex flex-col items-center">
+			<div className="m-4 flex flex-row justify-center" data-cy='recipe-toggle-switches'>
 				{/* button goes here */}
 				<button
-					className="border-2 p-2"
+					className="border-2 p-2 w-[150px]"
 					data-cy='recipe-toggle-cards'
-					onClick={() => handleToggle("cards")}>Category</button>
+					onClick={() => handleToggle("cards")}>Category View</button>
 				<button
-					className="border-2 p-2"
+					className="border-2 p-2 w-[150px]"
 					data-cy='recipe-toggle-list'
 					onClick={() => handleToggle("list")}>List View</button>
 			</div>

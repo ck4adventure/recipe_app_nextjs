@@ -1,8 +1,30 @@
 import recipes_data from '../seeds/categories_recipes_seeds.json' assert { type: 'json' };
+import authors_sources_data from '../seeds/authors_sources_seeds.json' assert { type: 'json' };
 // seedTables uses client rather than pool because it's a one-off operation
 export const seedTables = async (pool) => {
 	try {
-		// create every category that exists
+    // create authors and sources
+		for (const author of Object.values(authors_sources_data)) {
+			const authorResult = await pool.query(`INSERT INTO authors (first_name, last_name, is_profi) VALUES ('${author.first_name}', '${author.last_name}', ${author.is_profi}) RETURNING id`);
+			const authorId = authorResult.rows[0].id;
+			if (author.sources && author.sources.length > 0) {
+				for (const source of author.sources) {
+					console.log('source: ', source);
+					const stype = source["source_type"];
+					const stitle = source["title"] || '';
+					const surl = source["url"] || '';
+					console.log('stype: ', stype, 'stitle: ', stitle, 'surl: ', surl)
+					const sourceResult = await pool.query(`INSERT INTO sources (source_type, title, source_url) VALUES ($1, $2, $3) RETURNING id`, [stype, stitle, surl]);
+					const sourceId = sourceResult.rows[0].id;
+
+					await pool.query(`INSERT INTO source_authors (source_id, author_id) VALUES ('${sourceId}','${authorId}')`);
+				}
+			}
+		}
+		console.log('authors and sources seeded')
+
+
+		// create every category that exists and its recipes
 		for (const categoryName of Object.keys(recipes_data)) {
 			const { rows } = await pool.query(`INSERT INTO categories (name) VALUES ('${categoryName}') RETURNING id`);
 			const categoryId = rows[0].id;
@@ -29,7 +51,7 @@ export const seedTables = async (pool) => {
 				}
 			}
 		}
-		console.log('db tables seeded')
+		console.log('categories and recipes seeded');
 
 	} catch (error) {
 		console.error('error seeding tables', error);

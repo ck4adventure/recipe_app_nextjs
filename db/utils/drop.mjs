@@ -3,6 +3,12 @@
 export const dropTables = async (pool) => {
 	try {
 		await pool.query(`
+			DROP TABLE IF EXISTS source_authors;
+		`);
+		await pool.query(`
+			DROP TABLE IF EXISTS authors;
+		`);
+		await pool.query(`
 		  DROP TABLE IF EXISTS recipe_steps;
 		`);
 		await pool.query(`
@@ -17,6 +23,10 @@ export const dropTables = async (pool) => {
 		await pool.query(`
 	  DROP TABLE IF EXISTS categories;
 	`);
+		await pool.query(`
+			DROP TABLE IF EXISTS sources;
+			DROP TYPE IF EXISTS sourcetyp;
+	 `);
 		console.log('db tables dropped');
 	} catch (error) {
 		console.error('Error dropping tables', error);

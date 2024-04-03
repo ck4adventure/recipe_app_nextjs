@@ -3,6 +3,11 @@
 import { query } from '../../../db/index.mjs';
 import { pool } from '../../../db/db.mjs';
 import {
+	GET_AUTHORS,
+	GET_AUTHOR_AND_INFO,
+	GET_SOURCES,
+	GET_SOURCE_BY_ID,
+	GET_SOURCE_AND_AUTHOR_FOR_RECIPE,
 	ADD_INGREDIENT_TO_RECIPE,
 	ADD_RECIPE_TO_CATEGORY,
 	ADD_STEP_TO_RECIPE,
@@ -15,36 +20,72 @@ import {
 	GET_RECIPES_FOR_CATEGORY,
 	GET_RECIPE_BY_ID,
 	GET_RECIPE_BY_SLUG,
-	UPDATE_RECIPE_TITLE
+	UPDATE_RECIPE_TITLE,
+	GET_RECIPES_FOR_SOURCE
 } from './sqlQueries';
+
+// getAuthors returns rows containing author data
+export const getAuthors = async () => {
+	const result = await query(GET_AUTHORS, null);
+	return result.rows;
+};
+
+export const getAuthorInfo = async (authorID: number) => {
+	const result = await query(GET_AUTHOR_AND_INFO, [authorID]);
+	return result.rows;
+}
+
+// getSource returns sources data
+export const getSources = async () => {
+	const result = await query(GET_SOURCES, null);
+	return result.rows;
+};
+
+export const getSourceInfoById = async (sourceID: number) => {
+	const result = await query(GET_SOURCE_BY_ID, [sourceID]);
+	return result.rows[0];
+}
+
+export const getRecipesForSource = async (sourceID: number) => {
+	const result = await query(GET_RECIPES_FOR_SOURCE, [sourceID]);
+	return result.rows;
+}
+
+
 // getCategories returns rows containing category data
 export const getCategories = async () => {
 	const result = await query(GET_CATEGORIES, null);
 	return result.rows;
-}
+};
 
 // getCategoriesAndRecipes returns rows containing category and recipe data
 export const getCategoriesAndRecipes = async () => {
 	const result = await query(GET_CATEGORIES_AND_RECIPES, null);
 	return result.rows;
-}
+};
 
 export const getRecipesForCategory = async (name: string) => {
 	const result = await query(GET_RECIPES_FOR_CATEGORY, [name]);
 	return result.rows;
-}
+};
 
 // getRecipeById returns a single row containing recipe and category data
 export const getRecipeById = async (id: number) => {
 	const result = await query(GET_RECIPE_BY_ID, [id]);
 	return result.rows[0];
-}
+};
 
 // getRecipeBySlug returns a single row containing recipe, ingrs and category data
 export const getRecipeBySlug = async (slug: string) => {
 	const result = await query(GET_RECIPE_BY_SLUG, [slug]);
 	return result.rows[0];
-}
+};
+
+// getSourceAuthorForRecipe returns a single row containing source, author and recipe data
+export const getSourceAndAuthorForRecipe = async (recipeID: number) => {
+	const result = await query(GET_SOURCE_AND_AUTHOR_FOR_RECIPE, [recipeID]);
+	return result.rows[0];
+};
 
 // createRecipeWithCategory takes a title, categoryID, ingredients and steps and creates a recipe
 export const createRecipeWithCategory = async (title: string, categoryID: number, ingredients: string[], steps: string[]) => {
@@ -76,7 +117,7 @@ export const createRecipeWithCategory = async (title: string, categoryID: number
 	} finally {
 		client.release()
 	}
-}
+};
 
 // updateRecipe has to work across many joins tables
 // updating title is easy, but ingredients and steps require deleting old entries

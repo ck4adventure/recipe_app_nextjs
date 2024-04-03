@@ -5,6 +5,10 @@ export interface Recipe {
 	category_name?: string;
 	ingredients?: string[];
 	steps?: string[];
+	authors?: string[];
+	author_ids?: number[];
+	source_id?: number;
+	source_title?: string;
 }
 
 export interface Category {
