@@ -17,9 +17,12 @@ describe('home page', () => {
   })
 
   context('main section', () => {
-    it("there is an h1 that contains the correct text", () => {
-      cy.getByData('hero-heading').contains("Christina's Corner")
-    })
+		it("there is a main section", () => {
+			cy.getByData('recipes-index').should("exist")
+		})
+		it("there are recipe cards", () => {
+			cy.getByData('recipe-card').should("have.length", 2)
+		})
   })
 })
 

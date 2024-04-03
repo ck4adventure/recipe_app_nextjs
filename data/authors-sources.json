@@ -1,0 +1,71 @@
+[
+	{
+		"author_name": "Alton Brown",
+		"author_slug": "alton-brown",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Good Eats vol. 1",
+				"source_slug": "good-eats-vol-1",
+				"source_type": "book"
+			},
+			{
+				"source_title": "Good Eats vol. 2",
+				"source_slug": "good-eats-vol-2",
+				"source_type": "book"
+			},
+			{
+				"source_title": "Good Eats vol. 3",
+				"source_slug": "good-eats-vol-3",
+				"source_type": "book"
+			}
+		]
+	},
+	{
+		"author_name": "Dekka Denz",
+		"author_slug": "dekka-denz",
+		"is_profi": false,
+		"sources": [
+			{
+				"source_title": "Dekka's Personal Collection",
+				"source_slug": "dekkas-personal-collection",
+				"source_type": "personal"
+			}
+		]
+	},
+	{
+		"author_name": "Mary Berry",
+		"author_slug": "mary-berry",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Mary Berry's Baking Bible",
+				"source_slug": "mary-berrys-baking-bible",
+				"source_type": "book"
+			}
+		]
+	},
+	{
+		"author_name": "Paul Hollywood",
+		"author_slug": "paul-hollywood",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Paul Hollywood's Bread",
+				"source_slug": "paul-hollywoods-bread",
+				"source_type": "book"
+			},
+			{
+				"source_title": "Paul Hollywood's Pies and Puds",
+				"source_slug": "paul-hollywoods-pies-and-puds",
+				"source_type": "book"
+			},
+			{
+				"source_title": "Paul Hollywood (website)",
+				"source_slug": "paul-hollywood-website",
+				"source_type": "site",
+				"url": "http://www.paulhollywood.com"
+			}
+		]
+	}
+]
