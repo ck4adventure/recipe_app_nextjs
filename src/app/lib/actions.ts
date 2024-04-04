@@ -2,21 +2,21 @@
 import { query } from '../../../db/index.mjs';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { createRecipeWithCategory, updateRecipe } from './data';
+import { createRecipe, updateRecipe } from './data';
 
 // createRecipeAndRedirect takea a title and categoryID and creates the recipe and adds it to the category
-export const createRecipeAndRedirect = async (title: string, categoryID: number, ingredients: string[], steps: string[]) => {
+export const createRecipeAndRedirect = async (title: string, categoryID: number, sourceID: number, ingredients: string[], steps: string[]) => {
 	// TODO write validations for incoming data
-	await createRecipeWithCategory(title, categoryID, ingredients, steps);
+	await createRecipe(title, categoryID, sourceID, ingredients, steps);
 	revalidatePath('/recipes');
 	redirect('/recipes');
 };
 
-export const updateRecipeAndRedirect = async (recipeID: number, title: string, categoryID: number, ingredients: string[], steps: string[]) => {
+export const updateRecipeAndRedirect = async (recipeID: number, title: string, categoryID: number, sourceID: number, ingredients: string[], steps: string[]) => {
 	// TODO write validations for incoming data
-	const slug = await updateRecipe(recipeID, title, categoryID, ingredients, steps);
-	revalidatePath(`/recipes/r/${slug}`);
-	redirect(`/recipes/r/${slug}`);
+	const slug = await updateRecipe(recipeID, title, categoryID, sourceID, ingredients, steps);
+	revalidatePath(`/recipes/${slug}`);
+	redirect(`/recipes/${slug}`);
 };
 
 

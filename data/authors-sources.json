@@ -1,0 +1,126 @@
+[
+	{
+		"author_name": "Alton Brown",
+		"author_slug": "alton-brown",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Good Eats vol. 1",
+				"source_slug": "good-eats-vol-1",
+				"source_type": "BOOK"
+			},
+			{
+				"source_title": "Good Eats vol. 2",
+				"source_slug": "good-eats-vol-2",
+				"source_type": "BOOK"
+			},
+			{
+				"source_title": "Good Eats vol. 3",
+				"source_slug": "good-eats-vol-3",
+				"source_type": "BOOK"
+			},
+			{
+				"source_title": "Good Eats vol. 4",
+				"source_type": "BOOK"
+			}
+		]
+	},
+	{
+		"author_name": "Dekka Denz",
+		"author_slug": "dekka-denz",
+		"is_profi": false,
+		"sources": [
+			{
+				"source_title": "Dekka's Personal Collection",
+				"source_slug": "dekkas-personal-collection",
+				"source_type": "PERSONAL"
+			}
+		]
+	},
+	{
+		"author_name": "Mary Berry",
+		"author_slug": "mary-berry",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Mary Berry's Baking Bible",
+				"source_slug": "mary-berrys-baking-bible",
+				"source_type": "BOOK"
+			}
+		]
+	},
+	{
+		"author_name": "Raghavan Iyer",
+		"author_slug": "raghavan-iyer",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "660 Curries",
+				"source_slug": "660-curries",
+				"source_type": "BOOK"
+			}
+		]
+	},{
+		"author_name": "Marion Rombauer Becker",
+		"author_slug": "marion-rombauer-becker",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "The Joy of Cooking",
+				"source_slug": "the-joy-of-cooking",
+				"source_type": "BOOK"
+			}
+		]
+	},
+	{
+		"author_name": "Paul Hollywood",
+		"author_slug": "paul-hollywood",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Paul Hollywood's Bread",
+				"source_slug": "paul-hollywoods-bread",
+				"source_type": "BOOK"
+			},
+			{
+				"source_title": "Paul Hollywood (website)",
+				"source_slug": "paul-hollywood-website",
+				"source_type": "SITE",
+				"source_url": "http://www.paulhollywood.com"
+			}
+		]
+	},{
+		"author_name": "Sandor Ellix Katz",
+		"author_slug": "sandor-ellix-katz",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "The Art of Fermentation",
+				"source_slug": "the-art-of-fermentation",
+				"source_type": "BOOK"
+			}
+		]
+	},{
+		"author_name": "Yotam Ottolenghi",
+		"author_slug": "yotam-ottolenghi",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Plenty",
+				"source_slug": "plenty",
+				"source_type": "BOOK"
+			}
+		]
+	},{
+		"author_name": "Chad Robertson",
+		"author_slug": "chad-robertson",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Tartine Bread",
+				"source_slug": "tartine-bread",
+				"source_type": "BOOK"
+			}
+		]
+	}
+]
