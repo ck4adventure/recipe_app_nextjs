@@ -7,20 +7,16 @@ import {
 	GET_AUTHOR_AND_INFO,
 	GET_SOURCES,
 	GET_SOURCE_BY_ID,
-	GET_SOURCE_AND_AUTHOR_FOR_RECIPE,
-	ADD_INGREDIENT_TO_RECIPE,
-	ADD_RECIPE_TO_CATEGORY,
-	ADD_STEP_TO_RECIPE,
 	CREATE_RECIPE,
-	DELETE_RECIPE_FROM_CATEGORIES,
+	ADD_INGREDIENT_TO_RECIPE,
+	ADD_STEP_TO_RECIPE,
 	DELETE_RECIPE_INGREDIENTS,
 	DELETE_RECIPE_STEPS,
 	GET_CATEGORIES,
 	GET_CATEGORIES_AND_RECIPES,
 	GET_RECIPES_FOR_CATEGORY,
-	GET_RECIPE_BY_ID,
 	GET_RECIPE_BY_SLUG,
-	UPDATE_RECIPE_TITLE,
+	UPDATE_RECIPE,
 	GET_RECIPES_FOR_SOURCE
 } from './sqlQueries';
 
@@ -69,36 +65,21 @@ export const getRecipesForCategory = async (name: string) => {
 	return result.rows;
 };
 
-// getRecipeById returns a single row containing recipe and category data
-export const getRecipeById = async (id: number) => {
-	const result = await query(GET_RECIPE_BY_ID, [id]);
-	return result.rows[0];
-};
-
 // getRecipeBySlug returns a single row containing recipe, ingrs and category data
 export const getRecipeBySlug = async (slug: string) => {
 	const result = await query(GET_RECIPE_BY_SLUG, [slug]);
 	return result.rows[0];
 };
 
-// getSourceAuthorForRecipe returns a single row containing source, author and recipe data
-export const getSourceAndAuthorForRecipe = async (recipeID: number) => {
-	const result = await query(GET_SOURCE_AND_AUTHOR_FOR_RECIPE, [recipeID]);
-	return result.rows[0];
-};
-
-// createRecipeWithCategory takes a title, categoryID, ingredients and steps and creates a recipe
-export const createRecipeWithCategory = async (title: string, categoryID: number, ingredients: string[], steps: string[]) => {
+// createRecipe takes a title, categoryID, sourceID, ingredients and steps and creates a recipe
+export const createRecipe = async (title: string, categoryID: number, sourceID: number, ingredients: string[], steps: string[]) => {
 	// TODO write validations for incoming data
-	// first add the recipe, then grab the id to add an entry into the joins table
 	const client = await pool.connect();
 	try {
 		await client.query('BEGIN');
-		const results = await client.query(CREATE_RECIPE, [title]);
+		const results = await client.query(CREATE_RECIPE, [title, categoryID, sourceID]);
 		const data = results.rows as any[];
 		const newRecipeID = data[0].id as Number;
-		// add recipe to category
-		await client.query(ADD_RECIPE_TO_CATEGORY, [newRecipeID, categoryID]);
 		// add recipe ingredients to recipe_ingredients table
 		if (ingredients && ingredients.length > 0) {
 			for (const ingr of ingredients) {
@@ -123,7 +104,7 @@ export const createRecipeWithCategory = async (title: string, categoryID: number
 // updating title is easy, but ingredients and steps require deleting old entries
 // and adding new ones
 // or, we need to have the id for each step and ingredient and update them individually
-export const updateRecipe = async (recipeID: number, title: string, categoryID: number, ingredients: string[], steps: string[]) => {
+export const updateRecipe = async (recipeID: number, title: string, categoryID: number, sourceID: number, ingredients: string[], steps: string[]) => {
 	// TODO write validations for incoming data
 	const client = await pool.connect();
 	let newSlug = '';
@@ -132,14 +113,12 @@ export const updateRecipe = async (recipeID: number, title: string, categoryID: 
 		// currently a bit brute force
 		// TODO create a more sophisticated data structure to determine
 		// which fields have changed
-		await client.query(DELETE_RECIPE_FROM_CATEGORIES, [recipeID]);
 		await client.query(DELETE_RECIPE_INGREDIENTS, [recipeID]);
 		await client.query(DELETE_RECIPE_STEPS, [recipeID]);
 		
-		const results = await client.query(UPDATE_RECIPE_TITLE, [title, recipeID]);
+		const results = await client.query(UPDATE_RECIPE, [recipeID, title, categoryID, sourceID]);
 		const data = results.rows as any[];
 		newSlug = data[0].slug as string;
-		await client.query(ADD_RECIPE_TO_CATEGORY, [recipeID, categoryID]);
 		// add recipe ingredients to recipe_ingredients table
 		if (ingredients && ingredients.length > 0) {
 			for (const ingr of ingredients) {

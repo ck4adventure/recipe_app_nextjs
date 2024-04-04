@@ -1,4 +1,4 @@
-import { getRecipeBySlug, getSourceAndAuthorForRecipe } from '@/app/lib/data';
+import { getRecipeBySlug } from '@/app/lib/data';
 import { Recipe } from '@/app/lib/definitions';
 // import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
 
@@ -7,7 +7,6 @@ import Link from 'next/link';
 // RecipeDetailPage should fetch the recipe by id
 export default async function Page({ params }: { params: { slug: string } }) {
 	const recipe = await getRecipeBySlug(params.slug) as unknown as Recipe;
-	const sourceInfo: any = await getSourceAndAuthorForRecipe(recipe.recipe_id);
 
 	return (
 		<div id='recipe_page'>
@@ -21,8 +20,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				
 				{/* Source and Author */}
 				<div data-cy="recipe-source-header" >
-					{sourceInfo && <div className='m-2 text-sm' data-cy="recipe-source-title">Taken from: <Link href={`/sources/${sourceInfo.source_id}`}>{sourceInfo.source_title}</Link></div>}
-					{sourceInfo && <div className='m-2 text-sm' data-cy="recipe-source-author">By: <Link href={`/authors/${sourceInfo.author_id}`}>{sourceInfo.author_name}</Link></div>}
+					{recipe.source_id && <div className='m-2 text-sm' data-cy="recipe-source-title">Taken from: <Link href={`/sources/${recipe.source_id}`}>{recipe.source_title}</Link></div>}
+					{recipe.author_id && <div className='m-2 text-sm' data-cy="recipe-source-author">By: <Link href={`/authors/${recipe.author_id}`}>{recipe.author_name}</Link></div>}
 				</div>
 				
 				

@@ -9,7 +9,7 @@ export default async function Page() {
 			<div className='font-bold text-lg' data-cy="authors-header">Authors</div>
 				<ul className='m-4 flex flex-col items-center'>
 					{authorsRows.map((author: any) => (
-						<li className='m-2' key={author.id}><Link href={`/authors/${author.id}`}>{author.full_name}</Link></li>
+						<li className='m-2' key={author.id}><Link href={`/authors/${author.id}`}>{author.name}</Link></li>
 					))}
 				</ul>
 		</div>
