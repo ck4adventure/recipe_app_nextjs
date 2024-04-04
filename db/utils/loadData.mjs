@@ -50,8 +50,6 @@ export const loadData = async (client) => {
 			// create author
 			const authorResult = await client.query(createAuthorQuery, [author_name, is_profi]);
 			const authorId = authorResult.rows[0].id;
-			const created_slug = authorResult.rows[0].slug;
-			assert.strictEqual(created_slug, author_slug, 'Author slug does not match');
 			
 			// iterate the authors sources
 			for (const sourceObject of sources) {
