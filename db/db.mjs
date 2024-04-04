@@ -7,6 +7,7 @@ export const pool = new Pool({
   host: 'localhost',
   database: 'practice',
   port: 5432,
+	idleTimeoutMillis: 2000,
 });
 
 

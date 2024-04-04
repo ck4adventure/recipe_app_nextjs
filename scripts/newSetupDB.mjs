@@ -9,7 +9,7 @@ const setupDB = async () => {
 	try {
 		await dropTables(client);
 		await migrateTables(client);
-		// await loadData(client);
+		await loadData(client);
 	} catch (error) {
 		console.error(error);
 		throw error;

@@ -1,18 +1,17 @@
-- title: "Egg McMuffin"
-  category: breakfast
-  ingredients:
-    - "2 english muffins"
-    - "2 eggs"
-    - "2 slices of cheese"
-    - "2 slices of canadian bacon"
-    - "butter, for spreading"
-  steps:
-    - "Preheat oven to 350 degrees F."
-    - "Split the english muffins in half and toast them in the oven."
-    - "Meanwhile, heat a skillet over medium heat and cook the canadian bacon until browned on both sides."
-    - "Remove the canadian bacon from the skillet and set aside."
-    - "Crack the eggs into the skillet and cook until the whites are set but the yolks are still runny."
-    - "Place a slice of cheese on the bottom half of each english muffin."
-    - "Top the cheese with a slice of canadian bacon and a cooked egg."
-    - "Spread butter on the top half of each english muffin and place on top of the eggs."
-    - "Serve immediately."
+title: "Egg McMuffin"
+category: breakfast
+ingredients:
+  - "2 english muffins"
+  - "2 eggs"
+  - "2 slices of cheese"
+  - "2 slices of canadian bacon"
+  - "butter, for spreading"
+steps:
+  - "Preheat oven to 350 degrees F."
+  - "Split the english muffins in half and toast them in the oven."
+  - "Meanwhile, heat a skillet over medium heat and cook the canadian bacon until browned on both sides."
+  - "Remove the canadian bacon from the skillet and set aside."
+  - "Crack the eggs into the skillet and cook until the whites are set but the yolks are still runny."
+  - "Place a slice of cheese on the bottom half of each english muffin."
+  - "Top the cheese with a slice of canadian bacon and a cooked egg."
+  - "Spread butter on the top half of each english muffin and place on top of the eggs."

@@ -7,17 +7,17 @@
 			{
 				"source_title": "Good Eats vol. 1",
 				"source_slug": "good-eats-vol-1",
-				"source_type": "book"
+				"source_type": "BOOK"
 			},
 			{
 				"source_title": "Good Eats vol. 2",
 				"source_slug": "good-eats-vol-2",
-				"source_type": "book"
+				"source_type": "BOOK"
 			},
 			{
 				"source_title": "Good Eats vol. 3",
 				"source_slug": "good-eats-vol-3",
-				"source_type": "book"
+				"source_type": "BOOK"
 			}
 		]
 	},
@@ -29,7 +29,7 @@
 			{
 				"source_title": "Dekka's Personal Collection",
 				"source_slug": "dekkas-personal-collection",
-				"source_type": "personal"
+				"source_type": "PERSONAL"
 			}
 		]
 	},
@@ -41,7 +41,7 @@
 			{
 				"source_title": "Mary Berry's Baking Bible",
 				"source_slug": "mary-berrys-baking-bible",
-				"source_type": "book"
+				"source_type": "BOOK"
 			}
 		]
 	},
@@ -53,18 +53,18 @@
 			{
 				"source_title": "Paul Hollywood's Bread",
 				"source_slug": "paul-hollywoods-bread",
-				"source_type": "book"
+				"source_type": "BOOK"
 			},
 			{
 				"source_title": "Paul Hollywood's Pies and Puds",
 				"source_slug": "paul-hollywoods-pies-and-puds",
-				"source_type": "book"
+				"source_type": "BOOK"
 			},
 			{
 				"source_title": "Paul Hollywood (website)",
 				"source_slug": "paul-hollywood-website",
-				"source_type": "site",
-				"url": "http://www.paulhollywood.com"
+				"source_type": "SITE",
+				"source_url": "http://www.paulhollywood.com"
 			}
 		]
 	}
