@@ -1,25 +1,22 @@
-// setupDB imports a client, connects it
-// then passes it into each db util function
-// to first drop, then create and finally seed the tables
 import { pool } from '../db/db.mjs'
 import { dropTables } from '../db/utils/drop.mjs';
 import { migrateTables } from '../db/utils/migrate.mjs';
-import { seedTables } from '../db/utils/seed.mjs';
-import { seedExample } from '../db/utils/seed_example.mjs';
+import { loadData } from '../db/utils/loadData.mjs';
 
-export const setupDB = async () => {
+const setupDB = async () => {
 	const client = await pool.connect();
+	console.log("pool connected");
 	try {
-
-	await dropTables(client);
-	await migrateTables(client);
-	await seedTables(client);
-	await seedExample(client);
+		await dropTables(client);
+		await migrateTables(client);
+		await loadData(client);
 	} catch (error) {
 		console.error(error);
+		throw error;
 	} finally {
 		client.release();
+		console.log("pool should be closed now");
 	}
-};
+}
 
 setupDB();
