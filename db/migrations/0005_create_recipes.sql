@@ -7,6 +7,7 @@ CREATE TABLE recipes (
 			lower(regexp_replace(regexp_replace(title, '[^a-zA-Z0-9\s]', '', 'g'), '\s+', '-', 'g'))
 		) STORED,
 		CONSTRAINT recipe_slug_unique UNIQUE (slug),
+		author_id INTEGER REFERENCES authors(id) ON DELETE SET NULL,
 		source_id INTEGER REFERENCES sources(id) ON DELETE SET NULL,
 		category_id INTEGER REFERENCES categories(id) ON DELETE SET NULL
 );

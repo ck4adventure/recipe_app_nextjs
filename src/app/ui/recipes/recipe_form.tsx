@@ -53,9 +53,9 @@ export const RecipeForm = ({ authorsSources, categoryRows, recipe }: { authorsSo
 		const actualIngredients = ingredients.filter(ingr => ingr.length > 0);
 		const actualSteps = steps.filter(step => step.length > 0);
 		if (recipe) {
-			await updateRecipeAndRedirect(recipe.recipe_id, recipeTitle, categoryID, actualIngredients, actualSteps);
+			await updateRecipeAndRedirect(recipe.recipe_id, recipeTitle, categoryID, sourceID, actualIngredients, actualSteps);
 		} else {
-			await createRecipeAndRedirect(recipeTitle, categoryID, actualIngredients, actualSteps);
+			await createRecipeAndRedirect(recipeTitle, categoryID, sourceID, actualIngredients, actualSteps);
 		}
 	};
 

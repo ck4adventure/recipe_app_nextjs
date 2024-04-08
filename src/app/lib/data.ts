@@ -4,20 +4,21 @@ import { query } from '../../../db/index.mjs';
 import { pool } from '../../../db/db.mjs';
 import {
 	GET_AUTHORS,
-	GET_AUTHOR_AND_INFO,
+	GET_AUTHOR_AND_SOURCES,
+	GET_AUTHOR_BY_ID,
 	GET_SOURCES,
 	GET_SOURCE_BY_ID,
+	GET_SOURCE_DATA_BY_ID,
+	GET_CATEGORIES,
+	GET_CATEGORIES_AND_RECIPES,
+	GET_RECIPES_FOR_CATEGORY,
+	GET_RECIPE_BY_SLUG,
 	CREATE_RECIPE,
 	ADD_INGREDIENT_TO_RECIPE,
 	ADD_STEP_TO_RECIPE,
 	DELETE_RECIPE_INGREDIENTS,
 	DELETE_RECIPE_STEPS,
-	GET_CATEGORIES,
-	GET_CATEGORIES_AND_RECIPES,
-	GET_RECIPES_FOR_CATEGORY,
-	GET_RECIPE_BY_SLUG,
-	UPDATE_RECIPE,
-	GET_RECIPES_FOR_SOURCE
+	UPDATE_RECIPE
 } from './sqlQueries';
 
 // getAuthors returns rows containing author data
@@ -26,9 +27,14 @@ export const getAuthors = async () => {
 	return result.rows;
 };
 
-export const getAuthorInfo = async (authorID: number) => {
-	const result = await query(GET_AUTHOR_AND_INFO, [authorID]);
+export const getAuthorAndSources = async (authorID: number) => {
+	const result = await query(GET_AUTHOR_AND_SOURCES, [authorID]);
 	return result.rows;
+}
+
+export const getAuthorOnlyById = async (authorID: number) => {
+	const result = await query(GET_AUTHOR_BY_ID, [authorID]);
+	return result.rows[0];
 }
 
 // getSource returns sources data
@@ -37,13 +43,13 @@ export const getSources = async () => {
 	return result.rows;
 };
 
-export const getSourceInfoById = async (sourceID: number) => {
-	const result = await query(GET_SOURCE_BY_ID, [sourceID]);
+export const getSourceDataById = async (id: number) => {
+	const result = await query(GET_SOURCE_DATA_BY_ID, [id]);
 	return result.rows[0];
 }
 
-export const getRecipesForSource = async (sourceID: number) => {
-	const result = await query(GET_RECIPES_FOR_SOURCE, [sourceID]);
+export const getRecipesAuthorsForSource = async (sourceID: number) => {
+	const result = await query(GET_SOURCE_BY_ID, [sourceID]);
 	return result.rows;
 }
 
@@ -115,7 +121,7 @@ export const updateRecipe = async (recipeID: number, title: string, categoryID: 
 		// which fields have changed
 		await client.query(DELETE_RECIPE_INGREDIENTS, [recipeID]);
 		await client.query(DELETE_RECIPE_STEPS, [recipeID]);
-		
+
 		const results = await client.query(UPDATE_RECIPE, [recipeID, title, categoryID, sourceID]);
 		const data = results.rows as any[];
 		newSlug = data[0].slug as string;

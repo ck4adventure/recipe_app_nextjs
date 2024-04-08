@@ -10,7 +10,8 @@ CREATE TABLE sources (
 		slug VARCHAR(255) GENERATED ALWAYS AS (
 			lower(regexp_replace(regexp_replace(title, '[^a-zA-Z0-9\s]', '', 'g'), '\s+', '-', 'g'))
 		) STORED,
-		CONSTRAINT source_slug_unique UNIQUE (slug)
+		CONSTRAINT source_slug_unique UNIQUE (slug),
+		single_author boolean DEFAULT TRUE
 );
 
 COMMIT;

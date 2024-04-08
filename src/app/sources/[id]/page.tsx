@@ -1,16 +1,32 @@
-import { getSourceInfoById, getRecipesForSource } from "@/app/lib/data";
+import { getRecipesAuthorsForSource, getSourceDataById } from "@/app/lib/data";
 import Link from 'next/link';
+
+// Source Detail Page should show the source, a list of recipes and authors
 export default async function Page ({ params }: { params: { id: number }}) {
-	const sourceInfo = await getSourceInfoById(params.id) as any;
-	const sourceRecipes = await getRecipesForSource(params.id);
-	const { title, author_name, is_profi, source_url, author_id, source_type } = sourceInfo;
+	const sourceRecipes: any[] = await getRecipesAuthorsForSource(params.id);
+	console.log(sourceRecipes);
+	if (!sourceRecipes || sourceRecipes.length === 0) {
+		const sourceData: any = await getSourceDataById(params.id);
+		const { title, source_type } = sourceData;
+		return (
+			<div className="flex flex-col items-center">
+				<div className="text-2xl font-bold">{title}</div>
+				<div className="m-4">No recipes yet for this source.</div>
+			</div>
+		
+		)
+	} else {
+
+		const { source_title, source_url, source_type,author_name, author_slug } = sourceRecipes[0];
+
   
 	return (
 		<div className="flex flex-col items-center">
-			<div className="text-2xl font-bold">{title}</div>
+			<div className="text-2xl font-bold">{source_title}</div>
 			{/* TODO add cute logo for source type */}
-			<div className="text-sm">By:<Link href={`/authors/${author_id}`}> {author_name}, {is_profi? 'Professional' : 'Amateur'} Chef </Link></div>
 			{source_url && <div className="text-sm m-2"><Link href={encodeURI(source_url)}>{source_url}</Link></div>}
+			{source_type && <div className="text-sm m-2">{source_type}</div>}
+			{author_slug && <div className="text-sm m-2">By: <Link href={`/authors/${author_slug}`}>{author_name}</Link></div>}
 			<ul className="w-2/3 m-4">
 				{sourceRecipes.map((data: any, i) => (
 					<li className='m-2' key={i}><Link href={`/recipes/${data.recipe_slug}`}>{data.recipe_title}</Link></li>
@@ -18,4 +34,5 @@ export default async function Page ({ params }: { params: { id: number }}) {
 			</ul>
 		</div>
 	)
+	}
 }

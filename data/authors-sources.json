@@ -1,5 +1,43 @@
 [
 	{
+		"author_name": "Food 52",
+		"author_slug": "food-52",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Food 52 Online",
+				"source_slug": "food-52-online",
+				"source_type": "SITE",
+				"source_url": "https://food52.com/"
+			}
+		]
+},
+	{
+		"author_name": "Bon Appetit",
+		"author_slug": "bon-appetit",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Bon Appetit Online",
+				"source_slug": "bon-appetit-online",
+				"source_type": "SITE",
+				"source_url": "https://www.bonappetit.com/"
+			}
+		]
+	},
+	{
+		"author_name": "General Mills Staff",
+		"author_slug": "general-mills-staff",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Betty Crocker Cookbook",
+				"source_slug": "betty-crocker-cookbook",
+				"source_type": "BOOK"
+			}
+		]
+	},
+	{
 		"author_name": "Alton Brown",
 		"author_slug": "alton-brown",
 		"is_profi": true,
@@ -120,6 +158,31 @@
 				"source_title": "Tartine Bread",
 				"source_slug": "tartine-bread",
 				"source_type": "BOOK"
+			}
+		]
+	},{
+		"author_name": "Meike Schaling",
+		"author_slug": "meike-schaling",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Little Tarts",
+				"source_slug": "little-tarts",
+				"source_type": "BOOK"
+			}
+		]
+
+	},
+	{
+		"author_name": "Prue Leith",
+		"author_slug": "prue-leith",
+		"is_profi": true,
+		"sources": [
+			{
+				"source_title": "Great British Bake Off Website",
+				"source_slug": "great-british-bake-off-website",
+				"source_type": "SITE",
+				"source_url": "https://thegreatbritishbakeoff.co.uk/"
 			}
 		]
 	}

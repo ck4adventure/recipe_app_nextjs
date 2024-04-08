@@ -2,12 +2,16 @@ export const GET_AUTHORS = `
   SELECT * FROM authors
 `;
 
-export const GET_AUTHOR_AND_INFO = `
-	SELECT a.id as author_id, a.name as author_name, a.is_profi, s.title as source_title, s.source_type, s.source_url, s.id as source_id
-	FROM authors a
-	LEFT JOIN source_authors sa on sa.author_id = a.id
-	LEFT JOIN sources s on s.id = sa.source_id
-	WHERE a.id = $1
+export const GET_AUTHOR_AND_SOURCES = `
+	SELECT DISTINCT a.id as author_id, a.name as author_name, a.is_profi, s.title as source_title, s.source_type, s.source_url, s.id as source_id
+	FROM recipes r
+	JOIN sources s on r.source_id = s.id
+	JOIN authors a on r.author_id = a.id
+	WHERE r.author_id = $1
+`;
+
+export const GET_AUTHOR_BY_ID = `
+	SELECT * FROM authors WHERE id = $1
 `;
 
 export const GET_SOURCES = `
@@ -15,19 +19,16 @@ export const GET_SOURCES = `
 `;
 
 export const GET_SOURCE_BY_ID = `
-	SELECT s.id as source_id, s.source_type, s.title, s.source_url, a.name as author_name, a.is_profi, a.id as author_id
-	FROM sources s
-	JOIN source_authors sa on sa.source_id = s.id
-	JOIN authors a on sa.author_id = a.id
-	WHERE s.id = $1
-`
-
-export const GET_RECIPES_FOR_SOURCE = `
-  SELECT r.id as recipe_id, r.title as recipe_title, r.slug as recipe_slug, s.id as source_id
+  SELECT r.id as recipe_id, r.title as recipe_title, r.slug as recipe_slug, s.id as source_id, s.title as source_title, a.id as author_id, a.name as author_name, a.slug as author_slug
 	FROM recipes r
 	JOIN sources s on r.source_id = s.id
-	WHERE s.id = $1
+	JOIN authors a on r.author_id = a.id
+	WHERE r.source_id = $1
 `
+export const GET_SOURCE_DATA_BY_ID = `
+	SELECT * FROM sources WHERE id = $1
+`;
+
 export const GET_CATEGORIES = `
 	SELECT * FROM categories
 `;
@@ -56,8 +57,7 @@ export const GET_RECIPE_BY_SLUG = `
 	FROM recipes r
 	INNER JOIN categories c ON r.category_id = c.id
 	INNER JOIN sources s on r.source_id = s.id
-	INNER JOIN source_authors sa on s.id = sa.source_id
-	INNER JOIN authors a on a.id = sa.author_id
+	INNER JOIN authors a on r.author_id = a.id
 	LEFT JOIN (
 		SELECT recipe_id, array_agg(ingredient) as ingredients
 		FROM recipe_ingredients

@@ -1,4 +1,4 @@
-import { getAuthorInfo } from '@/app/lib/data';
+import { getAuthorAndSources, getAuthorOnlyById } from '@/app/lib/data';
 import Link from 'next/link';
 
 const filterSourcesAndRecipes = (rows: any[]) => {
@@ -20,7 +20,18 @@ const filterSourcesAndRecipes = (rows: any[]) => {
 
 
 export default async function Page({ params }: { params: { id: number } }) {
-	const recipeRows = await getAuthorInfo(params.id);
+	const recipeRows = await getAuthorAndSources(params.id);
+	if (!recipeRows || recipeRows.length === 0) {
+		const authorData: any = await getAuthorOnlyById(params.id);
+		const { name, is_profi } = authorData;
+		return (
+		<div className='flex flex-col items-center'>
+			<div className='text-2xl'>{name}</div>
+			<div className='text-sm italic'>{ is_profi ? 'Professional' : 'Amateur'} Chef</div>
+			<div className="m-4">No recipes yet for this author.</div>
+			</div>
+		)
+	}
 	const info = recipeRows[0] as any;
 	const { author_name, is_profi } = info;
 	const { books, sites, collections } = filterSourcesAndRecipes(recipeRows);

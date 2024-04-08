@@ -33,12 +33,15 @@ I get recipes from the internet.
 I get recipes from friends / random one-offs.
 
 #### BE
-A recipe has only one source.
-A source has many recipes.
-A source has one or more authors.
-A recipe has authors through it's source.
 An author has a name and is_profi? t/f
 A source has a type, title, and optional source_url.
+A recipe has only one source.
+A recipe has only one author. (if multiple needed can switch to joins)
+A source has one or more authors through its recipes.
+A source has many recipes (through recipes).
+An author has many recipes (through recipes).
+
+
 
 Author
 - name: prolly do first and last fields and do a virtual full name
@@ -49,10 +52,14 @@ Source
 - title: required if book or site, "[first_name]'s Personal Collection" if personal collection
 - source_url: required if site
 
-SourceAuthors joins
-- id, author_id, source_id
-- if source is type personal collection, can only have one entry per author
+Category
+- name and slug
 
+Recipe
+- title and slug
+- source_id
+- author_id (cuz sources can be aggregates like gbbo.com)
+- category_id 
 
 
 #### FE
