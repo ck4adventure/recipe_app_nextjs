@@ -2,7 +2,7 @@
 import pkg from 'pg';
 const { Pool, Client } = pkg;
 
-// process.env.property_name is used to access the environment variables
+// process.env.parameter_name is used to access the environment variables
 
 export const pool = new Pool({
   user: 'synthesisdev',
