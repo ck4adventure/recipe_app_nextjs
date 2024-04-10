@@ -1,4 +1,4 @@
-import { getRecipeBySlug } from '@/app/lib/data';
+import { GET_RECIPE_BY_SLUG } from '@/app/lib/sqlQueriesVercel';
 import { Recipe } from '@/app/lib/definitions';
 // import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
 
@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 // RecipeDetailPage should fetch the recipe by id
 export default async function Page({ params }: { params: { slug: string } }) {
-	const recipe = await getRecipeBySlug(params.slug) as unknown as Recipe;
+	const recipe = await GET_RECIPE_BY_SLUG(params.slug) as unknown as Recipe;
 	const hasRecipeDetails = recipe && recipe.ingredients && recipe.steps;
 
 

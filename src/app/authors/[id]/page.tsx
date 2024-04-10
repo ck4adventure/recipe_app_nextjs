@@ -1,4 +1,4 @@
-import { getAuthorAndSources, getAuthorOnlyById } from '@/app/lib/data';
+import { GET_AUTHOR_AND_SOURCES_BY_ID, GET_AUTHOR_BY_ID } from '@/app/lib/sqlQueriesVercel';
 import Link from 'next/link';
 
 const filterSourcesAndRecipes = (rows: any[]) => {
@@ -20,9 +20,9 @@ const filterSourcesAndRecipes = (rows: any[]) => {
 
 
 export default async function Page({ params }: { params: { id: number } }) {
-	const recipeRows = await getAuthorAndSources(params.id);
+	const recipeRows = await GET_AUTHOR_AND_SOURCES_BY_ID(params.id);
 	if (!recipeRows || recipeRows.length === 0) {
-		const authorData: any = await getAuthorOnlyById(params.id);
+		const authorData: any = await GET_AUTHOR_BY_ID(params.id);
 		const { name, is_profi } = authorData;
 		return (
 		<div className='flex flex-col items-center'>

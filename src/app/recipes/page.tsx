@@ -1,5 +1,5 @@
 // recipes index page
-import { getCategoriesAndRecipes } from "@/app/lib/data";
+import { GET_CATEGORIES_AND_RECIPES } from "../lib/sqlQueriesVercel";
 import RecipeIndexView from "@/app/ui/recipes/recipe_index_view";
 
 
@@ -7,7 +7,7 @@ import RecipeIndexView from "@/app/ui/recipes/recipe_index_view";
 
 // Recipe Index Page should display a list of recipes
 export default async function Page() {
-	const result = await getCategoriesAndRecipes()
+	const result = await GET_CATEGORIES_AND_RECIPES()
 
 	return (
 		<div className=''>

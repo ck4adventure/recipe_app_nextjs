@@ -18,7 +18,7 @@ export const GET_SOURCES = `
 	SELECT * FROM sources
 `;
 
-export const GET_SOURCE_BY_ID = `
+export const GET_SOURCE_AND_RECIPES_BY_ID = `
   SELECT r.id as recipe_id, r.title as recipe_title, r.slug as recipe_slug, s.id as source_id, s.title as source_title, a.id as author_id, a.name as author_name, a.slug as author_slug
 	FROM recipes r
 	JOIN sources s on r.source_id = s.id

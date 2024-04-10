@@ -1,9 +1,8 @@
 // authors index page
 import Link from 'next/link';
-import { getAuthors } from '@/app/lib/data';
-
+import { GET_AUTHORS } from '../lib/sqlQueriesVercel';
 export default async function Page() {
-	const authorsRows = await getAuthors();
+	const authorsRows = await GET_AUTHORS();
 	return (
 		<div className='flex flex-col items-center'>
 			<div className='font-bold text-lg' data-cy="authors-header">Authors</div>
