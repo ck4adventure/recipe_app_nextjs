@@ -1,7 +1,7 @@
-import { getSources } from '@/app/lib/data';
+import { GET_SOURCES } from '../lib/sqlQueriesVercel';
 import Link from 'next/link';
 export default async function Page() {
-	const sourcesRows = await getSources();
+	const sourcesRows = await GET_SOURCES();
 	return (
 		<div className='flex flex-col items-center'>
 			<div className='font-bold text-lg' data-cy="sources-header">Sources</div>

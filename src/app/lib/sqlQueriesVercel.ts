@@ -23,7 +23,7 @@ export const GET_SOURCES = async () => {
 	return results.rows;
 };
 
-export const GET_SOURCE_BY_ID = async (sourceId: number) => {
+export const GET_SOURCE_AND_RECIPES_BY_ID = async (sourceId: number) => {
 	const results = await sql`
 		SELECT r.id as recipe_id, r.title as recipe_title, r.slug as recipe_slug, 
 		    s.id as source_id, s.title as source_title, 
@@ -33,7 +33,7 @@ export const GET_SOURCE_BY_ID = async (sourceId: number) => {
 		JOIN authors a on r.author_id = a.id
 		WHERE r.source_id = ${sourceId}
 	`;
-	return results.rows[0];
+	return results.rows;
 };
 
 export const GET_SOURCE_DATA_BY_ID = async (sourceId: number) => {
