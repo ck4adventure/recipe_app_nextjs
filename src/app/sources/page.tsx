@@ -1,5 +1,6 @@
 import { GET_SOURCES } from '../lib/sqlQueriesVercel';
 import Link from 'next/link';
+
 export default async function Page() {
 	const sourcesRows = await GET_SOURCES();
 	return (

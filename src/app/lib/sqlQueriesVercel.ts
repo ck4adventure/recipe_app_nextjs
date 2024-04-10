@@ -1,3 +1,4 @@
+'use server'
 import { sql } from '@vercel/postgres';
 
 export const GET_AUTHORS = async () => {
@@ -54,12 +55,12 @@ export const GET_CATEGORIES_AND_RECIPES = async () => {
 	return results.rows;
 };
 
-export const GET_RECIPES_FOR_CATEGORY_NAME = async (categoryName: string) => {
+export const GET_RECIPES_FOR_CATEGORY_SLUG = async (categorySlug: string) => {
 	const results = await sql`
 		SELECT r.id AS recipe_id, r.title AS recipe_title, r.slug AS recipe_slug, c.id AS category_id, c.name AS category_name
 		FROM recipes r 
 		LEFT JOIN categories c ON r.category_id = c.id
-		WHERE c.name = ${categoryName}
+		WHERE c.name = ${categorySlug}
 	`;
 	return results.rows;
 };
@@ -90,9 +91,9 @@ export const GET_RECIPE_BY_SLUG = async (slug: string) => {
 	return results.rows[0];
 };
 
-export const CREATE_RECIPE = async (title: string, categoryId: number, sourceId: number) => {
+export const CREATE_RECIPE = async (title: string, categoryId: number, sourceId: number, authorID: number) => {
 	const results = await sql`
-		INSERT INTO recipes (title, category_id, source_id) VALUES (${title}, ${categoryId}, ${sourceId}) RETURNING id
+		INSERT INTO recipes (title, category_id, source_id, author_id) VALUES (${title}, ${categoryId}, ${sourceId}, ${authorID}) RETURNING id
 	`;
 	return results.rows[0];
 };
@@ -117,9 +118,9 @@ export const DELETE_RECIPE_STEPS = async (recipeId: number) => {
 	await sql`DELETE FROM recipe_steps WHERE recipe_id = ${recipeId}`;
 };
 
-export const UPDATE_RECIPE = async (recipeId: number, title: string, categoryId: number, sourceId: number) => {
+export const UPDATE_RECIPE = async (recipeId: number, title: string, categoryId: number, sourceId: number, authorId: number, ingredients?: string[], steps?: string[]) => {
 	const result = await sql`
-		UPDATE recipes SET title = ${title}, category_id = ${categoryId}, source_id = ${sourceId} WHERE id = ${recipeId} RETURNING slug
+		UPDATE recipes SET title = ${title}, category_id = ${categoryId}, source_id = ${sourceId}, author_id = ${authorId} WHERE id = ${recipeId} RETURNING slug
 	`;
 	return result.rows[0];
 };
