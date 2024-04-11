@@ -22,7 +22,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
 				{/* Source and Author */}
 				<div data-cy="recipe-source-header" >
-					{recipe.source_id && <div className='m-2 text-sm' data-cy="recipe-source-title">Taken from: <Link href={`/sources/${recipe.source_id}`}>{recipe.source_title}</Link></div>}
+					{recipe.source_id && <div className='m-2 text-sm' data-cy="recipe-source-title">Source: <Link href={`/sources/${recipe.source_id}`}>{recipe.source_title}</Link></div>}
 					{recipe.author_id && <div className='m-2 text-sm' data-cy="recipe-source-author">By: <Link href={`/authors/${recipe.author_id}`}>{recipe.author_name}</Link></div>}
 				</div>
 

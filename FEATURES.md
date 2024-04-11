@@ -27,6 +27,12 @@ As a baker, I want to know how early I need to start in order to be done by a gi
 
 ## Completed Recipes App Features
 
+### Complex Ingredients
+Currently, Ingredients are stored as text unique to the recipe. 
+
+### Vercel Postgres
+Grrrr. That was a mess until I finally read the error message to the end to see that it was wanting a `POSTGRES_URL` and not the `PG_URL` as given to me by both the UI and CLI `vercel env pull` command. But in the end I have my postico connection, psql if I need it and my scripts to run for seeding.
+
 ### Recipe has a Source
 I get recipes from books.
 I get recipes from the internet.
@@ -40,7 +46,6 @@ A recipe has only one author. (if multiple needed can switch to joins)
 A source has one or more authors through its recipes.
 A source has many recipes (through recipes).
 An author has many recipes (through recipes).
-
 
 
 Author
