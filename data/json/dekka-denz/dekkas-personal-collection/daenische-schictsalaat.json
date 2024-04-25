@@ -1,0 +1,50 @@
+{
+  "title": "Daenische Schichtsalat",
+  "author": "dekka-denz",
+  "category": "sides",
+  "notes": [
+    "Danish layered 'salad' traditionally smeared on a think slice of dark bread."
+  ],
+  "ingredients": {
+    "1": {
+      "food": "Cream Cheese",
+      "qty": 6,
+      "measure": "Tbl"
+      },
+    "2": {
+      "food": "Mayonaise",
+      "qty": 6,
+      "measure": "Tbl"
+      },
+    "3": {
+      "food": "Pancetta",
+      "qty": 200,
+      "measure": "g"
+      },
+    "4": {
+      "food": "hard boiled eggs",
+      "qty": 3,
+      "measure": "opt"
+      },
+    "5": {
+      "food": "red onion, finely chopped",
+      "qty": 1,
+      "measure": "whole"
+      },
+    "6": {
+      "food": "Parsley, finely chopped",
+      "qty": 1,
+      "measure": "bunch"
+      }
+  },
+  "steps": [
+    "Mix together mayo and cream cheese until well blended and smooth.",
+    "Pour into dish and spread evenly as the base layer.",
+    "Sprinkle the pancetta evenly over the mayo.",
+    "If eggs, sprinkle those next.",
+    "Next layer is onion.",
+    "Sprinkle across salt and pepper to taste.",
+    "Sprinkle parsley on top to lightly cover.",
+    "Refrigerate at least an hour to allow the layers to meld together."
+  ]
+}

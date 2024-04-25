@@ -1,0 +1,26 @@
+{
+	"title": "Poolish",
+	"category": "bread",
+	"ingredients": {
+		"1":{
+			"food": "bread flour",
+			"quantity": "500",
+			"unit": "g"
+		},
+		"2":{
+			"food": "water",
+			"quantity": "500",
+			"unit": "g"
+		},
+		"3":{
+			"food": "instant yeast",
+			"quantity": "7",
+			"unit": "g"
+		}
+	},
+	"steps": [
+		"In a large mixing bowl, combine the flour, water, and yeast.",
+		"Stir until well mixed, cover with a clean kitchen towel, and let it sit in a cool place overnight (8-12 hours), or until it passes the drop test.",
+		"When ready, the poolish will be bubbly and active. To test if it's ready, drop a spoonful of the poolish into a bowl of water. If it floats, it's ready to use. If it sinks, let it sit for another hour or so and test again."
+	]
+}

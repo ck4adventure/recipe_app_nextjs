@@ -1,10 +1,15 @@
 import { createClient } from '@vercel/postgres';
-import { dropTables } from '../db/utils/drop.mjs';
-import { migrateTables } from '../db/utils/migrate.mjs';
-import { loadData } from '../db/utils/loadData.mjs';
-
+import { dropTables } from '../db/utils/drop_vercel.mjs';
+import { migrateTables } from '../db/utils/migrate_vercel.mjs';
+import { loadAuthorsAndSources } from '../db/utils/loaders/load_authors_sources.mjs';
+import { loadCategories } from '../db/utils/loaders/load_categories.mjs';
+import { loadFoods } from '../db/utils/loaders/load_foods.mjs';
+import dotenv from 'dotenv';
+import { loadRecipes } from '../db/utils/loaders/load_recipes.mjs';
+dotenv.config();
 
 const setupDB = async () => {
+	// console.log("setting up db", process.env.POSTGRES_URL_NON_POOLING);
 	const client = createClient({
 		connectionString: process.env.POSTGRES_URL_NON_POOLING
 	});
@@ -13,7 +18,11 @@ const setupDB = async () => {
 		console.log("client connected");
 		await dropTables(client);
 		await migrateTables(client);
-		await loadData(client);
+		await loadAuthorsAndSources(client);
+		await loadCategories(client);
+		await loadFoods(client);
+		await loadRecipes(client);
+		console.log("all scripts run");
 	} catch (error) {
 		console.error(error);
 		throw error;

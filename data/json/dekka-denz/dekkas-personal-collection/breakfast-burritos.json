@@ -1,0 +1,38 @@
+{
+  "title": "Breakfast Burritos",
+  "category": "breakfast",
+  "ingredients": {
+		"1" : {
+			"quantity": "2",
+			"unit": "whole",
+			"food": "tortillas, med to large"
+		},
+		"2" :{
+			"quantity": "4",
+			"unit": "whole",
+			"food": "hash brown patties"
+		},
+		"3" :{
+			"quantity": "4-6",
+			"unit": "pieces",
+			"food": "bacon"
+		},
+		"4" :{
+			"quantity": "3",
+			"unit": "whole",
+			"food": "eggs"
+		},
+		"5" :{
+			"quantity": "4",
+			"unit": "slices",
+			"food": "american cheese"
+		}
+	},
+  "steps": [
+    "Put the hashbrowns and bacon in the oven and turn it on to 400°F. Cook for 20 minutes, then flip.",
+    "Continue cooking for another 10 - 20 minutes, until bacon is crispy and hashbrowns are golden brown.",
+    "Scramble the eggs in a skillet, season with salt and pepper.",
+    "Toast each of the tortillas over an open flame on the stove, or in a dry skillet.",
+    "Assemble the burritos with eggs, hashbrowns, bacon, and cheese. Wrap tightly and serve with salsa."
+  ]
+}

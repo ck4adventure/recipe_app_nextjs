@@ -5,8 +5,8 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'yaml';
-import authorsData from '../../data/authors-sources.json' assert { type: "json" };
-import categoriesData from '../../data/categories.json' assert { type: "json" };
+import authorsData from '../../../data/authors-sources.json' assert { type: "json" };
+import categoriesData from '../../../data/categories.json' assert { type: "json" };
 
 const dataDir = path.join(process.cwd(), 'data');
 const dataFolders = fs.readdirSync(dataDir);
@@ -48,24 +48,7 @@ export const loadData = async (client) => {
 	let authorId;
 
 	try {
-		// first read in authors and sources data
-		for (const authorObject of authorsData) {
-			const { author_name, author_slug, is_profi, sources } = authorObject;
 
-			// create author
-			await client.query(createAuthorQuery, [author_name, is_profi]);
-
-			// iterate the authors sources
-			if (sources) {
-				for (const sourceObject of sources) {
-					const { source_title, source_url, source_type } = sourceObject;
-
-					// create source
-					await client.query(createSourceQuery, [source_title, source_url, source_type]);
-
-				}
-			}
-		}
 
 		// next create the categories
 		for (const category of categoriesData) {
