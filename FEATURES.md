@@ -27,8 +27,10 @@ As a baker, I want to know how early I need to start in order to be done by a gi
 
 ## Completed Recipes App Features
 
-### Complex Ingredients
-Currently, Ingredients are stored as text unique to the recipe. 
+### Auth0 
+What do I want my auth routes to be?
+/recipes/admin
+
 
 ### Vercel Postgres
 Grrrr. That was a mess until I finally read the error message to the end to see that it was wanting a `POSTGRES_URL` and not the `PG_URL` as given to me by both the UI and CLI `vercel env pull` command. But in the end I have my postico connection, psql if I need it and my scripts to run for seeding.

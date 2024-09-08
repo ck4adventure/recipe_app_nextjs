@@ -6,6 +6,8 @@ export default async function Main() {
 	return (
 		<div>
 			<main className="flex min-h-screen flex-col items-center justify-between">
+				<a href="/api/auth/login">Login</a>
+				<a href="/api/auth/logout">Logout</a>
 				<div data-cy='recipes-index'>
 					<RecipeIndexView recipes={result} />
 				</div>
