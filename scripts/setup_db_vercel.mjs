@@ -3,6 +3,10 @@ import { dropTables } from '../db/utils/drop.mjs';
 import { migrateTables } from '../db/utils/migrate.mjs';
 import { loadData } from '../db/utils/loadData.mjs';
 
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const setupDB = async () => {
 	const client = createClient({
