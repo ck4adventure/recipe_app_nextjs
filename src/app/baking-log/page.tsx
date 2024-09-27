@@ -1,6 +1,6 @@
 'use server'
 
-import BakingLog from "../ui/baking-log/main-log-page";
+import BakingLog from "../ui/baking-log/baking-log-main";
 
 export default async function Page() {
 

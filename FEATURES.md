@@ -1,3 +1,34 @@
+## In progress
+Baking Log
+I am learning to bake professional grade bread, and I need to start learning from my timings to achieve a more consistent result.
+
+Loaf Type: White (100% White), Cottage (10% Wheat), Rye (13% Rye), Complet (50% Wheat), Integraal (100% Wheat), TODO: Custom
+Leaven Start Time (200/200/2 Tbs) - must get more consistent on amt added
+Leaven Temp
+Dough Creation Time - 200 starter plus percentages
+Hydration Amt - in ml
+Salted Loaf Time - 50 + 22, unless otherwise noted
+Average Proving Temp
+1st turn
+2nd turn
+3rd turn
+4th turn
+5th turn
+6th turn
+7th turn, or skipped
+8th turn, or skipped (prolly gotta do a more simple version for now, assuming all 8)
+Shape and Bench Rest start time
+Bench Rest finish time
+Form into loaves, proving start time
+Loaf proving temp
+Loaf prove end time / into oven
+Loaf form
+spray steam? y/n/na
+Baking temp
+Baking end time
+
+
+
 ## Upcoming Features
 #### Note
 Due to wanting to publish this project without auth, removing all db interaction and leaving this as more of a static site with cool react features. Recipes are easily managed as json/yaml files. Later on I will add auth and bring back direct updates.
