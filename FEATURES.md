@@ -1,7 +1,17 @@
 ## In progress
-Baking Log
+### Baking Log
 I am learning to bake professional grade bread, and I need to start learning from my timings to achieve a more consistent result.
 
+#### UX
+Baking Log main page should have a list of past bread bakes and their results
+Baking Log page has a button that navigates me to the Create new bake page
+The create form has only the first few things to get me started
+Basically, I should start a new one as I create my leaven the night before, that's when the clock starts ticking, an entry is made with an ID
+Now I can click back into it and continue updating things as I work
+Loaf type is decided when I make the dough the next morning or 8 hrs later
+
+
+#### DATA
 Loaf Type: White (100% White), Cottage (10% Wheat), Rye (13% Rye), Complet (50% Wheat), Integraal (100% Wheat), TODO: Custom
 Leaven Start Time (200/200/2 Tbs) - must get more consistent on amt added
 Leaven Temp

@@ -1,10 +1,10 @@
 'use client'
-import BakingLogInputForm from "./log_input_form";
 
-export default function BakingLog() {
+// todo update baking log to take data from server component page it lives on
+export default function LoafLog() {
 	return (
 		<div className="flex flex-col items-center">
-			<div data-cy='baking-log' className="flex flex-col items-center">
+			<div data-cy='loaf-log' className="flex flex-col items-center">
 				<table>
 					<thead>
 						<tr>
@@ -26,9 +26,6 @@ export default function BakingLog() {
 						</tr>
 					</tbody>
 				</table>
-			</div>
-			<div>
-				<BakingLogInputForm />
 			</div>
 		</div>
 	)

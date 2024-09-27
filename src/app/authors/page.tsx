@@ -1,6 +1,6 @@
 // authors index page
 import Link from 'next/link';
-import { GET_AUTHORS } from '../lib/sqlQueriesVercel';
+import { GET_AUTHORS } from '../../../lib/sqlQueriesVercel';
 export default async function Page() {
 	const authorsRows = await GET_AUTHORS();
 	return (

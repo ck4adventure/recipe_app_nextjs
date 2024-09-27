@@ -1,5 +1,5 @@
 import { query } from '../db/index.mjs';
-import { getCategories, getCategoriesAndRecipes, getRecipeById, getRecipeBySlug, createRecipeWithCategory, getRecipesForCategory } from '@/app/lib/data';
+import { getCategories, getCategoriesAndRecipes, getRecipeById, getRecipeBySlug, createRecipeWithCategory, getRecipesForCategory } from '../lib/data';
 import {
 	CREATE_RECIPE,
 	GET_CATEGORIES, 
@@ -7,7 +7,7 @@ import {
 	GET_RECIPE_BY_ID, 
 	GET_RECIPE_BY_SLUG,
 	GET_RECIPES_FOR_CATEGORY
-} from '@/app/lib/sqlQueries';
+} from '../lib/sqlQueries';
 import { expect as jestExpect } from '@jest/globals';
 
 // jest mock will replace the actual implementation of the function with a jest mock function

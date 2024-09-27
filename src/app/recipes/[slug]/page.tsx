@@ -1,5 +1,5 @@
-import { GET_RECIPE_BY_SLUG } from '@/app/lib/sqlQueriesVercel';
-import { Recipe } from '@/app/lib/definitions';
+import { GET_RECIPE_BY_SLUG } from '../../../../lib/sqlQueriesVercel';
+import { Recipe } from '../../../../lib/definitions';
 // import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
 
 import Link from 'next/link';
