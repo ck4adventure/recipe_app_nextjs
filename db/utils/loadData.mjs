@@ -5,8 +5,10 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'yaml';
-import authorsData from '../../../data/authors-sources.json' assert { type: "json" };
-import categoriesData from '../../../data/categories.json' assert { type: "json" };
+import authorsData from '../../data/authors-sources.json' assert { type: "json" };
+import categoriesData from '../../data/categories.json' assert { type: "json" };
+import foods from '../../../data/foods.json' assert { type: "json" };
+
 
 const dataDir = path.join(process.cwd(), 'data');
 const dataFolders = fs.readdirSync(dataDir);
@@ -39,6 +41,11 @@ const getCategoryByNameQuery = `
 	SELECT id FROM categories WHERE name = $1
 `;
 
+// createFoodQuery takes a food name and inserts it into the table
+const createFoodQuery = `
+	INSERT into foods (name) VALUES ($1)
+`;
+
 // createSourceAuthorsQuery takes a category_id, source_id, author_id
 const createRecipeQuery = `
 	INSERT INTO recipes (title, category_id, source_id, author_id) VALUES ($1, $2, $3, $4) RETURNING id
@@ -48,6 +55,24 @@ export const loadData = async (client) => {
 	let authorId;
 
 	try {
+		// first read in authors and sources data
+		for (const authorObject of authorsData) {
+			const { author_name, author_slug, is_profi, sources } = authorObject;
+
+			// create author
+			await client.query(createAuthorQuery, [author_name, is_profi]);
+
+			// iterate the authors sources
+			if (sources) {
+				for (const sourceObject of sources) {
+					const { source_title, source_url, source_type } = sourceObject;
+
+					// create source
+					await client.query(createSourceQuery,[source_title, source_url, source_type]);
+				}
+			}
+		}
+		console.log("Authors and sources loaded")
 
 
 		// next create the categories
@@ -56,13 +81,19 @@ export const loadData = async (client) => {
 		}
 		console.log('Categories loaded');
 
+		// third is foods
+		for (const food of foods) {
+			await client.query(createFoodQuery, [food]);
+		}
+		console.log('Foods loaded');
 
 
+		let authorId;
 		// iterate over data folders and parse sub folders, reading in recipes
 		for (const folderAuthorSlug of dataFolders) {
 			// there are some json files in the data folder, skip those
-			if (path.extname(folderAuthorSlug) === '.json') {
-				console.log(`Skipping json file ${folderAuthorSlug}`);
+			if (path.extname(folderAuthorSlug) === '.json' || folderAuthorSlug === "json") {
+				console.log(`Skipping json file or folder ${folderAuthorSlug}`);
 				continue;
 			}
 

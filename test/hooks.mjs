@@ -1,6 +1,6 @@
 // test/hooks.ts
 
-import { dropTables } from "../db/utils/keep/drop.mjs";
+import { dropTables } from "../db/utils/drop.mjs";
 import { migrateTables } from "../db/utils/migrate.mjs";
 
 // note testPool has a maxClient of 1 and a timeout of 1 sec

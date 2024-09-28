@@ -1,3 +1,5 @@
+BEGIN;
+
 CREATE TABLE authors (
 	id serial primary key,
 	name VARCHAR(255) NOT NULL CONSTRAINT author_name_unique UNIQUE,
@@ -7,3 +9,5 @@ CREATE TABLE authors (
 	) STORED,
 	CONSTRAINT author_slug_unique UNIQUE (slug)
 );
+
+COMMIT;

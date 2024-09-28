@@ -12,7 +12,7 @@ export const loadRecipes = async (client) => {
 		for (const folderAuthorSlug of dataFolders) {
 			// there are some json files in the data folder, skip those
 			if (path.extname(folderAuthorSlug) === '.json' || folderAuthorSlug === 'json') {
-				console.log(`Skipping json file ${folderAuthorSlug}`);
+				console.log(`Skipping json file or folder ${folderAuthorSlug}`);
 				continue;
 			}
 
