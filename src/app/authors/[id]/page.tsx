@@ -1,4 +1,4 @@
-import { GET_AUTHOR_AND_SOURCES_BY_ID, GET_AUTHOR_BY_ID } from '@/app/lib/sqlQueriesVercel';
+import { GET_AUTHOR_AND_SOURCES_BY_ID, GET_AUTHOR_BY_ID } from '../../../../lib/sqlQueriesVercel';
 import Link from 'next/link';
 
 const filterSourcesAndRecipes = (rows: any[]) => {

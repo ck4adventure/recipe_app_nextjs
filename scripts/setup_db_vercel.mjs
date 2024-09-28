@@ -1,4 +1,5 @@
 import { createClient } from '@vercel/postgres';
+
 import { dropTables } from '../db/utils/drop_vercel.mjs';
 import { migrateTables } from '../db/utils/migrate_vercel.mjs';
 import { loadAuthorsAndSources } from '../db/utils/loaders/load_authors_sources.mjs';
@@ -6,6 +7,11 @@ import { loadCategories } from '../db/utils/loaders/load_categories.mjs';
 import { loadFoods } from '../db/utils/loaders/load_foods.mjs';
 import dotenv from 'dotenv';
 import { loadRecipes } from '../db/utils/loaders/load_recipes.mjs';
+
+
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
 dotenv.config();
 
 const setupDB = async () => {
