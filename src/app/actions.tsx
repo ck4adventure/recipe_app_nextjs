@@ -1,4 +1,4 @@
-import LoafLogCreateForm from "@/app/ui/loaf-log/loaf_create_form";
+'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
@@ -15,9 +15,7 @@ const schema = z.object({
 })
 
 
-export default function Page() {
-	async function createLogLoafAction(formData: FormData) {
-	'use server'
+export async function createLogLoafAction(formData: FormData) {
 	try {
 		const validatedFields = schema.safeParse({
 			leaven_temp: formData.get('leaven_temp'),
@@ -29,18 +27,9 @@ export default function Page() {
 			throw new Error("invalid data to create log loaf entry, check types")
 		}
 		console.log(validatedFields)
-
-		// perform sql here and await returned id
 	} catch (error) {
 		console.log(error)
 	}
-	// redirect to returned id
-	redirect("/loaf-log/1")
-}
 
-	return (
-		<div className="flex flex-col items-center">
-			<LoafLogCreateForm createLogLoafAction={createLogLoafAction}/>
-		</div>
-	)
+	redirect("/loaf-log/1")
 }
