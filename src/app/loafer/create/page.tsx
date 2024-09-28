@@ -1,4 +1,4 @@
-import LoafLogCreateForm from "@/app/ui/loaf-log/loaf_create_form";
+import LoaferCreateForm from "@/app/ui/loafer/loaf_create_form";
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
@@ -35,7 +35,7 @@ export default function Page() {
 		console.log(error)
 	}
 	// redirect to returned id
-	redirect("/loaf-log/1")
+	redirect("/loafer/1")
 }
 
 	return (

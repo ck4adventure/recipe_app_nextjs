@@ -31,5 +31,5 @@ export async function createLogLoafAction(formData: FormData) {
 		console.log(error)
 	}
 
-	redirect("/loaf-log/1")
+	redirect("/loafer/1")
 }

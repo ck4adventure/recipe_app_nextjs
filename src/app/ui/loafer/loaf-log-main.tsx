@@ -4,7 +4,7 @@
 export default function LoafLog() {
 	return (
 		<div className="flex flex-col items-center">
-			<div data-cy='loaf-log' className="flex flex-col items-center">
+			<div data-cy='loafer' className="flex flex-col items-center">
 				<table>
 					<thead>
 						<tr>

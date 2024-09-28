@@ -2,7 +2,7 @@ const CreateLogButton = () => {
 
 	return (
 		<>
-			<a href="/loaf-log/create">Create</a>
+			<a href="/loafer/create">Create</a>
 		</>
 	)
 }

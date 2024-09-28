@@ -1,7 +1,7 @@
 'use server'
 
-import { CreateLogButton } from "../ui/loaf-log/components";
-import LoafLog from "../ui/loaf-log/loaf-log-main";
+import { CreateLogButton } from "../ui/loafer/components";
+import LoafLog from "../ui/loafer/loafer-main";
 
 export default async function Page() {
 
