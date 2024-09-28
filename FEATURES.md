@@ -1,3 +1,4 @@
+
 ## In progress
 ### Baking Log
 I am learning to bake professional grade bread, and I need to start learning from my timings to achieve a more consistent result.
@@ -38,7 +39,6 @@ Baking temp
 Baking end time
 
 
-
 ## Upcoming Features
 #### Note
 Due to wanting to publish this project without auth, removing all db interaction and leaving this as more of a static site with cool react features. Recipes are easily managed as json/yaml files. Later on I will add auth and bring back direct updates.
@@ -67,9 +67,18 @@ As a baker, I want to know how early I need to start in order to be done by a gi
 ----------------
 
 ## Completed Recipes App Features
-
 ### Complex Ingredients
-Currently, Ingredients are stored as text unique to the recipe. 
+Currently, Ingredients are stored as text unique to the recipe.
+
+When creating a recipe:
+I will type in the amount to measure
+I will select the unit of measurement from the list
+I want to start typing and select the food from the list
+
+This becomes a recipe_ingredient
+
+A food has a name (white bread flour, whole wheat flour, granulated sugar)
+
 
 ### Vercel Postgres
 Grrrr. That was a mess until I finally read the error message to the end to see that it was wanting a `POSTGRES_URL` and not the `PG_URL` as given to me by both the UI and CLI `vercel env pull` command. But in the end I have my postico connection, psql if I need it and my scripts to run for seeding.

@@ -1,52 +1,17 @@
-// read the folders of the data folder and parse
-// author name then types, then source title, finally recipes
-// and insert them into the database
-
 import fs from 'fs';
 import path from 'path';
 import yaml from 'yaml';
-import authorsData from '../../data/authors-sources.json' assert { type: "json" };
-import categoriesData from '../../data/categories.json' assert { type: "json" };
 
 const dataDir = path.join(process.cwd(), 'data');
 const dataFolders = fs.readdirSync(dataDir);
 
-
-export const loadData = async (client) => {
-	let authorId;
-
+export const loadRecipes = async (client) => {
 	try {
-		// first read in authors and sources data
-		for (const authorObject of authorsData) {
-			const { author_name, author_slug, is_profi, sources } = authorObject;
-
-			// create author
-			await client.sql`INSERT INTO authors (name, is_profi) VALUES (${author_name}, ${is_profi})`;
-
-			// iterate the authors sources
-			if (sources) {
-				for (const sourceObject of sources) {
-					const { source_title, source_url, source_type } = sourceObject;
-
-					// create source
-					await client.sql`INSERT INTO sources (title, source_url, source_type) VALUES (${source_title}, ${source_url}, ${source_type})`;
-
-				}
-			}
-		}
-
-		// next create the categories
-		for (const category of categoriesData) {
-			await client.sql`INSERT INTO categories (name) VALUES (${category})`;
-		}
-		console.log('Categories loaded');
-
-
-
+		let authorId;
 		// iterate over data folders and parse sub folders, reading in recipes
 		for (const folderAuthorSlug of dataFolders) {
 			// there are some json files in the data folder, skip those
-			if (path.extname(folderAuthorSlug) === '.json') {
+			if (path.extname(folderAuthorSlug) === '.json' || folderAuthorSlug === 'json') {
 				console.log(`Skipping json file ${folderAuthorSlug}`);
 				continue;
 			}
@@ -88,21 +53,20 @@ export const loadData = async (client) => {
 					}
 
 					//get category id
-					console.log(`Looking for category ${recipe.category}`);
-					const categoryResult = await client.sql`SELECT id FROM categories WHERE name = ${recipe.category}`;
+					console.log(`Looking for category ${recipe.category}`)
+					const categoryResult = await client.sql`SELECT id FROM categories WHERE name = ${recipe.category}`
 					const categoryId = categoryResult.rows[0].id;
 					console.log(`Found category id ${categoryId} for category ${recipe.category}`);
 
 					// insert recipe into database
-					const recipeResult = await client.sql`INSERT INTO recipes (title, category_id, source_id, author_id) VALUES (${recipe.title}, ${categoryId}, ${sourceId}, ${authorId}) RETURNING id
-`
+					const recipeResult = await client.sql`INSERT INTO recipes (title, category_id, source_id, author_id) VALUES (${recipe.title}, ${categoryId}, ${sourceId}, ${authorId}) RETURNING id`
 					const recipeId = recipeResult.rows[0].id;
 					console.log(`Inserted recipe ${recipe.title} into database with id ${recipeId}`);
 
 					// insert recipe ingredients into database
 					if (recipe.ingredients && recipe.ingredients.length > 0) {
 						for (const ingredient of recipe.ingredients) {
-							await client.sql`INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES (${recipeId}, ${ingredient})`;
+							await client.sql`INSERT INTO recipe_ingredients (recipe_id, ingredient) VALUES (${recipeId}, ${ingredient})`
 						}
 						console.log(`Inserted ingredients for recipe ${recipe.title}`);
 					}
@@ -110,7 +74,7 @@ export const loadData = async (client) => {
 					// insert recipe steps into database
 					if (recipe.steps && recipe.steps.length > 0) {
 						for (const step of recipe.steps) {
-							await client.sql`INSERT INTO recipe_steps (recipe_id, step) VALUES (${recipeId}, ${step})`;
+							await client.sql`INSERT INTO recipe_steps (recipe_id, step) VALUES (${recipeId}, ${step})`
 						}
 						console.log(`Inserted steps for recipe ${recipe.title}`);
 					}
@@ -118,9 +82,7 @@ export const loadData = async (client) => {
 				}
 			}
 		}
-	} catch (error) {
-		console.error('Error loading authors and sources', error);
-		throw error;
+	} catch (err) {
+		console.error('Error loading recipes ', err);
 	}
-
 }

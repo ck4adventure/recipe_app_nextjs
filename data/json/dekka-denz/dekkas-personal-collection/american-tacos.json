@@ -1,0 +1,19 @@
+{
+  "title": "American Tacos",
+  "category": "main",
+  "ingredients": {
+    "1": {"food": "ground beef", "qty": "1", "measure": "lb"},
+    "2": {"food": "taco seasoning", "qty": "1", "measure": "packet"},
+    "3": {"food": "water", "qty": "6", "measure": "fl-oz"},
+    "4": {"food": "crispy taco shells", "qty": "8", "measure": "whole"},
+    "5": {"food": "shredded lettuce", "qty": "1/2", "measure": "head"},
+    "6": {"food": "shredded cheddar cheese", "qty": "1", "measure": "cup"},
+    "7": {"food": "sour cream", "qty": null, "measure": null},
+    "8": {"food": "taco sauces", "qty": null, "measure": null}
+  },
+  "steps": [
+    "Prepare the ground beef according to the taco seasoning packet. Cook the beef in a skillet, drain the fat, return to skillet. Add the seasoning and water, simmer for 5 mins.",
+    "Heat the shells according to the package instructions, 5 mins at 325°F.",
+    "Assemble the tacos with beef, lettuce, cheese, sour cream, and sauce."
+  ]
+}

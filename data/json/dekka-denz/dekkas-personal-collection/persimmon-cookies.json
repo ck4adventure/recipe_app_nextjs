@@ -1,0 +1,74 @@
+{
+	"title": "Grandma's Persimmon Cookies",
+	"author": "lucie-kiesz",
+	"category": "cookies",
+	"notes": ["I remember my grandmother getting wonderfully ripe persimmons from friendly countryside neighbors who would leave their fruit out on a table and a box for the money, on the honor system."],
+	"ingredients": {
+		"1": {
+			"food": "persimmon pulp",
+			"qty": 1,
+			"measure": "cup"
+		},
+		"2": {
+			"food": "baking soda",
+			"qty": 1,
+			"measure": "tsp"
+		},
+		"3": {
+			"food": "sugar",
+			"qty": 1.5,
+			"measure": "cups"
+		},
+		"4": {
+			"food": "shortening",
+			"qty": 0.5,
+			"measure": "cup"
+		},
+		"5": {
+			"food": "egg",
+			"qty": 1
+		},
+		"6": {
+			"food": "flour",
+			"qty": 2.25,
+			"measure": "cups"
+		},
+		"7": {
+			"food": "cinnamon",
+			"qty": 0.5,
+			"measure": "tsp"
+		},
+		"8": {
+			"food": "ground nutmeg",
+			"qty": 0.5,
+			"measure": "tsp"
+		},
+		"9": {
+			"food": "ground cloves",
+			"qty": 0.5,
+			"measure": "tsp"
+		},
+		"10": {
+			"food": "salt",
+			"qty": 0.25,
+			"measure": "tsp"
+		},
+		"11": {
+			"food": "raisins",
+			"qty": 1,
+			"measure": "cup",
+			"optional": true
+		}
+	},
+	"steps": [
+		"Preheat oven to 350F.",
+		"Mix baking soda with the persimmon pulp and set aside. The pulp will gel a bit.",
+		"Meanwhile, cream sugar and shortening a few minutes in the mixer until fluffy.",
+		"Add the persimmon gel to sugar mixture and mix on med.",
+		"Add the egg and continue mixing until well combined.",
+		"Sift together the dry ingredients and add them in slowly, reducing the speed to low once it comes together. Add the raisins and mix through.",
+		"Drop by teaspoons on baking sheets, either lightly oiled or on parchment paper.",
+		"Bake at 350 for 12 - 14 minutes.",
+		"Optional: Glaze with powder sugar glaze made with orange juice (or with water)."
+	]
+}
