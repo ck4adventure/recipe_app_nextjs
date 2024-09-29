@@ -1,6 +1,7 @@
 import LoaferCreateForm from "@/app/ui/loafer/loaf_create_form";
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import { CREATE_LOAFER_LOG } from "../../../../lib/sqlQueriesLoafer";
 
 // CREATE TABLE LOAFLOG
 // id
@@ -18,29 +19,30 @@ const schema = z.object({
 export default function Page() {
 	async function createLogLoafAction(formData: FormData) {
 	'use server'
+	let id
 	try {
-		const validatedFields = schema.safeParse({
+		const v = schema.safeParse({
 			leaven_temp: formData.get('leaven_temp'),
 			leaven_start_time: formData.get('leaven_start_time')
 		})
 
 		// Return early if the form data is invalid
-		if (!validatedFields.success) {
+		if (!v.success) {
 			throw new Error("invalid data to create log loaf entry, check types")
 		}
-		console.log(validatedFields)
-
+		const results = await CREATE_LOAFER_LOG(parseInt(v.data.leaven_temp), v.data.leaven_start_time)
+		id = results.id
 		// perform sql here and await returned id
 	} catch (error) {
 		console.log(error)
 	}
 	// redirect to returned id
-	redirect("/loafer/1")
+	redirect(`/loafer/${id}`)
 }
 
 	return (
 		<div className="flex flex-col items-center">
-			<LoafLogCreateForm createLogLoafAction={createLogLoafAction}/>
+			<LoaferCreateForm createLogLoafAction={createLogLoafAction}/>
 		</div>
 	)
 }

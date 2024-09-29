@@ -21,7 +21,7 @@ export const migrateTables = async (client) => {
 
 		// source types enum
 		await client.sql`CREATE TYPE sourcetyp AS ENUM ('BOOK', 'SITE', 'PERSONAL');`
-		
+
 		// sources
 		await client.sql`CREATE TABLE sources (
 			id serial primary key,
@@ -77,6 +77,32 @@ export const migrateTables = async (client) => {
 			recipe_id INTEGER NOT NULL REFERENCES recipes(id) ON DELETE CASCADE,
 			UNIQUE (recipe_id, step)
 		);`
+
+		// loafer
+		await client.sql`CREATE TABLE loafer (
+		id SERIAL PRIMARY KEY,
+		leaven_temp INTEGER NOT NULL,
+		leaven_start_time TIMESTAMP,
+		createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+		);`
+
+		// -- Create a function to update the updatedAt column
+		await client.sql`CREATE OR REPLACE FUNCTION update_updated_at_column()
+	RETURNS TRIGGER AS $$
+	BEGIN
+    NEW.updatedAt = CURRENT_TIMESTAMP;
+    RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql;
+`
+
+		// -- Create a trigger to automatically update the updatedAt column on update
+		await client.sql`CREATE TRIGGER update_loafer_updated_at
+	BEFORE UPDATE ON loafer
+	FOR EACH ROW
+	EXECUTE FUNCTION update_updated_at_column();`;
+
 
 		console.log('Tables migrated successfully');
 	} catch (error) {

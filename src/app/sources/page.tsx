@@ -1,4 +1,4 @@
-import { GET_SOURCES } from '../../../lib/sqlQueriesVercel';
+import { GET_SOURCES } from '../../../lib/sqlQueriesRecipes';
 import Link from 'next/link';
 
 export default async function Page() {

@@ -1,4 +1,4 @@
-import { GET_CATEGORIES_AND_RECIPES } from "../../../lib/sqlQueriesVercel"
+import { GET_CATEGORIES_AND_RECIPES } from "../../../lib/sqlQueriesRecipes"
 import CategoryView from "../ui/recipes/category_view"
 
 export default async function Page() {

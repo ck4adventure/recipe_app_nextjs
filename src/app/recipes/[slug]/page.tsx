@@ -1,4 +1,4 @@
-import { GET_RECIPE_BY_SLUG } from '../../../../lib/sqlQueriesVercel';
+import { GET_RECIPE_BY_SLUG } from '../../../../lib/sqlQueriesRecipes';
 import { Recipe } from '../../../../lib/definitions';
 // import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
 

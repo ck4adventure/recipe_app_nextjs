@@ -1,4 +1,4 @@
-import { GET_RECIPES_FOR_CATEGORY_SLUG } from "../../../../lib/sqlQueriesVercel";
+import { GET_RECIPES_FOR_CATEGORY_SLUG } from "../../../../lib/sqlQueriesRecipes";
 import AddRecipeButton from "../../ui/recipes/add_recipe_button";
 import RecipesListView from "../../ui/recipes/recipe_list_view";
 export default async function Page({ params }: {params: {slug: string}}) {
