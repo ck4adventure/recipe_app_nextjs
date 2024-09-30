@@ -2,17 +2,21 @@ BEGIN;
 
 CREATE TABLE loafer (
 		id SERIAL PRIMARY KEY,
-		leaven_temp INTEGER NOT NULL,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+		leaven_temp INTEGER NOT NULL CHECK (leaven_temp > 32),
 		leaven_start_time TIMESTAMP,
-		createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+		dough_creation_time TIMESTAMP,
+		water_ml INTEGER DEFAULT 700,
+		water_temp INTEGER CHECK (water_temp > 32),
+		starter_g INTEGER CHECK (starter_g > 0)
 );
 
 -- Create a function to update the updatedAt column
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
 BEGIN
-    NEW.updatedAt = CURRENT_TIMESTAMP;
+    NEW.updated_at = CURRENT_TIMESTAMP;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;

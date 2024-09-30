@@ -13,28 +13,35 @@ Loaf type is decided when I make the dough the next morning or 8 hrs later
 
 
 #### DATA
-Loaf Type: White (100% White), Cottage (10% Wheat), Rye (13% Rye), Complet (50% Wheat), Integraal (100% Wheat), TODO: Custom
+Step 1:
 Leaven Start Time (200/200/2 Tbs) - must get more consistent on amt added
-Leaven Temp
+Leaven Water Temp Start
+Leaven Ambient Temp End
+
+Step 2:
 Dough Creation Time - 200 starter plus percentages
+Loaf Type (flour blend): White (100% White), Cottage (10% Wheat), Rye (13% Rye), Complet (50% Wheat), Integraal (100% Wheat), TODO: Custom Percentages / Triple Blends / Mixins
 Hydration Amt - in ml
-Salted Loaf Time - 50 + 22, unless otherwise noted
-Average Proving Temp
-1st turn
-2nd turn
-3rd turn
-4th turn
-5th turn
-6th turn
-7th turn, or skipped
-8th turn, or skipped (prolly gotta do a more simple version for now, assuming all 8)
+Water Temp for Dough Creation
+Ambient Temp Start?
+
+Step 3:
+Salted Loaf Time - 50 H2O + 22 NaCl; TODO Custom Amts
+Proving Temp Start
+TODO: addtl time+temp data points for turns
+
+Step 4:
 Shape and Bench Rest start time
-Bench Rest finish time
+Shape and Bench Rest Temp
+
+Step 5:
 Form into loaves, proving start time
-Loaf proving temp
-Loaf prove end time / into oven
+Loaf proving Temp
+
+Step 6:
+Loaf prove end time/ Baking Start Time
 Loaf form
-spray steam? y/n/na
+Spray steam? y/n/na
 Baking temp
 Baking end time
 
