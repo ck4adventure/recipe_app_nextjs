@@ -1,18 +1,10 @@
 'use client'
 
-import { log } from "console";
 import { QueryResultRow } from "pg"
 
-// Define the interface for the log data
-interface LogData extends QueryResultRow {
-	id: number;
-	leaven_start_time: string; // or Date, depending on your data type
-	leaven_avg_temp: number;
-}
 
 // todo update baking log to take data from server component page it lives on
-export default function LoafLog({ logs }: { logs: LogData[] }) {
-	console.log(logs.length)
+export default function LoafLog({ logs }: { logs: QueryResultRow[] }) {
 
 	return (
 		<div className="flex flex-col items-center">
