@@ -1,15 +1,21 @@
 BEGIN;
 
+-- Then create with currently listed options
+CREATE TYPE flour_blend_type AS ENUM ('white', 'cottage', 'rye', 'complet', 'integraal');
+
 CREATE TABLE loafer (
 		id SERIAL PRIMARY KEY,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-		leaven_temp INTEGER NOT NULL CHECK (leaven_temp > 32),
+		leaven_temp INTEGER CHECK (leaven_temp > 32),
 		leaven_start_time TIMESTAMP,
 		dough_creation_time TIMESTAMP,
 		water_ml INTEGER DEFAULT 700,
 		water_temp INTEGER CHECK (water_temp > 32),
-		starter_g INTEGER CHECK (starter_g > 0)
+		starter_g INTEGER CHECK (starter_g > 0),
+		flour_g INTEGER CHECK (flour_g > 0),
+		flour_blend flour_blend_type NOT NULL DEFAULT 'cottage',
+		dough_creation_temp INTEGER CHECK (dough_creation_temp > 32)
 );
 
 -- Create a function to update the updatedAt column

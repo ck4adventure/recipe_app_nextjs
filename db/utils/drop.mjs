@@ -3,7 +3,8 @@
 export const dropTables = async (pool) => {
 	try {
 		await pool.query(`
-			DROP TABLE IF EXISTS loafer
+			DROP TABLE IF EXISTS loafer;
+			DROP TYPE IF EXISTS flour_blend_type;
 	`);
 		await pool.query(`
 		  DROP TABLE IF EXISTS recipe_steps;

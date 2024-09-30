@@ -323,7 +323,7 @@ describe('loafer table attributes', () => {
 				try {
 					await testPool.query(`
         INSERT INTO loafer (leaven_temp, leaven_start_time, water_temp, starter_g)
-        VALUES (70, NOW(), 70, 0)
+        VALUES (70, NOW(), 70, -1)
       `);
 					throw new Error('Insert should have failed but did not');
 				} catch (error) {
@@ -331,5 +331,146 @@ describe('loafer table attributes', () => {
 				}
 			});
 		});
+		context('flour_g', () => {
+			it('has a column called flour_g', async () => {
+				const result = await testPool.query(`
+				SELECT column_name
+				FROM information_schema.columns
+				WHERE table_name = 'loafer'
+			`);
+				const columnNames = result.rows.map((row) => row.column_name);
+				expect(columnNames).to.include('flour_g');
+			});
+			it('has the correct data type for flour_g', async () => {
+				const result = await testPool.query(`
+        SELECT column_name, data_type
+        FROM information_schema.columns
+        WHERE table_name = 'loafer' AND column_name = 'flour_g'
+      `);
+				const { data_type } = result.rows[0];
+				expect(data_type).to.equal('integer'); // Adjust based on your column definition
+			});
+			it("flour_g should be greater than 0", async () => {
+				// Test inserting a valid value
+				const validInsertResult = await testPool.query(`
+				INSERT INTO loafer (leaven_temp, leaven_start_time, water_temp, flour_g)
+				VALUES (70, NOW(), 70, 200)
+				RETURNING flour_g
+    		`);
+				expect(validInsertResult.rows[0].flour_g).to.equal(200);
+
+				// Test inserting an invalid value
+				try {
+					await testPool.query(`
+        INSERT INTO loafer (leaven_temp, leaven_start_time, water_temp, flour_g)
+        VALUES (70, NOW(), 70, 0)
+      `);
+					throw new Error('Insert should have failed but did not');
+				} catch (error) {
+					expect(error.message).to.include('violates check constraint');
+				}
+
+				try {
+					await testPool.query(`
+        INSERT INTO loafer (leaven_temp, leaven_start_time, water_temp, flour_g)
+        VALUES (70, NOW(), 70, -1)
+      `);
+					throw new Error('Insert should have failed but did not');
+				} catch (error) {
+					expect(error.message).to.include('violates check constraint');
+				}
+			});
+		});
+		context('flour_blend', () => {
+			it('has a column called flour_blend', async () => {
+				const result = await testPool.query(`
+					SELECT column_name
+					FROM information_schema.columns
+					WHERE table_name = 'loafer'
+				`);
+				const columnNames = result.rows.map((row) => row.column_name);
+				expect(columnNames).to.include('flour_blend');
+			});
+			it('flour_blend is an enum with a defined set of values', async () => {
+				const result = await testPool.query(`
+					SELECT udt_name
+					FROM information_schema.columns
+					WHERE table_name = 'loafer' AND column_name = 'flour_blend'
+      `);
+				const { udt_name } = result.rows[0];
+				expect(udt_name).to.equal('flour_blend_type');
+			});
+			    it('inserts a valid flour_blend value', async () => {
+      const insertResult = await testPool.query(`
+        INSERT INTO loafer (leaven_temp, leaven_start_time, flour_blend)
+        VALUES (33, NOW(), 'cottage')
+        RETURNING flour_blend
+      `);
+      expect(insertResult.rows[0].flour_blend).to.equal('cottage');
+    });
+
+    it('fails to insert an invalid flour_blend value', async () => {
+      try {
+        await testPool.query(`
+          INSERT INTO loafer (leaven_temp, leaven_start_time, flour_blend)
+          VALUES (33, NOW(), 'invalid_flour')
+        `);
+        throw new Error('Insert should have failed but did not');
+      } catch (error) {
+        expect(error.message).to.include('invalid input value for enum');
+      }
+    });
+		})
+		context('dough_creation_temp', () => {
+			it('has a column called dough_creation_temp', async () => {
+				const result = await testPool.query(`
+					SELECT column_name
+					FROM information_schema.columns
+					WHERE table_name = 'loafer'
+				`);
+				const columnNames = result.rows.map((row) => row.column_name);
+				expect(columnNames).to.include('dough_creation_temp');
+			});
+			it('has the correct data type for dough_creation_temp', async () => {
+				const result = await testPool.query(`
+        SELECT column_name, data_type
+        FROM information_schema.columns
+        WHERE table_name = 'loafer' AND column_name = 'dough_creation_temp'
+      `);
+				const { data_type } = result.rows[0];
+				expect(data_type).to.equal('integer'); // Adjust based on your column definition
+			});
+			it("dough_creation_temp should be greater than 32", async () => {
+				// Test inserting a valid value
+				const validInsertResult = await testPool.query(`
+					INSERT INTO loafer (leaven_temp, leaven_start_time, dough_creation_temp)
+					VALUES (33, NOW(), 33)
+					RETURNING dough_creation_temp
+    	`);
+				expect(validInsertResult.rows[0].dough_creation_temp).to.equal(33);
+
+				// Test inserting an invalid value
+				try {
+					await testPool.query(`
+        INSERT INTO loafer (dough_creation_temp, leaven_start_time)
+        VALUES (32, NOW())
+      `);
+					throw new Error('Insert should have failed but did not');
+				} catch (error) {
+					expect(error.message).to.include('violates check constraint');
+				}
+
+				try {
+					await testPool.query(`
+        INSERT INTO loafer (dough_creation_temp, leaven_start_time)
+        VALUES (31, NOW())
+      `);
+					throw new Error('Insert should have failed but did not');
+				} catch (error) {
+					expect(error.message).to.include('violates check constraint');
+				}
+			});
+
+		})
 	});
 });
