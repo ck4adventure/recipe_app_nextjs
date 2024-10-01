@@ -5,17 +5,14 @@ CREATE TYPE flour_blend_type AS ENUM ('white', 'cottage', 'rye', 'complet', 'int
 
 CREATE TABLE loafer (
 		id SERIAL PRIMARY KEY,
-		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-		leaven_temp INTEGER CHECK (leaven_temp > 32),
-		leaven_start_time TIMESTAMP,
-		dough_creation_time TIMESTAMP,
-		water_ml INTEGER DEFAULT 700,
-		water_temp INTEGER CHECK (water_temp > 32),
-		starter_g INTEGER CHECK (starter_g > 0),
-		flour_g INTEGER CHECK (flour_g > 0),
-		flour_blend flour_blend_type NOT NULL DEFAULT 'cottage',
-		dough_creation_temp INTEGER CHECK (dough_creation_temp > 32)
+		created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+		leaven_start_time TIMESTAMPTZ,
+		dough_creation_time TIMESTAMPTZ,
+		bench_rest_start_time TIMESTAMPTZ,
+		shaped_prove_start_time TIMESTAMPTZ,
+		bake_start_time TIMESTAMPTZ,
+		bake_end_time TIMESTAMPTZ
 );
 
 -- Create a function to update the updatedAt column

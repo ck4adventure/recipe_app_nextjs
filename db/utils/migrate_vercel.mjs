@@ -83,36 +83,32 @@ export const migrateTables = async (client) => {
 		
 		await client.sql`CREATE TABLE loafer (
 			id SERIAL PRIMARY KEY,
-			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-			updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-			leaven_temp INTEGER CHECK (leaven_temp > 32),
-			leaven_start_time TIMESTAMP,
-			dough_creation_time TIMESTAMP,
-			water_ml INTEGER DEFAULT 700,
-			water_temp INTEGER CHECK (water_temp > 32),
-			starter_g INTEGER CHECK (starter_g > 0),
-			flour_g INTEGER CHECK (flour_g > 0),
-			flour_blend flour_blend_type NOT NULL DEFAULT 'cottage',
-			dough_creation_temp INTEGER CHECK (dough_creation_temp > 32)
-		);`
+			created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+			updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+			leaven_start_time TIMESTAMPTZ,
+			dough_creation_time TIMESTAMPTZ,
+			bench_rest_start_time TIMESTAMPTZ,
+			shaped_prove_start_time TIMESTAMPTZ,
+			bake_start_time TIMESTAMPTZ,
+			bake_end_time TIMESTAMPTZ
+		);`;
 
 		// -- Create a function to update the updatedAt column
 		await client.sql`CREATE OR REPLACE FUNCTION update_updated_at_column()
-	RETURNS TRIGGER AS $$
-	BEGIN
-    NEW.updatedAt = CURRENT_TIMESTAMP;
-    RETURN NEW;
-	END;
-	$$ LANGUAGE plpgsql;
-`
+			RETURNS TRIGGER AS $$
+			BEGIN
+				NEW.updatedAt = CURRENT_TIMESTAMP;
+				RETURN NEW;
+			END;
+			$$ LANGUAGE plpgsql;
+		`;
 
 		// -- Create a trigger to automatically update the updatedAt column on update
 		await client.sql`CREATE TRIGGER update_loafer_updated_at
-	BEFORE UPDATE ON loafer
-	FOR EACH ROW
-	EXECUTE FUNCTION update_updated_at_column();`;
-
-
+			BEFORE UPDATE ON loafer
+			FOR EACH ROW
+			EXECUTE FUNCTION update_updated_at_column();
+		`;
 		console.log('Tables migrated successfully');
 	} catch (error) {
 		console.error(error);
