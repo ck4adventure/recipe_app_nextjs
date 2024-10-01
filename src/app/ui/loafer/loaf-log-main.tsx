@@ -1,20 +1,10 @@
 'use client'
 
 import { QueryResultRow } from "pg"
+import { shorthandDate } from "../../../../lib/formatters"
 
 // todo update baking log to take data from server component page it lives on
 export default function LoafLog({ logs }: { logs: QueryResultRow[] }) {
-	const shorthandDate = (ts: string) => {
-		const dateObj = new Date(ts)
-		const offsetMS = dateObj.getTimezoneOffset() * 60000
-		const newDateMS = dateObj.getTime() + offsetMS
-		const newDate = new Date(newDateMS)
-		const shortDate = newDate.getDate()
-		const shortMonth = newDate.getMonth()
-		const shortHour = newDate.getHours()
-		const shortMin = newDate.getMinutes()
-		return `${shortMonth}/${shortDate} ${shortHour}:${shortMin}`
-	}
 
 	return (
 		<div className="flex flex-col items-center">
