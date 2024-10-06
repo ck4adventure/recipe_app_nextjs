@@ -79,9 +79,8 @@ export const migrateTables = async (client) => {
 		);`
 
 		// loafer
-		await client.sql`CREATE TYPE flour_blend_type AS ENUM ('white', 'cottage', 'rye', 'complet', 'integraal');`
 		
-		await client.sql`CREATE TABLE loafer (
+		await client.sql`CREATE TABLE leaven (
 			id SERIAL PRIMARY KEY,
 			created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
 			updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -109,6 +108,8 @@ export const migrateTables = async (client) => {
 			FOR EACH ROW
 			EXECUTE FUNCTION update_updated_at_column();
 		`;
+		// loaf type put back in later
+		// await client.sql`CREATE TYPE flour_blend_type AS ENUM ('white', 'cottage', 'rye', 'complet', 'integraal');`
 		console.log('Tables migrated successfully');
 	} catch (error) {
 		console.error(error);

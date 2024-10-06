@@ -49,6 +49,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onSaveClose, onClose, children })
 
 export const LoaferForm = (params: any) => {
 	const data = params.data;
+	// import a server action to save the leaven data and connect it to a button on the leaven section
 
 	// some, all or none of this info may be present, user will visit at least twice
 	const [formData, setFormData] = useState({
@@ -110,12 +111,12 @@ export const LoaferForm = (params: any) => {
 		})
 	}
 
-	const ButtonOrTimestamp = ({ ts, propertyName }: { ts: string; propertyName: string }) => {
+	const ButtonOrTimestamp = ({ ts, propertyName, btnMessage }: { ts: string; propertyName: string, btnMessage: string }) => {
 		if (ts) {
 			const date = new Date(ts)
 			return (
 				<div className='flex justify-center items-center'>
-					<div>Completed At: {date.toLocaleTimeString()}</div>
+					<div>{date.toLocaleTimeString()}</div>
 					<div className='flex justify-end m-2'>
 						<button className='text-sm m-2' onClick={() => openModal(propertyName)}>Edit</button>
 					</div>
@@ -124,9 +125,8 @@ export const LoaferForm = (params: any) => {
 		} else {
 			return (
 				<div className='flex justify-center items-center'>
-					<div>Completed At: In progress</div>
 					<div className='bg-indigo-400 m-2 rounded-lg'>
-						<button onClick={() => handleSetNow(propertyName)}>Done!</button>
+						<button onClick={() => handleSetNow(propertyName)}>{btnMessage ? btnMessage : "Done!" }</button>
 					</div>
 				</div>
 			);
@@ -139,7 +139,7 @@ export const LoaferForm = (params: any) => {
 				<Typography variant='h5' sx={{ margin: 2 }}>Leaven</Typography>
 				<Typography sx={{ margin: 2 }} variant='body2'>1 TBL Starter + 200g Flour Blend + 200g Water</Typography>
 				<div className="flex min-h-max justify-between ml-4">
-					<ButtonOrTimestamp ts={formData.leaven_start_time} propertyName="leaven_start_time" />
+					<ButtonOrTimestamp ts={formData.leaven_start_time} propertyName="leaven_start_time" btnMessage='Start Leaven'/>
 					<button onClick={() => handleClearDateTime("leaven_start_time")} className='m-4'>Reset Step</button>
 				</div>
 				<div>
@@ -189,7 +189,7 @@ export const LoaferForm = (params: any) => {
 				</div>
 
 				<div className="flex justify-between items-center ml-4">
-					<ButtonOrTimestamp ts={formData.dough_start_time} propertyName="dough_start_time" />
+					<ButtonOrTimestamp ts={formData.dough_start_time} propertyName="dough_start_time" btnMessage='Create Dough' />
 					<button onClick={() => handleClearDateTime("dough_start_time")} className='m-4'>Reset Step</button>
 				</div>
 				

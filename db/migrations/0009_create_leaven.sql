@@ -1,18 +1,10 @@
 BEGIN;
 
--- Then create with currently listed options
-CREATE TYPE flour_blend_type AS ENUM ('white', 'cottage', 'rye', 'complet', 'integraal');
-
-CREATE TABLE loafer (
+CREATE TABLE leaven (
 		id SERIAL PRIMARY KEY,
 		created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
-		leaven_start_time TIMESTAMPTZ,
-		dough_creation_time TIMESTAMPTZ,
-		bench_rest_start_time TIMESTAMPTZ,
-		shaped_prove_start_time TIMESTAMPTZ,
-		bake_start_time TIMESTAMPTZ,
-		bake_end_time TIMESTAMPTZ
+		leaven_start_time TIMESTAMPTZ
 );
 
 -- Create a function to update the updatedAt column
@@ -25,8 +17,8 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Create a trigger to automatically update the updatedAt column on update
-CREATE TRIGGER update_loafer_updated_at
-BEFORE UPDATE ON loafer
+CREATE TRIGGER update_leaven_updated_at
+BEFORE UPDATE ON leaven
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
 
