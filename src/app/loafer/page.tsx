@@ -1,8 +1,8 @@
 'use server'
 
 import { GET_LOAFER_LOGS } from "../_lib/sqlQueriesLoafer";
-import { CreateLogButton } from "@/app/ui/loafer/components";
-import LoafLog from "../ui/loafer/loaf-log-main";
+import { CreateLogButton } from "@/app/_ui/loafer/components";
+import LoafLog from "../_ui/loafer/loaf-log-main";
 
 export default async function Page() {
 	const loaferLogs = await GET_LOAFER_LOGS()

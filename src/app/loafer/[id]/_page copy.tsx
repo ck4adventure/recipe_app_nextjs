@@ -1,7 +1,7 @@
 import { GET_LOAFER_LOG_DETAILS } from "../../_lib/sqlQueriesLoafer"
 
 import { shorthandDate } from "../../_lib/formatters"
-import { TurnsForm } from "@/app/ui/loafer/components"
+import { TurnsForm } from "@/app/_ui/loafer/components"
 
 export default async function Page({ params }: { params: { id: string } }) {
 	const logData = await GET_LOAFER_LOG_DETAILS(params.id)

@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { CREATE_LEAVEN } from './_lib/sqlQueriesLoafer'
+import { CREATE_LEAVEN } from './sqlQueriesLoafer'
 
 // Leaven
 // table should exist with the following columns:

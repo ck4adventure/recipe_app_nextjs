@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
-import HeaderBar from "./ui/headerbar/header_bar";
+import HeaderBar from "./_ui/headerbar/header_bar";
 import Providers from "./providers";
 
 

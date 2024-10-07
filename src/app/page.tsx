@@ -1,5 +1,5 @@
 import { GET_CATEGORIES_AND_RECIPES } from "./_lib/sqlQueriesRecipes";
-import RecipeIndexView from "./ui/recipes/recipe_index_view";
+import RecipeIndexView from "./_ui/recipes/recipe_index_view";
 
 export default async function Main() {
 	const result = await GET_CATEGORIES_AND_RECIPES()
