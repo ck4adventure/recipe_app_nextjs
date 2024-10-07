@@ -1,4 +1,4 @@
-import { GET_LOAFER_LOG_DETAILS } from "../../../../lib/sqlQueriesLoafer"
+import { GET_LOAFER_LOG_DETAILS } from "../../_lib/sqlQueriesLoafer"
 
 // import { LoaferForm } from "@/app/ui/loafer/loafer_form"
 

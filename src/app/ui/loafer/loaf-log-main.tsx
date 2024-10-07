@@ -1,7 +1,7 @@
 'use client'
 
 import { QueryResultRow } from "pg"
-import { shorthandDate } from "../../../../lib/formatters"
+import { shorthandDate } from "../../_lib/formatters"
 
 // todo update baking log to take data from server component page it lives on
 export default function LoafLog({ logs }: { logs: QueryResultRow[] }) {

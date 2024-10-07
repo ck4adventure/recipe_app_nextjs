@@ -1,4 +1,4 @@
-import { GET_CATEGORIES_AND_RECIPES } from "../../../lib/sqlQueriesRecipes"
+import { GET_CATEGORIES_AND_RECIPES } from "../_lib/sqlQueriesRecipes"
 import CategoryView from "../ui/recipes/category_view"
 
 export default async function Page() {

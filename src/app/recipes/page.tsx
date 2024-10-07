@@ -1,5 +1,5 @@
 // recipes index page
-import { GET_CATEGORIES_AND_RECIPES } from "../../../lib/sqlQueriesRecipes";
+import { GET_CATEGORIES_AND_RECIPES } from "../_lib/sqlQueriesRecipes";
 import RecipeIndexView from "../ui/recipes/recipe_index_view";
 
 

@@ -1,6 +1,6 @@
 'use server'
 
-import { GET_LOAFER_LOGS } from "../../../lib/sqlQueriesLoafer";
+import { GET_LOAFER_LOGS } from "../_lib/sqlQueriesLoafer";
 import { CreateLogButton } from "@/app/ui/loafer/components";
 import LoafLog from "../ui/loafer/loaf-log-main";
 

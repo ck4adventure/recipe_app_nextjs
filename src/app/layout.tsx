@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter';
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import HeaderBar from "./ui/headerbar/header_bar";
@@ -21,10 +22,12 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${montserrat.className}`} id="corner_root">
+       <AppRouterCacheProvider options={{ enableCssLayer: true }}>
 				<Providers>
 					<HeaderBar />
 					{children}
 				</Providers>
+				</AppRouterCacheProvider>
 			</body>
 		</html>
 	);
