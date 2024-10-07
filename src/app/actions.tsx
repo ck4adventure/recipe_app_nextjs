@@ -1,35 +1,68 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import { CREATE_LEAVEN } from '../../lib/sqlQueriesLoafer'
 
-// CREATE TABLE LOAFLOG
-// id
-// created
-// updated
-// leaven_temp
-// leaven_start_time
+// Leaven
+// table should exist with the following columns:
+// leaven_ water_amt
+// leaven_ water_temp
+// leaven_ starter_amt
+// leaven_ flour_amt
+// leaven_ start_time
+// leaven_ start_temp
+// leaven_ end_time
+// leaven_ end_temp
+
+export interface LeavenFormData {
+  water_amt: number;
+  water_temp: number;
+  starter_amt: number;
+  flour_amt: number;
+  start_time: string;
+  start_temp: number;
+  end_time?: string; // Optional if not always provided
+  end_temp?: number; // Optional if not always provided
+}
 
 const schema = z.object({
-	leaven_temp: z.string(),
-	leaven_start_time: z.string()
+	water_amt: z.number(),
+	water_temp: z.number(),
+	starter_amt: z.number(),
+	flour_amt: z.number(),
+	start_time: z.string(),
+	start_temp: z.number(),
 })
 
 
-export async function createLogLoafAction(formData: FormData) {
+export async function createStartedLeaven(formData: LeavenFormData) {
+	let id
 	try {
-		const validatedFields = schema.safeParse({
-			leaven_temp: formData.get('leaven_temp'),
-			leaven_start_time: formData.get('leaven_start_time')
-		})
+    // const vf = schema.safeParse({
+    //   water_amt: formData.water_amt,
+    //   water_temp: formData.water_temp,
+    //   starter_amt: formData.starter_amt,
+    //   flour_amt: formData.flour_amt,
+    //   start_time: formData.start_time,
+    //   start_temp: formData.start_temp,
+    // });
+
+		const vf = schema.safeParse({...formData})
 
 		// Return early if the form data is invalid
-		if (!validatedFields.success) {
-			throw new Error("invalid data to create log loaf entry, check types")
+		if (!vf.success) {
+			console.log(vf.error)
+			throw new Error("zod issue", vf.error)
 		}
-		console.log(validatedFields)
+		const result = await CREATE_LEAVEN(vf.data.water_amt, vf.data.water_temp, vf.data.starter_amt, vf.data.flour_amt, vf.data.start_time, vf.data.start_temp)
+		id = result.id
+		if (!id) {
+			throw new Error("something went wrong with leaven sql command")
+		}
+		console.log("id was: ", id)
 	} catch (error) {
 		console.log(error)
 	}
 
-	redirect("/loafer/1")
+	redirect(`/loafer/leaven/${id}`)
 }

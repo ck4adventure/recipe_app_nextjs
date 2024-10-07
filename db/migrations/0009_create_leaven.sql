@@ -4,7 +4,14 @@ CREATE TABLE leaven (
 		id SERIAL PRIMARY KEY,
 		created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
-		leaven_start_time TIMESTAMPTZ
+		water_amt INTEGER,
+		water_temp INTEGER,
+		starter_amt INTEGER,
+		flour_amt INTEGER,
+		start_time TIMESTAMPTZ,
+		start_temp INTEGER,
+		end_time TIMESTAMPTZ,
+		end_temp INTEGER
 );
 
 -- Create a function to update the updatedAt column

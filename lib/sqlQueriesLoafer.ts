@@ -1,9 +1,9 @@
 'use server'
 import { sql } from '@vercel/postgres';
 
-export const CREATE_LEAVEN = async (leaven_start_time: string) => {
+export const CREATE_LEAVEN = async (water_amt: number, water_temp: number, starter_amt: number, flour_amt: number, start_time: string, start_temp: number) => {
 	const results = await sql`
-		INSERT INTO leaven (leaven_start_time) VALUES (${leaven_start_time}) RETURNING id
+		INSERT INTO leaven (water_amt, water_temp, starter_amt, flour_amt, start_time, start_temp) VALUES (${water_amt}, ${water_temp}, ${starter_amt}, ${flour_amt}, ${start_time}, ${start_temp}) RETURNING id
 	`;
 	return results.rows[0];
 };

@@ -30,8 +30,8 @@ export default function Page() {
 			if (!v.success) {
 				throw new Error("invalid data to create log loaf entry, check types")
 			}
-			const results = await CREATE_LOAFER_LOG(parseInt(v.data.leaven_temp), v.data.leaven_start_time)
-			id = results.id
+			const result = await CREATE_LOAFER_LOG(parseInt(v.data.leaven_temp), v.data.leaven_start_time)
+			id = result.id
 			// perform sql here and await returned id
 		} catch (error) {
 			console.log(error)

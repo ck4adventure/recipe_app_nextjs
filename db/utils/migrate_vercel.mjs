@@ -84,12 +84,14 @@ export const migrateTables = async (client) => {
 			id SERIAL PRIMARY KEY,
 			created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
 			updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
-			leaven_start_time TIMESTAMPTZ,
-			dough_creation_time TIMESTAMPTZ,
-			bench_rest_start_time TIMESTAMPTZ,
-			shaped_prove_start_time TIMESTAMPTZ,
-			bake_start_time TIMESTAMPTZ,
-			bake_end_time TIMESTAMPTZ
+			water_amt INTEGER,
+			water_temp INTEGER,
+			starter_amt INTEGER,
+			flour_amt INTEGER,
+			start_time TIMESTAMPTZ,
+			start_temp INTEGER,
+			end_time TIMESTAMPTZ,
+			end_temp INTEGER
 		);`;
 
 		// -- Create a function to update the updatedAt column
@@ -103,8 +105,8 @@ export const migrateTables = async (client) => {
 		`;
 
 		// -- Create a trigger to automatically update the updatedAt column on update
-		await client.sql`CREATE TRIGGER update_loafer_updated_at
-			BEFORE UPDATE ON loafer
+		await client.sql`CREATE TRIGGER update_leaven_updated_at
+			BEFORE UPDATE ON leaven
 			FOR EACH ROW
 			EXECUTE FUNCTION update_updated_at_column();
 		`;

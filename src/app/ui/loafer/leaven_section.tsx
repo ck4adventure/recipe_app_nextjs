@@ -3,66 +3,37 @@ import { useState } from "react"
 import dayjs, { Dayjs } from 'dayjs';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import { FormControl, FormLabel, Typography } from '@mui/material';
+import { FormControl, FormLabel, FormControlLabel, TextField, Typography, Button } from '@mui/material';
 
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { TimeField } from "@mui/x-date-pickers";
 
-import { Modal } from "./basic_modal";
+import { LeavenFormData } from "@/app/actions";
 
 
 // LeavenFormSection only deals with the data timestemps for creating the leaven
-export default function LeavenFormSection({ createLeavenLogAction }: { createLeavenLogAction: (formData: FormData) => void }) {
-
-	// import a server action to save the leaven data and connect it to a button on the leaven section
-
-	// some, all or none of this info may be present, user will visit at least twice
+export default function LeavenFormSection({ createLeavenLogAction }: { createLeavenLogAction: (formData: LeavenFormData) => void }) {
+	
 	const [formData, setFormData] = useState({
-		leaven_start_time: '',
-		leaven_water_ml: 20,
-		leaven_water_temp: 80,
-		leaven_starter_grams: 30,
-		leaven_flour_grams: 200,
-		leaven_end_time: '',
+		water_amt: 200,
+		water_temp: 80,
+		starter_amt: 30,
+		flour_amt: 200,
+		start_time: dayjs().toString(),
+		start_temp: 80
 	})
-	const [modalIsOpen, setModalIsOpen] = useState(false);
-	const [selectedDateTime, setSelectedDateTime] = useState<Dayjs | null>(null);
-	const [currentField, setCurrentField] = useState<string>('');
 
-	const openModal = (fieldName: string) => {
-		setCurrentField(fieldName);
-		setModalIsOpen(true);
-	};
+	// const handleSetNow = (fieldName: string) => {
+	// 	const now = new Date();
+	// 	setFormData({
+	// 		...formData,
+	// 		[fieldName]: now,
+	// 	});
+	// };
 
-	const closeModal = () => {
-		setSelectedDateTime(null);
-		setModalIsOpen(false);
-	};
-
-	const handleModalDateTimeChange = (dateTime: Dayjs | null) => {
-		setSelectedDateTime(dateTime);
-	};
-
-	const handleModalSave = () => {
-		if (selectedDateTime && currentField) {
-			setFormData({
-				...formData,
-				[currentField]: selectedDateTime,
-			});
-		}
-		closeModal();
-	};
-
-	const handleSetNow = (fieldName: string) => {
-		const now = new Date();
-		setFormData({
-			...formData,
-			[fieldName]: now,
-		});
-	};
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
 		let { name, value } = e.target;
 		setFormData({
 			...formData,
@@ -70,44 +41,51 @@ export default function LeavenFormSection({ createLeavenLogAction }: { createLea
 		})
 	}
 
-
-	const handleSubmit = async () => {
-		console.log("data to be submitted: ", formData)
-		const id = await createLeavenLogAction()
+	const handleTimeChange = (v: Dayjs | null) => {
+		if (v) {
+			setFormData({
+				...formData,
+				"start_time": v.toString(),
+			});
+		}
 	}
 
 
-	const handleClearDateTime = (fieldName: string) => {
-		setFormData({
-			...formData,
-			[fieldName]: '',
-		})
-	};
-
-
+	const handleSubmit = async (event: React.FormEvent) => {
+		event.preventDefault();
+		console.log("data to be submitted: ", formData)
+		createLeavenLogAction(formData)
+	}
 
 	return (
 		<Paper sx={{ width: '75%', margin: 2 }} elevation={6} className="">
-			<Box component={"form"} onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+			<Box component={"form"} onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', margin: 2, minHeight: 200 }}>
 				<Typography variant='h5' sx={{ margin: 2 }}>Leaven</Typography>
-				<Typography sx={{ margin: 2 }} variant='body2'>1 TBL Starter + 200g Flour Blend + 200g Water</Typography>
-				<FormControl>
-					<FormLabel>Water Amt</FormLabel>
-					<input type="number" min={0} />
-				</FormControl>
-
-				<div className="flex min-h-max justify-between ml-4">
-					{/* <ButtonOrTimestamp ts={formData.leaven_start_time} propertyName="leaven_start_time" btnMessage='Start Leaven' /> */}
-					<button onClick={() => handleClearDateTime("leaven_start_time")} className='m-4'>Reset Step</button>
-				</div>
-				<div>
-					<Modal isOpen={modalIsOpen} onClose={closeModal} onSaveClose={handleModalSave} >
-						<div>Set a new date / time</div>
-						<div>
-							<DateTimePicker value={dayjs(formData.leaven_start_time)} onChange={handleModalDateTimeChange} />
-						</div>
-					</Modal>
-				</div>
+				{/* <Typography sx={{ margin: 2 }} variant='body2'>1 TBL Starter + 200g Flour Blend + 200g Water</Typography> */}
+				<Box sx={{ display: 'flex', flexDirection: 'row', margin: 2 }}>
+					<FormControl sx={{ minWidth: 90, width: 150 }}>
+						<TextField type="number" label="Water (ml)" value={formData.water_amt} variant="outlined" onChange={handleChange} id="water_amt" name="water_amt" />
+					</FormControl>
+					<FormControl sx={{ minWidth: 90, width: 150 }}>
+						<TextField type="number" label="Water Temp (F)" value={formData.water_temp} onChange={handleChange} id="water_temp" name="water_temp" />
+					</FormControl>
+					<FormControl sx={{ minWidth: 90, width: 150 }}>
+						<TextField type="number" label="Starter (g)" value={formData.starter_amt} onChange={handleChange} id="starter_amt" name="starter_amt" />
+					</FormControl>
+					<FormControl sx={{ minWidth: 90, width: 150 }}>
+						<TextField type="number" label="Flour Blend (g)" value={formData.flour_amt} onChange={handleChange} id="flour_amt" name="flour_amt" />
+					</FormControl>
+				</Box>
+				<Box sx={{ display: 'flex', margin: 2, alignItems: 'center' }}>
+					<TimePicker
+					label="Start Time"
+						onChange={(value) => handleTimeChange(value)}
+						value={dayjs(formData.start_time)}
+					/>
+				</Box>
+				<Box sx={{ margin: 2, display: 'flex', justifyContent: "center" }}>
+					<Button type="submit">Save Leaven</Button>
+				</Box>
 			</Box>
 		</Paper>
 	);

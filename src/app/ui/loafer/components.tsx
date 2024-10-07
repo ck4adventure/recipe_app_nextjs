@@ -57,7 +57,7 @@ export const CreateLogButton = () => {
 
 	return (
 		<>
-			<a href="/loafer/create">Create</a>
+			<a href="/loafer/leaven/start">Create</a>
 		</>
 	)
 };
