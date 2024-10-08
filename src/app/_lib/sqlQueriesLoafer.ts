@@ -8,6 +8,25 @@ export const CREATE_LEAVEN = async (water_amt: number, water_temp: number, start
 	return results.rows[0];
 };
 
+export const GET_LEAVEN_BY_ID = async (id: number) => {
+	const results = await sql`
+		SELECT * 
+		FROM leaven
+		WHERE id = ${id}
+	`;
+	return results.rows[0];
+}
+
+export const GET_LAST_5_LEAVENS = async () => {
+	const results = await sql`
+		SELECT *
+		FROM leaven
+		ORDER BY start_time DESC
+		LIMIT 5
+	`
+	return results.rows
+}
+
 export const GET_LOAFER_LOGS = async () => {
 	const results = await sql`
 		SELECT * FROM loafer
