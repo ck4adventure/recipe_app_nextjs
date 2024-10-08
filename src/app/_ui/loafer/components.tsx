@@ -53,11 +53,11 @@ export const TurnsForm = () => {
 	)
 };
 
-export const CreateLogButton = () => {
+export const NewLeavenButton = () => {
 
 	return (
 		<>
-			<a href="/loafer/leaven/start">Create</a>
+			<a href="/loafer/leaven/new">Create</a>
 		</>
 	)
 };

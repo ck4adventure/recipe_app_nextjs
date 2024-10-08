@@ -1,6 +1,3 @@
-import { GET_LOAFER_LOG_DETAILS } from "../../../_lib/sqlQueriesLoafer"
-
-// import { LoaferForm } from "@/app/ui/loafer/loafer_form"
 
 
 export default async function Page({ params }: { params: { id: string } }) {
@@ -9,6 +6,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 	// const logData = await GET_LOAFER_LOG_DETAILS(params.id)
 
 	return (
-		<div>Holding Page for not sure yet</div>
+		<div>Holding Page for Dough #{params.id}</div>
 	)
 }

@@ -14,18 +14,9 @@ import { revalidatePath } from 'next/cache';
 // leaven_ end_time
 // leaven_ end_temp
 
-export interface LeavenFormData {
-  water_amt: number;
-  water_temp: number;
-  starter_amt: number;
-  flour_amt: number;
-  start_time: string;
-  start_temp: number;
-  end_time?: string; // Optional if not always provided
-  end_temp?: number; // Optional if not always provided
-}
+import { DoughFormData, LeavenFormData } from './definitions';
 
-const schema = z.object({
+const leavenSchema = z.object({
 	water_amt: z.number(),
 	water_temp: z.number(),
 	starter_amt: z.number(),
@@ -34,20 +25,23 @@ const schema = z.object({
 	start_temp: z.number(),
 })
 
+const doughSchema = z.object({
+	water_amt: z.number(),
+	water_temp: z.number(),
+	leaven_amt: z.number(),
+	leaven_id: z.number(),
+	flour_amt: z.number(),
+	flour_blend: z.string(),
+	start_time: z.string(),
+	start_temp: z.number(),
+})
+
 
 export async function createStartedLeaven(formData: LeavenFormData) {
 	let id
 	try {
-    // const vf = schema.safeParse({
-    //   water_amt: formData.water_amt,
-    //   water_temp: formData.water_temp,
-    //   starter_amt: formData.starter_amt,
-    //   flour_amt: formData.flour_amt,
-    //   start_time: formData.start_time,
-    //   start_temp: formData.start_temp,
-    // });
 
-		const vf = schema.safeParse({...formData})
+		const vf = leavenSchema.safeParse({ ...formData })
 
 		// Return early if the form data is invalid
 		if (!vf.success) {
@@ -68,10 +62,27 @@ export async function createStartedLeaven(formData: LeavenFormData) {
 }
 
 export const updateLeavenEndTime = async (id: number, endTime: string) => {
-		const result = await UPDATE_LEAVEN_END_TIME(id, endTime)
-    if (result) {
-      // Revalidate the page to fetch the latest data
-      revalidatePath(`/loafer/leaven/${result.id}`);
-    }
-
+	const result = await UPDATE_LEAVEN_END_TIME(id, endTime)
+	if (result) {
+		// Revalidate the page to fetch the latest data
+		revalidatePath(`/loafer/leaven/${result.id}`);
 	}
+
+}
+
+export const doughCreateAction = async (formData: DoughFormData) => {
+	let id
+	try {
+		const vf = doughSchema.safeParse({ ...formData })
+		if (!vf.success) {
+			console.log(vf.error)
+			throw new Error("zod issue", vf.error)
+		}
+		// const result = await CREATE_DOUGH()
+	} catch (error) {
+		console.log(error)
+	}
+
+	// redirect(`/loafer/dough/${id}`)
+	redirect(`/loafer/dough/1`)
+}
