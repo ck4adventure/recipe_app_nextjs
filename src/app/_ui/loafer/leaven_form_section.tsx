@@ -1,6 +1,6 @@
 'use client'
 import { updateLeavenEndTime } from "@/app/_lib/actions";
-import { Box, Paper, Typography, Button } from "@mui/material"
+import { Box, Paper, Typography, Button, Link } from "@mui/material"
 import { QueryResultRow } from "pg";
 import { useState, useEffect } from 'react'
 
@@ -62,7 +62,8 @@ export default function LeavenDisplaySection({ record }: { record: QueryResultRo
 					<Button onClick={() => updateLeavenEndTime(record.id, new Date().toISOString())}>Finish Leaven</Button>
 				</Box>}
 				{record.end_time && <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-						<Button variant="contained">Start some Dough!</Button>
+						{/* <Button variant="contained">Next up: Dough!</Button> */}
+						<Link href="/dough/new" underline="none">Next up: Start some dough</Link>
 					</Box>}
 			</Box>
 		</Paper>

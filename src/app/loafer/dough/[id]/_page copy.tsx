@@ -1,6 +1,6 @@
-import { GET_LOAFER_LOG_DETAILS } from "../../_lib/sqlQueriesLoafer"
+import { GET_LOAFER_LOG_DETAILS } from "../../../_lib/sqlQueriesLoafer"
 
-import { shorthandDate } from "../../_lib/formatters"
+import { shorthandDate } from "../../../_lib/formatters"
 import { TurnsForm } from "@/app/_ui/loafer/components"
 
 export default async function Page({ params }: { params: { id: string } }) {
