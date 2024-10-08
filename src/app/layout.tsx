@@ -23,7 +23,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={`${montserrat.className}`} id="corner_root">
        {/* <AppRouterCacheProvider options={{ enableCssLayer: true }}> */}
-       <AppRouterCacheProvider >
+       <AppRouterCacheProvider options={{ enableCssLayer: true }} >
 				<Providers>
 					<HeaderBar />
 					{children}

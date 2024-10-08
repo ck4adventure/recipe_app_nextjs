@@ -9,13 +9,12 @@ export default async function Page({ params }: { params: { id: string } }) {
 	// so first try and load any available data for this entry, which we'll likely continue updating
 	const id = Number(params.id)
 	const record = await GET_LEAVEN_BY_ID(id)
-  
-
 
 	return (
 		<div className="flex flex-col items-center">
-			<div>Leaven #{record.id}</div>
-			<LeavenDisplaySection record={record} />
+			<div>Leaven #{id}</div>
+			{record && <LeavenDisplaySection record={record} />}
+			
 		</div>
 	)
 }

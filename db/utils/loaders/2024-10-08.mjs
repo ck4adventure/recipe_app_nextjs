@@ -1,9 +1,9 @@
 // completed_logs hold my data day to day as I work towards a complete feature
 export const completed_logs = [{
-	leaven_start_time: '2024-10-06 09:00:00-07', 
-	leaven_water_temp: 87,
-	leaven_room_temp_start: 74, 
-	leaven_room_temp_finish: 84,
+	leaven_start_time: '2024-10-08 08:45:00-07', 
+	leaven_water_temp: 72,
+	leaven_room_temp_start: 70, 
+	leaven_room_temp_finish: 72,
 	dough_create_blend: 'cottage',
 	dough_creation_time: '2024-10-06 15:00:00-07',
 	dough_create_flour_g: 1000,
@@ -30,8 +30,8 @@ export const completed_logs = [{
 	shaped_prove_final_room_temp: 80,
 	shaped_loaf_1: 'tin',
 	shaped_loaf_2: 'tin',
-	loaf_1_bake_start_time: '2024-10-05 23:40:00-07', 
-	loaf_1_bake_end_time: '2024-10-05 08:00:00-07', 
+	loaf_1_bake_start_time: '2024-10-04 07:15:00-07', 
+	loaf_1_bake_end_time: '2024-10-04 08:00:00-07', 
 	loaf_2_bake_start_time: '2024-10-04 07:15:00-07', 
 	loaf_2_bake_end_time: '2024-10-04 08:00:00-07', 
 }]

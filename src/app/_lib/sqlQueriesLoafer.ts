@@ -10,9 +10,7 @@ export const CREATE_LEAVEN = async (water_amt: number, water_temp: number, start
 
 export const GET_LEAVEN_BY_ID = async (id: number) => {
 	const results = await sql`
-		SELECT * 
-		FROM leaven
-		WHERE id = ${id}
+		SELECT * FROM leaven WHERE id = ${id}
 	`;
 	return results.rows[0];
 }
