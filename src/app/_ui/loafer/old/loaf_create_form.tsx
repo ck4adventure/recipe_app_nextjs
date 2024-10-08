@@ -9,7 +9,7 @@ import React, { useState } from "react"
 // }) {
 //   return <form action={updateItemAction}>{/* ... */}</form>
 // }
-export default function LoafLogCreateForm({
+export default function LoaferCreateForm({
   createLogLoafAction,
 }: {
   createLogLoafAction: (formData: FormData) => void

@@ -5,9 +5,8 @@ import { migrateTables } from '../db/utils/migrate_vercel.mjs';
 import { loadAuthorsAndSources } from '../db/utils/loaders/load_authors_sources.mjs';
 import { loadCategories } from '../db/utils/loaders/load_categories.mjs';
 import { loadFoods } from '../db/utils/loaders/load_foods.mjs';
-import dotenv from 'dotenv';
 import { loadRecipes } from '../db/utils/loaders/load_recipes.mjs';
-
+// import { loadSampleLogs } from '../db/utils/loaders/load_sample_logs.mjs';
 
 import dotenv from 'dotenv';
 
@@ -28,6 +27,7 @@ const setupDB = async () => {
 		await loadCategories(client);
 		await loadFoods(client);
 		await loadRecipes(client);
+		// await loadSampleLogs(client);
 		console.log("all scripts run");
 	} catch (error) {
 		console.error(error);
