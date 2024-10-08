@@ -11,7 +11,7 @@
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { FormControl, FormLabel, Typography } from '@mui/material';
-import LeavenFormSection from '@/app/_ui/loafer/leaven_section';
+import LeavenFormSection from '@/app/_ui/loafer/leaven_create_section';
 import { createStartedLeaven } from '@/app/_lib/actions';
 
 export default function Page() {

@@ -94,17 +94,17 @@ export const migrateTables = async (client) => {
 			end_temp INTEGER
 		);`;
 
-		// -- Create a function to update the updatedAt column
+		// -- Create a function to update the updated_at column
 		await client.sql`CREATE OR REPLACE FUNCTION update_updated_at_column()
 			RETURNS TRIGGER AS $$
 			BEGIN
-				NEW.updatedAt = CURRENT_TIMESTAMP;
+				NEW.updated_at = CURRENT_TIMESTAMP;
 				RETURN NEW;
 			END;
 			$$ LANGUAGE plpgsql;
 		`;
 
-		// -- Create a trigger to automatically update the updatedAt column on update
+		// -- Create a trigger to automatically update the updated_at column on update
 		await client.sql`CREATE TRIGGER update_leaven_updated_at
 			BEFORE UPDATE ON leaven
 			FOR EACH ROW

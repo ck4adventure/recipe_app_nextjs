@@ -64,7 +64,7 @@
 // 					RETURNING id, updated_at
 //     	`);
 // 				const { id, updated_at } = insertResult.rows[0];
-// 				// Wait for a second to ensure the updatedat timestamp will be different
+// 				// Wait for a second to ensure the updated_at timestamp will be different
 // 				await new Promise((resolve) => setTimeout(resolve, 1000));
 // 				const updateResult = await testPool.query(`
 // 					UPDATE loafer

@@ -17,6 +17,16 @@ export const GET_LEAVEN_BY_ID = async (id: number) => {
 	return results.rows[0];
 }
 
+export const UPDATE_LEAVEN_END_TIME = async (id: number, ts: string) => {
+	const results = await sql`
+		UPDATE leaven
+		SET end_time = ${ts}
+		WHERE id = ${id}
+		RETURNING *
+	`;
+	return results.rows[0];
+}
+
 export const GET_LAST_5_LEAVENS = async () => {
 	const results = await sql`
 		SELECT *

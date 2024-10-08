@@ -1,8 +1,8 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { CREATE_LEAVEN } from './sqlQueriesLoafer'
-
+import { CREATE_LEAVEN, UPDATE_LEAVEN_END_TIME } from './sqlQueriesLoafer'
+import { revalidatePath } from 'next/cache';
 // Leaven
 // table should exist with the following columns:
 // leaven_ water_amt
@@ -66,3 +66,12 @@ export async function createStartedLeaven(formData: LeavenFormData) {
 
 	redirect(`/loafer/leaven/${id}`)
 }
+
+export const updateLeavenEndTime = async (id: number, endTime: string) => {
+		const result = await UPDATE_LEAVEN_END_TIME(id, endTime)
+    if (result) {
+      // Revalidate the page to fetch the latest data
+      revalidatePath(`/loafer/leaven/${result.id}`);
+    }
+
+	}
