@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GET_LEAVEN_BY_ID } from "@/app/_lib/sqlQueriesLoafer"
 
-import LeavenDisplaySection from "@/app/_ui/loafer/leaven_form_section";
+import LeavenDisplaySection from "@/app/_ui/loafer/leaven_display_section";
 
 
 export default async function Page({ params }: { params: { id: string } }) {
