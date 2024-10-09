@@ -70,19 +70,19 @@ export default function DoughCreateSection({ leavenID, createDoughAction }: { cr
 			<Box component={"form"} onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', margin: 2, minHeight: 200 }}>
 				<Typography variant='h5' sx={{ margin: 2 }}>Dough</Typography>
 				<Box sx={{ display: 'flex', flexDirection: 'row', margin: 2 }}>
-					<FormControl sx={{ minWidth: 90, width: 150 }}>
+					<FormControl sx={{ minWidth: 90, width: 250 }}>
 						<TextField type="number" label="Water (ml)" value={formData.water_amt} variant="outlined" onChange={handleChange} id="water_amt" name="water_amt" />
 					</FormControl>
-					<FormControl sx={{ minWidth: 90, width: 150 }}>
+					<FormControl sx={{ minWidth: 90, width: 250 }}>
 						<TextField type="number" label="Water Temp (F)" value={formData.water_temp} onChange={handleChange} id="water_temp" name="water_temp" />
 					</FormControl>
-					<FormControl sx={{ minWidth: 90, width: 150 }}>
+					<FormControl sx={{ minWidth: 90, width: 250 }}>
 						<TextField type="number" label="Starter (g)" value={formData.leaven_amt} onChange={handleChange} id="leaven_amt" name="leaven_amt" />
 					</FormControl>
-					<FormControl sx={{ minWidth: 90, width: 150 }}>
+					<FormControl sx={{ minWidth: 90, width: 250 }}>
 						<TextField type="number" label="Flour Amount (g)" value={formData.flour_amt} onChange={handleChange} id="flour_amt" name="flour_amt" />
 					</FormControl>
-					<FormControl sx={{ minWidth: 90, width: 150 }}>
+					<FormControl sx={{ minWidth: 90, width: 250 }}>
 						<InputLabel id="flour_blend_label">Flour Blend</InputLabel>
 						<Select
 							labelId="flour_blend_label"
@@ -93,7 +93,7 @@ export default function DoughCreateSection({ leavenID, createDoughAction }: { cr
 						>
 							{Object.values(FlourBlend).map((blend) => (
 								<MenuItem key={blend} value={blend}>
-									{blend}
+									{blend[0].toUpperCase()+blend.slice(1)}
 								</MenuItem>
 							))}
 						</Select>

@@ -3,8 +3,9 @@
 export const dropTables = async (client) => {
 	try {
 		await client.sql`
-			DROP TABLE IF EXISTS leaven;
+			DROP TABLE IF EXISTS dough;
 			DROP TYPE IF EXISTS flour_blend_type;
+			DROP TABLE IF EXISTS leaven;
 		`;
 		await client.sql`
 			DROP TABLE IF EXISTS foods;

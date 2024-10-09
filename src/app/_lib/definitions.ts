@@ -1,10 +1,10 @@
 export enum FlourBlend {
-	White = "White",
-	Cottage = "Cottage",
-	Wheat = "Wheat",
-	Rye = "Rye",
-	Complet = "Complet",
-	Integraal = "Integraal"
+	White = "white",
+	Cottage = "cottage",
+	Wheat = "wheat",
+	Rye = "rye",
+	Complet = "complet",
+	Integraal = "integraal"
 }
 
 export interface LeavenFormData {

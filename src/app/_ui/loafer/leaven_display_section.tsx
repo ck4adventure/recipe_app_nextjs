@@ -69,7 +69,7 @@ export default function LeavenDisplaySection({ record }: { record: QueryResultRo
 				</Box>}
 				{record.end_time && <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 					{/* <Button variant="contained">Next up: Dough!</Button> */}
-					<Link href="/dough/new" underline="none">Next up: Start some dough</Link>
+					<Link href="/loafer/dough/new" underline="none">Next up: Start some dough</Link>
 				</Box>}
 			</Box>
 		</Paper>

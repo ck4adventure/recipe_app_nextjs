@@ -1,4 +1,5 @@
 'use client'
+import DialerSip from '@mui/icons-material/DialerSip';
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 import { Button } from "@mui/material";
 
@@ -63,3 +64,11 @@ export const NewLeavenButton = () => {
 		</div>
 	)
 };
+
+export const NewDoughButton = () => {
+	return (
+		<div className="m-4">
+			<Link href="/loafer/dough/new" underline='none'>Start New Dough</Link>
+		</div>
+	)
+}

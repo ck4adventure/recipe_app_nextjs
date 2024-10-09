@@ -9,6 +9,16 @@
 export const migrateTables = async (client) => {
 	try {
 		console.log('Migrating tables...');
+		// -- Create a function to update the updated_at column, to be used as needed
+		await client.sql`CREATE OR REPLACE FUNCTION update_updated_at_column()
+			RETURNS TRIGGER AS $$
+			BEGIN
+				NEW.updated_at = CURRENT_TIMESTAMP;
+				RETURN NEW;
+			END;
+			$$ LANGUAGE plpgsql;
+		`;
+
 		// authors
 		await client.sql`CREATE TABLE authors (
 			id serial primary key,
@@ -94,16 +104,6 @@ export const migrateTables = async (client) => {
 			end_temp INTEGER
 		);`;
 
-		// -- Create a function to update the updated_at column
-		await client.sql`CREATE OR REPLACE FUNCTION update_updated_at_column()
-			RETURNS TRIGGER AS $$
-			BEGIN
-				NEW.updated_at = CURRENT_TIMESTAMP;
-				RETURN NEW;
-			END;
-			$$ LANGUAGE plpgsql;
-		`;
-
 		// -- Create a trigger to automatically update the updated_at column on update
 		await client.sql`CREATE TRIGGER update_leaven_updated_at
 			BEFORE UPDATE ON leaven
@@ -123,6 +123,7 @@ export const migrateTables = async (client) => {
 			water_temp INTEGER,
 			leaven_amt INTEGER,
 			flour_amt INTEGER,
+			flour_blend flour_blend_type,
 			start_time TIMESTAMPTZ,
 			start_temp INTEGER,
 			salt_time TIMESTAMPTZ,
@@ -130,7 +131,12 @@ export const migrateTables = async (client) => {
 			end_temp INTEGER
 		);`;
 
-		
+			// -- Create a trigger to automatically update the updated_at column on update
+		await client.sql`CREATE TRIGGER update_leaven_updated_at
+			BEFORE UPDATE ON dough
+			FOR EACH ROW
+			EXECUTE FUNCTION update_updated_at_column();
+		`;
 		
 		console.log('Tables migrated successfully');
 	} catch (error) {

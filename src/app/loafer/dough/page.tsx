@@ -1,5 +1,11 @@
-export default function Page () {
+import { NewDoughButton } from "@/app/_ui/loafer/components";
+
+
+export default function Page() {
 	return (
-		<div>Dough Main Page</div>
+		<div className="flex flex-col items-center">
+			<div>Dough Main Page</div>
+			<NewDoughButton />
+		</div>
 	)
 }

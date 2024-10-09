@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { CREATE_LEAVEN, UPDATE_LEAVEN_END_TIME } from './sqlQueriesLoafer'
+import { CREATE_DOUGH, CREATE_LEAVEN, UPDATE_LEAVEN_END_TIME } from './sqlQueriesLoafer'
 import { revalidatePath } from 'next/cache';
 // Leaven
 // table should exist with the following columns:
@@ -78,11 +78,15 @@ export const doughCreateAction = async (formData: DoughFormData) => {
 			console.log(vf.error)
 			throw new Error("zod issue", vf.error)
 		}
-		// const result = await CREATE_DOUGH()
+		const result = await CREATE_DOUGH(vf.data.water_amt, vf.data.water_temp, vf.data.leaven_amt, vf.data.flour_amt, vf.data.flour_blend, vf.data.start_time, vf.data.start_temp)
+		id = result.id
+		if (!id) {
+			throw new Error("error with create dough sql command")
+		}
 	} catch (error) {
 		console.log(error)
 	}
 
-	// redirect(`/loafer/dough/${id}`)
-	redirect(`/loafer/dough/1`)
+	redirect(`/loafer/dough/${id}`)
+	// redirect(`/loafer/dough/1`)
 }

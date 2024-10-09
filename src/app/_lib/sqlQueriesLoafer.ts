@@ -33,7 +33,16 @@ export const GET_LAST_5_LEAVENS = async () => {
 		LIMIT 5
 	`
 	return results.rows
-}
+};
+
+export const CREATE_DOUGH = async (water_amt: number, water_temp: number, leaven_amt: number, flour_amt: number, flour_blend: string, start_time: string, start_temp: number) => {
+	const results = await sql`
+		INSERT INTO dough (water_amt, water_temp, leaven_amt, flour_amt, flour_blend, start_time, start_temp)
+		VALUES (${water_amt}, ${water_temp}, ${leaven_amt}, ${flour_amt}, ${flour_blend}, ${start_time}, ${start_temp})
+		RETURNING id
+	`
+	return results.rows[0];
+};
 
 export const GET_LOAFER_LOGS = async () => {
 	const results = await sql`
