@@ -1,6 +1,8 @@
 'use client'
 import EditCalendarIcon from '@mui/icons-material/EditCalendar';
-import Button from '@mui/material/Button';
+import { Button } from "@mui/material";
+
+import Link from '@mui/material/Link';
 import { useState } from "react";
 
 // Turnsform controls the timestamps for turn
@@ -56,8 +58,8 @@ export const TurnsForm = () => {
 export const NewLeavenButton = () => {
 
 	return (
-		<>
-			<a href="/loafer/leaven/new">Create</a>
-		</>
+		<div className="m-4">
+			<Link href="/loafer/leaven/new" underline='none'>Start New Leaven</Link>
+		</div>
 	)
 };

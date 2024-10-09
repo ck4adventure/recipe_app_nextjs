@@ -15,7 +15,7 @@ import { LeavenFormData } from '@/app/_lib/definitions';
 
 // LeavenFormSection only deals with the data timestemps for creating the leaven
 export default function LeavenFormSection({ createLeavenLogAction }: { createLeavenLogAction: (formData: LeavenFormData) => void }) {
-	
+
 	const [formData, setFormData] = useState({
 		water_amt: 200,
 		water_temp: 80,
@@ -78,10 +78,13 @@ export default function LeavenFormSection({ createLeavenLogAction }: { createLea
 				</Box>
 				<Box sx={{ display: 'flex', margin: 2, alignItems: 'center' }}>
 					<TimePicker
-					label="Start Time"
+						label="Start Time"
 						onChange={(value) => handleTimeChange(value)}
 						value={dayjs(formData.start_time)}
 					/>
+					<FormControl sx={{ minWidth: 90, width: 150 }}>
+						<TextField type="number" label="Room Temp Start(F)" value={formData.start_temp} onChange={handleChange} id="start_temp" name="start_temp" />
+					</FormControl>
 				</Box>
 				<Box sx={{ margin: 2, display: 'flex', justifyContent: "center" }}>
 					<Button type="submit">Save Leaven</Button>
