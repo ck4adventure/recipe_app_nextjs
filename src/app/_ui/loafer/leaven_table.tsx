@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { QueryResultRow } from "pg";
+import { calculateElapsedTime } from "./components";
 
 export default function LeavenTable({ results }: { results: QueryResultRow[] }) {
 	const displayTime = (ts: string) => {
@@ -26,9 +27,8 @@ export default function LeavenTable({ results }: { results: QueryResultRow[] }) 
 						<TableRow>
 							<TableCell>#</TableCell>
 							<TableCell align="left">Started at</TableCell>
-							<TableCell align="left">Start Temp</TableCell>
 							<TableCell align="left">Finished at</TableCell>
-							<TableCell align="left">Finish Temp</TableCell>
+							<TableCell align="left">Elapsed Time</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -43,9 +43,8 @@ export default function LeavenTable({ results }: { results: QueryResultRow[] }) 
 										{displayTime(res.start_time)}
 									</Link>
 								</TableCell >
-								<TableCell>{res.start_temp}</TableCell>
 								<TableCell align="left"><Link href={`/loafer/leaven/${res.id}`}>{res.end_time ? displayTime(res.end_time) : "In progress"}</Link></TableCell>
-								<TableCell>{res.end_temp}</TableCell>
+								<TableCell>{calculateElapsedTime(res.start_time, res.end_time)}</TableCell>
 							</TableRow>
 
 						)

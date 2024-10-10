@@ -3,23 +3,13 @@ import { updateLeavenEndTime } from "@/app/_lib/actions";
 import { Box, Paper, Typography, Button, Link } from "@mui/material"
 import { QueryResultRow } from "pg";
 import { useState, useEffect } from 'react'
+import { calculateElapsedTime } from "./components";
 
 
 
 export default function LeavenDisplaySection({ record }: { record: QueryResultRow }) {
 	// State to hold the elapsed time
 	const [elapsedTime, setElapsedTime] = useState<string>("");
-
-	// function to calculate elapsed time
-	const calculateElapsedTime = (startDate: string, endDate: string | null) => {
-		const start = new Date(startDate);
-		const end = (record.end_time ? new Date(record.end_time) : new Date());
-		const durationMS = end.getTime() - start.getTime();
-		const hours = Math.floor(durationMS / (1000 * 60 * 60)).toString();
-		const minutes = Math.floor((durationMS % (1000 * 60 * 60)) / (1000 * 60)).toString();
-		const displayMinutes = (minutes.length < 2 ? "0" + minutes : minutes)
-		return `${hours}:${displayMinutes}`
-	}
 
 	// Set up timer to update elapsed time every minute
 	useEffect(() => {

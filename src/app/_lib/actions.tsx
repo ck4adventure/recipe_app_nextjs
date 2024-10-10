@@ -57,8 +57,8 @@ export async function createStartedLeaven(formData: LeavenFormData) {
 	} catch (error) {
 		console.log(error)
 	}
-
-	redirect(`/loafer/leaven/${id}`)
+	revalidatePath("/loafer/")
+	redirect(`/loafer/`)
 }
 
 export const updateLeavenEndTime = async (id: number, time: string) => {

@@ -6,6 +6,17 @@ import { Button } from "@mui/material";
 import Link from '@mui/material/Link';
 import { useState } from "react";
 
+	// function to calculate elapsed time
+export	const calculateElapsedTime = (startDate: string, endDate: string | null) => {
+		const start = new Date(startDate);
+		const end = (endDate ? new Date(endDate) : new Date());
+		const durationMS = end.getTime() - start.getTime();
+		const hours = Math.floor(durationMS / (1000 * 60 * 60)).toString();
+		const minutes = Math.floor((durationMS % (1000 * 60 * 60)) / (1000 * 60)).toString();
+		const displayMinutes = (minutes.length < 2 ? "0" + minutes : minutes)
+		return `${hours}:${displayMinutes}`
+	}
+
 // Turnsform controls the timestamps for turn
 export const TurnsForm = () => {
 	const [turns, setTurns] = useState([

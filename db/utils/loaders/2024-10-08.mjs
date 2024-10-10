@@ -30,7 +30,7 @@ export const completed_logs = [{
 	shaped_loaf_1: '3 little tins',
 	shaped_loaf_2: '1 bin tin',
 	shaped_loaf_3: '4 part tear n share', // 200 gram loaves
-	loaf_1_bake_start_time: '2024-10-09 07:15:00-07', 
+	loaf_1_bake_start_time: '2024-10-09 07:15:00-07', // bake times not certain
 	loaf_1_bake_end_time: '2024-10-09 08:00:00-07', 
 	loaf_2_bake_start_time: '2024-10-09 07:15:00-07', 
 	loaf_2_bake_end_time: '2024-10-09 08:00:00-07', 
