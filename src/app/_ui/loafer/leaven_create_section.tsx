@@ -34,10 +34,16 @@ export default function LeavenFormSection({ createLeavenLogAction }: { createLea
 	// };
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+		let v;
 		let { name, value } = e.target;
+				if (name === 'water_amt' || name === 'water_temp' || name === 'starter_amt' || name === 'flour_amt' || name === 'start_temp') {
+			 v = Number(value)
+		} else {
+			v = value
+		}
 		setFormData({
 			...formData,
-			[name]: value
+			[name]: v
 		})
 	}
 

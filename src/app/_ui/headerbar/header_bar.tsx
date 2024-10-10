@@ -50,7 +50,7 @@ export default function HeaderBar() {
 						<MenuItem className="m-2" onClick={handleLoaferClose}><Link href="/loafer/loaves/">Loaves</Link> </MenuItem>
 					</Menu>
 				</div>
-				<div className='m-2'>
+				{/* <div className='m-2'>
 					<Button
 						variant='text'
 						aria-controls="simple-menu"
@@ -68,7 +68,7 @@ export default function HeaderBar() {
 						<MenuItem className="m-2" onClick={handleRecipesClose}><Link href="/authors/">Authors</Link> </MenuItem>
 						<MenuItem className="m-2" onClick={handleRecipesClose}><Link href="/sources/">Sources</Link> </MenuItem>
 					</Menu>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)
