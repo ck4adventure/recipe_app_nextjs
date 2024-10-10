@@ -7,7 +7,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { FormControl, FormLabel, Typography } from '@mui/material';
 import DoughCreateSection from '@/app/_ui/loafer/dough_create_section';
-import { doughCreateAction } from '@/app/_lib/actions';
+import { createDough } from '@/app/_lib/actions';
 
 
 export default function Page() {
@@ -16,7 +16,7 @@ export default function Page() {
 	return (
 		<div className='flex flex-col items-center'>
 			<div>New Dough Creation Page</div>
-			<DoughCreateSection createDoughAction={doughCreateAction} leavenID={1}/>
+			<DoughCreateSection createDoughAction={createDough} leavenID={1}/>
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { CREATE_DOUGH, CREATE_LEAVEN, UPDATE_LEAVEN_END_TIME } from './sqlQueriesLoafer'
+import { CREATE_DOUGH, CREATE_LEAVEN, UPDATE_LEAVEN_END_TIME, UPDATE_DOUGH_SALT_TIME, UPDATE_DOUGH_END_TIME } from './sqlQueriesLoafer'
 import { revalidatePath } from 'next/cache';
 // Leaven
 // table should exist with the following columns:
@@ -61,16 +61,16 @@ export async function createStartedLeaven(formData: LeavenFormData) {
 	redirect(`/loafer/leaven/${id}`)
 }
 
-export const updateLeavenEndTime = async (id: number, endTime: string) => {
-	const result = await UPDATE_LEAVEN_END_TIME(id, endTime)
+export const updateLeavenEndTime = async (id: number, time: string) => {
+	const result = await UPDATE_LEAVEN_END_TIME(id, time)
 	if (result) {
 		// Revalidate the page to fetch the latest data
-		revalidatePath(`/loafer/leaven/${result.id}`);
+		revalidatePath(`/loafer/leaven/${id}`);
 	}
 
 }
 
-export const doughCreateAction = async (formData: DoughFormData) => {
+export const createDough = async (formData: DoughFormData) => {
 	let id
 	try {
 		const vf = doughSchema.safeParse({ ...formData })
@@ -89,4 +89,18 @@ export const doughCreateAction = async (formData: DoughFormData) => {
 
 	redirect(`/loafer/dough/${id}`)
 	// redirect(`/loafer/dough/1`)
+}
+
+export const updateDoughSaltTime = async (id: number, time: string) => {
+	const result = await UPDATE_DOUGH_SALT_TIME(id, time);
+	if (result) {
+		revalidatePath(`/loafer/dough/${id}`)
+	}
+}
+
+export const updateDoughEndTime = async (id: number, time: string) => {
+	const result = await UPDATE_DOUGH_END_TIME(id, time);
+	if (result) {
+		revalidatePath(`/loafer/dough/${id}`)
+	}
 }

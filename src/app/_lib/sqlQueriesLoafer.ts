@@ -35,12 +35,49 @@ export const GET_LAST_5_LEAVENS = async () => {
 	return results.rows
 };
 
+export const GET_LAST_5_DOUGHS = async () => {
+	const results = await sql`
+		SELECT *
+		FROM dough
+		ORDER BY start_time DESC
+		LIMIT 5
+	`
+	return results.rows
+};
+
 export const CREATE_DOUGH = async (water_amt: number, water_temp: number, leaven_amt: number, flour_amt: number, flour_blend: string, start_time: string, start_temp: number) => {
 	const results = await sql`
 		INSERT INTO dough (water_amt, water_temp, leaven_amt, flour_amt, flour_blend, start_time, start_temp)
 		VALUES (${water_amt}, ${water_temp}, ${leaven_amt}, ${flour_amt}, ${flour_blend}, ${start_time}, ${start_temp})
 		RETURNING id
 	`
+	return results.rows[0];
+};
+
+export const GET_DOUGH_BY_ID = async (id: number) => {
+	const results = await sql`
+		SELECT * FROM dough WHERE id = ${id}
+	`;
+	return results.rows[0];
+}
+
+export const UPDATE_DOUGH_SALT_TIME = async (id: number, ts: string) => {
+	const results = await sql`
+		UPDATE dough
+		SET salt_time = ${ts}
+		WHERE id = ${id}
+		RETURNING *
+	`;
+	return results.rows[0];
+};
+
+export const UPDATE_DOUGH_END_TIME = async (id: number, ts: string) => {
+	const results = await sql`
+		UPDATE dough
+		SET end_time = ${ts}
+		WHERE id = ${id}
+		RETURNING *
+	`;
 	return results.rows[0];
 };
 
