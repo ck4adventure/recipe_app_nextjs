@@ -2,6 +2,18 @@ feature baking log
 ### Baking Log
 I am learning to bake professional grade bread, and I need to start learning from my timings to achieve a more consistent result.
 
+trying to make a plan
+loafer page should show anything in progress
+each items main page should show latest of that item
+each items index page should show its data and buttons to advance/edit/delete
+TODO: leaven calculator
+  - standardize the loaves/bakes enough to be able to put quantities into a form
+	- hit calc button and it will tell you the kgs of dough to be made, and how much starter needed
+	- rule is 100g starter for 500g flour within the dough ratios
+TODO: dough calculator
+ - 250g, 500g, 1kg, 1.5kg....
+ - or evtl to have app context and pass along the chosen bakes from the leaven calc
+
 #### Journeys
 1. Starting a leaven
 - go to loafer

@@ -15,15 +15,15 @@ export default async function Page() {
 
 
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
-			<Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-				<Typography variant="h5" sx={{ margin: 2}}>Latest Leavens</Typography>
+		<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+			<Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+				<Typography variant="h5" sx={{ margin: 2 }}>Latest Leavens</Typography>
 				<LeavenTable results={leavenLogs} />
-							<NewLeavenButton />
+				<NewLeavenButton />
 			</Box>
 
-			<Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-				<Typography variant="h5" sx={{ margin: 2}}>Latest Doughs</Typography>
+			<Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+				<Typography variant="h5" sx={{ margin: 2 }}>Latest Doughs</Typography>
 				<DoughTable data={doughLogs} />
 				<NewDoughButton />
 			</Box>

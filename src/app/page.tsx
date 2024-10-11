@@ -1,39 +1,35 @@
+import * as React from 'react';
+import { experimentalStyled as styled } from '@mui/material/styles';
 import { Link, Typography, Box, Paper } from "@mui/material";
+import Grid from '@mui/material/Grid2';
 
+const AppSections = [
+	["Leavens", "/loafer/leaven"],
+	["Doughs", "loafer/dough"],
+	["Loaves and Bakes", "loafer/loaf"],
+	["Products", "/"],
+	["Recipes", "/recipes"],
+	["Ingredients", "/"],
+]
 
 export default async function Main() {
 
 	return (
-		<div>
-			<main className="flex min-h-screen flex-col items-center">
-				<Box sx={{ width: '90%' }}>
-					<Typography>What's in the works</Typography>
-					<Box sx={{ width: '100%', display: 'flex' }}>
-						<Box sx={{ margin: 2, width: 300, height: 150 }}>
-							<Paper elevation={6} sx={{ width: '100%', height: '100%', padding: 2  }}>
-								<Typography>Leavens</Typography>
-								<Typography>Leaven #4 In Progress 04:25m</Typography>
-								<Typography>Leaven #3 Finished 07:25m</Typography>
-							</Paper>
-						</Box>
-						<Box sx={{ margin: 2, width: 300, height: 150 }}>
-							<Paper elevation={6} sx={{ width: '100%', height: '100%', padding: 2 }}>
-								<Typography>Doughs</Typography>
-								<Typography>Leaven #4 In Progress 04:25m</Typography>
-								<Typography>Leaven #3 Finished 07:25m</Typography>
-							</Paper>
-						</Box>
-						<Box sx={{ margin: 2, width: 300, height: 150 }}>
-							<Paper elevation={6} sx={{ width: '100%', height: '100%', padding: 2  }}>
-								<Typography>Bakes</Typography>
-								<Typography>Leaven #4 In Progress 04:25m</Typography>
-								<Typography>Leaven #3 Finished 07:25m</Typography>
-							</Paper>
-						</Box>
-					</Box>
-				</Box>
-				<Typography variant="h5"><Link href="/loafer/">Go To Loafer</Link></Typography>
-			</main>
-		</div>
+		<main className="min-h-screen">
+			<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} margin={{xs:2, md:4 }}>
+				{AppSections.map((entry, index) => (
+					<Grid key={index} size={{ xs: 4, sm: 4, md: 6 }}>
+						<Paper elevation={6}>
+							<Box sx={{minHeight: 100, display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+								<Typography><Link href={entry[1]} underline="none">{entry[0]}</Link></Typography>
+							</Box>
+						</Paper>
+					</Grid>
+				))}
+			</Grid>
+
+
+			<Typography variant="h5"></Typography>
+		</main>
 	);
 }
