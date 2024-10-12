@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { Link, Typography, Box, Paper, Button } from "@mui/material";
 import Grid from '@mui/material/Grid2';
+import { NewDoughButton, NewLeavenButton } from './_ui/loafer/components';
+import { StandardModal } from './_ui/loafer/modal_standard';
+import { ST } from 'next/dist/shared/lib/utils';
+import { StatusSection } from './_ui/loafer/main_status_section';
 
 const AppSections = [
 	["Leavens", "/loafer/leaven"],
@@ -11,18 +15,15 @@ const AppSections = [
 	["Ingredients", "/"],
 ]
 
+// TODO: finish button with a modal that opens with a set of links to available /new routes
+
+
+
 export default async function Main() {
 
 	return (
 		<main className="min-h-screen">
-			<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} margin={{ xs: 2, md: 4 }}>
-				<Grid size={{ xs: 4, sm: 8, md: 12 }}>
-						<Paper elevation={6} sx={{minHeight: 100, display: 'flex', flexDirection: "column", alignItems: "center", justifyContent: "space-between"}}>
-							<Typography sx={{margin: 2}}>Nothing currently in progress.</Typography>
-							<Typography sx={{margin: 2}}><Button variant='contained'>Let's Bake!</Button></Typography>
-							</Paper>
-				</Grid>
-			</Grid>
+			<StatusSection />
 			<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} margin={{ xs: 2, md: 4 }}>
 
 				{AppSections.map((entry, index) => (
