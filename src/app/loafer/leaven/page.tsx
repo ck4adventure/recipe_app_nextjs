@@ -17,5 +17,3 @@ export default async function Page() {
 		</div>
 	)
 }
-
-{/* <Link href={`/loafer/leaven/${res.id}`}></Link> */ }

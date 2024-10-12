@@ -13,13 +13,16 @@ import Box from '@mui/material/Box';
 import { FormControl, FormLabel, Typography } from '@mui/material';
 import LeavenFormSection from '@/app/_ui/loafer/leaven_create_section';
 import { createStartedLeaven } from '@/app/_lib/actions';
+import Grid from '@mui/material/Grid2';
 
 export default function Page() {
 
 	return (
-		<div className='flex flex-col items-center'>
-			<div>New Leaven Creation Page</div>
-			<LeavenFormSection createLeavenLogAction={createStartedLeaven}/>
-		</div>
+		<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} margin={{ xs: 2, md: 4 }}>
+			<Grid size={{ xs: 4, sm: 4, md: 6 }}>
+				<div>New Leaven Creation Page</div>
+				<LeavenFormSection createLeavenLogAction={createStartedLeaven}/>
+				</Grid>
+		</Grid>
 	)
 }

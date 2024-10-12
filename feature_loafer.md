@@ -13,6 +13,13 @@ TODO: leaven calculator
 TODO: dough calculator
  - 250g, 500g, 1kg, 1.5kg....
  - or evtl to have app context and pass along the chosen bakes from the leaven calc
+ TODO: gamifcation for my own fun
+  - everything should have streaks and achievements for things like 3 in a row, 7 days straight
+	- fitbit had crazy cool stats of distances that equated to crazy things like empire state building
+	- this will need a spreadsheet to track all the names
+	- find fun stats for not only quantity created, but weight or volume of leavens and doughs
+	- frequencies, quantity (1, 2/3, 5, 10, 25...250), volume, weight (as much leaven as a bathtub holds)
+	- failures, too many discarded doughs, basically putting markers on all the major points of experience
 
 #### Journeys
 1. Starting a leaven
