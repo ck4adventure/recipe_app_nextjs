@@ -16,7 +16,7 @@ export const StatusSection = () => {
 			<Grid size={{ xs: 4, sm: 8, md: 12 }}>
 				<Paper elevation={6} sx={{ minHeight: 100, display: 'flex', flexDirection: "column", alignItems: "center", justifyContent: "space-between" }}>
 					<Typography sx={{ margin: 2 }}>Nothing currently in progress.</Typography>
-					<Typography sx={{ margin: 2 }}><Button variant='contained' onClick={() => setModalIsOpen(true)}>Let's Bake!</Button></Typography>
+					<Typography sx={{ margin: 2 }}><Button variant='contained' onClick={() => setModalIsOpen(true)}>Let&apos;s Bake!</Button></Typography>
 				</Paper>
 			</Grid>
 			<StandardModal onClose={handleModalClose} isOpen={modalIsOpen}>
