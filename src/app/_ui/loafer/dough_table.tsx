@@ -21,44 +21,38 @@ export default function DoughTable({ data }: { data: QueryResultRow[] }) {
 	}
 
 	return (
-			<TableContainer component={Paper} sx={{ width: '75%' }} elevation={6}>
-				<Table sx={{ minWidth: 200 }} aria-label="simple table">
-					<TableHead>
-						<TableRow>
-							<TableCell>#</TableCell>
-							<TableCell align="left">Created at</TableCell>
-							<TableCell align="left">Type</TableCell>
-							<TableCell align="left">Weight</TableCell>
-							<TableCell align="left">Start Temp</TableCell>
-							<TableCell align="left">Salted at</TableCell>
-							<TableCell align="left">Finished at</TableCell>
-							<TableCell align="left">Finish Temp</TableCell>
+		<TableContainer component={Paper} sx={{ width: '90%' }} elevation={0}>
+			<Table sx={{ minWidth: 200 }} aria-label="simple table">
+				<TableHead>
+					<TableRow>
+						<TableCell>#</TableCell>
+						<TableCell align="left">Type</TableCell>
+						<TableCell align="left">Weight</TableCell>
+						<TableCell align="left">Start</TableCell>
+						<TableCell align="left">Finish</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+
+					{data.map(res => (
+
+						<TableRow key={res.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
+
+							<TableCell><Link href={`/loafer/dough/${res.id}`}>{res.id}</Link></TableCell>
+							<TableCell>{res.flour_blend[0].toUpperCase() + res.flour_blend.slice(1)}</TableCell>
+							<TableCell>{res.water_amt + res.flour_amt + res.leaven_amt}</TableCell>
+							<TableCell align="left">
+								<Link href={`/loafer/dough/${res.id}`}>
+									{displayTime(res.start_time)}
+								</Link>
+							</TableCell >
+							<TableCell align="left"><Link href={`/loafer/dough/${res.id}`}>{res.end_time ? displayTime(res.end_time) : "In progress"}</Link></TableCell>
 						</TableRow>
-					</TableHead>
-					<TableBody>
 
-						{data.map(res => (
-
-							<TableRow key={res.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
-
-								<TableCell><Link href={`/loafer/dough/${res.id}`}>{res.id}</Link></TableCell>
-								<TableCell align="left">
-									<Link href={`/loafer/dough/${res.id}`}>
-										{displayTime(res.start_time)}
-									</Link>
-								</TableCell >
-								<TableCell>{res.flour_blend[0].toUpperCase()+res.flour_blend.slice(1)}</TableCell>
-								<TableCell>{res.water_amt + res.flour_amt + res.leaven_amt}</TableCell>
-								<TableCell>{res.start_temp}</TableCell>
-								<TableCell>{displayTime(res.salt_time)}</TableCell>
-								<TableCell align="left"><Link href={`/loafer/dough/${res.id}`}>{res.end_time ? displayTime(res.end_time) : "In progress"}</Link></TableCell>
-								<TableCell>{res.end_temp}</TableCell>
-							</TableRow>
-
-						)
-						)}
-					</TableBody>
-				</Table>
-			</TableContainer>
+					)
+					)}
+				</TableBody>
+			</Table>
+		</TableContainer>
 	)
 }

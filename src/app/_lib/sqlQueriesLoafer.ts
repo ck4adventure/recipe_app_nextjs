@@ -25,22 +25,22 @@ export const UPDATE_LEAVEN_END_TIME = async (id: number, ts: string) => {
 	return results.rows[0];
 }
 
-export const GET_LAST_5_LEAVENS = async () => {
+export const GET_LAST_N_LEAVENS = async (n: number) => {
 	const results = await sql`
 		SELECT *
 		FROM leaven
 		ORDER BY start_time DESC
-		LIMIT 5
+		LIMIT ${n}
 	`
 	return results.rows
 };
 
-export const GET_LAST_5_DOUGHS = async () => {
+export const GET_LAST_N_DOUGHS = async (n: number) => {
 	const results = await sql`
 		SELECT *
 		FROM dough
 		ORDER BY start_time DESC
-		LIMIT 5
+		LIMIT ${n}
 	`
 	return results.rows
 };

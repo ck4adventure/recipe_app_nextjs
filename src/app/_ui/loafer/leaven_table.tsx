@@ -21,14 +21,14 @@ export default function LeavenTable({ results }: { results: QueryResultRow[] }) 
 	}
 
 	return (
-			<TableContainer component={Paper} sx={{ width: '75%' }} elevation={6}>
+			<TableContainer component={Paper} sx={{ width: '90%' }} elevation={0}>
 				<Table sx={{ minWidth: 200 }} aria-label="simple table">
 					<TableHead>
 						<TableRow>
 							<TableCell>#</TableCell>
-							<TableCell align="left">Started at</TableCell>
-							<TableCell align="left">Finished at</TableCell>
-							<TableCell align="left">Elapsed Time</TableCell>
+							<TableCell align="left">Start</TableCell>
+							<TableCell align="left">Finish</TableCell>
+							<TableCell align="left">Total Time</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
