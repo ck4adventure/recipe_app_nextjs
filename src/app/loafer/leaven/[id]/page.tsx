@@ -12,9 +12,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
 	return (
 		<div className="flex flex-col items-center">
-			<div>Leaven #{id}</div>
 			{record && <LeavenDisplaySection record={record} />}
-			
 		</div>
 	)
 }

@@ -8,6 +8,7 @@ export enum FlourBlend {
 }
 
 export interface LeavenFormData {
+	id?: number;
   water_amt: number;
   water_temp: number;
   starter_amt: number;
