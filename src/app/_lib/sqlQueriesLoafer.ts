@@ -15,10 +15,10 @@ export const GET_LEAVEN_BY_ID = async (id: number) => {
 	return results.rows[0];
 }
 
-export const UPDATE_LEAVEN_END_TIME = async (id: number, ts: string) => {
+export const FINISH_LEAVEN = async (id: number, ts: string, temp: number | null) => {
 	const results = await sql`
 		UPDATE leaven
-		SET end_time = ${ts}
+		SET end_time = ${ts}, end_temp = ${temp}
 		WHERE id = ${id}
 		RETURNING *
 	`;

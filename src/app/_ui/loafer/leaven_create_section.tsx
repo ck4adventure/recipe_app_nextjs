@@ -11,10 +11,11 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { TimeField } from "@mui/x-date-pickers";
 
 import { LeavenFormData } from '@/app/_lib/definitions';
+import { createStartedLeaven } from "@/app/_lib/actions";
 
 
 // LeavenFormSection only deals with the data timestemps for creating the leaven
-export default function LeavenCreateSection({ createLeavenLogAction }: { createLeavenLogAction: (formData: LeavenFormData) => void }) {
+export default function LeavenCreateSection() {
 
 	const [formData, setFormData] = useState({
 		water_amt: 200,
@@ -60,7 +61,7 @@ export default function LeavenCreateSection({ createLeavenLogAction }: { createL
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		console.log("data to be submitted: ", formData)
-		createLeavenLogAction(formData)
+		createStartedLeaven(formData)
 	}
 
 	return (
@@ -109,7 +110,6 @@ export default function LeavenCreateSection({ createLeavenLogAction }: { createL
 				</Grid>
 			</Grid>
 		</Paper >
-
 	);
 }
 

@@ -6,6 +6,7 @@ trying to make a plan
 loafer page should show anything in progress
 each items main page should show latest of that item
 each items index page should show its data and buttons to advance/edit/delete
+TODO: form controls and time validations
 TODO: leaven calculator
   - standardize the loaves/bakes enough to be able to put quantities into a form
 	- hit calc button and it will tell you the kgs of dough to be made, and how much starter needed

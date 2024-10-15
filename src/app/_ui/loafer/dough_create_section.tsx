@@ -9,6 +9,8 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { TimeField } from "@mui/x-date-pickers";
+import Grid from "@mui/material/Grid2";
+
 
 import { DoughFormData } from "@/app/_lib/definitions";
 import { FlourBlend } from "@/app/_lib/definitions";
@@ -32,7 +34,7 @@ export default function DoughCreateSection({ leavenID, createDoughAction }: { cr
 		let { name, value } = e.target;
 		let v;
 		if (name === 'water_amt' || name === 'water_temp' || name === 'leaven_amt' || name === 'leaven_id' || name === 'flour_amt' || name === 'start_temp') {
-			 v = Number(value)
+			v = Number(value)
 		} else {
 			v = value
 		}
@@ -66,23 +68,33 @@ export default function DoughCreateSection({ leavenID, createDoughAction }: { cr
 	}
 
 	return (
-		<Paper sx={{ width: '75%', margin: 2 }} elevation={6} className="">
-			<Box component={"form"} onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', margin: 2, minHeight: 200 }}>
-				<Typography variant='h5' sx={{ margin: 2 }}>Dough</Typography>
-				<Box sx={{ display: 'flex', flexDirection: 'row', margin: 2 }}>
-					<FormControl sx={{ minWidth: 90, width: 250 }}>
-						<TextField type="number" label="Water (ml)" value={formData.water_amt} variant="outlined" onChange={handleChange} id="water_amt" name="water_amt" />
+		<Paper elevation={6} sx={{ width: '90%' }}>
+			<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} margin={{ xs: 4, md: 4 }} >
+				<Grid size={{ xs: 4, sm: 8, md: 12 }} display='flex' flexDirection='column' alignItems='center'>
+					<Typography>Make some Dough</Typography>
+				</Grid>
+				<Grid size={{ xs: 4, sm: 4, md: 4 }}>
+					<FormControl>
+						<TextField sx={{ width: 200 }} type="number" label="Water (ml)" value={formData.water_amt} variant="outlined" onChange={handleChange} id="water_amt" name="water_amt" />
 					</FormControl>
-					<FormControl sx={{ minWidth: 90, width: 250 }}>
-						<TextField type="number" label="Water Temp (F)" value={formData.water_temp} onChange={handleChange} id="water_temp" name="water_temp" />
+				</Grid>
+				<Grid size={{ xs: 4, sm: 4, md: 4 }}>
+					<FormControl>
+						<TextField sx={{ width: 200 }} type="number" label="Water Temp (F)" value={formData.water_temp} onChange={handleChange} id="water_temp" name="water_temp" />
 					</FormControl>
-					<FormControl sx={{ minWidth: 90, width: 250 }}>
-						<TextField type="number" label="Starter (g)" value={formData.leaven_amt} onChange={handleChange} id="leaven_amt" name="leaven_amt" />
+				</Grid>
+				<Grid size={{ xs: 4, sm: 4, md: 4 }}>
+					<FormControl>
+						<TextField sx={{ width: 200 }} type="number" label="Leaven(g)" value={formData.leaven_amt} onChange={handleChange} id="leaven_amt" name="leaven_amt" />
 					</FormControl>
-					<FormControl sx={{ minWidth: 90, width: 250 }}>
-						<TextField type="number" label="Flour Amount (g)" value={formData.flour_amt} onChange={handleChange} id="flour_amt" name="flour_amt" />
+				</Grid>
+				<Grid size={{ xs: 4, sm: 4, md: 4 }}>
+					<FormControl>
+						<TextField sx={{ width: 200 }} type="number" label="Flour Amt (g)" value={formData.flour_amt} onChange={handleChange} id="flour_amt" name="flour_amt" />
 					</FormControl>
-					<FormControl sx={{ minWidth: 90, width: 250 }}>
+				</Grid>
+				<Grid size={{ xs: 4, sm: 4, md: 4 }}>
+					<FormControl>
 						<InputLabel id="flour_blend_label">Flour Blend</InputLabel>
 						<Select
 							labelId="flour_blend_label"
@@ -90,26 +102,36 @@ export default function DoughCreateSection({ leavenID, createDoughAction }: { cr
 							value={formData.flour_blend}
 							label="Flour Blend"
 							onChange={handleSelectChange}
+							sx={{width: 200}}
 						>
 							{Object.values(FlourBlend).map((blend) => (
 								<MenuItem key={blend} value={blend}>
-									{blend[0].toUpperCase()+blend.slice(1)}
+									{blend[0].toUpperCase() + blend.slice(1)}
 								</MenuItem>
 							))}
 						</Select>
 					</FormControl>
-				</Box>
-				<Box sx={{ display: 'flex', margin: 2, alignItems: 'center' }}>
-					<TimePicker
+				</Grid>
+
+
+				<Grid size={{ xs: 4, sm: 4, md: 4 }}>
+					<FormControl >
+						<TextField sx={{ width: 200 }} type="number" label="Room Temp Start(F)" value={formData.start_temp} onChange={handleChange} id="start_temp" name="start_temp" />
+					</FormControl>
+				</Grid>
+				<Grid size={{ xs: 4, sm: 4, md: 4 }}>
+					<DateTimePicker
 						label="Start Time"
 						onChange={(value) => handleTimeChange(value)}
 						value={dayjs(formData.start_time)}
+						views={['month', 'day', 'hours', 'minutes']}
 					/>
-				</Box>
-				<Box sx={{ margin: 2, display: 'flex', justifyContent: "center" }}>
-					<Button type="submit">Save Dough</Button>
-				</Box>
-			</Box>
-		</Paper>
+				</Grid>
+
+				<Grid size={{ xs: 4, sm: 8, md: 12 }} display={'flex'} justifyContent={'center'}>
+					<Button type="submit" onClick={handleSubmit}>Save Leaven</Button>
+				</Grid>
+			</Grid>
+		</Paper >
 	);
 }

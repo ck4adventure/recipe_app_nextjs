@@ -70,7 +70,7 @@ export const daily_log = {
 			shaped_prove_room_temp: 100,
 			shaped_prove_final_room_temp: 100,
 			bake_start_time: '2024-10-12 20:45:00-07',
-			bake_end_time: '2024-10-12 21:20:00-07'
+			bake_end_time: '2024-10-12 21:20:00-07' //failed, overproved
 		}
 
 	]

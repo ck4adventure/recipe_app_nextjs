@@ -1,5 +1,5 @@
 'use client'
-import { updateLeavenEndTime } from "@/app/_lib/actions";
+import { finishLeaven } from "@/app/_lib/actions";
 import { Box, Paper, Typography, Button, Link, TextField, FormControl } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import { QueryResultRow } from "pg";
@@ -68,7 +68,7 @@ export default function LeavenDisplaySection({ record }: { record: QueryResultRo
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		console.log("data to be submitted: ", formData)
-		// createLeavenLogAction(formData)
+		finishLeaven(record.id, formData.end_time || "", formData.end_temp || null)
 	}
 
 	return (
@@ -132,7 +132,7 @@ export default function LeavenDisplaySection({ record }: { record: QueryResultRo
 
 
 				{!isComplete && <Grid size={{ xs: 4, sm: 8, md: 12 }} display={'flex'} justifyContent={'center'}>
-					<Button type="submit" onClick={handleSubmit}>Update Leaven</Button>
+					<Button type="submit" onClick={handleSubmit}>Finish Leaven</Button>
 				</Grid>}
 			</Grid>
 		</Paper >

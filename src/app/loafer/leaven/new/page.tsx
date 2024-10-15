@@ -10,14 +10,13 @@
 // page has a bool at top for end time presence
 
 import LeavenCreateSection from '@/app/_ui/loafer/leaven_create_section';
-import { createStartedLeaven } from '@/app/_lib/actions';
 
 
 export default function Page() {
 
 	return (
 		<div className='flex flex-col items-center'>
-		<LeavenCreateSection createLeavenLogAction={createStartedLeaven} />
+		<LeavenCreateSection />
 		</div>
 	)
 }

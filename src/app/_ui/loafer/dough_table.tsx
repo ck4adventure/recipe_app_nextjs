@@ -8,11 +8,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { QueryResultRow } from "pg";
+import { DateTimeField } from "@mui/x-date-pickers";
+import dayjs, { Dayjs } from 'dayjs';
 
 export default function DoughTable({ data }: { data: QueryResultRow[] }) {
 	const displayTime = (ts: string) => {
 		const time = new Date(ts)
-		const month = time.getMonth()
+		const month = time.getMonth() + 1; //apparently months start at zero
 		const day = time.getDate()
 		const hours = time.getHours()
 		const minutes = time.getMinutes().toString()
@@ -28,7 +30,6 @@ export default function DoughTable({ data }: { data: QueryResultRow[] }) {
 						<TableCell>#</TableCell>
 						<TableCell align="left">Type</TableCell>
 						<TableCell align="left">Weight</TableCell>
-						<TableCell align="left">Start</TableCell>
 						<TableCell align="left">Finish</TableCell>
 					</TableRow>
 				</TableHead>
@@ -41,11 +42,6 @@ export default function DoughTable({ data }: { data: QueryResultRow[] }) {
 							<TableCell><Link href={`/loafer/dough/${res.id}`}>{res.id}</Link></TableCell>
 							<TableCell>{res.flour_blend[0].toUpperCase() + res.flour_blend.slice(1)}</TableCell>
 							<TableCell>{res.water_amt + res.flour_amt + res.leaven_amt}</TableCell>
-							<TableCell align="left">
-								<Link href={`/loafer/dough/${res.id}`}>
-									{displayTime(res.start_time)}
-								</Link>
-							</TableCell >
 							<TableCell align="left"><Link href={`/loafer/dough/${res.id}`}>{res.end_time ? displayTime(res.end_time) : "In progress"}</Link></TableCell>
 						</TableRow>
 

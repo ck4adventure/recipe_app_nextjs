@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { CREATE_DOUGH, CREATE_LEAVEN, UPDATE_LEAVEN_END_TIME, UPDATE_DOUGH_SALT_TIME, UPDATE_DOUGH_END_TIME } from './sqlQueriesLoafer'
+import { CREATE_DOUGH, CREATE_LEAVEN, UPDATE_DOUGH_SALT_TIME, UPDATE_DOUGH_END_TIME, FINISH_LEAVEN } from './sqlQueriesLoafer'
 import { revalidatePath } from 'next/cache';
 // Leaven
 // table should exist with the following columns:
@@ -57,15 +57,17 @@ export async function createStartedLeaven(formData: LeavenFormData) {
 	} catch (error) {
 		console.log(error)
 	}
-	revalidatePath("/loafer/")
+	revalidatePath('/')
 	redirect(`/loafer/`)
 }
 
-export const updateLeavenEndTime = async (id: number, time: string) => {
-	const result = await UPDATE_LEAVEN_END_TIME(id, time)
+export const finishLeaven = async (id: number, time: string, temp: number | null) => {
+	const result = await FINISH_LEAVEN(id, time, temp)
 	if (result) {
 		// Revalidate the page to fetch the latest data
 		revalidatePath(`/loafer/leaven/${id}`);
+		revalidatePath('/loafer')
+		redirect('/loafer')
 	}
 
 }
