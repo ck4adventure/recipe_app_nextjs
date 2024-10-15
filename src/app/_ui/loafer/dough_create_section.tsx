@@ -15,7 +15,6 @@ import Grid from "@mui/material/Grid2";
 import { DoughFormData } from "@/app/_lib/definitions";
 import { FlourBlend } from "@/app/_lib/definitions";
 
-
 // LeavenFormSection only deals with the data timestemps for creating the leaven
 export default function DoughCreateSection({ leavenID, createDoughAction }: { createDoughAction: (formData: DoughFormData) => void, leavenID: number }) {
 
@@ -129,7 +128,7 @@ export default function DoughCreateSection({ leavenID, createDoughAction }: { cr
 				</Grid>
 
 				<Grid size={{ xs: 4, sm: 8, md: 12 }} display={'flex'} justifyContent={'center'}>
-					<Button type="submit" onClick={handleSubmit}>Save Leaven</Button>
+					<Button type="submit" onClick={handleSubmit}>Save Dough</Button>
 				</Grid>
 			</Grid>
 		</Paper >
