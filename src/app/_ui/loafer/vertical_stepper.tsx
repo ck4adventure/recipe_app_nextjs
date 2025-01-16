@@ -11,6 +11,10 @@ import Typography from '@mui/material/Typography';
 
 const steps = [
   {
+    label: 'Create the leaven',
+    description: `200g flour + 200g water + 30g starter`,
+  },
+  {
     label: 'Create the dough',
     description: `Create and let autolyse. Timer for 25 - 60mins`,
   },
@@ -61,7 +65,7 @@ export default function VerticalLinearStepper() {
   };
 
   return (
-    <Box sx={{ maxWidth: 400 }}>
+    <Box sx={{ width: 600 }}>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label}>
@@ -79,7 +83,7 @@ export default function VerticalLinearStepper() {
               <Box sx={{ mb: 2 }}>
                 <Button
                   variant="contained"
-                  onClick={handleNext}
+                  onClick={handleNext} 
                   sx={{ mt: 1, mr: 1 }}
                 >
                   {index === steps.length - 1 ? 'Finish' : 'Continue'}
