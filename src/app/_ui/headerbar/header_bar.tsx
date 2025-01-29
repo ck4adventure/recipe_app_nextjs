@@ -26,11 +26,13 @@ export default function HeaderBar() {
   };
 	return (
 		<div data-cy='headerbar' className="flex justify-between bg-white items-center m-4 border-b-2">
+
 			<div>
 				<div className="m-2"><Link href="/"><Image src="/app/star_logo_large.png" className='logo' width="48" height="48" alt="The character Brain from the WB show" /></Link> </div>
-
 			</div>
-			<div className='flex flex-row'>
+			
+
+			<div className='flex flex-row justify-between'>
 				<div className='m-2'>
 					<Button
 						variant='text'
@@ -50,7 +52,8 @@ export default function HeaderBar() {
 						<MenuItem className="m-2" onClick={handleLoaferClose}><Link href="/loafer/loaves/">Loaves</Link> </MenuItem>
 					</Menu>
 				</div>
-				{/* <div className='m-2'>
+
+				<div className='m-2'>
 					<Button
 						variant='text'
 						aria-controls="simple-menu"
@@ -68,7 +71,7 @@ export default function HeaderBar() {
 						<MenuItem className="m-2" onClick={handleRecipesClose}><Link href="/authors/">Authors</Link> </MenuItem>
 						<MenuItem className="m-2" onClick={handleRecipesClose}><Link href="/sources/">Sources</Link> </MenuItem>
 					</Menu>
-				</div> */}
+				</div>
 			</div>
 		</div>
 	)

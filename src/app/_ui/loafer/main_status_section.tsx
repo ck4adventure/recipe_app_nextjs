@@ -11,19 +11,17 @@ export const StatusSection = () => {
 		setModalIsOpen(false)
 	}
 	return (
-		<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} margin={{ xs: 2, md: 4 }}>
-			<Grid size={{ xs: 4, sm: 8, md: 12 }}>
-				<Paper elevation={6} sx={{ margin: 2, minHeight: 100, display: 'flex', flexDirection: "column", alignItems: "center", justifyContent: "space-between" }}>
+		<Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} margin={{ xs: 2, md: 4 }} justifyContent={'center'}>
+			<Grid size={{ xs: 4, sm: 8, md: 8 }}>
+				<Paper elevation={2} sx={{ margin: 2, minHeight: 100, display: 'flex', flexDirection: "column", alignItems: "center", justifyContent: "space-between" }}>
 					<Typography sx={{ margin: 2 }}>Nothing currently in progress.</Typography>
-					<Typography sx={{ margin: 2 }}><Button variant='contained' onClick={() => setModalIsOpen(true)}>Bake!</Button></Typography>
+					<div className='flex justify-between'>
+						<NewLeavenButton />
+						<NewDoughButton />
+					</div>
 				</Paper>
 			</Grid>
-			<StandardModal onClose={handleModalClose} isOpen={modalIsOpen}>
-				<div>
-					<NewLeavenButton />
-					<NewDoughButton />
-				</div>
-			</StandardModal>
+
 		</Grid>
 	)
 }
