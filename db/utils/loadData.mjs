@@ -7,7 +7,7 @@ import path from 'path';
 import yaml from 'yaml';
 import authorsData from '../../data/authors-sources.json' assert { type: "json" };
 import categoriesData from '../../data/categories.json' assert { type: "json" };
-import foods from '../../../data/foods.json' assert { type: "json" };
+import foods from '../../data/foods.json' assert { type: "json" };
 
 
 const dataDir = path.join(process.cwd(), 'data');

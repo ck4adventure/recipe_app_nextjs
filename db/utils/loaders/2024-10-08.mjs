@@ -1,0 +1,37 @@
+// completed_logs hold my data day to day as I work towards a complete feature
+export const completed_logs = [{
+	leaven_start_time: '2024-10-08 08:45:00-07', 
+	leaven_water_temp: 72,
+	leaven_room_temp_start: 70, 
+	leaven_room_temp_finish: 72,
+	dough_create_blend: 'cottage',
+	dough_creation_time: '2024-10-08 16:15:00-07',
+	dough_create_flour_g: 1000,
+	dough_create_leaven_g: 200,
+	dough_create_water_ml: 740,
+	dough_create_water_temp: 83,
+	dough_create_room_temp_start: 80,
+	salt_loaf_time: '2024-10-08 16:40:00-07',
+	salt_loaf_water_temp: 90,
+	salt_loaf_room_temp: 79,
+	turns: [
+		'2024-10-08 17:15:00-07',
+		'2024-10-08 17:45:00-07',
+		'2024-10-08 19:00:00-07',
+		'2024-10-08 19:30:00-07',
+		'2024-10-08 20:10:00-07',
+		],
+	turns_final_temp: 76,
+	bench_rest_start_time: '2024-10-08 21:30:00-07',
+	bench_rest_room_temp: 74,
+	shaped_prove_start_time: '2024-10-08 22:00:00-07',
+	shaped_prove_room_temp: 42,
+	shaped_prove_final_room_temp: 42,
+	shaped_loaf_1: '3 little tins',
+	shaped_loaf_2: '1 bin tin',
+	shaped_loaf_3: '4 part tear n share', // 200 gram loaves
+	loaf_1_bake_start_time: '2024-10-09 07:15:00-07', // bake times not certain
+	loaf_1_bake_end_time: '2024-10-09 08:00:00-07', 
+	loaf_2_bake_start_time: '2024-10-09 07:15:00-07', 
+	loaf_2_bake_end_time: '2024-10-09 08:00:00-07', 
+}]

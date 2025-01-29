@@ -3,6 +3,13 @@
 export const dropTables = async (pool) => {
 	try {
 		await pool.query(`
+			DROP TABLE IF EXISTS dough;
+			DROP TYPE IF EXISTS flour_blend_type;
+	`);
+		await pool.query(`
+			DROP TABLE IF EXISTS leaven;
+	`);
+		await pool.query(`
 		  DROP TABLE IF EXISTS recipe_steps;
 		`);
 		await pool.query(`
@@ -13,6 +20,10 @@ export const dropTables = async (pool) => {
 	`);
 		await pool.query(`
 	  DROP TABLE IF EXISTS recipes;
+	`);
+
+		await pool.query(`
+		DROP TABLE IF EXISTS foods
 	`);
 		await pool.query(`
 	  DROP TABLE IF EXISTS categories;
