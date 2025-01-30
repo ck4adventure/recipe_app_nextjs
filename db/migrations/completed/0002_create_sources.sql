@@ -1,6 +1,6 @@
 BEGIN;
 
-CREATE TYPE sourcetyp AS ENUM ('BOOK', 'SITE', 'PERSONAL');
+CREATE TYPE sourcetyp AS ENUM ('BOOK', 'SITE', 'PERSONAL', 'OTHER');
 
 CREATE TABLE sources (
 		id serial primary key,
