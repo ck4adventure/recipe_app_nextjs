@@ -1,13 +1,14 @@
 BEGIN;
 
+-- key_name VARCHAR(255) NOT NULL CONSTRAINT key_name_unique UNIQUE,
+
 CREATE TABLE IF NOT EXISTS ingrs (
 		id SERIAL PRIMARY KEY,
 		created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
-		key_name VARCHAR(255) NOT NULL CONSTRAINT key_name_unique UNIQUE,
-		label VARCHAR(255) NOT NULL,
-		packaged_name VARCHAR(255) NULL,
 		brand VARCHAR(255) NULL,
+		packaged_name VARCHAR(255) NULL,
+		label_name VARCHAR(255) NOT NULL,
 		ingredients TEXT[] NOT NULL,
 		allergens TEXT[],
 		CONSTRAINT check_valid_allergens CHECK (

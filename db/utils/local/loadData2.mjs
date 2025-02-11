@@ -2,7 +2,7 @@
 // author name then types, then source title, finally recipes
 // and insert them into the database
 
-import { sampleData } from './loaders/load_sample_logs.mjs';
+import { sampleData } from '../loaders/load_sample_logs.mjs';
 
 export const loadData2 = async (client) => {
 	try {
