@@ -3,6 +3,7 @@ export const createIngrsTable = async (client) => {
 		id SERIAL PRIMARY KEY,
 		created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
+		category VARCHAR(255) NOT NULL,
 		brand VARCHAR(255) NULL,
 		packaged_name VARCHAR(255) NULL,
 		label_name VARCHAR(255) NOT NULL,

@@ -11,13 +11,14 @@ export const loadIngrsLocal = async (client) => {
 			const item = chocolates[key];
       await client.query(
         `INSERT INTO ingrs (
+					category,
 					brand, 
 					packaged_name, 
 					label_name, 
 					ingredients, 
 					allergens
-			) VALUES ($1, $2, $3, $4, $5)`,
-        [item.brand, item.name, item.label, item.ingredients, item.allergens]
+			) VALUES ($1, $2, $3, $4, $5, $6)`,
+        ['chocolate', item.brand, item.name, item.label, item.ingredients, item.allergens]
       );
     }
 		console.log("ingrs loaded")

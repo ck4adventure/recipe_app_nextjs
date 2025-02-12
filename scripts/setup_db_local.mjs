@@ -11,10 +11,10 @@ const setupDB = async () => {
 	console.log("pool connected");
 	try {
 		// await dropLocalTables(client);
-		// await migrateLocalTables(client);
+		await migrateLocalTables(client);
 		// await loadLocalData(client);
 		// await loadData2(client);
-		// await loadIngrsLocal(client);
+		await loadIngrsLocal(client);
 	} catch (error) {
 		console.error(error);
 		throw error;
