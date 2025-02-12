@@ -1,6 +1,6 @@
-import { FoodsData } from "../types";
 
-const chocolates: FoodsData = {
+
+const chocolates = {
 	"cocoa_powder": {
 		brand: "Hersheys",
 		name: "Hershey's cocoa powder",

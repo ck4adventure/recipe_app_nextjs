@@ -1,18 +1,20 @@
 import { pool } from '../db/db.mjs'
-import { dropLocalTables } from '../db/utils/local/drop.mjs'
+// import { dropLocalTables } from '../db/utils/local/drop.mjs'
 import { migrateLocalTables } from '../db/utils/local/migrate.mjs';
-import { loadLocalData } from '../db/utils/local/loadData.mjs';
+// import { loadLocalData } from '../db/utils/local/loadData.mjs';
 // import { loadData2 } from '../db/utils/local/loadData2.mjs';
+import { loadIngrsLocal } from '../db/utils/local/loadIngrsLocal.mjs';
 
 // sets up LOCAL PG instance according to that syntax
 const setupDB = async () => {
 	const client = await pool.connect();
 	console.log("pool connected");
 	try {
-		await dropLocalTables(client);
-		await migrateLocalTables(client);
-		await loadLocalData(client);
+		// await dropLocalTables(client);
+		// await migrateLocalTables(client);
+		// await loadLocalData(client);
 		// await loadData2(client);
+		// await loadIngrsLocal(client);
 	} catch (error) {
 		console.error(error);
 		throw error;

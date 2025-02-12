@@ -6,14 +6,14 @@ import path from 'path';
 // catch any errors
 // and finallly end the client connection
 // migrateTables takes a pool/client and runs all sql migrations in numerical order
-export const migrateTables = async (pool) => {
+export const migrateLocalTables = async (pool) => {
 	try {
 
-		const files = fs.readdirSync(path.join(process.cwd(), 'db', 'migrations'));
+		const files = fs.readdirSync(path.join(process.cwd(), 'db', 'migrations', 'todo'));
 		const sortedFiles = files.sort((a, b) => a.split('_')[0] - b.split('_')[0]);
 		// read and run each file		
 		for (const file of sortedFiles) {
-			const sql = fs.readFileSync(path.join(process.cwd(), 'db', 'migrations', file), 'utf-8');
+			const sql = fs.readFileSync(path.join(process.cwd(), 'db', 'migrations', 'todo', file), 'utf-8');
 			await pool.query(sql);
 			console.log(`Migrated ${file}`);
 		}
