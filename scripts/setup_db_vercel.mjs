@@ -1,18 +1,15 @@
 import { createClient } from '@vercel/postgres';
-
-import { dropTables } from '../db/utils/drop_vercel.mjs';
-import { migrateTables } from '../db/utils/migrate_vercel.mjs';
-import { loadAuthorsAndSources } from '../db/utils/loaders/load_authors_sources.mjs';
-import { loadCategories } from '../db/utils/loaders/load_categories.mjs';
-import { loadFoods } from '../db/utils/loaders/load_foods.mjs';
-import { loadRecipes } from '../db/utils/loaders/load_recipes.mjs';
-// import { loadSampleLogs } from '../db/utils/loaders/load_sample_logs.mjs';
-
 import dotenv from 'dotenv';
+
+import { dropTables } from '../db/utils/vercel/drop_vercel.mjs';
+import { migrateTables } from '../db/utils/vercel/migrate_vercel.mjs';
+import { loadDataVercel } from '../db/utils/vercel/load_vercel.mjs';
+
 
 // Load environment variables from .env file
 dotenv.config();
 
+// sets up VERCEL NEON instance in the cloud
 const setupDB = async () => {
 	// console.log("setting up db", process.env.POSTGRES_URL_NON_POOLING);
 	const client = createClient({
@@ -21,13 +18,11 @@ const setupDB = async () => {
 	try {
 		await client.connect();
 		console.log("client connected");
+
 		await dropTables(client);
 		await migrateTables(client);
-		await loadAuthorsAndSources(client);
-		await loadCategories(client);
-		await loadFoods(client);
-		await loadRecipes(client);
-		// await loadSampleLogs(client);
+		await loadDataVercel(client);
+
 		console.log("all scripts run");
 	} catch (error) {
 		console.error(error);

@@ -1,4 +1,4 @@
-import authorsData from '../../../data/authors-sources.json' assert { type: "json" };
+import authorsData from '../../../../data/authors-sources.json' assert { type: "json" };
 
 export const loadAuthorsAndSources = async (client) => {
 

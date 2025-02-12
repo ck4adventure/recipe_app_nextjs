@@ -1,4 +1,4 @@
-import foods from '../../../data/foods.json' assert { type: "json" };
+import foods from '../../../../data/foods.json' assert { type: "json" };
 export const loadFoods = async (client) => {
 	try {
 		for (const food of foods) {

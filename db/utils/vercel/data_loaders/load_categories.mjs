@@ -1,4 +1,4 @@
-import categoriesData from '../../../data/categories.json' assert { type: "json" };
+import categoriesData from '../../../../data/categories.json' assert { type: "json" };
 
 export const loadCategories = async (client) => {
 

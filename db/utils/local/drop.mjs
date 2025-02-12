@@ -1,6 +1,6 @@
 // dropTables takes a pool (or client) and drops all tables in the database
 
-export const dropTables = async (pool) => {
+export const dropLocalTables = async (pool) => {
 	try {
 		await pool.query(`
 		DROP TABLE IF EXISTS ingrs
