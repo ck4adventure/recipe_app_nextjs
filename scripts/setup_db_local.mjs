@@ -1,5 +1,5 @@
 import { pool } from '../db/db.mjs'
-// import { dropLocalTables } from '../db/utils/local/drop.mjs'
+import { dropLocalTables } from '../db/utils/local/drop.mjs'
 import { migrateLocalTables } from '../db/utils/local/migrate.mjs';
 // import { loadLocalData } from '../db/utils/local/loadData.mjs';
 // import { loadData2 } from '../db/utils/local/loadData2.mjs';
@@ -10,7 +10,7 @@ const setupDB = async () => {
 	const client = await pool.connect();
 	console.log("pool connected");
 	try {
-		// await dropLocalTables(client);
+		await dropLocalTables(client);
 		await migrateLocalTables(client);
 		// await loadLocalData(client);
 		// await loadData2(client);

@@ -8,13 +8,15 @@ export const loadIngrsData = async (client) => {
 			const item = chocolates[key];
 			await client.sql`INSERT INTO ingrs (
 					category,
+					slug,
 					brand, 
 					packaged_name, 
 					label_name, 
 					ingredients, 
 					allergens
 			) VALUES (        
-					'chocolate',  
+					'chocolate',
+					${key},
 					${item.brand}, 
           ${item.name}, 
           ${item.label}, 

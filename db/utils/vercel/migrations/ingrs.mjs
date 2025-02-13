@@ -1,9 +1,12 @@
+// TODO NEED TO ADD SLUG aka KEY, UNIQUE
+
 export const createIngrsTable = async (client) => {
 	await client.sql`CREATE TABLE IF NOT EXISTS ingrs (
 		id SERIAL PRIMARY KEY,
 		created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
 		category VARCHAR(255) NOT NULL,
+		slug VARCHAR(255) NOT NULL CONSTRAINT ingr_slug_unique UNIQUE,
 		brand VARCHAR(255) NULL,
 		packaged_name VARCHAR(255) NULL,
 		label_name VARCHAR(255) NOT NULL,

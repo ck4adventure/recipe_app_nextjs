@@ -12,18 +12,19 @@ export const loadIngrsLocal = async (client) => {
       await client.query(
         `INSERT INTO ingrs (
 					category,
+					slug,
 					brand, 
 					packaged_name, 
 					label_name, 
 					ingredients, 
 					allergens
-			) VALUES ($1, $2, $3, $4, $5, $6)`,
-        ['chocolate', item.brand, item.name, item.label, item.ingredients, item.allergens]
+			) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        ['chocolate', key, item.brand, item.name, item.label, item.ingredients, item.allergens]
       );
     }
 		console.log("ingrs loaded")
 	} catch (error) {
-		console.error('Error loading authors and sources', error);
+		console.error('Error loading ingrs', error);
 		throw error;
 	}
 
