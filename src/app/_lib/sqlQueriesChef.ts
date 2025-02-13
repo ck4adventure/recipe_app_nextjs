@@ -13,7 +13,7 @@ export const GET_INGR_BY_SLUG = async (slug: string) => {
 	const results = await sql`
 		SELECT *
 		FROM ingrs
-		WHERE keyname = ${slug}
+		WHERE slug = ${slug}
 	`
 	return results.rows[0]
 }

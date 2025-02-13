@@ -6,8 +6,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	return (
 		<div className=''>
 			<div data-cy='ingrs-item'>
-				<h1>Ingredients Item Page</h1>
-				{/* form field with all data for editing */}
+				<h1>{ingr.packaged_name}</h1>
+				<p>Brand: {ingr.brand}</p>
 			</div>
 		</div>
 	);
