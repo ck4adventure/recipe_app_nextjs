@@ -9,6 +9,8 @@ export const loadIngrsLocal = async (client) => {
 		const keys = Object.keys(chocolates);
 		for (const key of keys) {
 			const item = chocolates[key];
+			console.log("proc: ", key)
+			if (!item.allergens) item.allergens = [];
       await client.query(
         `INSERT INTO ingrs (
 					category,

@@ -6,6 +6,8 @@ export const loadIngrsData = async (client) => {
 		const keys = Object.keys(chocolates);
 		for (const key of keys) {
 			const item = chocolates[key];
+			console.log('processing: ', key)
+			if (!item.allergens) item.allergens = [];
 			await client.sql`INSERT INTO ingrs (
 					category,
 					slug,

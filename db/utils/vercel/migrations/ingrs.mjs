@@ -5,20 +5,18 @@ export const createIngrsTable = async (client) => {
 		id SERIAL PRIMARY KEY,
 		created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
-		category VARCHAR(255) NOT NULL,
+		category VARCHAR(255) NOT NULL DEFAULT 'misc.',
 		slug VARCHAR(255) NOT NULL CONSTRAINT ingr_slug_unique UNIQUE,
 		brand VARCHAR(255) NULL,
 		packaged_name VARCHAR(255) NULL,
 		label_name VARCHAR(255) NOT NULL,
 		ingredients TEXT[] NOT NULL,
-		allergens TEXT[],
+		allergens TEXT[] NOT NULL DEFAULT '{}',
 		CONSTRAINT check_valid_allergens CHECK (
-        allergens IS NULL OR (
-            allergens <@ ARRAY[
-                'milk', 'eggs', 'fish', 'shellfish', 'tree nuts', 
-                'peanuts', 'wheat', 'soy', 'sesame'
-            ]::TEXT[]
-        )
+				allergens <@ ARRAY[
+						'milk', 'eggs', 'fish', 'shellfish', 'tree nuts', 
+						'peanuts', 'wheat', 'soy', 'sesame'
+				]::TEXT[]
     )
 	);`
 
