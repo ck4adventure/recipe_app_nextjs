@@ -19,18 +19,20 @@ const setupDB = async () => {
 		await client.connect();
 		console.log("client connected");
 
-		await dropTables(client);
-		await migrateTables(client);
+		// await dropTables(client);
+		// await migrateTables(client);
 		await loadDataVercel(client);
 
 		console.log("all scripts run");
+		await client.end();
 	} catch (error) {
 		console.error(error);
 		throw error;
-	} finally {
-		await client.end();
-		console.log("client should be closed now");
-	}
+	} 
+	// finally {
+	// 	await client.end();
+	// 	console.log("client should be closed now");
+	// }
 }
 
 setupDB();

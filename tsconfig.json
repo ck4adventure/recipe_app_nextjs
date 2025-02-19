@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "db/index.mjs", "db/db.mjs", "db/test/recipes.test.mjs", "db/test/categories.spec.mjs", "db/utils/local/drop.mjs", "test/hooks.mjs", "recipe_store/ingrs/chocolates.mjs"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "db/index.mjs", "db/db.mjs", "db/test/recipes.test.mjs", "db/test/categories.spec.mjs", "db/utils/local/drop.mjs", "test/hooks.mjs"],
+  "exclude": ["node_modules", "recipe_store"]
 }
