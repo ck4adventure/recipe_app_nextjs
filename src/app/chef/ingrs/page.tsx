@@ -12,12 +12,12 @@ export default async function Page() {
 	return (
 		<div className=''>
 			<div data-cy='ingrs-index'>
-				<div className="mx-8 my-1 flex justify-center border border-teal-200">
+				<div className="mx-8 my-1 flex justify-center">
 					<h1>Ingredients</h1>
 				</div>
-				<div className="flex flex-wrap border border-blue-400 m-8">
+				<div className="flex flex-wrap">
 					{groupedIngrs && groupedIngrs.map(obj => (
-						<div className="border border-red-300 m-4 max-w-[250px]" key={obj.category}>
+						<div className="m-4 max-w-[250px]" key={obj.category}>
 							<div className="font-medium capitalize">{obj.category}</div>
 							<div>{obj.items.map((item: any) => (
 								<div key={item.id} className="my-0">

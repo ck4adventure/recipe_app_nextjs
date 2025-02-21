@@ -3,7 +3,7 @@
 // import { loadFoods } from '../db/utils/loaders/vercel/load_foods.mjs';
 // import { loadRecipes } from '../db/utils/loaders/vercel/load_recipes.mjs';
 // import { loadSampleLogs } from '../db/utils/loaders/vercel/load_sample_logs.mjs';
-import { loadIngrsData } from "./data_loaders/load_ingrs.mjs";
+// import { loadIngrsData } from "./data_loaders/load_ingrs.mjs";
 
 export const loadDataVercel = async (client) => {
 		// await loadAuthorsAndSources(client);
@@ -12,5 +12,5 @@ export const loadDataVercel = async (client) => {
 		// await loadRecipes(client);
 		// await loadSampleLogs(client);
 
-		await loadIngrsData(client);
+		// await loadIngrsData(client);
 }

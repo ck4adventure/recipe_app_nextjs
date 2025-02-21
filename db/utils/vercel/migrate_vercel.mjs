@@ -10,6 +10,7 @@
 // import { createCategoriesTable } from "./migrations/categories.mjs";
 // import { createDoughTable } from "./migrations/dough.mjs";
 // import { createFoodsTable } from "./migrations/foods.mjs";
+import { createChefsRecipesTable } from "./migrations/chefs_recipes.mjs";
 import { createIngrsTable } from "./migrations/ingrs.mjs";
 // import { createLeavenTable } from "./migrations/leaven.mjs";
 // import { createRecipeIngredientsTable } from "./migrations/recipe_ingredients.mjs";
@@ -37,8 +38,13 @@ export const migrateTables = async (client) => {
 		// await createLeavenTable(client);
 		// await createDoughTable(client);
 
-		// chef
-		await createIngrsTable(client);
+		// ingrs
+		// await createIngrsTable(client);
+
+		// chefs_recipes
+		await createChefsRecipesTable();
+
+		// chefs_recipes_inrs
 		
 		console.log('Tables migrated successfully');
 	} catch (error) {
