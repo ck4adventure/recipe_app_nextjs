@@ -8,10 +8,10 @@ const MAPLE_BOURBON_PECAN = {
 		{qty: 71, unit: "gram", name: "plugra-euro-unsalted-butter"},
 		{qty: 100, unit: "gram", name: "ch-brown-sugar"},
 		{qty: 1, unit: "Tablespoon", name: "ap-flour"},
-		{qty: 2, unit: "teaspoon", name: "vanilla-extract"},
+		{qty: 2, unit: "teaspoon", name: "mccormick-vanilla-extract"},
 		{qty: 0.5, unit: "teaspoon", name: "kosher-salt"},
-		{qty: 3, unit: "whole", name: "pasteurized-egg"},
-		{qty: 1, unit: Unit.Cup, name: "maple-syrup"},
+		{qty: 3, unit: "whole", name: "james-farms-pasteurized-eggs"},
+		{qty: 1, unit: "cup", name: "safeway-o-maple-syrup"},
 	],
 	directions: [
 		"Melt butter, add brown sugar and flour and mix until thick paste",

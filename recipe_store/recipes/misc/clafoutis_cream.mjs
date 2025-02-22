@@ -9,14 +9,14 @@ const CLAFOUTIS_CREAM = {
 		{ qty: 50, unit: "gram", name: "ch-caster-sugar" },
 		{ qty: 15, unit: "gram", name: "almond-flour" },
 		{ qty: 15, unit: "gram", name: "ap-flour" },
-		{ qty: 50, unit: "milliliter", name: "milk" },
-		{ qty: 100, unit: "gram", name: "quark" },
-		{ qty: 1, unit: "teaspoon", name: "vanilla-extract" },
+		{ qty: 50, unit: "milliliter", name: "lucerne-milk" },
+		{ qty: 100, unit: "gram", name: "homemade-quark" },
+		{ qty: 1, unit: "teaspoon", name: "mccormick-vanilla-extract" },
 	],
 	directions: [
 		"Mix the egg, egg yolk, and caster sugar together",
 		"Add the almond flour and the plain flour and mix",
-		"Add the milk and then the quark",
+		"Add the milk and then the homemade-quark",
 		"Use a whisk to stire all of the ingredients together until you have a smooth mixture",
 		"Add the vanilla extract to taste"
 	],

@@ -116,8 +116,8 @@ const misc_ingredients = {
 		label: "sugar",
 		ingredients: ["sugar"]
 	},
-	"golden-caster-sugar": {
-		brand: "",
+	"ch-golden-caster-sugar": {
+		brand: "C&H",
 		name: "golden caster sugar",
 		label: "golden caster sugar",
 		ingredients: ["sugar"]

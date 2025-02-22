@@ -4,7 +4,7 @@ const APRICOT_JELLY = {
 	title: "Apricot Jelly",
 	label: "apricot jelly",
 	ingredients: [
-		{ qty: 1, unit: "whole", name: "apricot_jam", note: "entire jar or portion thereof" },
+		{ qty: 1, unit: "whole", name: "bonne-maman-apricot-jam", note: "entire jar or portion thereof" },
 		{ qty: 10, unit: "percent", name: "water", note: "10% of jams volume" },
 
 	],

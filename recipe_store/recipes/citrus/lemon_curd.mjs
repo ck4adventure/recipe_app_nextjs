@@ -7,7 +7,7 @@ const LEMON_CURD = {
 		{ qty: 100, unit: "milliliter", name: "lemon-juice", note: "2-3 lemons" },
 		{ qty: 1, unit: "Tablespoon", name: "lemon-zest", note: "take from 1/2 lemon before squeezing"},
 		{ qty: 90, unit: "gram", name: "ch-caster-sugar"},
-		{ qty: 6, unit: "Tablespoon", name: "pasteurized-egg", note: "roughly 100-115 grams" },
+		{ qty: 6, unit: "Tablespoon", name: "james-farms-pasteurized-eggs", note: "roughly 100-115 grams" },
 		{ qty: 110, unit: "gram", name: "plugra-euro-unsalted-butter" },
 
 	],

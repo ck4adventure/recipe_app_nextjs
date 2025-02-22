@@ -36,7 +36,7 @@ const dairy_ingredients = {
 		ingredients: ["cultured milk"],
 		allergens: ["milk"]
 	},
-	"lucerrne-milk": {
+	"lucerne-milk": {
 		brand: "lucerne",
 		name: "whole milk",
 		label: "whole milk",
@@ -76,6 +76,13 @@ const dairy_ingredients = {
 		name: "extra cream unsalted butter",
 		label: "unsalted butter",
 		ingredients: ["cream", "natural flavors"],
+		allergens: ["milk"]
+	},
+	"plugra-euro-salted-butter": {
+		brand: "plugra",
+		name: "extra cream salted butter",
+		label: "salted butter",
+		ingredients: ["cream", "salt", "natural flavors"],
 		allergens: ["milk"]
 	}
 }

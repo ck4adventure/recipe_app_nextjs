@@ -4,7 +4,7 @@ const ITALIAN_MERINGUE = {
 	title: "Italian Meringue",
 	label: "meringue",
 	ingredients: [
-		{ qty: 90, unit: "gram", name: "egg_white", note: "about 3 eggs" },
+		{ qty: 90, unit: "gram", name: "egg-white", note: "about 3 eggs" },
 		{ qty: 50, unit: "milliliter", name: "water" },
 		{ qty: 200, unit: "gram", name: "ch-caster-sugar" },
 	],

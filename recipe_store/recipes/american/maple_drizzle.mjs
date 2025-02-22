@@ -4,9 +4,9 @@ const MAPLE_BOURBON_DRIZZLE = {
 	title: "Maple Bourbon Drizzle",
 	label: "maple bourbon drizzle",
 	ingredients: [
-		{qty: .66, unit: Unit.Cup, name: "ch-icing-sugar"},
-		{qty: .25, unit: Unit.Cup, name: "maple-syrup"},
-		{qty: 1, unit: "Tablespoon", name: "bourbon"},
+		{qty: .66, unit: "cup", name: "ch-icing-sugar"},
+		{qty: .25, unit: "cup", name: "safeway-o-maple-syrup"},
+		{qty: 1, unit: "Tablespoon", name: "jim-beam-bourbon"},
 	],
 	directions: [
 		"Melt butter, add brown sugar and flour and mix until thick paste",

@@ -5,7 +5,7 @@ const MILKCHOC_AMARETTO_GANACHE = {
 	label: "chocolate amaretto ganache",
 	ingredients: [
 		{ qty: 80, unit: "gram", name: "ghirardelli-milk-chocolate" },
-		{ qty: 110, unit: "gram", name: "marzipan", note: "chopped" },
+		{ qty: 110, unit: "gram", name: "odense-marzipan", note: "chopped" },
 		{ qty: 45, unit: "milliliter", name: "lucerne-heavy-cream" },
 		{ qty: 15, unit: "milliliter", name: "amaretto" },
 	],

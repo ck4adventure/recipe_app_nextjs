@@ -11,7 +11,7 @@ const SPECULAAS_CRUMBLE = {
 		{ qty: 1, unit: "gram", name: "kosher-salt", note: "pinch" },
 		{ qty: 1, unit: "gram", name: "baking-powder", note: "pinch"},
 		{ qty: 50, unit: "gram", name: "plugra-euro-unsalted-butter", note: "cold" },
-		{ qty: 10, unit: "milliliter", name: "milk" },
+		{ qty: 10, unit: "milliliter", name: "lucerne-milk" },
 		{ qty: 10, unit: "gram", name: "egg", note: "beaten" },
 
 	],

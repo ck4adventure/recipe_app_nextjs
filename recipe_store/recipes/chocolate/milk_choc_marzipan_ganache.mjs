@@ -5,7 +5,7 @@ const MILKCHOC_MARZIPAN_GANACHE = {
 	label: "chocolate almond ganache",
 	ingredients: [
 		{ qty: 80, unit: "gram", name: "ghirardelli-milk-chocolate" },
-		{ qty: 110, unit: "gram", name: "marzipan", note: "chopped" },
+		{ qty: 110, unit: "gram", name: "odense-marzipan", note: "chopped" },
 		{ qty: 45, unit: "milliliter", name: "lucerne-heavy-cream" },
 		{ qty: 1, unit: "drop", name: "mccormick-almond-extract" },
 	],

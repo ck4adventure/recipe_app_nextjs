@@ -1,4 +1,4 @@
-import { Recipe, Unit } from "../../types";
+ 
 const CHOCO_CHIP_COOKIE = {
 	id: "CHOCO_CHIP_COOKIE",
 	title: "Chocolate Chip Cookie",
@@ -12,8 +12,8 @@ const CHOCO_CHIP_COOKIE = {
 		{ qty: 227, unit: "gram", name: "ch-light-brown-sugar" },
 		{ qty: 50, unit: "gram", name: "egg", note: "1 whole egg" },
 		{ qty: 20, unit: "gram", name: "egg-yolk", note: "1 yolk" },
-		{ qty: 30, unit: "milliliter", name: "milk" },
-		{ qty: 8, unit: "milliliter", name: "vanilla-extract" },
+		{ qty: 30, unit: "milliliter", name: "lucerne-milk" },
+		{ qty: 8, unit: "milliliter", name: "mccormick-vanilla-extract" },
 		{ qty: 340, unit: "gram", name: "ghirardelli-semisweet-chocolate" },
 	],
 	directions: [
