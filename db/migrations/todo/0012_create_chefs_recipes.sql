@@ -5,8 +5,8 @@ BEGIN;
 -- // ingredients []{ qty, measure, ingredient }
 -- // directions []text
 
-CREATE TYPE measure_type AS ENUM ("drop", "g", "ml", "l", "tsp", "Tbsp", "whole",
-  "pinch", "percent", "piece", "cup", "ounce");
+CREATE TYPE measure_type AS ENUM ('drop', 'g', 'ml', 'l', 'tsp', 'Tbsp', 'whole',
+  'pinch', 'percent', 'piece', 'cup', 'ounce');
 
 CREATE TABLE if NOT EXISTS chefs_recipes (
 		id SERIAL PRIMARY KEY,
@@ -28,5 +28,16 @@ CREATE TABLE if NOT EXISTS chefs_recipe_ingrs (
 		ingr_id INT REFERENCES ingrs(id),
 		note TEXT
 );
+
+-- Create a trigger to automatically update the updated_at column on update
+CREATE TRIGGER update_chefs_recipes_updated_at
+BEFORE UPDATE ON chefs_recipes
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();
+
+CREATE TRIGGER update_chefs_recipes_ingrs_updated_at
+BEFORE UPDATE ON chefs_recipe_ingrs
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();
 
 COMMIT;

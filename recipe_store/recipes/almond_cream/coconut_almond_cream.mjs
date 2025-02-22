@@ -1,16 +1,14 @@
-import { Recipe, Unit } from '../../types'
-
-const COCONUT_ALMOND_CREAM: Recipe = {
+const COCONUT_ALMOND_CREAM = {
 	id: "COCONUT_ALMOND_CREAM",
 	title: "Coconut Almond Cream",
 	label: "coconut almond cream",
 	ingredients: [
-		{ qty: 50, unit: Unit.Gram, name: "almond_flour" },
-		{ qty: 50, unit: Unit.Gram, name: "unsalted_butter", note: "at room temperature" },
-		{ qty: 25, unit: Unit.Gram, name: "coconut_flour" },
-		{ qty: 50, unit: Unit.Gram, name: "icing_sugar" },
-		{ qty: 1, unit: Unit.Whole, name: "egg" },
-		{ qty: 5, unit: Unit.Gram, name: "cornstarch" }
+		{ qty: 50, unit: "gram", name: "almond-flour" },
+		{ qty: 50, unit: "gram", name: "plugra-euro-unsalted-butter", note: "at room temperature" },
+		{ qty: 25, unit: "gram", name: "coconut-flour" },
+		{ qty: 50, unit: "gram", name: "ch-icing-sugar" },
+		{ qty: 1, unit: "whole", name: "egg" },
+		{ qty: 5, unit: "gram", name: "cornstarch" }
 	],
 	directions: [
 		"Preheat the oven to 140CFan/150C/300F",
