@@ -6,14 +6,14 @@ const CARAMELIZED_MANGO = {
 	ingredients: [
 		{ qty: 0.5, unit: "whole", name: "lemon-zest" },
 		{ qty: 0.5, unit: "whole", name: "orange-zest" },
-		{ qty: 10, unit: "milliliter", name: "lemon-juice" },
+		{ qty: 10, unit: "ml", name: "lemon-juice" },
 		{ qty: 2, unit: "whole", name: "passion-fruit" },
 		{ qty: 0.5, unit: "whole", name: "vanilla-pod" },
-		{ qty: 40, unit: "gram", name: "plugra-euro-unsalted-butter" },
-		{ qty: 30, unit: "gram", name: "ch-brown-sugar" },
-		{ qty: 250, unit: "gram", name: "mango", note: "defrosted" },
+		{ qty: 40, unit: "g", name: "plugra-euro-unsalted-butter" },
+		{ qty: 30, unit: "g", name: "ch-brown-sugar" },
+		{ qty: 250, unit: "g", name: "mango", note: "defrosted" },
 	],
-	directions: [
+	steps: [
 		"Grate the zest of half a lemon and half an orange",
 		"Squeeze the lemon and reserve 10ml of juice",
 		"Halve the passion fruit, use a spoon to scrape out the pulp and then pass it through a sieve or strainer and reserve 10ml of the juice",

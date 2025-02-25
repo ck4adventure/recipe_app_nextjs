@@ -4,11 +4,11 @@ const RASPBERRY_JAM = {
 	title: "Raspberry Jam",
 	label: "raspberry jam",
 	ingredients: [
-		{ qty: 500, unit: "gram", name: "frozen-raspberries" },
-		{ qty: 500, unit: "gram", name: "ch-caster-sugar" },
+		{ qty: 500, unit: "g", name: "frozen-raspberries" },
+		{ qty: 500, unit: "g", name: "ch-caster-sugar" },
 
 	],
-	directions: [
+	steps: [
 		"Bring the raspberries adn caster sugar to a boil in a saucepan",
 		"Stir occasionally to stop the sugar from caramelizing",
 		"Check the temperature with a sugar thermometer and remove from the heat when the mixture has reached 104C/219F",

@@ -4,14 +4,14 @@ const MILKCHOC_BANANA_GANACHE = {
 	title: "Milk Chocolate Ganache with Banana",
 	label: "chocolate banana ganache",
 	ingredients: [
-		{ qty: 130, unit: "gram", name: "ghirardelli-milk-chocolate" },
-		{ qty: 90, unit: "gram", name: "banana" },
-		{ qty: 15, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 20, unit: "gram", name: "local-hive-honey" },
-		{ qty: 1, unit: "gram", name: "kosher-salt", note: "pinch" },
+		{ qty: 130, unit: "g", name: "ghirardelli-milk-chocolate" },
+		{ qty: 90, unit: "g", name: "banana" },
+		{ qty: 15, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 20, unit: "g", name: "local-hive-honey" },
+		{ qty: 1, unit: "g", name: "kosher-salt", note: "pinch" },
 		{ qty: 12, unit: "piece", name: "dried-banana" },
 	],
-	directions: [
+	steps: [
 		"If using to fill tarts, ready the baked shells to be filled and set to the side",
 		"Chop the chocolate into small pieces if using callets, otherwise put it into heat safe bowl and warm over bain-marie",
 		"Mash the banana, add it to a saucepan with the cream and local-hive-honey and bring to the boil",

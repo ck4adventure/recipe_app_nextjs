@@ -5,13 +5,13 @@ const VANILLA_CRUMBLE = {
 	label: "vanilla crumble",
 	ingredients: [
 		{ qty: 0.5, unit: "whole", name: "vanilla-pod" },
-		{ qty: 60, unit: "gram", name: "ap-flour" },
-		{ qty: 60, unit: "gram", name: "ch-brown-sugar" },
-		{ qty: 60, unit: "gram", name: "almond-flour" },
-		{ qty: 60, unit: "gram", name: "plugra-euro-unsalted-butter", note: "cold" },
+		{ qty: 60, unit: "g", name: "ap-flour" },
+		{ qty: 60, unit: "g", name: "ch-brown-sugar" },
+		{ qty: 60, unit: "g", name: "almond-flour" },
+		{ qty: 60, unit: "g", name: "plugra-euro-unsalted-butter", note: "cold" },
 
 	],
-	directions: [
+	steps: [
 		"Slice the vanilla pod down the middle and use a knife to scrape out the pulp",
 		"Add the plain flour, brown sugar, almond flour and vanilla pulp to a bowl",
 		"Break the cold butter into little pieces and add to the dry ingredients",

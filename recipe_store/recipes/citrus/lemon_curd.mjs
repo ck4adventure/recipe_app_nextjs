@@ -4,14 +4,14 @@ const LEMON_CURD = {
 	title: "Lemon Curd",
 		label: "lemon curd",
 	ingredients: [
-		{ qty: 100, unit: "milliliter", name: "lemon-juice", note: "2-3 lemons" },
-		{ qty: 1, unit: "Tablespoon", name: "lemon-zest", note: "take from 1/2 lemon before squeezing"},
-		{ qty: 90, unit: "gram", name: "ch-caster-sugar"},
-		{ qty: 6, unit: "Tablespoon", name: "james-farms-pasteurized-eggs", note: "roughly 100-115 grams" },
-		{ qty: 110, unit: "gram", name: "plugra-euro-unsalted-butter" },
+		{ qty: 100, unit: "ml", name: "lemon-juice", note: "2-3 lemons" },
+		{ qty: 1, unit: "Tbsp", name: "lemon-zest", note: "take from 1/2 lemon before squeezing"},
+		{ qty: 90, unit: "g", name: "ch-caster-sugar"},
+		{ qty: 6, unit: "Tbsp", name: "james-farms-pasteurized-eggs", note: "roughly 100-115 grams" },
+		{ qty: 110, unit: "g", name: "plugra-euro-unsalted-butter" },
 
 	],
-	directions: [
+	steps: [
 		"Grate the zest of half of one of the lemons",
 		"Squeeze the lemons until you have 100ml lemon juice",
 		"Put the lemon juice in a heatproof bowl and beat in the sugar and the eggs",

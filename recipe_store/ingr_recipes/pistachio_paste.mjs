@@ -29,7 +29,7 @@ const PISTACHIO_PASTE = {
 			name: "sunflower-oil"
 		}
 	],
-	directions: [
+	steps: [
 		"Preheat the oven to 140CFan/150C/300F",
 		"Roast the pistachios for 12 minutes in the preheated oven",
 		"Add the water and the caster sugar to a small saucepan",

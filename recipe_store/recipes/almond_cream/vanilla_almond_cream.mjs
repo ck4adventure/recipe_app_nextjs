@@ -5,14 +5,14 @@ const ALMOND_CREAM = {
 	title: "Almond Cream",
 	label: "almond cream",
 	ingredients: [
-		{ qty: 50, unit: "gram", name: "almond-flour" },
+		{ qty: 50, unit: "g", name: "almond-flour" },
 		{ qty: 0.5, unit: "whole", name: "vanilla-pod" },
-		{ qty: 50, unit: "gram", name: "plugra-euro-unsalted-butter", note: "at room temperature" },
-		{ qty: 50, unit: "gram", name: "ch-icing-sugar" },
+		{ qty: 50, unit: "g", name: "plugra-euro-unsalted-butter", note: "at room temperature" },
+		{ qty: 50, unit: "g", name: "ch-icing-sugar" },
 		{ qty: 1, unit: "whole", name: "egg" },
-		{ qty: 5, unit: "gram", name: "cornstarch" }
+		{ qty: 5, unit: "g", name: "cornstarch" }
 	],
-	directions: [
+	steps: [
 		"Preheat the oven to 140CFan/150C/300F",
 		"Sprinkle the almond flour on a baking sheet, roast for 10 mins in the oven and set aside to cool",
 		"Slice the vanilla pod down the middle and use a knife to scrape out the pulp",

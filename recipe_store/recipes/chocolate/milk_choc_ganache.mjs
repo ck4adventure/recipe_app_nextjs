@@ -4,12 +4,12 @@ const MILKCHOC_GANACHE = {
 	title: "Milk Chocolate Ganache 40%",
 	label: "chocolate ganache",
 	ingredients: [
-		{ qty: 100, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 150, unit: "gram", name: "ghirardelli-milk-chocolate" },
-		{ qty: 15, unit: "gram", name: "local-hive-honey" },
-		{ qty: 5, unit: "gram", name: "plugra-euro-unsalted-butter" }
+		{ qty: 100, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 150, unit: "g", name: "ghirardelli-milk-chocolate" },
+		{ qty: 15, unit: "g", name: "local-hive-honey" },
+		{ qty: 5, unit: "g", name: "plugra-euro-unsalted-butter" }
 	],
-	directions: [
+	steps: [
 		"If using to fill tarts, ready the baked shells to be filled and set to the side",
 		"Chop the chocolate into small pieces if using callets, otherwise put it into heat safe bowl and warm over bain-marie",
 		"Bring the cream and local-hive-honey to a boil in a small saucepan",

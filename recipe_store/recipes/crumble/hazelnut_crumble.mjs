@@ -4,13 +4,13 @@ const HAZELNUT_CRUMBLE = {
 	title: "Hazelnut Crumble",
 	label: "hazelnut crumble",
 	ingredients: [
-		{ qty: 85, unit: "gram", name: "hazelnuts" },
-		{ qty: 50, unit: "gram", name: "ap-flour" },
-		{ qty: 50, unit: "gram", name: "ch-brown-sugar" },
-		{ qty: 1, unit: "gram", name: "kosher-salt", note: "pinch" },
-		{ qty: 50, unit: "gram", name: "plugra-euro-unsalted-butter", note: "cold" },
+		{ qty: 85, unit: "g", name: "hazelnuts" },
+		{ qty: 50, unit: "g", name: "ap-flour" },
+		{ qty: 50, unit: "g", name: "ch-brown-sugar" },
+		{ qty: 1, unit: "g", name: "kosher-salt", note: "pinch" },
+		{ qty: 50, unit: "g", name: "plugra-euro-unsalted-butter", note: "cold" },
 	],
-	directions: [
+	steps: [
 		"Add 50g the hazelnuts to a blender and blend until finely ground",
 		"Add the flour, brown sugar, ground hazelnuts, and salt to a bowl",
 		"Break the cold butter into little pieces and add to the dry ingredients",

@@ -4,13 +4,13 @@ const POACHED_QUINCE = {
 	title: "Poached Quince",
 	label: "poached quince",
 	ingredients: [
-		{ qty: 750, unit: "gram", name: "ch-caster-sugar" },
-		{ qty: 500, unit: "milliliter", name: "water" },
-		{ qty: 100, unit: "gram", name: "fresh-ginger", note: "finely chopped" },
+		{ qty: 750, unit: "g", name: "ch-caster-sugar" },
+		{ qty: 500, unit: "ml", name: "water" },
+		{ qty: 100, unit: "g", name: "fresh-ginger", note: "finely chopped" },
 		{ qty: 2, unit: "whole", name: "quince", note: "large" },
-		{ qty: 100, unit: "milliliter", name: "rose-water" },
+		{ qty: 100, unit: "ml", name: "rose-water" },
 	],
-	directions: [
+	steps: [
 		"Put the sugar and water in a saucepan and bring to the boil",
 		"Add the finely chopped ginger",
 		"Leave to simmer for 10 minutes and then blend with a hand-held stick blender until you have a smooth syrup",

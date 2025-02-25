@@ -6,14 +6,14 @@ const BLUEBERRY_JAM = {
 	ingredients: [
 		{ qty: 1, unit: "whole", name: "lemon", note: "or orange" },
 		{ qty: 0.5, unit: "whole", name: "vanilla-pod" },
-		{ qty: 9, unit: "gram", name: "cornstarch" },
-		{ qty: 12, unit: "milliliter", name: "water", note: "cold" },
-		{ qty: 60, unit: "milliliter", name: "BLUEBERRY_JUICE", hasRecipe: true },
-		{ qty: 250, unit: "gram", name: "blueberry" },
-		{ qty: 1, unit: "gram", name: "kosher-salt", note: "pinch" },
+		{ qty: 9, unit: "g", name: "cornstarch" },
+		{ qty: 12, unit: "ml", name: "water", note: "cold" },
+		{ qty: 60, unit: "ml", name: "blueberry-juice", hasRecipe: true },
+		{ qty: 250, unit: "g", name: "blueberry" },
+		{ qty: 1, unit: "g", name: "kosher-salt", note: "pinch" },
 
 	],
-	directions: [
+	steps: [
 		"Grate the zest of 1/2 the lemon or orange and set aside",
 		"Squeeze the lemon or orange and reserve 12ml of juice",
 				"Slice the vanilla pod down the middle and use a knife to scrape out the pulp",

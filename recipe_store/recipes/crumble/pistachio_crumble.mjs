@@ -4,15 +4,15 @@ const PISTACHIO_CRUMBLE = {
 	title: "Pistachio Crumble",
 	label: "pistachio crumble",
 	ingredients: [
-		{ qty: 40, unit: "gram", name: "unsalted-pistachios" },
-		{ qty: 50, unit: "gram", name: "ap-flour" },
-		{ qty: 50, unit: "gram", name: "ch-brown-sugar" },
-		{ qty: 20, unit: "gram", name: "almond-flour" },
-		{ qty: 50, unit: "gram", name: "plugra-euro-unsalted-butter", note: "cold" },
-		{ qty: 15, unit: "gram", name: "PISTACHIO_PASTE", hasRecipe: true },
+		{ qty: 40, unit: "g", name: "unsalted-pistachios" },
+		{ qty: 50, unit: "g", name: "ap-flour" },
+		{ qty: 50, unit: "g", name: "ch-brown-sugar" },
+		{ qty: 20, unit: "g", name: "almond-flour" },
+		{ qty: 50, unit: "g", name: "plugra-euro-unsalted-butter", note: "cold" },
+		{ qty: 15, unit: "g", name: "pistachio-paste", hasRecipe: true },
 
 	],
-	directions: [
+	steps: [
 		"Chop the pistachios",
 		"Add the plain flour, brown sugar, and almond flour to a bowl",
 		"Break the cold butter into little pieces and add to the dry ingredients",

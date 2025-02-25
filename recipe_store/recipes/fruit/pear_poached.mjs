@@ -6,13 +6,13 @@ const POACHED_PEAR = {
 	ingredients: [
 		{ qty: 0.5, unit: "whole", name: "vanilla-pod" },
 		{ qty: 1, unit: "whole", name: "lemon" },
-		{ qty: 375, unit: "gram", name: "ch-caster-sugar" },
+		{ qty: 375, unit: "g", name: "ch-caster-sugar" },
 		{ qty: 1, unit: "liter", name: "water" },
 		{ qty: 1, unit: "whole", name: "cinnamon-stick" },
 		{ qty: 1, unit: "whole", name: "star-anise" },
 		{ qty: 6, unit: "whole", name: "pear", note: "firm pears like Comice or Conference" },
 	],
-	directions: [
+	steps: [
 		"Slice the vanilla pod down the middle and use a knife to scrape out the pulp",
 		"Peel the lemon as thinly as possible",
 		"Squeeze the lemon and reserve the juice",

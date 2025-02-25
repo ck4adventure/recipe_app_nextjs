@@ -5,13 +5,13 @@ const APPLE_FLAMBE = {
 	label: "apple flambe",
 	ingredients: [
 		{ qty: 3, unit: "whole", name: "apple" },
-		{ qty: 45, unit: "gram", name: "ch-icing-sugar" },
-		{ qty: 35, unit: "gram", name: "plugra-euro-unsalted-butter" },
-		{ qty: 85, unit: "gram", name: "local-hive-honey" },
-		{ qty: 30, unit: "milliliter", name: "calvados", note: "or armagnac" },
+		{ qty: 45, unit: "g", name: "ch-icing-sugar" },
+		{ qty: 35, unit: "g", name: "plugra-euro-unsalted-butter" },
+		{ qty: 85, unit: "g", name: "local-hive-honey" },
+		{ qty: 30, unit: "ml", name: "calvados", note: "or armagnac" },
 
 	],
-	directions: [
+	steps: [
 		"Peel the apples and chop into 2x2cm pieces",
 		"Sprinkle the icing sugar over the apple and give everything a good shake",
 		"Set aside for 30 minutes",

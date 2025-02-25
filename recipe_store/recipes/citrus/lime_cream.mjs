@@ -6,12 +6,12 @@ const LIME_CREAM = {
 	ingredients: [
 		{ qty: 2, unit: "whole", name: "gelatin-leaves" },
 		{ qty: 5, unit: "whole", name: "lime", note: "125ml lime juice plus zest" },
-		{ qty: 155, unit: "gram", name: "ch-caster-sugar", note: "divided" },
-		{ qty: 90, unit: "gram", name: "egg", note: "about 2" },
-		{ qty: 175, unit: "gram", name: "plugra-euro-unsalted-butter" },
+		{ qty: 155, unit: "g", name: "ch-caster-sugar", note: "divided" },
+		{ qty: 90, unit: "g", name: "egg", note: "about 2" },
+		{ qty: 175, unit: "g", name: "plugra-euro-unsalted-butter" },
 
 	],
-	directions: [
+	steps: [
 		"Soak the gelatine leaves for 5 minutes in cold water and set aside to drain",
 		"Grate the zest of one of the limes",
 		"Squeeze the limes until you have 125ml lime juice",

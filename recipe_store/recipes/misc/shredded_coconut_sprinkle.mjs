@@ -4,9 +4,9 @@ const SHREDDED_COCONUT_SPRINKLE = {
 	title: "Shredded Coconut Sprinkle",
 	label: "coconut",
 	ingredients: [
-		{ qty: 1, unit: "teaspoon", name: "shredded-coconut" },
+		{ qty: 1, unit: "tsp", name: "shredded-coconut" },
 	],
-	directions: [
+	steps: [
 		"Sprinkle lightly on top for a bit of color and flavor"
 	],
 }

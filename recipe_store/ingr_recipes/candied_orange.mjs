@@ -5,10 +5,10 @@ const CANDIED_ORANGE = {
 	label: "candied orange",
 	ingredients: [
 		{ qty: 4, unit: "whole", name: "orange", note: "organic with good rinds" },
-		{ qty: 400, unit: "gram", name: "ch-caster-sugar" },
+		{ qty: 400, unit: "g", name: "ch-caster-sugar" },
 		{ qty: 1, unit: "liter", name: "water" },
 	],
-	directions: [],
+	steps: [],
 	notes: [
 	],
 	source: "Petit Gateau"

@@ -6,14 +6,14 @@ const TART_CASE = {
 	author: "Maike",
 	source: "Petit Gateau",
 	ingredients: [
-		{ qty: 240, unit: "gram", name: "ap-flour" },
-		{ qty: 40, unit: "gram", name: "almond-flour" },
-		{ qty: 100, unit: "gram", name: "ch-icing-sugar" },
-		{ qty: 4, unit: "gram", name: "kosher-salt" },
-		{ qty: 150, unit: "gram", name: "plugra-euro-unsalted-butter" },
+		{ qty: 240, unit: "g", name: "ap-flour" },
+		{ qty: 40, unit: "g", name: "almond-flour" },
+		{ qty: 100, unit: "g", name: "ch-icing-sugar" },
+		{ qty: 4, unit: "g", name: "kosher-salt" },
+		{ qty: 150, unit: "g", name: "plugra-euro-unsalted-butter" },
 		{ qty: 1, unit: "whole", name: "egg" }
 	],
-	directions: [
+	steps: [
 		"Add the flour, icing sugar, almond flour and salt to a bowl",
 		"Break the cold butter into little pieces and add to the dry ingredients",
 		"Mix the butter and the dry ingredients together with your fingers until you have a crumbly dough",

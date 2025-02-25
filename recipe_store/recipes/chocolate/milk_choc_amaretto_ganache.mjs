@@ -4,12 +4,12 @@ const MILKCHOC_AMARETTO_GANACHE = {
 	title: "Milk Chocolate Ganache with Real Amaretto",
 	label: "chocolate amaretto ganache",
 	ingredients: [
-		{ qty: 80, unit: "gram", name: "ghirardelli-milk-chocolate" },
-		{ qty: 110, unit: "gram", name: "odense-marzipan", note: "chopped" },
-		{ qty: 45, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 15, unit: "milliliter", name: "amaretto" },
+		{ qty: 80, unit: "g", name: "ghirardelli-milk-chocolate" },
+		{ qty: 110, unit: "g", name: "odense-marzipan", note: "chopped" },
+		{ qty: 45, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 15, unit: "ml", name: "amaretto" },
 	],
-	directions: [
+	steps: [
 		"If using to fill tarts, ready the baked shells to be filled and set to the side",
 		"Chop the chocolate into small pieces if using callets, otherwise put it into heat safe bowl and warm over bain-marie",
 		"Add the cream and marzipan to a saucepan and bring to the boil, stirring continuously until marzipan has dissolved",

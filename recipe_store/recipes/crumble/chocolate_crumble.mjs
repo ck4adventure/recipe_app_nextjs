@@ -4,17 +4,17 @@ const CHOCO_CRUMBLE = {
 	title: "Chocolate Crumble",
 	label: "chocolate crumble",
 	ingredients: [
-		{ qty: 60, unit: "gram", name: "ap-flour" },
-		{ qty: 15, unit: "gram", name: "ch-caster-sugar" },
-		{ qty: 40, unit: "gram", name: "ch-brown-sugar" },
-		{ qty: 60, unit: "gram", name: "almond-flour" },
-		{ qty: 10, unit: "gram", name: "hersheys-cocoa-powder" },
-		{ qty: 4, unit: "gram", name: "kosher-salt" },
-		{ qty: 50, unit: "gram", name: "plugra-euro-unsalted-butter", note: "cold" },
-		{ qty: 50, unit: "gram", name: "ghirardelli-dark-chocolate" },
+		{ qty: 60, unit: "g", name: "ap-flour" },
+		{ qty: 15, unit: "g", name: "ch-caster-sugar" },
+		{ qty: 40, unit: "g", name: "ch-brown-sugar" },
+		{ qty: 60, unit: "g", name: "almond-flour" },
+		{ qty: 10, unit: "g", name: "hersheys-cocoa-powder" },
+		{ qty: 4, unit: "g", name: "kosher-salt" },
+		{ qty: 50, unit: "g", name: "plugra-euro-unsalted-butter", note: "cold" },
+		{ qty: 50, unit: "g", name: "ghirardelli-dark-chocolate" },
 
 	],
-	directions: [
+	steps: [
 		"Put the plain flour, caster sugar, brown sugar, almond flour, cocoa powder and salt into a bowl",
 		"Break the cold butter into little pieces and add to the dry ingredients",
 		"Mix the butter and the dry ingredients together with your fingers until you have a crumbly dough",

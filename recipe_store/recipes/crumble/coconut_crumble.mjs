@@ -4,15 +4,15 @@ const COCONUT_CRUMBLE = {
 	title: "Coconut Crumble",
 	label: "coconut crumble",
 	ingredients: [
-		{ qty: 60, unit: "gram", name: "ap-flour" },
-		{ qty: 60, unit: "gram", name: "ch-caster-sugar" },
-		{ qty: 30, unit: "gram", name: "almond-flour" },
-		{ qty: 30, unit: "gram", name: "coconut-flour" },
-		{ qty: 4, unit: "gram", name: "kosher-salt" },
-		{ qty: 60, unit: "gram", name: "plugra-euro-unsalted-butter", note: "cold" },
+		{ qty: 60, unit: "g", name: "ap-flour" },
+		{ qty: 60, unit: "g", name: "ch-caster-sugar" },
+		{ qty: 30, unit: "g", name: "almond-flour" },
+		{ qty: 30, unit: "g", name: "coconut-flour" },
+		{ qty: 4, unit: "g", name: "kosher-salt" },
+		{ qty: 60, unit: "g", name: "plugra-euro-unsalted-butter", note: "cold" },
 
 	],
-	directions: [
+	steps: [
 		"Add the plain flour, caster sugar, almond flour, coconut flour, and salt to a bowl",
 		"Break the cold butter into little pieces and add to the dry ingredients",
 		"Add the pistachio paste",

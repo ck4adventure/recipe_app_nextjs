@@ -8,10 +8,10 @@ const FRIED_BANANA = {
 		{ qty: 0.5, unit: "whole", name: "vanilla-pod" },
 		{ qty: 3, unit: "whole", name: "banana" },
 		{ qty: 1, unit: "whole", name: "lemon", note: "juiced" },
-		{ qty: 10, unit: "gram", name: "plugra-euro-unsalted-butter" },
-		{ qty: 30, unit: "gram", name: "ch-brown-sugar" },
+		{ qty: 10, unit: "g", name: "plugra-euro-unsalted-butter" },
+		{ qty: 30, unit: "g", name: "ch-brown-sugar" },
 	],
-	directions: [
+	steps: [
 		"Slice the vanilla pod down the middle and use a knife to scrape out the pulp",
 		"Chop the bananas into 2x2cm pieces and sprinkle with the lemon juice",
 		"Melt the butter in a saucepan",

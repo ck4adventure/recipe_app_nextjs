@@ -8,7 +8,7 @@ const RASPBERRY_PUREE = {
 		{ qty: 20, unit: "gram", name: "ch-caster-sugar" },
 		{ qty: 5, unit: "milliliter", name: "lemon-juice", note: "1 tsp" },
 	],
-	directions: [
+	steps: [
 		"Blend the raspberries with the sugar and lemon juice in a blender",
 		"Strain the raspberry puree until it is free of seeds"
 	],

@@ -4,12 +4,12 @@ const WHITECHOC_COCONUT_GANACHE = {
 	title: "White Chocolate Ganache with Coconut",
 	label: "coconut ganache",
 	ingredients: [
-		{ qty: 125, unit: "gram", name: "ghirardelli-white-chocolate" },
-		{ qty: 60, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 35, unit: "gram", name: "coconut-flour" },
-		{ qty: 30, unit: "gram", name: "plugra-euro-unsalted-butter" },
+		{ qty: 125, unit: "g", name: "ghirardelli-white-chocolate" },
+		{ qty: 60, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 35, unit: "g", name: "coconut-flour" },
+		{ qty: 30, unit: "g", name: "plugra-euro-unsalted-butter" },
 	],
-	directions: [
+	steps: [
 		"If using to fill tarts, ready the baked shells to be filled and set to the side",
 		"Chop the chocolate into small pieces if using callets, otherwise put it into heat safe bowl and warm over bain-marie",
 		"Bring the cream and the coconut flour to a boil in a small saucepan",

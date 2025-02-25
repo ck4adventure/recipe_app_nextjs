@@ -7,13 +7,13 @@ const ORANGE_CREAM = {
 		{ qty: 2, unit: "whole", name: "gelatin-leaves" },
 		{ qty: 2, unit: "whole", name: "orange", note: "100ml orange juice" },
 		{ qty: 1, unit: "whole", name: "lemon", note: "25ml lemon juice" },
-		{ qty: 125, unit: "gram", name: "ch-caster-sugar", note: "divided" },
-		{ qty: 90, unit: "gram", name: "egg", note: "about 2" },
-		{ qty: 175, unit: "gram", name: "plugra-euro-unsalted-butter" },
-		{ qty: 12, unit: "gram", name: "CANDIED_ORANGE", hasRecipe: true },
+		{ qty: 125, unit: "g", name: "ch-caster-sugar", note: "divided" },
+		{ qty: 90, unit: "g", name: "egg", note: "about 2" },
+		{ qty: 175, unit: "g", name: "plugra-euro-unsalted-butter" },
+		{ qty: 12, unit: "g", name: "candied-orange-peel", hasRecipe: true },
 
 	],
-	directions: [
+	steps: [
 		"Soak the gelatine leaves for 5 minutes in cold water and set aside to drain",
 		"Squeeze the oranges until you have 100ml of juice",
 		"Squeeze the lemon until you have 25ml of juice",

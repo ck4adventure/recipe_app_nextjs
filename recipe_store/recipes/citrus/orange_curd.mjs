@@ -5,12 +5,12 @@ const ORANGE_CURD = {
 	label: "orange curd",
 	ingredients: [
 		{ qty: 2, unit: "whole", name: "orange", note: "100ml orange juice plus zest" },
-		{ qty: 155, unit: "gram", name: "ch-caster-sugar", note: "divided" },
-		{ qty: 90, unit: "gram", name: "egg", note: "about 2" },
-		{ qty: 175, unit: "gram", name: "plugra-euro-unsalted-butter" },
+		{ qty: 155, unit: "g", name: "ch-caster-sugar", note: "divided" },
+		{ qty: 90, unit: "g", name: "egg", note: "about 2" },
+		{ qty: 175, unit: "g", name: "plugra-euro-unsalted-butter" },
 
 	],
-	directions: [
+	steps: [
 		"Grate the zest of half of one of the oranges",
 		"Squeeze the oranges until you have 100ml orange juice",
 		"Put the orange juice in a heatproof bowl and beat in the sugar and the eggs",

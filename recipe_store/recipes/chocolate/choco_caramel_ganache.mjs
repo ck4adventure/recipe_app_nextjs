@@ -4,14 +4,14 @@ const CHOCO_CARAMEL_GANACHE = {
 	title: "Chocolate Caramel Ganache",
 	label: "chocolate caramel ganache",
 	ingredients: [
-		{ qty: 40, unit: "gram", name: "ghirardelli-bittersweet-chocolate" },
-		{ qty: 30, unit: "gram", name: "ghirardelli-milk-chocolate" },
-		{ qty: 220, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 20, unit: "milliliter", name: "water" },
-		{ qty: 160, unit: "gram", name: "ch-caster-sugar" },
-		{ qty: 60, unit: "gram", name: "plugra-euro-salted-butter" }
+		{ qty: 40, unit: "g", name: "ghirardelli-bittersweet-chocolate" },
+		{ qty: 30, unit: "g", name: "ghirardelli-milk-chocolate" },
+		{ qty: 220, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 20, unit: "ml", name: "water" },
+		{ qty: 160, unit: "g", name: "ch-caster-sugar" },
+		{ qty: 60, unit: "g", name: "plugra-euro-salted-butter" }
 	],
-	directions: [
+	steps: [
 		"Chop the chocolate into small pieces if using callets, otherwise put it into heat safe bowl and warm over bain-marie",
 		"Heat the cream in a small saucepan and set aside",
 		"Heat the water along with the sugar in another small saucepan until all of the water has evaporated and the sugar has begun to caramelize",

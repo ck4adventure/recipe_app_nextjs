@@ -14,7 +14,7 @@ const SPECULAAS_SPICES = {
 		{ qty: 0.75, unit: "teaspoon", name: "ground-cardamom" },
 
 	],
-	directions: [
+	steps: [
 		"Blend the spices together in a blade grinder",
 		"Store in an airtight container in the refrigerator to maintain freshness"
 	],

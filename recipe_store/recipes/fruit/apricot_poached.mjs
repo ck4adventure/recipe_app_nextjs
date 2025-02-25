@@ -6,10 +6,10 @@ const POACHED_APRICOT = {
 	ingredients: [
 		{ qty: 0.5, unit: "whole", name: "vanilla-pod" },
 		{ qty: 1, unit: "liter", name: "water" },
-		{ qty: 50, unit: "gram", name: "ch-caster-sugar" },
+		{ qty: 50, unit: "g", name: "ch-caster-sugar" },
 		{ qty: 10, unit: "whole", name: "apricot" },
 	],
-	directions: [
+	steps: [
 		"Slice the vanilla pod down the middle and use a knife to scrape out the pulp",
 		"Pour the water into a large saucepan, add the caster sugar and bring to a boil",
 		"Add the vanilla (pulp and pod) to the resulting syrup",

@@ -4,9 +4,9 @@ const CINNAMON_SPRINKLE = {
 	title: "Cinnamon Sprinkle",
 	label: "cinnamon",
 	ingredients: [
-		{ qty: 0.15, unit: "teaspoon", name: "ground-cinnamon" },
+		{ qty: 0.15, unit: "tsp", name: "ground-cinnamon" },
 	],
-	directions: [
+	steps: [
 		"Sprinkle lightly on top for a bit of color and flavor"
 	],
 }

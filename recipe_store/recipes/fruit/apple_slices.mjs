@@ -6,7 +6,7 @@ const APPLE_SLICES = {
 	ingredients: [
 		{ qty: 3, unit: "whole", name: "apple" },
 	],
-	directions: [
+	steps: [
 		"Wash the apples and use a mandoline to create ultra thin, bendable slices",
 	],
 	notes: []

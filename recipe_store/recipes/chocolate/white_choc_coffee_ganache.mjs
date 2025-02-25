@@ -4,11 +4,11 @@ const WHITECHOC_COFFEE_GANACHE = {
 	title: "White Chocolate Ganache with Coffee",
 	label: "coffee ganache",
 	ingredients: [
-		{ qty: 3, unit: "gram", name: "coffee-beans" },
-		{ qty: 115, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 130, unit: "gram", name: "ghirardelli-white-chocolate" },
+		{ qty: 3, unit: "g", name: "coffee-beans" },
+		{ qty: 115, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 130, unit: "g", name: "ghirardelli-white-chocolate" },
 	],
-	directions: [
+	steps: [
 		"If using to fill tarts, ready the baked shells to be filled and set to the side",
 		"Prehat oven to 140CFan/150C/300F. Chop the coffee beans into little pieces and roast for 3 minutes",
 		"Heat the cream in a small saucepan and add the roasted coffee beans, then cover and leave to stew for 5 minutes",

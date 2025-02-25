@@ -5,10 +5,10 @@ const CARAMELIZED_FIG = {
 	label: "caramelized fig",
 	ingredients: [
 		{ qty: 8, unit: "whole", name: "fig" },
-		{ qty: 150, unit: "gram", name: "ch-brown-sugar" },
-		{ qty: 50, unit: "milliliter", name: "balsamic-vinegar" },
+		{ qty: 150, unit: "g", name: "ch-brown-sugar" },
+		{ qty: 50, unit: "ml", name: "balsamic-vinegar" },
 	],
-	directions: [
+	steps: [
 		"Wash the figs and remove the stalks",
 		"Chop the figs into quarters",
 		"Place the figs in a frying pan or sillet and sprinkle with the brown sugar",

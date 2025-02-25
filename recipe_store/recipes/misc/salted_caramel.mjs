@@ -4,11 +4,11 @@ const SALTED_CARAMEL = {
 	title: "Salted Caramel",
 	label: "salted caramel",
 	ingredients: [
-		{ qty: 100, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 50, unit: "gram", name: "plugra-euro-salted-butter", note: "cut into tiny pieces" },
-		{ qty: 100, unit: "gram", name: "ch-caster-sugar" },
+		{ qty: 100, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 50, unit: "g", name: "plugra-euro-salted-butter", note: "cut into tiny pieces" },
+		{ qty: 100, unit: "g", name: "ch-caster-sugar" },
 	],
-	directions: [
+	steps: [
 		"Ready the tart shells to be filled and set to the side",
 		"Heat the cream in a small saucepan and set aside",
 		"Put the salted butter and caster sugar into another small saucepan",

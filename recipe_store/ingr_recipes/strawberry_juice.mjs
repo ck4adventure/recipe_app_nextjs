@@ -7,7 +7,7 @@ const STRAWBERRY_JUICE = {
 		{ qty: 250, unit: "gram", name: "strawberry", note: "defrosted if frozen" },
 		{ qty: 50, unit: "gram", name: "ch-caster-sugar" },
 	],
-	directions: [
+	steps: [
 		"Put the fruit and the sugar into a bowl and mix well",
 		"Cover with clingfilm (plastic wrap)",
 		"Heat the fruit for 15 minutes on a high heat in the microwave, taking out at 5 minute intervals to stir. Or, place the bowl over a bain-marie for 1 hour, checking occasionally to ensure water does not touch bowl nor run out",

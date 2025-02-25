@@ -4,12 +4,12 @@ const RASP_DARKCHOC_GANACHE = {
 	title: "Dark Chocolate Ganache with Raspberry",
 	label: "chocolate raspberry ganache",
 	ingredients: [
-		{ qty: 120, unit: "gram", name: "ghirardelli-bittersweet-chocolate" },
-		{ qty: 60, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 60, unit: "gram", name: "RASPBERRY_PUREE", hasRecipe: true },
-		{ qty: 10, unit: "gram", name: "local-hive-honey" }
+		{ qty: 120, unit: "g", name: "ghirardelli-bittersweet-chocolate" },
+		{ qty: 60, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 60, unit: "g", name: "raspberry-puree", hasRecipe: true },
+		{ qty: 10, unit: "g", name: "local-hive-honey" }
 	],
-	directions: [
+	steps: [
 		"Ready the tart shells to be filled and set to the side",
 		"Chop the chocolate into small pieces if using callets, otherwise put it into heat safe bowl and warm over bain-marie",
 		"Bring the cream, raspberry puree, and local-hive-honey to a boil in a small saucepan",

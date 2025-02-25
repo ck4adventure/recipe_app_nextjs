@@ -9,53 +9,60 @@ import path from 'path';
 export const loadChefsRecipesAndIngrs = async (pool) => {
 	try {
 		//recipe_store/recipes/almond_cream/chocolate_almond_cream.mjs
-
 		const folders = fs.readdirSync(path.join(process.cwd(), 'recipe_store', 'recipes'));
+
 		// almond_cream, chocolate // citrus // cookies
 		for (const recipeCatFolder of folders) {
 			// console.log("processing category: ", recipeCatFolder);
 			const recipesFiles = fs.readdirSync(path.join(process.cwd(), 'recipe_store', 'recipes', recipeCatFolder));
-
 			for (const file of recipesFiles) {
 				// console.log("processing file", file);
 				const filePath = path.join(process.cwd(), 'recipe_store', 'recipes', recipeCatFolder, file);
 				const { default: recipe } = await import(filePath);
-				// console.log(recipe.ingredients);
 
-				// const recipeResult = await pool.query(
-				// 	`INSERT INTO chefs_recipes (
-				// 	title,
-				// 	label,
-				// 	steps,
-				// 	notes
-				// 	) VALUES ($1, $2, $3, $4) RETURNING id`,
-				// 	[recipe.title, recipe.label, recipe.steps, recipe.notes]
-				// );
+				// change style from UPPERCASE_UNDERSCORE to lowercase-dash-spacing
+				const recipeSlug = recipe.id.toLowerCase().replace(/_/g, '-');
+				const recipeResult = await pool.query(`
+				INSERT INTO chefs_recipes (
+					title,
+					label,
+					slug,
+					steps,
+					notes
+				) VALUES ($1, $2, $3, $4, $5)
+				RETURNING id
+			`, [recipe.title, recipe.label, recipeSlug, recipe.steps, recipe.notes])
 
-				// const recipeId = recipeResult.rows[0].id;
-				// console.log(recipeId);
+				const recipeId = recipeResult.rows[0].id;
+				console.log(recipeId);
 
 				for (const ingredient of recipe.ingredients) {
-					// console.log("processing ingr: ", ingredient.name)
+					console.log("adding recipe ingr: ", ingredient.name)
 					const ingrResult = await pool.query(
-						`SELECT id FROM ingrs WHERE slug = $1`,
+						`SELECT id FROM ingrs WHERE slug LIKE ($1)`,
 						[ingredient.name]
 					);
 
 					if (ingrResult.rows.length === 0) {
 						console.error(`Ingredient not found: ${ingredient.name}`);
-						continue; // Skip this ingredient if not found
+						throw new Error('ingredient not found');
+					} else {
+						const ingrID = ingrResult.rows[0].id;
+
+						await pool.query(`
+							INSERT INTO chefs_recipe_ingrs (
+								recipe_id,
+								ingr_id,
+								qty,
+								measure,
+								note
+							) VALUES ($1, $2, $3, $4, $5)
+						`, [recipeId, ingrID, ingredient.qty, ingredient.unit, ingredient.note])
 					}
 				}
 
 			}
 		}
-		// // read and run each file		
-		// for (const file of sortedFiles) {
-		// 	const sql = fs.readFileSync(path.join(process.cwd(), 'db', 'migrations', 'todo', file), 'utf-8');
-		// 	await pool.query(sql);
-		// 	console.log(`Migrated ${file}`);
-		// }
 		console.log('chefs_recipes file script finished');
 	} catch (error) {
 		console.error(error);

@@ -4,9 +4,11 @@ export const dropLocalTables = async (pool) => {
 	try {
 
         await pool.query(`
+            DROP TABLE IF EXISTS chefs_recipe_ingrs CASCADE;
             DROP TABLE IF EXISTS chefs_recipes_ingrs CASCADE;
             DROP TRIGGER IF EXISTS update_chefs_recipes_ingrs_updated_at ON chefs_recipe_ingrs;
             DROP TRIGGER IF EXISTS update_chefs_recipe_ingrs_updated_at ON chefs_recipe_ingrs;
+						DROP TYPE IF EXISTS measure_type CASCADE;
         `);
 
         await pool.query(`
@@ -17,7 +19,7 @@ export const dropLocalTables = async (pool) => {
         await pool.query(`
             DROP TRIGGER IF EXISTS update_ingrs_updated_at ON ingrs;
             DROP TABLE IF EXISTS ingrs CASCADE;
-            DROP TYPE IF EXISTS measure_type CASCADE;
+
         `);
 	
 	// 	await pool.query(`

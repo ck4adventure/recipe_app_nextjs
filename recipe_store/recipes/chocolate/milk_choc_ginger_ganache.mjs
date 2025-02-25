@@ -4,14 +4,14 @@ const MILKCHOC_GINGER_GANACHE = {
 	title: "Milk Chocolate Ganache with Ginger",
 	label: "chocolate ginger ganache",
 	ingredients: [
-		{ qty: 80, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 10, unit: "gram", name: "fresh-ginger", note: "chopped" },
-		{ qty: 15, unit: "gram", name: "local-hive-honey" },
-		{ qty: 125, unit: "gram", name: "ghirardelli-milk-chocolate" },
-		{ qty: 2, unit: "gram", name: "plugra-euro-salted-butter" },
-		{ qty: 15, unit: "gram", name: "CANDIED_GINGER", hasRecipe: true },
+		{ qty: 80, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 10, unit: "g", name: "fresh-ginger", note: "chopped" },
+		{ qty: 15, unit: "g", name: "local-hive-honey" },
+		{ qty: 125, unit: "g", name: "ghirardelli-milk-chocolate" },
+		{ qty: 2, unit: "g", name: "plugra-euro-salted-butter" },
+		{ qty: 15, unit: "g", name: "candied-ginger", hasRecipe: true },
 	],
-	directions: [
+	steps: [
 		"If using to fill tarts, ready the baked shells to be filled and set to the side",
 		"Add the cream, fresh ginger, and local-hive-honey to a saucepan and bring to the boil",
 		"Remove the saucepan from the heat and set aside for 20 minutes to let the flavors develop",

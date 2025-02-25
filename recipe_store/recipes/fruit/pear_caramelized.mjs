@@ -6,11 +6,11 @@ const CARAMELIZED_PEAR = {
 	ingredients: [
 		{ qty: 0.5, unit: "whole", name: "vanilla-pod" },
 		{ qty: 3, unit: "whole", name: "pear" },
-		{ qty: 30, unit: "milliliter", name: "lemon-juice", note: "2 Tbsp" },
-		{ qty: 30, unit: "gram", name: "plugra-euro-unsalted-butter" },
-		{ qty: 30, unit: "gram", name: "ch-caster-sugar" }
+		{ qty: 30, unit: "ml", name: "lemon-juice", note: "2 Tbsp" },
+		{ qty: 30, unit: "g", name: "plugra-euro-unsalted-butter" },
+		{ qty: 30, unit: "g", name: "ch-caster-sugar" }
 	],
-	directions: [
+	steps: [
 		"Slice the vanilla pod down the middle and use a knife to scrape out the pulp",
 				"Peel the pears and chop into 2x2cm pieces",
 				"Sprinkle the fruit with the lemon juice",

@@ -4,11 +4,11 @@ const WHITECHOC_GANACHE = {
 	title: "White Chocolate Ganache 35%",
 	label: "white chocolate ganache",
 	ingredients: [
-		{ qty: 80, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 160, unit: "gram", name: "ghirardelli-white-chocolate" },
-		{ qty: 12, unit: "gram", name: "local-hive-honey" }
+		{ qty: 80, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 160, unit: "g", name: "ghirardelli-white-chocolate" },
+		{ qty: 12, unit: "g", name: "local-hive-honey" }
 	],
-	directions: [
+	steps: [
 		"If using to fill tarts, ready the baked shells to be filled and set to the side",
 		"Chop the chocolate into small pieces if using callets, otherwise put it into heat safe bowl and warm over bain-marie",
 		"Bring the cream and local-hive-honey to a boil in a small saucepan",

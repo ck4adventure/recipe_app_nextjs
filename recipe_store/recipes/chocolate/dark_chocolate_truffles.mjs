@@ -4,14 +4,14 @@ const DARK_CHOCO_TRUFFLES = {
 	title: "Dark Chocolate Truffles",
 	label: "chocolate truffle",
 	ingredients: [
-		{ qty: 70, unit: "gram", name: "ghirardelli-bittersweet-chocolate" },
-		{ qty: 100, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 15, unit: "gram", name: "local-hive-honey" },
-		{ qty: 5, unit: "gram", name: "plugra-euro-unsalted-butter" },
-		{ qty: 250, unit: "gram", name: "hersheys-cocoa-powder" },
-		{ qty: 600, unit: "gram", name: "ghirardelli-bittersweet-chocolate", note: "for melting" }
+		{ qty: 70, unit: "g", name: "ghirardelli-bittersweet-chocolate" },
+		{ qty: 100, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 15, unit: "g", name: "local-hive-honey" },
+		{ qty: 5, unit: "g", name: "plugra-euro-unsalted-butter" },
+		{ qty: 250, unit: "g", name: "hersheys-cocoa-powder" },
+		{ qty: 600, unit: "g", name: "ghirardelli-bittersweet-chocolate", note: "for melting" }
 	],
-	directions: [
+	steps: [
 		"Use the 70g of dark chocolate, cream, local-hive-honey, and butter to make a dark chocolate ganache as described in the recipe",
 		"Leave to set overnight at room temperature. This will make it easier to pipe the ganache - not oo hard and not too soft",
 		"The next morning, add the ganache to a piping bag and piipe out balls about 2cm in diameter onto a tray that will fit inyour freezer. Alternatively, roll the balls by hand",

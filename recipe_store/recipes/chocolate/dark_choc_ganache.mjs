@@ -4,12 +4,12 @@ const DARKCHOC_GANACHE = {
 	title: "Dark Chocolate Ganache 60%",
 	label: "chocolate ganache",
 	ingredients: [
-		{ qty: 130, unit: "milliliter", name: "lucerne-heavy-cream" },
-		{ qty: 120, unit: "gram", name: "ghirardelli-bittersweet-chocolate" },
-		{ qty: 20, unit: "gram", name: "local-hive-honey" },
-		{ qty: 7, unit: "gram", name: "plugra-euro-unsalted-butter" }
+		{ qty: 130, unit: "ml", name: "lucerne-heavy-cream" },
+		{ qty: 120, unit: "g", name: "ghirardelli-bittersweet-chocolate" },
+		{ qty: 20, unit: "g", name: "local-hive-honey" },
+		{ qty: 7, unit: "g", name: "plugra-euro-unsalted-butter" }
 	],
-	directions: [
+	steps: [
 		"Ready the tart shells to be filled and set to the side",
 		"Chop the chocolate into small pieces if using callets, otherwise put it into heat safe bowl and warm over bain-marie",
 		"Bring the cream and local-hive-honey to a boil in a small saucepan",
