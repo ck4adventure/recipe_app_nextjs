@@ -6,18 +6,11 @@
 // catch any errors
 // and finallly end the client connection
 
-// import { createAuthorsTable } from "./migrations/authors.mjs";
-// import { createCategoriesTable } from "./migrations/categories.mjs";
-// import { createDoughTable } from "./migrations/dough.mjs";
-// import { createFoodsTable } from "./migrations/foods.mjs";
-import { createChefsRecipesTable } from "./migrations/chefs_recipes.mjs";
-import { createIngrsTable } from "./migrations/ingrs.mjs";
-// import { createLeavenTable } from "./migrations/leaven.mjs";
-// import { createRecipeIngredientsTable } from "./migrations/recipe_ingredients.mjs";
-// import { createRecipeSteps } from "./migrations/recipe_steps.mjs";
-// import { createRecipesTable } from "./migrations/recipes.mjs";
-// import { createSourcesTable } from "./migrations/sources.mjs";
-// import { createUpdateFunction } from "./migrations/update_updated_at.mjs";
+import { createIngrsTable } from "./migrations/0011_ingrs.mjs";
+import { createChefsRecipesTable } from "./migrations/0012_chefs_recipes.mjs";
+import { createChefsRecipeIngrsTable } from "./migrations/0013_chefs_recipes_inrs.mjs";
+
+
 
 // migrateTables takes a pool/client and runs all sql migrations in numerical order
 export const migrateTables = async (client) => {
@@ -39,12 +32,13 @@ export const migrateTables = async (client) => {
 		// await createDoughTable(client);
 
 		// ingrs
-		// await createIngrsTable(client);
+		await createIngrsTable(client);
 
 		// chefs_recipes
-		await createChefsRecipesTable();
+		await createChefsRecipesTable(client);
 
-		// chefs_recipes_inrs
+		// chefs_recipes_ingrs
+		await createChefsRecipeIngrsTable(client);
 		
 		console.log('Tables migrated successfully');
 	} catch (error) {
