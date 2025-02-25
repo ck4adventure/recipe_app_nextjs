@@ -41,7 +41,7 @@ export default function LeavenDisplaySection({ record }: { record: QueryResultRo
 
 		// Clean up interval on component unmount
 		return () => clearInterval(intervalId);
-	}, [record.start_time, record.end_time]);
+	}, [record.start_time, record.end_time, formData.end_time, formData.start_time]);
 
 	const handleTimeChange = (v: Dayjs | null, name: string) => {
 		if (v) {
