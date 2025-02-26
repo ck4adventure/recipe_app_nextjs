@@ -24,17 +24,18 @@ export const loadChefsRecipesAndIngrs = async (pool) => {
 				const recipeSlug = recipe.id.toLowerCase().replace(/_/g, '-');
 				const recipeResult = await pool.query(`
 				INSERT INTO chefs_recipes (
+				category,
 					title,
 					label,
 					slug,
 					steps,
 					notes
-				) VALUES ($1, $2, $3, $4, $5)
-				RETURNING id
-			`, [recipe.title, recipe.label, recipeSlug, recipe.steps, recipe.notes])
+				) VALUES ($1, $2, $3, $4, $5, $6)
+				RETURNING id, title
+			`, [recipeCatFolder, recipe.title, recipe.label, recipeSlug, recipe.steps, recipe.notes])
 
 				const recipeId = recipeResult.rows[0].id;
-				console.log(recipeId);
+				console.log(recipeResult.rows[0].title, recipeId);
 
 				for (const ingredient of recipe.ingredients) {
 					console.log("adding recipe ingr: ", ingredient.name)

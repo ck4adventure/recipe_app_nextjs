@@ -24,12 +24,13 @@ export const loadChefsRecipesAndIngrs = async (client) => {
 				const recipeSlug = recipe.id.toLowerCase().replace(/_/g, '-');
 				const recipeResult = await client.sql`
 				INSERT INTO chefs_recipes (
+				category,
 					title,
 					label,
 					slug,
 					steps,
 					notes
-				) VALUES (${recipe.title}, ${recipe.label}, ${recipeSlug}, ${recipe.steps}, ${recipe.notes})
+				) VALUES (${recipeCatFolder}, ${recipe.title}, ${recipe.label}, ${recipeSlug}, ${recipe.steps}, ${recipe.notes})
 				RETURNING id, label
 			`;
 

@@ -69,13 +69,14 @@ export const loadIngredientRecipes = async (pool) => {
 			const recipeSlug = recipe.id.replace(/_/g, '-').toLowerCase();
 			const recipeResult = await pool.query(`
 				INSERT INTO chefs_recipes (
+					category,
 					title,
 					label,
 					slug,
 					steps,
 					notes
-				) VALUES ($1, $2, $3, $4, $5)
-			`, [recipe.title, recipe.label, recipeSlug, recipe.steps, recipe.notes])
+				) VALUES ($1, $2, $3, $4, $5, $6)
+			`, ['homemade', recipe.title, recipe.label, recipeSlug, recipe.steps, recipe.notes])
 
 			console.log('recipe saved: ', recipeResult.rows[0]);
 

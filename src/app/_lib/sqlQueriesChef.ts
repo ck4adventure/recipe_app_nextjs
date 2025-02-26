@@ -34,6 +34,22 @@ export const GET_RECIPE_TITLES = async () => {
 	`;
 	return results.rows;
 }
+export const GET_RECIPE_TITLES_BY_CAT = async () => {
+	const results = await sql`
+		SELECT 
+				r.category,
+				JSON_AGG(
+						JSON_BUILD_OBJECT(
+								'id', r.id,
+								'title', r.title,
+								'slug', r.slug
+						)
+				) AS recipes
+		FROM chefs_recipes AS r
+		GROUP BY r.category;
+	`;
+	return results.rows;
+}
 
 export const GET_CHEFS_RECIPE_BY_SLUG = async (slug: string) => {
 	const results = await sql`

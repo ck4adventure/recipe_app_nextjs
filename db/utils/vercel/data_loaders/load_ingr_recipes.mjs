@@ -68,19 +68,20 @@ export const loadIngrsRecipes = async (client) => {
 			const recipeSlug = recipe.id.replace(/_/g, '-').toLowerCase();
 			const recipeResult = await client.sql`
 				INSERT INTO chefs_recipes (
+					category,
 					title,
 					label,
 					slug,
 					steps,
 					notes
-				) VALUES (${recipe.title}, ${recipe.label}, ${recipeSlug}, ${recipe.steps}, ${recipe.notes})
-				RETURNING *
+				) VALUES ('homemade', ${recipe.title}, ${recipe.label}, ${recipeSlug}, ${recipe.steps}, ${recipe.notes})
+				RETURNING id, title
 			`;
 
 			if (recipeResult.rows.length < 1) {
 				console.log(recipeResult)
 			}
-			console.log('recipe saved: ', recipeResult.rows[0]);
+			console.log('recipe saved: ', recipeResult.rows[0].title);
 
 			// Then Ingr listing
 
