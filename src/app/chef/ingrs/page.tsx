@@ -12,8 +12,8 @@ export default async function Page() {
 	return (
 		<div className=''>
 			<div data-cy='ingrs-index'>
-				<div className="mx-8 my-1 flex justify-center">
-					<h1>Ingredients</h1>
+				<div className="flex justify-center">
+					<h1 className="text-xl">Chef&apos;s Ingredients Page</h1>
 				</div>
 				<div className="flex flex-wrap">
 					{groupedIngrs && groupedIngrs.map(obj => (
