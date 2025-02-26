@@ -27,6 +27,13 @@ SEE feature_loafer.md
 #### Note
 Due to wanting to publish this project without auth, removing all db interaction and leaving this as more of a static site with cool react features. Recipes are easily managed as json/yaml files. Later on I will add auth and bring back direct updates.
 
+### Favorite Products/Recipes
+Be able to toggle favorite (star/heart) on off for each recipe.
+Display favorites on the Chef's home screen.
+
+### Last visited product/recipe
+Keep track of recipe page visits and show the 5 most recent
+
 ### Directions have checkmark boxes to keep your place
 As a baker, longer recipes often leave me scanning the same paragraphs over and over to find my place. I want a checkbox to the left of each numbered step that when I check it, it grays out the step so I can know to ignore it. The text for a checked step should be grayed out significantly, but still be readable if I need to confirm my work.
 There should be a "clear all" box somewhere with a confirmation modal to reset my progress as needed. 
