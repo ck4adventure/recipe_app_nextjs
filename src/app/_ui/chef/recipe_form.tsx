@@ -229,7 +229,7 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 						</div>
 
 					))}
-					<div className='mt-8'>
+					<div className='mt-4'>
 						<Button type="button" onClick={() => appendIngredient({
 							"qty": 0,
 							"measure": "Tbsp",
@@ -247,7 +247,7 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 						<div key={field.id} className="flex items-center space-x-2">
 							<FormField
 								control={form.control}
-								name={`steps.${index}.value`}  // ✅ Correct path
+								name={`steps.${index}.value`}
 								render={({ field }) => (
 									<FormItem className='flex-1'>
 										<FormControl>
@@ -262,7 +262,7 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 							</Button>
 						</div>
 					))}
-					<Button type="button" onClick={() => appendStep({ value: "" })}>  // ✅ Append object
+					<Button className='mt-4' type="button" onClick={() => appendStep({ value: "" })}>
 						Add Step
 					</Button>
 
@@ -276,7 +276,7 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 						<div key={field.id} className="flex items-center space-x-2">
 							<FormField
 								control={form.control}
-								name={`notes.${index}.value`}  // ✅ Correct path
+								name={`notes.${index}.value`}
 								render={({ field }) => (
 									<FormItem className='flex-1'>
 										<FormControl>
@@ -291,7 +291,7 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 							</Button>
 						</div>
 					))}
-					<Button type="button" onClick={() => appendNote({ value: "" })}>  // ✅ Append object
+					<Button className='mt-4' type="button" onClick={() => appendNote({ value: "" })}>
 						Add Note
 					</Button>
 
