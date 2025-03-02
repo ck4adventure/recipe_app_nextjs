@@ -39,8 +39,8 @@ const formSchema = z.object({
 		ingr_id: z.number().optional(),
 		note: z.string().optional()
 	})),
-	steps: z.array(z.string()).optional(),
-	notes: z.array(z.string()).optional(),
+	steps: z.array(z.object({ value: z.string() })), // must be arrays of objects, design flaw
+	notes: z.array(z.object({ value: z.string() })),
 })
 
 export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
@@ -56,8 +56,8 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 				"ingr_id": 0,
 				note: ""
 			}],
-			steps: [""],
-			notes: [""]
+			steps: [{ value: "" }],
+			notes: [{ value: "" }],
 		},
 	})
 
@@ -218,24 +218,24 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 
 								)}
 							/>
-							<Button 
-								type="button" 
+							<Button
+								type="button"
 								variant="destructive"
 								className='mt-[-20px]'
 								onClick={() => removeIngredient(index)}>
-									Remove
+								Remove
 							</Button>
 
 						</div>
 
 					))}
 					<div className='mt-8'>
-					<Button type="button" onClick={() => appendIngredient({
-						"qty": 0,
-						"measure": "Tbsp",
-						"ingr_id": 0,
-						note: ""
-					})}>Add Ingredient</Button>
+						<Button type="button" onClick={() => appendIngredient({
+							"qty": 0,
+							"measure": "Tbsp",
+							"ingr_id": 0,
+							note: ""
+						})}>Add Ingredient</Button>
 					</div>
 
 				</div>
@@ -244,54 +244,57 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 				<div>
 					<FormLabel>Steps</FormLabel>
 					{stepFields.map((field, index) => (
-						<div key={`${field}-${index}`} className="flex items-center space-x-2">
+						<div key={field.id} className="flex items-center space-x-2">
 							<FormField
 								control={form.control}
-								name={`steps.${index}`}
+								name={`steps.${index}.value`}  // ✅ Correct path
 								render={({ field }) => (
 									<FormItem className='flex-1'>
 										<FormControl>
-											<Input
-												type="text"
-												placeholder={`Step ${index + 1}`}
-												{...field}
-											/>
+											<Input type="text" placeholder={`Step ${index + 1}`} {...field} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
-							<Button type="button" variant="destructive" onClick={() => removeStep(index)}>Remove</Button>
+							<Button type="button" variant="destructive" onClick={() => removeStep(index)}>
+								Remove
+							</Button>
 						</div>
 					))}
-					<Button type="button" onClick={() => appendStep("")}>Add Step</Button>
+					<Button type="button" onClick={() => appendStep({ value: "" })}>  // ✅ Append object
+						Add Step
+					</Button>
+
+
 				</div>
 
 				{/* recipe notes */}
 				<div>
 					<FormLabel>Notes</FormLabel>
 					{noteFields.map((field, index) => (
-						<div key={index} className="flex items-center space-x-2">
+						<div key={field.id} className="flex items-center space-x-2">
 							<FormField
 								control={form.control}
-								name={`notes.${index}`}
+								name={`notes.${index}.value`}  // ✅ Correct path
 								render={({ field }) => (
 									<FormItem className='flex-1'>
 										<FormControl>
-											<Input
-												type="text"
-												placeholder={`Note ${index + 1}`}
-												{...field}
-											/>
+											<Input type="text" placeholder={`Note ${index + 1}`} {...field} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
-							<Button type="button" variant="destructive" onClick={() => removeNote(index)}>Remove</Button>
+							<Button type="button" variant="destructive" onClick={() => removeNote(index)}>
+								Remove
+							</Button>
 						</div>
 					))}
-					<Button type="button" onClick={() => appendNote("")}>Add Recipe Note</Button>
+					<Button type="button" onClick={() => appendNote({ value: "" })}>  // ✅ Append object
+						Add Note
+					</Button>
+
 				</div>
 
 				<Button type="submit" >Submit</Button>
