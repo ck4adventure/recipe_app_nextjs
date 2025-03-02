@@ -67,6 +67,9 @@ export const loadIngredientRecipes = async (pool) => {
 			// change style from UPPERCASE_UNDERSCORE_SPACING to lowercase-dash-spacing
 			// ex: "CANDIED_LEMON_PEEL" to 'candied-lemon-peel'
 			const recipeSlug = recipe.id.replace(/_/g, '-').toLowerCase();
+			if (!recipe.notes) {
+				recipe.notes = [];
+			}
 			const recipeResult = await pool.query(`
 				INSERT INTO chefs_recipes (
 					category,

@@ -27,6 +27,14 @@ export const GET_INGR_BY_SLUG = async (slug: string) => {
 	return results.rows[0];
 }
 
+export const GET_RECIPE_CATEGORIES = async () => {
+	const results = await sql`
+		SELECT DISTINCT category
+		FROM chefs_recipes
+	`
+	return results.rows;
+}
+
 export const GET_RECIPE_TITLES = async () => {
 	const results = await sql`
 	SELECT *
@@ -55,14 +63,17 @@ export const GET_CHEFS_RECIPE_BY_SLUG = async (slug: string) => {
 	const results = await sql`
 		SELECT 
 				r.id AS id,
+				r.category,
 				r.title AS title,
 				r.steps,
+				r.notes,
 				JSON_AGG(
 						JSON_BUILD_OBJECT(
 								'brand_name', i.brand,
 								'packaged_name', i.packaged_name,
 								'qty', ri.qty,
-								'measure', ri.measure
+								'measure', ri.measure,
+								'note', ri.note
 						)
 				) AS ingredients
 		FROM chefs_recipes r

@@ -13,8 +13,8 @@ CREATE TABLE if NOT EXISTS chefs_recipes (
 		title VARCHAR(255) NOT NULL,
 		label VARCHAR(255) NOT NULL,
 		slug VARCHAR(255) NOT NULL CONSTRAINT chefsrecipe_slug_unique UNIQUE,
-		steps TEXT [],
-		notes TEXT []
+		steps TEXT [] NOT NULL DEFAULT '{}',
+		notes TEXT [] NOT NULL DEFAULT '{}'
 );
 
 -- Create a trigger to automatically update the updated_at column on update
