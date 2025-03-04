@@ -1,10 +1,11 @@
 'use server'
 import { sql } from '@vercel/postgres';
 
-export const GET_ALL_INGRS = async () => {
+export const GET_ALL_INGRS_FOR_FORM = async () => {
 	const results = await sql`
-		SELECT *
+		SELECT id, brand, label_name
 		FROM ingrs
+		ORDER BY label_name ASC
 	`;
 	return results.rows;
 };

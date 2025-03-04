@@ -4,7 +4,6 @@ import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useFieldArray, useForm } from "react-hook-form"
 
-import { Button } from "@/components/ui/button"
 import {
 	Form,
 	FormControl,
@@ -21,44 +20,48 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select"
+import React from "react";
+import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
-import React from 'react';
 
 const measures = ['drop', 'g', 'ml', 'liter', 'tsp', 'Tbsp', 'whole',
 	'pinch', 'percent', 'piece', 'cup', 'ounce']
 
 const formSchema = z.object({
-	title: z.string().optional(),
-	category: z.string().optional(),
-	label: z.string().optional(),
+	title: z.string().min(4),
+	category: z.string(),
+	label: z.string().min(4),
 	slug: z.string().optional(),
 	ingredients: z.array(z.object({
-		qty: z.number().optional(),
-		measure: z.string().optional(),
-		ingr_id: z.number().optional(),
+		qty: z.number().min(1).max(20),
+		measure: z.string().min(1, { message: "Select a measure"}),
+		ingr_id: z.number().min(1, { message: "Please select an ingredient"}),
 		note: z.string().optional()
-	})),
-	steps: z.array(z.object({ value: z.string() })), // must be arrays of objects, design flaw
-	notes: z.array(z.object({ value: z.string() })),
+	})).nonempty(),
+	steps: z.array(z.object({ value: z.string().min(1, {message: "Must have at least one step"})})).nonempty({message: "Must have at least one step"}), // must be arrays of objects, design flaw
+	notes: z.array(z.object({ value: z.string()})).optional(),
 })
 
-export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
+export interface IngrResult {
+	id: number,
+	label_name: string,
+	brand: string
+}
+
+export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: string[], ingredientsList: IngrResult[] }) => {
+
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues: {
-			title: "",
-			label: "",
-			category: "misc.",
+		defaultValues:{
+			steps: [{value: ""}],
 			ingredients: [{
 				"qty": 0,
-				"measure": "Tbsp",
-				"ingr_id": 0,
-				note: ""
-			}],
-			steps: [{ value: "" }],
-			notes: [{ value: "" }],
+				"measure": '',
+				"ingr_id": -1
+			}]
 		},
+		shouldFocusError: true
 	})
 
 	const { fields: stepFields, append: appendStep, remove: removeStep } = useFieldArray({
@@ -76,17 +79,17 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 		name: "notes"
 	});
 
+
 	// 2. Define a submit handler.
 	const onSubmit = (values: z.infer<typeof formSchema>) => {
-		console.log("in on submit")
-		// Do something with the form values.
-		// ✅ This will be type-safe and validated.
+		console.log("submit clicked")
+
 		console.log(values)
 	};
 
 	return (
-		<Form {...form} >
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-[750px]">
+		<Form {...form}>
+			<form id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-[750px]">
 				{/* recipe title */}
 				<FormField
 					control={form.control}
@@ -95,7 +98,11 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 						<FormItem>
 							<FormLabel>Recipe Title</FormLabel>
 							<FormControl>
-								<Input placeholder="Full Title in Uppercase" {...field} />
+								<Input
+								placeholder='Upper Case Recipe Title'
+								id='recipe-title-input'
+								value={field.value || ''}
+								onChange={field.onChange} />
 							</FormControl>
 							<FormDescription>
 								This is the full name of your recipe.
@@ -112,7 +119,10 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 						<FormItem>
 							<FormLabel>Recipe Label</FormLabel>
 							<FormControl>
-								<Input placeholder="lowercase short name for labeling" {...field} />
+								<Input 
+								placeholder="lowercase short name for labeling" 
+								value={field.value || ''} 
+								onChange={field.onChange} />
 							</FormControl>
 							<FormDescription>
 								This is the name that will be printed on package labeling.
@@ -129,7 +139,7 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Recipe Category</FormLabel>
-							<Select onValueChange={field.onChange} defaultValue={field.value}>
+							<Select onValueChange={field.onChange} value={field.value}>
 								<FormControl>
 									<SelectTrigger>
 										<SelectValue placeholder="Select a category for the recipe." />
@@ -141,7 +151,7 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 									))}
 								</SelectContent>
 							</Select>
-							<FormDescription>Select a category for the recipe.</FormDescription>
+							<FormDescription>Category which best fits this recipe</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -151,7 +161,9 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 				<div>
 					<FormLabel>Ingredients</FormLabel>
 					{ingredientFields.map((field, index) => (
-						<div key={`${field}-${index}`} className='flex items-center'>
+						<div key={field.id} className='flex items-center'>
+
+							{/* Quantity */}
 							<FormField
 								control={form.control}
 								name={`ingredients.${index}.qty`}
@@ -159,10 +171,15 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 									<FormItem className=' mr-4'>
 										<FormControl>
 											<Input
+											id={`ingredients-qty-input-${index}`}
 												type="number"
-												min={0}
+												min={1}
 												max={10}
-												{...field}
+												value={field.value}
+												onChange={(e) => {
+													const value = parseFloat(e.target.value);
+													field.onChange(value);
+												}}
 											/>
 										</FormControl>
 										<FormDescription>Qty</FormDescription>
@@ -170,16 +187,16 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 									</FormItem>
 								)}
 							/>
-
+							{/* measure */}
 							<FormField
 								control={form.control}
 								name={`ingredients.${index}.measure`}
 								render={({ field }) => (
 									<FormItem className='w-[100px] mr-4'>
-										<Select onValueChange={field.onChange}>
+										<Select onValueChange={field.onChange} value={field.value}>
 											<FormControl>
 												<SelectTrigger>
-													<SelectValue placeholder="Select a measure." />
+													<SelectValue placeholder="Select a measure.">{field.value}</SelectValue>
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
@@ -189,39 +206,67 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 											</SelectContent>
 										</Select>
 										<FormDescription>Measure</FormDescription>
+										<FormMessage />
 									</FormItem>
 								)}
 							/>
+							{/* ingredient */}
 							<FormField
 								control={form.control}
 								name={`ingredients.${index}.ingr_id`}
-								render={({ field }) => (
-									<FormItem className='mr-4'>
-										<FormControl>
-											<Input type='number' {...field} />
-										</FormControl>
-										<FormDescription>Ingredient</FormDescription>
-									</FormItem>
+								render={({ field }) => {
+									const selectedIngredient = ingredientsList.find((ingr: any) => ingr.id == field.value)
 
-								)}
+									return (
+										<FormItem className='w-[220px] mr-4'>
+											<Select
+													onValueChange={(value: string) => {
+													const v = parseFloat(value);
+													field.onChange(v);
+												}}>
+												<FormControl>
+													<SelectTrigger>
+														<SelectValue placeholder="Select an ingredient">
+															{selectedIngredient ? selectedIngredient.label_name : "Something's wrong"}
+														</SelectValue>
+													</SelectTrigger>
+												</FormControl>
+												<SelectContent>
+													{ingredientsList && ingredientsList.map((ingr: any) => (
+														<SelectItem value={ingr.id.toString()} key={`ingr-${ingr.id}`}>{ingr.brand}&nbsp;{ingr.label_name}</SelectItem>
+													))}
+												</SelectContent>
+											</Select>
+											<FormDescription>Ingredient</FormDescription>
+											<FormMessage />
+										</FormItem>
+									);
+								}}
 							/>
+
+							{/* note */}
 							<FormField
 								control={form.control}
 								name={`ingredients.${index}.note`}
 								render={({ field }) => (
 									<FormItem className='mr-4'>
 										<FormControl>
-											<Input {...field} />
+											<Input 
+												value={field.value || ''} 
+												id={`ingredients.${index}.note`}
+												onChange={field.onChange}
+												/>
 										</FormControl>
 										<FormDescription>Note</FormDescription>
 									</FormItem>
 
 								)}
 							/>
+
 							<Button
 								type="button"
 								variant="destructive"
-								className='mt-[-20px]'
+								className='mt-[-20px] ml-2'
 								onClick={() => removeIngredient(index)}>
 								Remove
 							</Button>
@@ -251,15 +296,21 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 								render={({ field }) => (
 									<FormItem className='flex-1'>
 										<FormControl>
-											<Input type="text" placeholder={`Step ${index + 1}`} {...field} />
+											<Input 
+											type="text" 
+											placeholder={`Step ${index + 1}`} 
+											value={field.value}
+											onChange={field.onChange} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
-							<Button type="button" variant="destructive" onClick={() => removeStep(index)}>
+							<div className=''>
+							<Button type="button" className='ml-4' variant="destructive" onClick={() => removeStep(index)}>
 								Remove
 							</Button>
+							</div>
 						</div>
 					))}
 					<Button className='mt-4' type="button" onClick={() => appendStep({ value: "" })}>
@@ -273,20 +324,25 @@ export const ChefsRecipeForm = ({ categories }: { categories: string[] }) => {
 				<div>
 					<FormLabel>Notes</FormLabel>
 					{noteFields.map((field, index) => (
-						<div key={field.id} className="flex items-center space-x-2">
+						<div key={field.id} className="flex items-center">
 							<FormField
 								control={form.control}
 								name={`notes.${index}.value`}
 								render={({ field }) => (
 									<FormItem className='flex-1'>
 										<FormControl>
-											<Input type="text" placeholder={`Note ${index + 1}`} {...field} />
+											<Input 
+												type="text" 
+												placeholder={`Note ${index + 1}`}
+												value={field.value}
+												onChange={field.onChange}
+												/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
-							<Button type="button" variant="destructive" onClick={() => removeNote(index)}>
+							<Button type="button" className='ml-6' variant="destructive" onClick={() => removeNote(index)}>
 								Remove
 							</Button>
 						</div>
