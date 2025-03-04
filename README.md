@@ -1,6 +1,6 @@
 # Recipe Manager App
 
-See [features](FEATURES.md)
+See [features](/design/FEATURES.md)
 
 ## Getting Started
 - clone the repo

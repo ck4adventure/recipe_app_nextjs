@@ -22,6 +22,9 @@ export const loadChefsRecipesAndIngrs = async (pool) => {
 
 				// change style from UPPERCASE_UNDERSCORE to lowercase-dash-spacing
 				const recipeSlug = recipe.id.toLowerCase().replace(/_/g, '-');
+				if (!recipe.notes) {
+					recipe.notes = [];
+				}
 				const recipeResult = await pool.query(`
 				INSERT INTO chefs_recipes (
 				category,

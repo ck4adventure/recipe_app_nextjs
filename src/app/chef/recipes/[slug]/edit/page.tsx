@@ -1,6 +1,8 @@
-
+// CHEFS RECIPES EDIT ITEM PAGE
 import { GET_CHEFS_RECIPE_BY_SLUG } from "@/app/_lib/sqlQueriesChef";
 // import { IngrCard, Ingr } from "@/app/_ui/ingrs/ingr_card";
+
+
 
 export default async function Page({ params }: { params: { slug: string } }) {
 	// fetch ingr and list all properties
