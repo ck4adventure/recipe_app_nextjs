@@ -1,4 +1,4 @@
-import { GET_ALL_INGRS, GET_INGRS_AND_CATS } from "@/app/_lib/sqlQueriesChef";
+import { GET_INGRS_AND_CATS } from "@/app/_lib/sqlQueriesChef";
 import Link from "next/link";
 
 
