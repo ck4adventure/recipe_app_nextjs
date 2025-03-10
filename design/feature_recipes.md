@@ -1,74 +1,18 @@
+# Recipes Features
 
 
+## Current Schema/Stories
+As a user I want to view all available recipes.  
+As a user I want to view recipes by their category (ie find breakfast recipes).  
+As a user I want to add new recipes with one or more categories.  
+As a user I want to delete recipes.  
 
-## In progress
-## Bakery Manager for Labeling
-Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by looking up first a products recipes, then aggregating all the ingrs of each recipe, incl set of allergens
-- ingrs table
-  - if created by a recipe, has recipe_id
-- chefs_recipes table
-  - has many ingredient instances (qty, measure, ingr)
-	- has a recipe title
-	- has many steps (text array)
-- recipeIngrs table
-  - recipe has many ingredients
-	- ingredients used in many recipes
-	- has qty and measure also
-
-
-if recipe updated with a new/existing recipeIngr entry
-script would need to query for all entries for that recipeID
-then accumulate info and re-write the ingr entry
-
-## Baking Log
-SEE feature_loafer.md
-
-## Upcoming Features
-#### Note
-Due to wanting to publish this project without auth, removing all db interaction and leaving this as more of a static site with cool react features. Recipes are easily managed as json/yaml files. Later on I will add auth and bring back direct updates.
-
-### Favorite Products/Recipes
-Be able to toggle favorite (star/heart) on off for each recipe.
-Display favorites on the Chef's home screen.
-
-### Last visited product/recipe
-Keep track of recipe page visits and show the 5 most recent
-
-### Directions have checkmark boxes to keep your place
-As a baker, longer recipes often leave me scanning the same paragraphs over and over to find my place. I want a checkbox to the left of each numbered step that when I check it, it grays out the step so I can know to ignore it. The text for a checked step should be grayed out significantly, but still be readable if I need to confirm my work.
-There should be a "clear all" box somewhere with a confirmation modal to reset my progress as needed. 
-
-### Convert between Imperial/US/Metric Units
-- store recipes in original units of measure (harder, but more accurate)
-- if in metric, no real need (for me) to put in imperial
-- toggle button to switch between
-
-### Add a recipe from a text file
-### Easily Half, Double, Triple... a recipe's quantities
-### Cost Calculator
-- flour cost per lb (1.30)
-- water negligable
-- salt negligable
-- baking time (gas bill)
-### Baking Planner/Scheduler
-As a baker, I want to know how long it will take me to get something from start to finish.  
-As a baker, I want to know what time it will be done if started at a given time.  
-As a baker, I want to know how early I need to start in order to be done by a given time.  
-
-----------------
-
-## Completed Recipes App Features
-### Complex Ingredients
-Currently, Ingredients are stored as text unique to the recipe.
-
-When creating a recipe:
-I will type in the amount to measure
-I will select the unit of measurement from the list
-I want to start typing and select the food from the list
-
-This becomes a recipe_ingredient
-
-A food has a name (white bread flour, whole wheat flour, granulated sugar)
+### FE
+- `/authors`
+- `/categories`
+- `/recipes` - Main homepage for recipes section
+- `/recipes/[slug]` - unique slugs to provide human readable url (helpful in bookmarks, autofills)
+- `/sources`
 
 
 ### Vercel Postgres
