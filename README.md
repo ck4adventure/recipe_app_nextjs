@@ -1,44 +1,27 @@
 # Recipe Manager App
 
-See [features](/design/FEATURES.md)
+See [features](/design/future_features.md)
+
+Using Next.js with Typescript to learn more and stay sharp.
 
 ## Getting Started
 - clone the repo
-- ensure Node 20
+- ensure Node 20 or greater
 - `npm run install`
-- TODO: how to create, migrate and seed db
-- and/or create a DEMO flag that allows FE to display sample data
+- TODO: update how to load local data
 - `npm run dev`
 
 Visit `localhost:3000/recipes` to go to the recipe app main page.
 
-## Current Schema/Stories
-As a user I want to view all available recipes.  
-As a user I want to view recipes by their category (ie find breakfast recipes).  
-As a user I want to add new recipes with one or more categories.  
-As a user I want to delete recipes.  
-
-### FE
-- `/authors`
-- `/categories`
-- `/recipes` - Main homepage for recipes section
-- `/recipes/[slug]` - unique slugs to provide human readable url (helpful in bookmarks, autofills)
-- `/sources`
-
-
 ## Backend
-Postgresql DB by `pg` aka postgres node
+Postgresql DB by `pg` aka postgres node.
+There is no ORM because I wanted practice writing sql directly.
 
 
 ### DB Instance
-Currently hooking into my local postgres using a `practice` db with no authentication. 
-TODO: create a script similar to rails that actually creates the db by name and setting valid credentials.  
-
-`node ./scripts/migrate.js` will create the tables, associations and db level validations.  
-
-`node ./scripts/seed.js` will seed the db with a few sample recipe titles.  
-
-`node ./scripts/drop.js` will drop all tables and data. 
+Using vercel's Neon service to keep an online db instance. This is slightly impractical as I now maintain two sets of scripts, one for local development using migration files, and the other to update the cloud instance for online deployment.
+ 
+Starting point is the `/scripts` folder with local and vercel scripts.
 
 ## App Structure
 This is a next.js app, following the bleeding-edge `app` server functionality over the old `pages` logic. 
@@ -46,15 +29,18 @@ This is a next.js app, following the bleeding-edge `app` server functionality ov
 ```
 /__test__ is the jest component testing
 /cypress is the e2e testing suite for the FE
+/data is the personal recipes sample data
 /db holds db logic
-  /seeds is sample data for easier dev
-  /migrations holds sql migration files (up only)
-/public
+	/migrations holds sql migration files (up only)
+  /tests is where BE testing lives
+  /utils for local and vercel drop, migrate and load actions
+/design to held feature specs 
+/public holds images and other FE assets
+/recipe_store is the business recipes sample data
 /scripts
-/src/app
-	/authors
-	/categories
-  /recipes
-	/sources
+/src
+  /app
+	/components
+	/lib
 /tests holds the db tests using mocha
 ```
