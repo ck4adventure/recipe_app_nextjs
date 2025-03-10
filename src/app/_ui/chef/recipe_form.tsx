@@ -26,21 +26,27 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 const measures = ['drop', 'g', 'ml', 'liter', 'tsp', 'Tbsp', 'whole',
-	'pinch', 'percent', 'piece', 'cup', 'ounce']
+	'pinch', 'percent', 'piece', 'cup', 'ounce'];
+
+// from db migration '[^a-zA-Z0-9\s]', '', 'g'), '\s+', '-', 'g'
+const slugRegex = (str: string) => {
+	return str.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+};
+
 
 const formSchema = z.object({
 	title: z.string().min(4),
 	category: z.string(),
 	label: z.string().min(4),
-	slug: z.string().optional(),
+	slug: z.string(),
 	ingredients: z.array(z.object({
 		qty: z.number().min(1).max(20),
-		measure: z.string().min(1, { message: "Select a measure"}),
-		ingr_id: z.number().min(1, { message: "Please select an ingredient"}),
+		measure: z.string().min(1, { message: "Select a measure" }),
+		ingr_id: z.number().min(1, { message: "Please select an ingredient" }),
 		note: z.string().optional()
 	})).nonempty(),
-	steps: z.array(z.object({ value: z.string().min(1, {message: "Must have at least one step"})})).nonempty({message: "Must have at least one step"}), // must be arrays of objects, design flaw
-	notes: z.array(z.object({ value: z.string()})).optional(),
+	steps: z.array(z.object({ value: z.string().min(1, { message: "Must have at least one step" }) })).nonempty({ message: "Must have at least one step" }), // must be arrays of objects, design flaw
+	notes: z.array(z.object({ value: z.string() })).optional(),
 })
 
 export interface IngrResult {
@@ -53,8 +59,8 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
-		defaultValues:{
-			steps: [{value: ""}],
+		defaultValues: {
+			steps: [{ value: "" }],
 			ingredients: [{
 				"qty": 0,
 				"measure": '',
@@ -87,6 +93,11 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 		console.log(values)
 	};
 
+	const updateSlug = (title: string) => {
+		const slug = slugRegex(title);
+		form.setValue('slug', slug);
+	};
+
 	return (
 		<Form {...form}>
 			<form id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-[750px]">
@@ -99,10 +110,13 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 							<FormLabel>Recipe Title</FormLabel>
 							<FormControl>
 								<Input
-								placeholder='Upper Case Recipe Title'
-								id='recipe-title-input'
-								value={field.value || ''}
-								onChange={field.onChange} />
+									placeholder='Upper Case Recipe Title'
+									id='recipe-title-input'
+									value={field.value || ''}
+									onChange={(e) => {
+										updateSlug(e.target.value);
+										field.onChange(e);
+									}} />
 							</FormControl>
 							<FormDescription>
 								This is the full name of your recipe.
@@ -119,13 +133,34 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 						<FormItem>
 							<FormLabel>Recipe Label</FormLabel>
 							<FormControl>
-								<Input 
-								placeholder="lowercase short name for labeling" 
-								value={field.value || ''} 
-								onChange={field.onChange} />
+								<Input
+									placeholder="lowercase short name for labeling"
+									value={field.value || ''}
+									onChange={field.onChange} />
 							</FormControl>
 							<FormDescription>
 								This is the name that will be printed on package labeling.
+							</FormDescription>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+				{/* recipe slug			 */}
+				<FormField
+					control={form.control}
+					name="slug"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Recipe Slug</FormLabel>
+							<FormControl>
+								<Input
+									value={field.value || ''}
+									readOnly 
+									className='text-zinc-500'/>
+							</FormControl>
+							<FormDescription>
+								The slug is generated from the title.
 							</FormDescription>
 							<FormMessage />
 						</FormItem>
@@ -171,7 +206,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 									<FormItem className=' mr-4'>
 										<FormControl>
 											<Input
-											id={`ingredients-qty-input-${index}`}
+												id={`ingredients-qty-input-${index}`}
 												type="number"
 												min={1}
 												max={10}
@@ -220,7 +255,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 									return (
 										<FormItem className='w-[220px] mr-4'>
 											<Select
-													onValueChange={(value: string) => {
+												onValueChange={(value: string) => {
 													const v = parseFloat(value);
 													field.onChange(v);
 												}}>
@@ -251,11 +286,11 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 								render={({ field }) => (
 									<FormItem className='mr-4'>
 										<FormControl>
-											<Input 
-												value={field.value || ''} 
+											<Input
+												value={field.value || ''}
 												id={`ingredients.${index}.note`}
 												onChange={field.onChange}
-												/>
+											/>
 										</FormControl>
 										<FormDescription>Note</FormDescription>
 									</FormItem>
@@ -296,20 +331,20 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 								render={({ field }) => (
 									<FormItem className='flex-1'>
 										<FormControl>
-											<Input 
-											type="text" 
-											placeholder={`Step ${index + 1}`} 
-											value={field.value}
-											onChange={field.onChange} />
+											<Input
+												type="text"
+												placeholder={`Step ${index + 1}`}
+												value={field.value}
+												onChange={field.onChange} />
 										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
 							<div className=''>
-							<Button type="button" className='ml-4' variant="destructive" onClick={() => removeStep(index)}>
-								Remove
-							</Button>
+								<Button type="button" className='ml-4' variant="destructive" onClick={() => removeStep(index)}>
+									Remove
+								</Button>
 							</div>
 						</div>
 					))}
@@ -331,12 +366,12 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 								render={({ field }) => (
 									<FormItem className='flex-1'>
 										<FormControl>
-											<Input 
-												type="text" 
+											<Input
+												type="text"
 												placeholder={`Note ${index + 1}`}
 												value={field.value}
 												onChange={field.onChange}
-												/>
+											/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
