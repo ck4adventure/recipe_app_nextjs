@@ -25,16 +25,9 @@ import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
 
-const measures = ['drop', 'g', 'ml', 'liter', 'tsp', 'Tbsp', 'whole',
-	'pinch', 'percent', 'piece', 'cup', 'ounce'];
+import { createChefsRecipe } from '@/app/_lib/chefs_actions';
 
-// from db migration '[^a-zA-Z0-9\s]', '', 'g'), '\s+', '-', 'g'
-const slugRegex = (str: string) => {
-	return str.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
-};
-
-
-const formSchema = z.object({
+export const RecipeFormSchema = z.object({
 	title: z.string().min(4),
 	category: z.string(),
 	label: z.string().min(4),
@@ -49,6 +42,15 @@ const formSchema = z.object({
 	notes: z.array(z.object({ value: z.string() })).optional(),
 })
 
+const measures = ['drop', 'g', 'ml', 'liter', 'tsp', 'Tbsp', 'whole',
+	'pinch', 'percent', 'piece', 'cup', 'ounce'];
+
+// from db migration '[^a-zA-Z0-9\s]', '', 'g'), '\s+', '-', 'g'
+const slugRegex = (str: string) => {
+	return str.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+};
+
+
 export interface IngrResult {
 	id: number,
 	label_name: string,
@@ -57,8 +59,8 @@ export interface IngrResult {
 
 export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: string[], ingredientsList: IngrResult[] }) => {
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
+	const form = useForm<z.infer<typeof RecipeFormSchema>>({
+		resolver: zodResolver(RecipeFormSchema),
 		defaultValues: {
 			steps: [{ value: "" }],
 			ingredients: [{
@@ -66,8 +68,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 				"measure": '',
 				"ingr_id": -1
 			}]
-		},
-		shouldFocusError: true
+		}
 	})
 
 	const { fields: stepFields, append: appendStep, remove: removeStep } = useFieldArray({
@@ -87,10 +88,10 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 
 
 	// 2. Define a submit handler.
-	const onSubmit = (values: z.infer<typeof formSchema>) => {
-		console.log("submit clicked")
-
-		console.log(values)
+	const onSubmit = async (values: z.infer<typeof RecipeFormSchema>) => {
+		console.log("values submitted: ", values);
+		const result = await createChefsRecipe(values);
+		console.log("result returned: ", result);
 	};
 
 	const updateSlug = (title: string) => {

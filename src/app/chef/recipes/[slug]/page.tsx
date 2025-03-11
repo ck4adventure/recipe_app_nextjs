@@ -4,7 +4,18 @@ import { GET_CHEFS_RECIPE_BY_SLUG } from "@/app/_lib/sqlQueriesChef";
 
 export default async function Page({ params }: { params: { slug: string } }) {
 	// fetch ingr and list all properties
-	const recipe = await GET_CHEFS_RECIPE_BY_SLUG(params.slug);
+	const recipe: any = await GET_CHEFS_RECIPE_BY_SLUG(params.slug);
+
+	// check for empty/undefine recipe object
+	if (!recipe) {
+		return (
+			<div className='flex flex-col items-center'>
+				<h2 className="font-bold text-lg text-center">Recipe Not Found</h2>
+				<p className="text-center">The recipe you are looking for does not exist or has been removed.</p>
+			</div>
+		);
+	}
+
 	return (
 		<div className='flex flex-col items-center'>
 			<h2 className="font-bold text-lg text-center">{recipe.title}</h2>
