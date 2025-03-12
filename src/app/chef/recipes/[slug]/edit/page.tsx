@@ -7,6 +7,11 @@ import { GET_CHEFS_RECIPE_BY_SLUG } from "@/app/_lib/sqlQueriesChef";
 export default async function Page({ params }: { params: { slug: string } }) {
 	// fetch ingr and list all properties
 	const recipe = await GET_CHEFS_RECIPE_BY_SLUG(params.slug);
+	if (!recipe) {
+		return (
+			<div>Ooops!</div>
+		);
+	}
 	return (
 		<div className='flex flex-col items-center'>
 			<h2 className="font-bold text-lg text-center">{recipe.title}</h2>
