@@ -15,7 +15,7 @@ CREATE TABLE if NOT EXISTS chefs_recipe_ingrs (
 		recipe_id INT REFERENCES chefs_recipes(id),
 		ingr_id INT REFERENCES ingrs(id),
 		measure measure_type NOT NULL,
-		qty NUMERIC NOT NULL,
+		qty NUMERIC CHECK (qty > 0) NOT NULL,
 		note TEXT
 );
 
