@@ -22,43 +22,43 @@ export const dropLocalTables = async (pool) => {
 
         `);
 	
-	// 	await pool.query(`
-	// 		DROP TABLE IF EXISTS dough CASCADE;
-	// 		DROP TYPE IF EXISTS flour_blend_type CASCADE;
-	// `);
-	
-	// 	await pool.query(`
-	// 		DROP TABLE IF EXISTS leaven CASCADE;
-	// `);
-	// 	await pool.query(`
-	// 	  DROP TABLE IF EXISTS recipe_steps CASCADE;
-	// 	`);
-	// 	await pool.query(`
-	//   	DROP TABLE IF EXISTS recipe_ingredients CASCADE;
-	// 	`);
-	// 	await pool.query(`
-	//   DROP TABLE IF EXISTS recipe_categories CASCADE;
-	// `);
-	// 	await pool.query(`
-	//   DROP TABLE IF EXISTS recipes CASCADE;
-	// `);
+				await pool.query(`
+					DROP TABLE IF EXISTS dough CASCADE;
+					DROP TYPE IF EXISTS flour_blend_type CASCADE;
+			`);
+			
+				await pool.query(`
+					DROP TABLE IF EXISTS leaven CASCADE;
+			`);
+				await pool.query(`
+					DROP TABLE IF EXISTS recipe_steps CASCADE;
+				`);
+				await pool.query(`
+					DROP TABLE IF EXISTS recipe_ingredients CASCADE;
+				`);
+				await pool.query(`
+				DROP TABLE IF EXISTS recipe_categories CASCADE;
+			`);
+				await pool.query(`
+				DROP TABLE IF EXISTS recipes CASCADE;
+			`);
 
-	// 	await pool.query(`
-	// 	DROP TABLE IF EXISTS foods CASCADE;
-	// `);
-	// 	await pool.query(`
-	//   DROP TABLE IF EXISTS categories CASCADE;
-	// `);
-	// 	await pool.query(`
-	// 		DROP TABLE IF EXISTS source_authors CASCADE;
-	// 	`);
-	// 	await pool.query(`
-	// 		DROP TABLE IF EXISTS sources CASCADE;
-	// 		DROP TYPE IF EXISTS sourcetyp CASCADE;
-	//  `);
-	// 	await pool.query(`
-	// 		DROP TABLE IF EXISTS authors CASCADE;
-	// 	`);
+				await pool.query(`
+				DROP TABLE IF EXISTS foods CASCADE;
+			`);
+				await pool.query(`
+				DROP TABLE IF EXISTS categories CASCADE;
+			`);
+				await pool.query(`
+					DROP TABLE IF EXISTS source_authors CASCADE;
+				`);
+				await pool.query(`
+					DROP TABLE IF EXISTS sources CASCADE;
+					DROP TYPE IF EXISTS sourcetyp CASCADE;
+			`);
+				await pool.query(`
+					DROP TABLE IF EXISTS authors CASCADE;
+				`);
 		console.log('db tables dropped');
 	} catch (error) {
 		console.error('Error dropping tables', error);

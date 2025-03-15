@@ -27,10 +27,14 @@ notes[] (opt)
 ## In Progress
 ### Add testing
 Levels of Testing:
-  - test db schema/migrations for tables, properties, indexes, runs against local, jest?
+- DB
+  - test db schema/migrations for tables, properties, indexes, runs against local, jest? turns out I have mocha set up for my previous work
 	- mock db and test next actions, which are my db queries, jest
+- Utils
 	- any utils that I use, jest
+- Routes
 	- should have a list of expected routes/pages, and just ensure each comes back as 200, cypress/jest?
+- Page Content
 	- finally, clicking through each page to get min expected content, cypress
 
 
