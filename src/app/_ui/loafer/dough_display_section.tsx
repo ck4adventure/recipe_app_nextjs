@@ -3,7 +3,7 @@
 import { Box, Paper, Typography, Button, Link } from "@mui/material"
 import { QueryResultRow } from "pg";
 import { useState, useEffect } from 'react'
-import { updateDoughSaltTime, updateDoughEndTime } from "@/app/_lib/actions";
+import { updateDoughSaltTime, updateDoughEndTime } from "@/app/loafer/actions";
 
 
 

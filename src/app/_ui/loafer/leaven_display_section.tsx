@@ -1,5 +1,5 @@
 'use client'
-import { finishLeaven } from "@/app/_lib/actions";
+import { finishLeaven } from "@/app/loafer/actions";
 import { Box, Paper, Typography, Button, Link, TextField, FormControl } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import { QueryResultRow } from "pg";
@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import { calculateElapsedTime } from "./components";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import dayjs, { Dayjs } from "dayjs";
-import { LeavenFormData } from "@/app/_lib/definitions";
+import { LeavenFormData } from "@/app/loafer/definitions";
 
 
 

@@ -1,5 +1,5 @@
 import { GET_RECIPE_BY_SLUG } from '../../_lib/sqlQueriesRecipes';
-import { Recipe } from '../../_lib/definitions';
+import { Recipe } from '../../loafer/definitions';
 // import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
 
 import Link from 'next/link';

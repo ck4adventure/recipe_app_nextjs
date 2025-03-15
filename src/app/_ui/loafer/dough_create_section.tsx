@@ -12,8 +12,8 @@ import { TimeField } from "@mui/x-date-pickers";
 import Grid from "@mui/material/Grid2";
 
 
-import { DoughFormData } from "@/app/_lib/definitions";
-import { FlourBlend } from "@/app/_lib/definitions";
+import { DoughFormData } from "@/app/loafer/definitions";
+import { FlourBlend } from "@/app/loafer/definitions";
 
 // LeavenFormSection only deals with the data timestemps for creating the leaven
 export default function DoughCreateSection({ leavenID, createDoughAction }: { createDoughAction: (formData: DoughFormData) => void, leavenID: number }) {

@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { CREATE_DOUGH, CREATE_LEAVEN, UPDATE_DOUGH_SALT_TIME, UPDATE_DOUGH_END_TIME, FINISH_LEAVEN } from './sqlQueriesLoafer'
+import { CREATE_DOUGH, CREATE_LEAVEN, UPDATE_DOUGH_SALT_TIME, UPDATE_DOUGH_END_TIME, FINISH_LEAVEN } from '../_lib/sqlQueriesLoafer'
 import { revalidatePath } from 'next/cache';
 // Leaven
 // table should exist with the following columns:
