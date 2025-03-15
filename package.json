@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "cypress:open": "cypress open",
+    "test:be:chefs": "mocha test/chef/chefs_recipe_ingrs.test.mjs",
     "test:be": "mocha",
     "test:fe": "jest",
     "test": "jest"

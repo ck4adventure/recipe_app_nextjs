@@ -9,11 +9,11 @@ import path from 'path';
 export const migrateLocalTables = async (pool) => {
 	try {
 
-		const files = fs.readdirSync(path.join(process.cwd(), 'db', 'migrations', 'todo'));
+		const files = fs.readdirSync(path.join(process.cwd(), 'db', 'migrations', 'completed'));
 		const sortedFiles = files.sort((a, b) => a.split('_')[0] - b.split('_')[0]);
 		// read and run each file		
 		for (const file of sortedFiles) {
-			const sql = fs.readFileSync(path.join(process.cwd(), 'db', 'migrations', 'todo', file), 'utf-8');
+			const sql = fs.readFileSync(path.join(process.cwd(), 'db', 'migrations', 'completed', file), 'utf-8');
 			await pool.query(sql);
 			console.log(`Migrated ${file}`);
 		}
