@@ -2,7 +2,14 @@
 // import { query } from '../../../db/index.mjs';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { CREATE_RECIPE, UPDATE_RECIPE, ADD_INGREDIENT_TO_RECIPE, ADD_STEP_TO_RECIPE, DELETE_RECIPE_INGREDIENTS, DELETE_RECIPE_STEPS } from './sqlQueriesRecipes';
+import { CREATE_RECIPE, UPDATE_RECIPE, ADD_INGREDIENT_TO_RECIPE, ADD_STEP_TO_RECIPE, DELETE_RECIPE_INGREDIENTS, DELETE_RECIPE_STEPS } from '../_lib/sqlQueriesRecipes';
+
+// server side
+// this functions wraps the async vercel sql call, catches the errors
+// allowing the sql call to be reused if needed
+// and allowing further actions like redirect
+
+// IN PROGRESS - WRITE TESTING
 
 // createRecipeAndRedirect takea a title and categoryID and creates the recipe and adds it to the category
 export const createRecipeAndRedirect = async (title: string, categoryID: number, sourceID: number, authorID: number, ingredients: string[], steps: string[]) => {

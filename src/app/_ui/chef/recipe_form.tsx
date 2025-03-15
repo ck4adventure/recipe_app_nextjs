@@ -25,7 +25,7 @@ import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
 
-import { createChefsRecipe } from '@/app/_lib/chefs_actions';
+import { createChefsRecipe } from '@/app/chef/actions';
 
 export const RecipeFormSchema = z.object({
 	title: z.string().min(4),

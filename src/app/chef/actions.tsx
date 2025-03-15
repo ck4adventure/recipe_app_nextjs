@@ -1,7 +1,7 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
-import { CREATE_NEW_RECIPE, ADD_RECIPE_INGRS } from './sqlQueriesChef'
+import { CREATE_NEW_RECIPE, ADD_RECIPE_INGRS } from '../_lib/sqlQueriesChef'
 import { revalidatePath } from 'next/cache';
 import { RecipeFormSchema } from '../_ui/chef/recipe_form';
 
