@@ -11,17 +11,17 @@ export default async function Page() {
 
 	return (
 		<div className=''>
-			<div data-cy='ingrs-index'>
+			<div data-cy='chef-ingrs-index'>
 				<div className="flex justify-center">
 					<h1 className="text-xl">Chef&apos;s Ingredients Page</h1>
 				</div>
-				<div className="flex flex-wrap">
+				<div data-cy='chef-ingrs-by-category' className="flex flex-wrap">
 					{groupedIngrs && groupedIngrs.map(obj => (
-						<div className="m-4 max-w-[250px]" key={obj.category}>
+						<div data-cy='category-section' className="m-4 max-w-[250px]" key={obj.category}>
 							<div className="font-medium capitalize">{obj.category}</div>
 							<div>{obj.items.map((item: any) => (
-								<div key={item.id} className="my-0">
-									<Link href={`/chef/ingrs/${item.slug}`} className="capitalize font-light text-sm">{item.packaged_name}</Link>
+								<div data-cy='ingr-item' key={item.id} className="my-0">
+									<Link data-cy='ingr-link' href={`/chef/ingrs/${item.slug}`} className="capitalize font-light text-sm"><p data-cy='ingr-packaged-name'>{item.packaged_name}</p></Link>
 								</div>
 							))}</div>
 						</div>
