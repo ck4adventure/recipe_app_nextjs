@@ -3,7 +3,7 @@ describe('Chefs Recipes Index Page', () => {
 		cy.visit('http://localhost:3000/chef/recipes');
 	});
 	context('layout', () => {
-		it('has a main page called chef-reipes', () => {
+		it('has a main page called chef-recipes', () => {
 			cy.getByData('chef-recipes').should('exist');
 		})
 		it('fills the main section with a listing of recipes grouped by category', () => {
