@@ -7,7 +7,7 @@ export default async function Page() {
 
 	const categories = recipeCategories.map(result => result.category);
 	return (
-		<div className="flex flex-col items-center">
+		<div data-cy='new-recipe-page' className="flex flex-col items-center">
 			<ChefsRecipeForm categories={categories} ingredientsList={availableIngredients}/>
 		</div>
 	)
