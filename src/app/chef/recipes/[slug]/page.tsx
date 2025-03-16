@@ -9,33 +9,34 @@ export default async function Page({ params }: { params: { slug: string } }) {
 	// check for empty/undefine recipe object
 	if (!recipe) {
 		return (
-			<div className='flex flex-col items-center'>
-				<h2 className="font-bold text-lg text-center">Recipe Not Found</h2>
+			<div data-cy='chef-recipe-item-page' className='flex flex-col items-center'>
+				<h2 data-cy='recipe-item-not-found'className="font-bold text-lg text-center">Recipe Not Found</h2>
 				<p className="text-center">The recipe you are looking for does not exist or has been removed.</p>
 			</div>
 		);
 	}
 
 	return (
-		<div className='flex flex-col items-center'>
-			<h2 className="font-bold text-lg text-center">{recipe.title}</h2>
-			<h4 className="font-bold text-sm text-center">{recipe.category}</h4>
+		<div data-cy='chef-recipe-item-page' className='flex flex-col items-center'>
+			<h2 data-cy='recipe-title' className="font-bold text-lg text-center">{recipe.title}</h2>
+			<h2 data-cy='recipe-label-name'className="font-bold text-lg text-center">{recipe.label_name}</h2>
+			<h4 data-cy='recipe-category' className="font-bold text-sm text-center">{recipe.category}</h4>
 			<div className="max-w-[850px]">
-				<div className="m-4">
+				<div data-cy='recipe-ingredients-section' className="m-4">
 					<h3 className="font-semibold my-2">Ingredients</h3>
 					<ul className="">
 						{recipe.ingredients && recipe.ingredients.map((ingr: any) => (
-							<li key={ingr.packaged_name} className="flex my-1">
-								<div>{ingr.qty} {ingr.measure} {ingr.packaged_name}</div>{ingr.note && (<div className="flex mx-8 font-semibold">Note:<div className="font-normal">&nbsp;{ingr.note}</div></div>)}
+							<li data-cy='recipe-ingredient' key={ingr.packaged_name} className="flex my-1">
+								<div className="flex"><p data-cy='ingredient-qty'>{ingr.qty}</p><p data-cy='ingredient-measure'>&nbsp;{ingr.measure}</p><p data-cy='ingredient-name'>&nbsp;{ingr.packaged_name}</p></div>{ingr.note && (<div className="flex mx-8 font-semibold">&nbsp;Note:<div data-cy='ingredient-note' className="font-normal">&nbsp;{ingr.note}</div></div>)}
 							</li>
 						))}
 					</ul>
 				</div>
-				<div className="m-4">
+				<div data-cy='recipe-method-section' className="m-4">
 					<h3 className="font-semibold my-2">Method</h3>
 					<ol className="list-decimal">
 						{recipe.steps && recipe.steps.map((step: any, i: number) => (
-							<li key={i} className="mx-4 my-2">
+							<li data-cy='recipe-step' key={i} className="mx-4 my-2">
 								{step}
 							</li>
 						))}
@@ -43,7 +44,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 				</div>
 
 				{recipe.notes && recipe.notes.length > 0 && (
-					<div className="m-4">
+					<div data-cy='recipe-notes-section' className="m-4">
 						<div className="font-semibold my-2">Notes</div>
 						<ul>
 							{recipe.notes && recipe.notes.map((note: string, i: number) => (
