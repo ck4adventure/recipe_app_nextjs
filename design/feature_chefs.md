@@ -25,20 +25,23 @@ steps[] (opt)
 notes[] (opt)
 
 ## In Progress
-### Add testing
-Levels of Testing:
-- DB
-  - test db schema/migrations for tables, properties, indexes, runs against local, jest? turns out I have mocha set up for my previous work
-	- mock db and test next actions, which are my db queries, jest
-- Utils
-	- any utils that I use, jest
-- Routes
-	- should have a list of expected routes/pages, and just ensure each comes back as 200, cypress/jest?
-- Page Content
-	- finally, clicking through each page to get min expected content, cypress
+
 
 
 ## Finished Tasks/Features
+### Add testing
+Basic Levels of Testing
+
+Unit: 
+- Mocha to test db schema/migrations for tables, properties, indexes, runs against local
+
+Integration:
+- Jest, things like utils and components
+- Module Interaction, next server actions like createNewRecipe, which runs db calls and then redirects
+
+E2E:
+- Cypress for checking that each page loads and has specified content
+
 ### Add Form for Recipes
 `/chef/recipes/new`
 
