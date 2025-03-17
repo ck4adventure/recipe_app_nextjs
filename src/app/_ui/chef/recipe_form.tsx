@@ -101,16 +101,18 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 
 	return (
 		<Form {...form}>
-			<form id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-[750px]">
+			<form data-cy='recipe-form' id='recipe-form' onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-[750px]">
 				{/* recipe title */}
 				<FormField
 					control={form.control}
 					name="title"
+					data-cy='recipe-form-title-input'
 					render={({ field }) => (
 						<FormItem>
 							<FormLabel>Recipe Title</FormLabel>
 							<FormControl>
 								<Input
+									data-cy='recipe-form-title-input'
 									placeholder='Upper Case Recipe Title'
 									id='recipe-title-input'
 									value={field.value || ''}
@@ -135,6 +137,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 							<FormLabel>Recipe Label</FormLabel>
 							<FormControl>
 								<Input
+									data-cy='recipe-form-label-input'
 									placeholder="lowercase short name for labeling"
 									value={field.value || ''}
 									onChange={field.onChange} />
@@ -156,6 +159,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 							<FormLabel>Recipe Slug</FormLabel>
 							<FormControl>
 								<Input
+									data-cy='recipe-form-slug'
 									value={field.value || ''}
 									readOnly 
 									className='text-zinc-500'/>
@@ -177,7 +181,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 							<FormLabel>Recipe Category</FormLabel>
 							<Select onValueChange={field.onChange} value={field.value}>
 								<FormControl>
-									<SelectTrigger>
+									<SelectTrigger 			data-cy='recipe-form-category-input'>
 										<SelectValue placeholder="Select a category for the recipe." />
 									</SelectTrigger>
 								</FormControl>
@@ -194,7 +198,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 				/>
 
 				{/* recipe ingredients */}
-				<div>
+				<div data-cy='recipe-form-ingredients-section'>
 					<FormLabel>Ingredients</FormLabel>
 					{ingredientFields.map((field, index) => (
 						<div key={field.id} className='flex items-center'>
@@ -322,7 +326,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 				</div>
 
 				{/* recipe steps */}
-				<div>
+				<div data-cy='recipe-form-steps-section'>
 					<FormLabel>Steps</FormLabel>
 					{stepFields.map((field, index) => (
 						<div key={field.id} className="flex items-center space-x-2">
@@ -357,7 +361,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 				</div>
 
 				{/* recipe notes */}
-				<div>
+				<div data-cy='recipe-form-notes-section'>
 					<FormLabel>Notes</FormLabel>
 					{noteFields.map((field, index) => (
 						<div key={field.id} className="flex items-center">
@@ -389,7 +393,7 @@ export const ChefsRecipeForm = ({ categories, ingredientsList }: { categories: s
 
 				</div>
 
-				<Button type="submit" >Submit</Button>
+				<Button data-cy='recipe-form-submit-button' type="submit" >Submit</Button>
 			</form>
 		</Form >
 	)
