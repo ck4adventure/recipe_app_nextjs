@@ -1,5 +1,5 @@
-import { Product } from "../../types";
-const white_choco_coconut: Product = {
+
+const white_choco_coconut = {
 	"id": "white_choco_coconut",
 	"label": "Coconut White Chocolate Ganache with Coconut",
 	"description": "Coconut filling topped with Coconut White Chocolate Ganache",

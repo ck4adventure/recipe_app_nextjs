@@ -1,5 +1,5 @@
-import { Product } from "../../types";
-const white_chocolate_tart: Product = {
+
+const white_chocolate_tart = {
 	"id": "white_chocolate_tart",
 	"label": "White Chocolate Tart",
 	"description": "Sweet white chocolate in a crispy buttery tart case.",

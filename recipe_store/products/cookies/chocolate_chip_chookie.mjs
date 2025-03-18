@@ -1,5 +1,4 @@
-import { Product } from '../../types'
-const chocolate_chip_cookie: Product = {
+const chocolate_chip_cookie = {
 	id: "choco_chip_cookies",
 	label: "Chocolate Chip Cookie",
 	description: "Large chewy chocolate chip cookie.",

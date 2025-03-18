@@ -1,5 +1,5 @@
-import { Product } from "../../types";
-const marzipan_milk_choc_tart: Product = {
+
+const marzipan_milk_choc_tart = {
 	"id": "marzipan_milk_choc_tart",
 	"label": "Almond and Milk Chocolate Tart",
 	"description": "Marizipan and milk chocolate ganache.",

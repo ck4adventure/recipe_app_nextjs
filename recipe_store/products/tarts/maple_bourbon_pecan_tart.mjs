@@ -1,6 +1,6 @@
-import { Product } from "../../types";
 
-const maple_bourbon_pecan_tart: Product = {
+
+const maple_bourbon_pecan_tart = {
 	"id": "maple_bourbon_pecan_tart",
 	"label": "Maple Bourbon Pecan Tart",
 	"description": "Maple filling with whole pecans and a maple bourbon drizzle",
