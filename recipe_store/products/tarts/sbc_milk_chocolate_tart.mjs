@@ -1,5 +1,5 @@
-import { Product } from "../../types";
-const milk_choc_sbc: Product = {
+
+const milk_choc_sbc = {
 	"id": "milk_choc_sbc",
 	"label": "Milk Chocolate over Salted Butter Caramel",
 	"description": "Creamy milk chocolate over a decadent layer of salted butter caramel. Like a candy bar, but grown up",

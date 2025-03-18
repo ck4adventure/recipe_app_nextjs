@@ -1,6 +1,4 @@
-import { Product } from "../../types";
-
-const blueberry_muffin: Product = {
+const blueberry_muffin = {
 	"id": "blueberry_muffin",
 	"label": "Blueberry Muffin Tart",
 	"description": "Almond almond cream and homemade blueberry jam with a vanilla crumble combine for the ultimate blueberry muffin flavor",

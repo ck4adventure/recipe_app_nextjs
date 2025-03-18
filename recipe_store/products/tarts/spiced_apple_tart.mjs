@@ -1,6 +1,6 @@
-import { Product } from "../../types";
 
-const spiced_apple_tart: Product = {
+
+const spiced_apple_tart = {
 	"id": "spiced_apple_tart",
 	"label": "Spiced Apple Tart",
 	"description": "Light spiced apples with a hint of caramel over a creamy almond base.",

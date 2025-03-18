@@ -1,4 +1,4 @@
-# Bakery Manager for Labeling
+# Chefs App for Labeling
 Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by looking up first a products recipes, then aggregating all the ingrs of each recipe, incl set of allergens
 
 ## Upcoming
@@ -21,14 +21,45 @@ Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by l
 
 ## In Progress
 ### Feature: Product (has many recipes)
-SCHEMA
-title
-label
-description (opt)
-recipes[]
-allergens[]
-steps[] (opt)
-notes[] (opt)
+`/chef/products`, `/chef/products/[slug]`
+
+The primary goal of this feature is to enable querying a Product through its recipes to ingredients and generate an ingredient and allergen list for it so that I can more easily print labels. 
+Eventually, I'd like to be able to work with recipe quantities, ingredient cost and product price to keep an eye on profit margins, especially with the rising cost of commerce at the moment.
+
+```json
+const blueberry_muffin: Product = {
+	"id": "blueberry_muffin",
+	"label": "Blueberry Muffin Tart",
+	"description": "Almond almond cream and homemade blueberry jam with a vanilla crumble combine for the ultimate blueberry muffin flavor",
+	"price": 4.0,
+	"unit": "each",
+	"ingredients": {
+		"base": ["TART_CASE"],
+		"filling": ["ALMOND_CREAM", "BLUEBERRY_JAM"],
+		"topping": ["VANILLA_CRUMBLE"]
+	}
+}
+```
+
+SCHEMAS
+
+Product Table
+- id 
+- name (for printing on the label)
+- slug (for links)
+- description (opt)
+- category (from folder name ie tarts)
+- components[]
+- assembly[]
+- notes[]
+
+Product Recipe Table
+- id
+- productID
+- recipeID
+- component (layer): [base, filling, topping]
+
+
 
 
 ## Finished Tasks/Features

@@ -122,3 +122,20 @@ export const GET_CHEFS_RECIPE_BY_SLUG = async (slug: string) => {
 	}
 
 }
+
+export const GET_PRODUCTS_BY_CAT = async () => {
+	const results = await sql`
+		SELECT 
+			p.category,
+				JSON_AGG(
+						JSON_BUILD_OBJECT(
+								'id', p.id,
+								'title', p.title,
+								'slug', p.slug
+						)
+				) AS products
+		FROM products AS p
+		GROUP BY p.category;
+	`
+	return results.rows;
+}

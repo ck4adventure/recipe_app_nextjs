@@ -1,5 +1,5 @@
-import { Product } from "../../types";
-const sbc: Product = {
+
+const sbc = {
 	"id": "sbc",
 	"label": "Salted Butter Caramel",
 	"description": "Salted butter caramel all the way to the top. Satisfyingly sweet.",

@@ -1,5 +1,5 @@
-import { Product } from "../../types";
-const banana_milk_choc_tart: Product = {
+
+const banana_milk_choc_tart = {
 	"id": "banana_milk_choc_tart",
 	"label": "Banana and Milk Chocolate Tart",
 	"description": "Banana and sweet milk chocolate ganache.",
