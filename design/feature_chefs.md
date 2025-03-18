@@ -3,7 +3,10 @@ Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by l
 
 ## Upcoming
 ### Add allergens details to recipe item page
-- additional query around ignrs for the recipe to get uniq list of allergens
+- additional query around ingrs for the recipe to get uniq list of allergens
+
+### Add/Edit ingredient forms
+- eventually I'll need to add more ingredients or update the ones I have
 
 ### Edit recipe form
 - allow editing of recipe fields, incl ingredients
@@ -14,6 +17,9 @@ Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by l
 - I might make this a flag and always filter on it, so that I don't actually lose data
 - or keep it manual 
 
+
+
+## In Progress
 ### Feature: Product (has many recipes)
 SCHEMA
 title
@@ -23,9 +29,6 @@ recipes[]
 allergens[]
 steps[] (opt)
 notes[] (opt)
-
-## In Progress
-
 
 
 ## Finished Tasks/Features
