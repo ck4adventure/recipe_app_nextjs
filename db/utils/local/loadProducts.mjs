@@ -73,7 +73,7 @@ export const loadProducts = async (pool) => {
 				for (const component of keys) {
 					const recipeNames = product.ingredients[component];
 					for (let slug of recipeNames) {
-						console.log("looking up product recipe: ", slug)
+						console.log("looking up recipe: ", slug)
 						const recipeResult = await pool.query(
 							`SELECT id FROM chefs_recipes WHERE slug LIKE ($1)`,
 							[slug.toLowerCase()]
