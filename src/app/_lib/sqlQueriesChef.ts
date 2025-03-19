@@ -126,16 +126,16 @@ export const GET_CHEFS_RECIPE_BY_SLUG = async (slug: string) => {
 export const GET_PRODUCTS_BY_CAT = async () => {
 	const results = await sql`
 		SELECT 
-			p.category,
+			products.category,
 				JSON_AGG(
 						JSON_BUILD_OBJECT(
-								'id', p.id,
-								'title', p.title,
-								'slug', p.slug
+								'id', products.id,
+								'name', products.name,
+								'slug', products.slug
 						)
 				) AS products
-		FROM products AS p
-		GROUP BY p.category;
+		FROM products
+		GROUP BY products.category;
 	`
 	return results.rows;
 }

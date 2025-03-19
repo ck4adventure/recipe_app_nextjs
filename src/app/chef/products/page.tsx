@@ -18,7 +18,7 @@ export default async function Page() {
 						<ul className="mx-4">
 							{result.products && result.products.map((product: any) => (
 								<li data-cy='product-item' className="my-1" key={product.id}>
-									<Link data-cy='product-link' href={`/chef/products/${product.slug}`} className="font-light text-sm"><p data-cy='product-title'>{product.title}</p></Link>
+									<Link data-cy='product-link' href={`/chef/products/${product.slug}`} className="font-light text-sm"><p data-cy='product-title'>{product.name}</p></Link>
 								</li>
 							))}
 						</ul>
