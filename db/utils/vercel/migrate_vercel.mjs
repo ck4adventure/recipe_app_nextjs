@@ -6,9 +6,11 @@
 // catch any errors
 // and finallly end the client connection
 
-import { createIngrsTable } from "./migrations/0011_ingrs.mjs";
-import { createChefsRecipesTable } from "./migrations/0012_chefs_recipes.mjs";
-import { createChefsRecipeIngrsTable } from "./migrations/0013_chefs_recipes_inrs.mjs";
+// import { createIngrsTable } from "./migrations/0011_ingrs.mjs";
+// import { createChefsRecipesTable } from "./migrations/0012_chefs_recipes.mjs";
+// import { createChefsRecipeIngrsTable } from "./migrations/0013_chefs_recipes_inrs.mjs";
+import { createProductsTable } from "./migrations/0014_products.mjs";
+import { createProductRecipesTable } from "./migrations/0015_product_recipes.mjs";
 
 
 
@@ -31,14 +33,20 @@ export const migrateTables = async (client) => {
 		// await createLeavenTable(client);
 		// await createDoughTable(client);
 
-		// ingrs
-		await createIngrsTable(client);
+		// // ingrs
+		// await createIngrsTable(client);
 
-		// chefs_recipes
-		await createChefsRecipesTable(client);
+		// // chefs_recipes
+		// await createChefsRecipesTable(client);
 
-		// chefs_recipes_ingrs
-		await createChefsRecipeIngrsTable(client);
+		// // chefs_recipes_ingrs
+		// await createChefsRecipeIngrsTable(client);
+
+		// products
+		await createProductsTable(client);
+
+		// product recipes
+		await createProductRecipesTable(client);
 		
 		console.log('Tables migrated successfully');
 	} catch (error) {
