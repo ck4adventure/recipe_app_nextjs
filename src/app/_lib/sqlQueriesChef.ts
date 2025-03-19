@@ -139,3 +139,39 @@ export const GET_PRODUCTS_BY_CAT = async () => {
 	`
 	return results.rows;
 }
+
+export const GET_PRODUCT_BY_SLUG = async (slug: string) => {
+	const results = await sql`
+		SELECT 
+			products.id,
+			products.name,
+			products.category,
+			products.description,
+			products.steps,
+			products.notes
+		FROM products 
+		WHERE products.slug LIKE ${slug}
+	`
+	return results.rows[0];
+}
+
+export const GET_PRODUCT_COMPONENTS_BY_ID = async (id: number) => {
+	const results = await sql`
+		SELECT 
+			products.id,
+			product_recipes.component,
+				JSON_AGG(
+						JSON_BUILD_OBJECT(
+								'id', chefs_recipes.id,
+								'title', chefs_recipes.title,
+								'slug', chefs_recipes.slug
+						)
+				) AS recipes
+		FROM products 
+		JOIN product_recipes on products.id = product_recipes.product_id
+		JOIN chefs_recipes on product_recipes.recipe_id = chefs_recipes.id
+		WHERE products.id = ${id}
+		GROUP BY products.id, product_recipes.component
+	`
+	return results.rows;
+}
