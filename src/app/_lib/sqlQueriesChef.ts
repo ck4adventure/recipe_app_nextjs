@@ -94,7 +94,7 @@ export const ADD_RECIPE_INGRS = async (id: number, ingrsMap: any) => {
 
 export const GET_CHEFS_RECIPE_BY_SLUG = async (slug: string) => {
 	try {
-	const results = await sql`
+		const results = await sql`
 		SELECT 
 				r.id AS id,
 				r.category,
@@ -116,7 +116,7 @@ export const GET_CHEFS_RECIPE_BY_SLUG = async (slug: string) => {
 		WHERE r.slug = ${slug}
 		GROUP BY r.id;
 	`;
-	return results.rows[0];
+		return results.rows[0];
 	} catch (error) {
 		console.log("got error from query: ", error)
 	}
@@ -174,4 +174,33 @@ export const GET_PRODUCT_COMPONENTS_BY_ID = async (id: number) => {
 		GROUP BY products.id, product_recipes.component
 	`
 	return results.rows;
+}
+
+export const GET_PRODUCT_ALLERGENS = async (id: number) => {
+	const results = await sql`
+		WITH allergens_unnested AS (
+			SELECT recipe.id as recipe_id, unnest(ingrs.allergens) as allergen
+			FROM chefs_recipes as recipe
+			LEFT JOIN chefs_recipe_ingrs as recipe_ingrs ON recipe.id = recipe_ingrs.recipe_id
+			LEFT JOIN ingrs ON ingrs.id = recipe_ingrs.ingr_id
+			WHERE recipe.id IN (
+				SELECT recipe_id
+				FROM product_recipes
+				WHERE product_id = ${id}
+			)
+		)
+		SELECT 
+			p.id as id,
+			p.name as name, 
+			array_agg(DISTINCT ingrs.label_name) as ingredient_labels, 
+			array_agg(DISTINCT allergens_unnested.allergen) as allergens
+		FROM products as p
+		JOIN product_recipes AS pr ON p.id = pr.product_id
+		JOIN chefs_recipes as r on pr.recipe_id = r.id
+		LEFT JOIN chefs_recipe_ingrs as recipe_ingrs ON r.id = recipe_ingrs.recipe_id
+		LEFT JOIN ingrs ON ingrs.id = recipe_ingrs.ingr_id
+		LEFT JOIN allergens_unnested ON r.id = allergens_unnested.recipe_id
+		WHERE p.id = ${id}
+		GROUP BY p.id, p.name;`
+		return results.rows[0]
 }
