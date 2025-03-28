@@ -63,6 +63,9 @@ Product Recipe Table
 
 
 ## Finished Tasks/Features
+### Add breadcrumbs
+Everything under `/chefs` will have breadcrumb links at the top of the page
+
 ### Add testing
 Basic Levels of Testing
 

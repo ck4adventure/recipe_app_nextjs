@@ -8,7 +8,8 @@ Using Next.js with Typescript to learn more and stay sharp.
 - clone the repo
 - ensure Node 20 or greater
 - `npm run install`
-- TODO: update how to load local data
+- TODO: set up env file
+- TODO: update with how to load local data from scripts
 - `npm run dev`
 
 Visit `localhost:3000/recipes` to go to the recipe app main page.
