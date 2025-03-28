@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Recipe Corner",
-	description: "Christina's Corner: Recipes",
+	title: "Chef's Corner",
+	description: "App for recipe management and product labeling",
 };
 
 export default function RootLayout({
@@ -21,13 +21,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<head>
+				<link rel="icon" href="/app/favicon.ico" type="image/x-icon" />
+				{/* Add other meta tags or links here if needed */}
+			</head>
 			<body className={`${montserrat.className}`} id="corner_root">
-       {/* <AppRouterCacheProvider options={{ enableCssLayer: true }}> */}
-       <AppRouterCacheProvider >
-				<Providers>
-					<HeaderBar />
-					{children}
-				</Providers>
+				{/* <AppRouterCacheProvider options={{ enableCssLayer: true }}> */}
+				<AppRouterCacheProvider >
+					<Providers>
+						<HeaderBar />
+						{children}
+					</Providers>
 				</AppRouterCacheProvider>
 			</body>
 		</html>
