@@ -38,19 +38,19 @@ export const ProductCard = ({ product }: { product: Product }) => {
 			<CardContent>
 				<div>
 					<div className='flex my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>Description: </p>
+						<p className='mr-2 [font-variant:petite-caps]'>Description</p>
 						<p data-cy='product-category'>{product.description}</p>
 					</div>
 					<div className='flex my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>Category: </p>
+						<p className='mr-2 [font-variant:petite-caps]'>Category</p>
 						<p data-cy='product-category'>{product.category}</p>
 					</div>
 					<div className='flex flex-col my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>On the label: </p>
+						<p className='mr-2 [font-variant:petite-caps]'>On the label </p>
 						<p data-cy='product-label-name'>{product.ingredients_label.join(", ")}</p>
 					</div>
 					<div className='flex flex-col my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>Allergen label: </p>
+						<p className='mr-2 [font-variant:petite-caps]'>Allergen label </p>
 						<p data-cy='product-label-name'>{product.allergens_label.filter(item => item != null).join(", ")}</p>
 					</div>
 					<div data-cy='product-ingredients-section' className='flex flex-col my-2'>
@@ -92,6 +92,9 @@ export const ProductCard = ({ product }: { product: Product }) => {
 										</div>
 									);
 								})}
+								{!product.components.topping && (
+									<div>none</div>
+								)}
 							</div>
 						</div>
 					</div>
