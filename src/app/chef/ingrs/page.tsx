@@ -13,7 +13,7 @@ export default async function Page() {
 		<div className=''>
 			<div data-cy='chef-ingrs-index'>
 				<div className="flex justify-center">
-					<h1 className="text-xl">Chef&apos;s Ingredients Page</h1>
+					<h1 className="text-2xl font-semibold">Chef&apos;s Ingredients Page</h1>
 				</div>
 				<div data-cy='chef-ingrs-by-category' className="flex flex-wrap">
 					{groupedIngrs && groupedIngrs.map(obj => (

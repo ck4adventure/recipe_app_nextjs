@@ -7,7 +7,7 @@ export default async function Page() {
 	return (
 		<div data-cy='chef-recipes'>
 			<div className="flex justify-center">
-				<h1 className="text-xl">Chef&apos;s Recipes Page</h1>
+				<h1 className="text-2xl font-semibold">Chef&apos;s Recipes Page</h1>
 			</div>
 			{/* add recipes component */}
 			<div data-cy='chef-recipes-by-category' className="m-8">

@@ -8,7 +8,7 @@ export default async function Page() {
 	return (
 		<div data-cy='chef-products-index'>
 			<div className="flex justify-center">
-				<h1 className="text-xl">Current Products</h1>
+				<h1 className="text-2xl font-semibold">Current Products</h1>
 			</div>
 
 			<div data-cy='chef-products-by-category' className="m-8">

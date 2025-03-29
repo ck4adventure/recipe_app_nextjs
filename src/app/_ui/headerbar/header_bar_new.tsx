@@ -18,7 +18,6 @@ export default function HeaderBar() {
 
 			<div className='flex flex-row'>
 				<Link href={"/chef"} className='mx-2'>Chefs Corner</Link>
-				<Link href={"/loafer"} className='mx-2'>Loafer</Link>
 				<Link href={"/recipes"} className='mx-2'>Personal Recipes</Link>
 			</div>
 		</div>
