@@ -27,7 +27,7 @@ export const IngrCard = ({ ingr }: { ingr: Ingr }) => {
 		);
 	}
 	return (
-		<Card data-cy='ingr-item' className='w-[600px] m-8'>
+		<Card data-cy='ingr-item' className='w-[600px] m-8 border-8'>
 			<CardHeader>
 				<CardTitle data-cy='ingr-packaged-name' className='capitalize [font-variant:petite-caps]'>{ingr.packaged_name}</CardTitle>
 				<CardDescription data-cy='ingr-brand-name' className='text-lg capitalize'>{ingr.brand}</CardDescription>
