@@ -5,10 +5,13 @@ Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by l
 ### Add allergens details to recipe item page
 - additional query around ingrs for the recipe to get uniq list of allergens
 
+### Add copy button for labels
+Every time there is a label or allergen label, should be a copy button to copy the string to the clipboard for use elsewhere
+
 ### Add/Edit ingredient forms
 - eventually I'll need to add more ingredients or update the ones I have
 
-### Edit recipe form
+### Edit/Delete recipe form
 - allow editing of recipe fields, incl ingredients
 - make sure to update joins table for recipe_ingrs on recipe.ingrs update
 
@@ -17,9 +20,30 @@ Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by l
 - I might make this a flag and always filter on it, so that I don't actually lose data
 - or keep it manual 
 
+### Ingredient pricing and recipe costing
+- New tables to track purchases of ingrs
+- Purchases result in a price per unit
+- Table with running average that updates with each purchase
+- Recipe can then get a cost based on ingrs and quantities used
+- Product can get a cost based on recipes used and portions
+
+### Profit tracking
+- Enter in a price per unit of product sold, and how many sold
+- not sure exactly what to do with this other than calc max profit per day / event
+- or profit per order (excludes packaging)
+
+
 
 
 ## In Progress
+
+### UI Updates
+UI updates to display all relevant information
+
+
+
+
+## Finished Tasks/Features
 ### Feature: Product (has many recipes)
 `/chef/products`, `/chef/products/[slug]`
 
@@ -60,9 +84,6 @@ Product Recipe Table
 - component (layer): [base, filling, topping]
 
 
-
-
-## Finished Tasks/Features
 ### Add breadcrumbs
 Everything under `/chefs` will have breadcrumb links at the top of the page
 

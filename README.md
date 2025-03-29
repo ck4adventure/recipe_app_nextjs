@@ -1,6 +1,6 @@
-# Recipe Manager App
+# Bakery Management App
 
-See [features](/design/future_features.md)
+See [features](/design/feature_chefs.md) for the latest product status.
 
 Using Next.js with Typescript to learn more and stay sharp.
 
@@ -15,11 +15,9 @@ Using Next.js with Typescript to learn more and stay sharp.
 Visit `localhost:3000/recipes` to go to the recipe app main page.
 
 ## Backend
-Postgresql DB by `pg` aka postgres node.
+Postgresql DB by `pg` aka postgres node. 
 There is no ORM because I wanted practice writing sql directly.
 
-
-### DB Instance
 Using vercel's Neon service to keep an online db instance. This is slightly impractical as I now maintain two sets of scripts, one for local development using migration files, and the other to update the cloud instance for online deployment.
  
 Starting point is the `/scripts` folder with local and vercel scripts.
