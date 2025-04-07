@@ -2,6 +2,9 @@
 Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by looking up first a products recipes, then aggregating all the ingrs of each recipe, incl set of allergens
 
 ## Upcoming
+### Recipe Card background
+- option to change the recipe card background to a look like real paper with cooking stains from use
+
 ### Add allergens details to recipe item page
 - additional query around ingrs for the recipe to get uniq list of allergens
 
