@@ -99,6 +99,7 @@ export const GET_CHEFS_RECIPE_BY_SLUG = async (slug: string) => {
 				r.id AS id,
 				r.category,
 				r.title AS title,
+				r.label,
 				r.steps,
 				r.notes,
 				JSON_AGG(

@@ -34,30 +34,31 @@ export const ProductCard = ({ product }: { product: Product }) => {
 		<Card data-cy='product-item' className='w-[600px] m-8 border-8'>
 			<CardHeader className='text-center'>
 				<CardTitle data-cy='product-packaged-name' className='capitalize [font-variant:petite-caps]'>{product.name}</CardTitle>
+				<CardDescription>{product.description}</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<div>
 					<div className='flex my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>Description</p>
-						<p data-cy='product-category'>{product.description}</p>
-					</div>
-					<div className='flex my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>Category</p>
+						<p className='mr-2 font-semibold [font-variant:petite-caps]'>Category</p>
 						<p data-cy='product-category'>{product.category}</p>
 					</div>
+					{/* <div className='flex flex-col my-2'>
+						<p className='mr-2 font-semibold [font-variant:petite-caps]'>Description</p>
+						<p data-cy='product-category'>{product.description}</p>
+					</div> */}
 					<div className='flex flex-col my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>On the label </p>
+						<p className='mr-2 font-semibold [font-variant:petite-caps]'>On the label </p>
 						<p data-cy='product-label-name'>{product.ingredients_label.join(", ")}</p>
 					</div>
 					<div className='flex flex-col my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>Allergen label </p>
+						<p className='mr-2 font-semibold [font-variant:petite-caps]'>Allergen label </p>
 						<p data-cy='product-label-name'>{product.allergens_label.filter(item => item != null).join(", ")}</p>
 					</div>
 					<div data-cy='product-ingredients-section' className='flex flex-col my-2'>
-						<p className='mr-2 [font-variant:petite-caps]'>Components</p>
+						<p className='mr-2 font-semibold [font-variant:petite-caps]'>Components</p>
 
 						<div className='flex flex-row'>
-							<p className='mr-2 [font-variant:petite-caps]'>Base:</p>
+							<p className='mr-2 font-semibold [font-variant:petite-caps]'>Base:</p>
 							<div data-cy='product-base'>
 								{product.components.base && product.components.base.map((recipeData: RecipeComponent) => {
 									return (
@@ -70,7 +71,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
 						</div>
 
 						<div className='flex flex-row'>
-							<p className='mr-2 [font-variant:petite-caps]'>Filling:</p>
+							<p className='mr-2 font-semibold [font-variant:petite-caps]'>Filling:</p>
 							<div data-cy='product-filling'>
 								{product.components.filling && product.components.filling.map((recipeData: RecipeComponent) => {
 									return (
@@ -83,7 +84,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
 						</div>
 
 						<div className='flex flex-row'>
-							<p className='mr-2 [font-variant:petite-caps]'>Topping:</p>
+							<p className='mr-2 font-semibold [font-variant:petite-caps]'>Topping:</p>
 							<div data-cy='product-topping'>
 								{product.components.topping && product.components.topping.map((recipeData: RecipeComponent) => {
 									return (
