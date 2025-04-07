@@ -20,7 +20,7 @@ export const ChefsRecipeCard = ({ recipe }: { recipe: ChefsRecipe }) => {
 		return (
 			<div data-cy='chefs-recipe-item' className='flex flex-col items-center'>
 				<h2 data-cy='chefs-recipe-item-not-found' className="font-bold text-lg text-center">Recipe Not Found</h2>
-				<p className="text-center">The chef's recipe you are looking for does not exist or has been removed.</p>
+				<p className="text-center">The chef&apos;s recipe you are looking for does not exist or has been removed.</p>
 			</div>
 		);
 	}
