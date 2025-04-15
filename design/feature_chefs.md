@@ -5,8 +5,6 @@ Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by l
 ### Recipe Card background
 - option to change the recipe card background to a look like real paper with cooking stains from use
 
-### Add allergens details to recipe item page
-- additional query around ingrs for the recipe to get uniq list of allergens
 
 ### Add copy button for labels
 Every time there is a label or allergen label, should be a copy button to copy the string to the clipboard for use elsewhere
@@ -40,13 +38,16 @@ Every time there is a label or allergen label, should be a copy button to copy t
 
 ## In Progress
 
-### UI Updates
-UI updates to display all relevant information
-
+### Add allergens details to recipe item page
+- additional query around ingrs for the recipe to get uniq list of allergens
 
 
 
 ## Finished Tasks/Features
+
+### UI Updates
+UI updates to display all relevant information
+
 ### Feature: Product (has many recipes)
 `/chef/products`, `/chef/products/[slug]`
 
