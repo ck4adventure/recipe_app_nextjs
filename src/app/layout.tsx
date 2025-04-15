@@ -4,6 +4,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import HeaderBar from "./_ui/headerbar/header_bar_new";
 import Providers from "./providers";
+import FooterBar from "./_ui/footerbar/footer_bar";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,6 +32,7 @@ export default function RootLayout({
 					<Providers>
 						<HeaderBar />
 						{children}
+						<FooterBar />
 					</Providers>
 				</AppRouterCacheProvider>
 			</body>

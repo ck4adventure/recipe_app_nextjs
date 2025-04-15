@@ -1,3 +1,4 @@
+// tests next.js actions for chefs/recipe pages
 import { createChefsRecipe } from '@/app/chef/actions';
 import { CREATE_NEW_RECIPE, ADD_RECIPE_INGRS } from '@/app/_lib/sqlQueriesChef';
 import { revalidatePath } from 'next/cache';
@@ -6,9 +7,6 @@ import { RecipeFormSchema } from '@/app/_ui/chef/recipe_form';
 import { z } from 'zod';
 
 import { expect as jestExpect } from '@jest/globals';
-
-
-// filepath: /Users/synthesisdev/CK/ck4adventure_github/recipe_app_nextjs/src/app/chef/actions.test.tsx
 
 jest.mock('../../src/app/_lib/sqlQueriesChef');
 jest.mock('next/cache');
