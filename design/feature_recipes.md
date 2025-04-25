@@ -1,5 +1,5 @@
 # Recipes Features
-
+# Migrated to [GitHub Issues](https://github.com/ck4adventure/recipe_app_nextjs/issues) on Apr 25th, 2025
 
 ## Current Schema/Stories
 As a user I want to view all available recipes.  

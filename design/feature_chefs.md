@@ -1,4 +1,6 @@
 # Chefs App for Labeling
+# Migrated to [GitHub Issues](https://github.com/ck4adventure/recipe_app_nextjs/issues) on Apr 25th, 2025
+
 Goal is to have Products, Recipes, and Ingrs. Product Labels can be created by looking up first a products recipes, then aggregating all the ingrs of each recipe, incl set of allergens
 
 ## Upcoming
