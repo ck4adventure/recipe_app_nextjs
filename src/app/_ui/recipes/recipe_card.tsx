@@ -1,3 +1,4 @@
+'use client'
 import {
 	Card,
 	CardAction,
@@ -8,11 +9,21 @@ import {
 	CardTitle,
 } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button"
 import Link from 'next/link';
 import { Recipe } from '../../loafer/definitions';
+import React from "react";
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
-		const hasRecipeDetails = recipe && recipe.ingredients && recipe.steps;
+	const hasRecipeDetails = recipe && recipe.ingredients && recipe.steps;
+	const [checked, setChecked] = React.useState<boolean[]>((recipe.steps ?? []).map(() => false));
+
+	const handleCheck = (idx: number) => {
+		setChecked(prev => prev.map((val, i) => (i === idx ? !val : val)));
+	};
+
+	const clearAll = () => setChecked(prev => prev.map(() => false))
+
 	return (
 		<Card className="w-full max-w-2xl shadow-2xl p-2 m-4">
 			<CardHeader >
@@ -49,19 +60,30 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 				{recipe.steps &&
 					<div className='sm:my-4' data-cy="recipe-steps-section">
 						<div className='m-2 text-lg' data-cy="recipe-steps-label">Directions</div>
-						<ol className={'mx-8 list-decimal'} data-cy="recipe-steps-list">
+						<ol className={'list-none'} data-cy="recipe-steps-list">
 							{recipe.steps.map((step, index) => {
 								return (
-									<li key={index} className="my-1 ml-4" data-cy="recipe-step">
-										<div className="flex flex-row">
-											<Checkbox className="-ml-10 mr-6 mt-2" />
-											<div>{step}</div>
+									<li key={index} className="" data-cy="recipe-step">
+										<div className="flex min-h-16">
+											<Checkbox
+												className="m-2 mt-3"
+												checked={checked[index]}
+												onCheckedChange={() => handleCheck(index)}
+											/>
+											<div className="flex ml-3">
+												<div className="m-2">{index + 1}.</div>
+												<div className="m-2">{step}</div>
+											</div>
 										</div>
 									</li>
 								);
 							})}
 						</ol>
+						<div className="m4 flex justify-end" data-cy="recipe-steps-button-clear">
+							<Button onClick={clearAll} className="mr-4">Reset</Button>
+						</div>
 					</div>
+
 				}
 
 			</CardContent>
