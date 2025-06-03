@@ -66,11 +66,11 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 									<li key={index} className="" data-cy="recipe-step">
 										<div className="flex min-h-16">
 											<Checkbox
-												className="m-2 mt-3"
+												className="m-2 mt-[12px] h-[18px] w-[18px] [&_svg]:stroke-[3px]"
 												checked={checked[index]}
 												onCheckedChange={() => handleCheck(index)}
 											/>
-											<div className="flex ml-3">
+											<div className="flex ml-1">
 												<div className="m-2">{index + 1}.</div>
 												<div className="m-2">{step}</div>
 											</div>
@@ -80,7 +80,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 							})}
 						</ol>
 						<div className="m4 flex justify-end" data-cy="recipe-steps-button-clear">
-							<Button onClick={clearAll} className="mr-4">Reset</Button>
+							<Button onClick={clearAll} className="mr-4">Reset Progress</Button>
 						</div>
 					</div>
 
