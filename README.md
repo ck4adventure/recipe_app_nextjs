@@ -14,6 +14,15 @@ Using Next.js with Typescript to learn more and stay sharp.
 
 Visit `localhost:3000/recipes` to go to the recipe app main page.
 
+## Creating a Backend Feature
+1. Define sql schema
+2. Create migration command into the file at `db/vercel/migrations`
+3. Load migration file in the script `db/vercel/migrate_vercel.mjs`
+4. Ensure migrate is commented in on `script/setup_db_vercel.mjs`
+5. Create data loader file at `db/vercel/migrations`
+6. Add that file into the script `db/vercel/load_data.mjs`
+7. Ensure data file is commented in on `script/setup_db_vercel.mjs`
+
 ## Backend
 Postgresql DB by `pg` aka postgres node. 
 There is no ORM because I wanted practice writing sql directly.
