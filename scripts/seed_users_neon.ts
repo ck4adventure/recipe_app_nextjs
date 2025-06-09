@@ -1,4 +1,6 @@
 // scripts/seed.ts
+
+// runs with  node --loader ts-node/esm scripts/seed_users_neon.ts
 import * as bcrypt from "bcrypt"
 
 import { createClient } from '@vercel/postgres';
