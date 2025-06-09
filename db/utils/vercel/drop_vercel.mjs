@@ -2,15 +2,15 @@
 
 export const dropTables = async (client) => {
 	try {
-		await client.sql`
-			DROP TABLE IF EXISTS product_recipes CASCADE;
-			DROP TRIGGER IF EXISTS update_product_recipes_updated_at ON products;
-			DROP TYPE IF EXISTS component_type;
-		`;
-		await client.sql`
-			DROP TABLE IF EXISTS products CASCADE;
-			DROP TRIGGER IF EXISTS update_products_updated_at ON products;
-		`;
+		// await client.sql`
+		// 	DROP TABLE IF EXISTS product_recipes CASCADE;
+		// 	DROP TRIGGER IF EXISTS update_product_recipes_updated_at ON products;
+		// 	DROP TYPE IF EXISTS component_type;
+		// `;
+		// await client.sql`
+		// 	DROP TABLE IF EXISTS products CASCADE;
+		// 	DROP TRIGGER IF EXISTS update_products_updated_at ON products;
+		// `;
 
 		// await client.sql`
     //         DROP TABLE IF EXISTS chefs_recipe_ingrs CASCADE;

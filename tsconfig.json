@@ -7,10 +7,10 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [
       {
@@ -21,6 +21,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "db/index.mjs", "db/db.mjs", "db/test/recipes.test.mjs", "db/test/categories.spec.mjs", "db/utils/local/drop.mjs", "test/hooks.mjs" ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  // Exclude node_modules and recipe_store to prevent unnecessary type checking
   "exclude": ["node_modules", "recipe_store"]
 }
