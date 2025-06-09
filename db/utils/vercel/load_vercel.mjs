@@ -7,7 +7,9 @@
 // import { loadIngrsRecipes } from "./data_loaders/load_ingr_recipes.mjs";
 // import { loadIngrsData } from "./data_loaders/load_ingrs.mjs";
 
-import { loadProductsAndRecipes } from "./data_loaders/load_products_and_recipes.mjs"
+import { loadUsers } from "./data_loaders/load_users.mjs"
+
+// import { loadProductsAndRecipes } from "./data_loaders/load_products_and_recipes.mjs"
 
 export const loadDataVercel = async (client) => {
 		// await loadAuthorsAndSources(client);
@@ -18,5 +20,7 @@ export const loadDataVercel = async (client) => {
 		// await loadIngrsData(client);
 		// await loadIngrsRecipes(client);
 		// await loadChefsRecipesAndIngrs(client);
-		await loadProductsAndRecipes(client);
+		// await loadProductsAndRecipes(client);
+    await loadUsers(client);
+		
 }
