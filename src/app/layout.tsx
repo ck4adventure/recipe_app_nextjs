@@ -6,8 +6,6 @@ import HeaderBar from "./_ui/headerbar/header_bar_new";
 import Providers from "./providers";
 import FooterBar from "./_ui/footerbar/footer_bar";
 
-import { getCurrentUser } from "./_lib/auth";
-
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,14 +21,8 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const user = getCurrentUser();
-	console.log(user)
 
-  if (!user) {
-    // Optionally redirect or render a login page here
-    // import { redirect } from 'next/navigation';
-    // redirect('/login');
-  }
+
 	return (
 		<html lang="en">
 			<head>
@@ -41,7 +33,7 @@ export default async function RootLayout({
 				{/* <AppRouterCacheProvider options={{ enableCssLayer: true }}> */}
 				<AppRouterCacheProvider >
 					<Providers>
-						<HeaderBar user={user}/>
+						<HeaderBar/>
 						{children}
 						<FooterBar />
 					</Providers>

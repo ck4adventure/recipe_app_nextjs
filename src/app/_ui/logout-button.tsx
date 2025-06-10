@@ -1,14 +1,18 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useUser } from '../_context/UserContext';
 
 export default function LogoutButton() {
   const router = useRouter();
+	const { setUser } = useUser();
 
   async function handleLogout() {
-    await fetch('/api/logout', { method: 'POST' });
-    router.replace('/login');
-    window.location.reload(); // Force reload to update server components
+    const res = await fetch('/api/logout', { method: 'POST' });
+		console.log("logout result: ", res.ok)
+		setUser(null);
+		// window.location.href = '/login'; 
+		router.replace('/login')
   }
 
   return (

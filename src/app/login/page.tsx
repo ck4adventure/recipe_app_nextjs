@@ -3,12 +3,15 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUser } from '../_context/UserContext';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+
+	const { setUser } = useUser();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -21,7 +24,8 @@ export default function LoginPage() {
     });
 
     if (res.ok) {
-      router.push('/');
+			setUser({ username });
+  		window.location.href = '/'; // instead of router.push('/')
     } else {
       const data = await res.json();
       setError(data.error || 'Login failed');

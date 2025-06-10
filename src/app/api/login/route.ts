@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { SignJWT } from 'jose';
 import { cookies } from 'next/headers';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret'; // Set a strong secret in production!
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'dev_secret');
 
 export async function POST(req: NextRequest) {
   try {
@@ -30,18 +30,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
-    // Create JWT token
-    const token = jwt.sign(
-      { userId: user.id, username: user.username },
-      JWT_SECRET,
-      { expiresIn: '7d' }
-    );
+		// Valid user
 
+    // Create JWT token using jose
+    const token = await new SignJWT({ userId: user.id, username: user.username })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setExpirationTime('5m')
+      .sign(JWT_SECRET);
+
+		// set token for 5 mins
+		// TODO reset token to better time on deployment
 		cookies().set('token', token, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'strict',
-			maxAge: 60 * 60 * 24 * 7, // 7 days
+			maxAge: 60 * 5, // 5 mins
 			path: '/',
 		});
 		
