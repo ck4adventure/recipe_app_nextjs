@@ -2,6 +2,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import LogoutButton from '../logout-button';
+
+import { useUser } from '../../_context/UserContext';
 // import { Button, Menu, MenuItem } from '@mui/material'
 // import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 // import { useState } from 'react'
@@ -11,10 +13,11 @@ type User = {
 	username: string;
 	// add other user fields as needed
 };
-export default function HeaderBar({ user }: { user: User | null }) {
+export default function HeaderBar() {
 
+	  const { user, setUser } = useUser();
 
-	console.log(user)
+	console.log("user should be: ", user?.username)
 
 	return (
 		<div data-cy='headerbar' className="flex justify-between bg-white items-center m-4 border-b-2">
@@ -29,11 +32,13 @@ export default function HeaderBar({ user }: { user: User | null }) {
 				<Link href={"/recipes"} className='mx-2'>Personal Recipes</Link>
 			</div>
 			<div>
-				{user && (
-					<div>
-						<div>Hello {user?.username}</div>
-						<div><LogoutButton /></div>
-					</div>
+				{user ? (
+					<>
+						<span>Hello, {user.username}!</span>
+						<LogoutButton />
+					</>
+				) : (
+					<div><Link href={"/login"}>Log in</Link></div>
 				)}
 			</div>
 		</div>
