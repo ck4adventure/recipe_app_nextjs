@@ -13,8 +13,7 @@ export async function middleware(request: NextRequest) {
 
   if (token) {
     try {
-      const payload = await jwtVerify(token, JWT_SECRET);
-			console.log("middleware payload is: ", payload)
+      await jwtVerify(token, JWT_SECRET);
       return NextResponse.next();
     } catch {
       return NextResponse.redirect(new URL('/login', request.url));

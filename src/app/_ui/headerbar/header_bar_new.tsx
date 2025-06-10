@@ -9,15 +9,9 @@ import { useUser } from '../../_context/UserContext';
 // import { useState } from 'react'
 // import './components.css'
 
-type User = {
-	username: string;
-	// add other user fields as needed
-};
 export default function HeaderBar() {
 
-	  const { user, setUser } = useUser();
-
-	console.log("user should be: ", user?.username)
+	  const { user } = useUser();
 
 	return (
 		<div data-cy='headerbar' className="flex justify-between bg-white items-center m-4 border-b-2">
