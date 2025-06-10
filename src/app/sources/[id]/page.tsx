@@ -4,7 +4,7 @@ import Link from 'next/link';
 // Source Detail Page should show the source, a list of recipes and authors
 export default async function Page ({ params }: { params: { id: number }}) {
 	const sourceRecipes: any[] = await GET_SOURCE_AND_RECIPES_BY_ID(params.id);
-	console.log(sourceRecipes);
+
 	if (!sourceRecipes || sourceRecipes.length === 0) {
 		const sourceData: any = await GET_SOURCE_DATA_BY_ID(params.id);
 		const { title, source_type } = sourceData;

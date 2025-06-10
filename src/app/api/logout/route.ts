@@ -12,6 +12,5 @@ export async function POST(request: Request) {
 		});
 
 
-	console.log("cookie should be set");
   return NextResponse.json({ success: true});
 }
