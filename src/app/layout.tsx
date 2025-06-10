@@ -5,6 +5,7 @@ import "./globals.css";
 import HeaderBar from "./_ui/headerbar/header_bar_new";
 import Providers from "./providers";
 import FooterBar from "./_ui/footerbar/footer_bar";
+import { Analytics } from "@vercel/analytics/next"
 
 
 
@@ -33,9 +34,10 @@ export default async function RootLayout({
 				{/* <AppRouterCacheProvider options={{ enableCssLayer: true }}> */}
 				<AppRouterCacheProvider >
 					<Providers>
-						<HeaderBar/>
+						<HeaderBar />
 						{children}
 						<FooterBar />
+						<Analytics />
 					</Providers>
 				</AppRouterCacheProvider>
 			</body>
