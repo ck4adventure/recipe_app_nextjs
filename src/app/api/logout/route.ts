@@ -1,16 +1,17 @@
+import { useUser } from '@/app/_context/UserContext';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-export async function POST() {
-  cookies().set({
-    name: 'token',
-    value: '',
-    httpOnly: true,
-    path: '/',
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 0,
-  });
+export async function POST(request: Request) {
 
-  return NextResponse.json({ success: true });
+		cookies().set('token', '', {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'strict',
+			path: '/',
+		});
+
+
+	console.log("cookie should be set");
+  return NextResponse.json({ success: true});
 }
