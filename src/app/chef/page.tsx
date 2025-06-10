@@ -1,6 +1,9 @@
 import Link from "next/link";
 
+
 export default async function Page() {
+
+
 	// TODO fetch products, recipes and ingrs, group in a meaningful way for display
 	return (
 		<div data-cy='recipes-index' className="flex flex-col items-center">

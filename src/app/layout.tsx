@@ -6,6 +6,9 @@ import HeaderBar from "./_ui/headerbar/header_bar_new";
 import Providers from "./providers";
 import FooterBar from "./_ui/footerbar/footer_bar";
 
+import { getCurrentUser } from "./_lib/auth";
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -15,11 +18,19 @@ export const metadata: Metadata = {
 	description: "App for recipe management and product labeling",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const user = getCurrentUser();
+	console.log(user)
+
+  if (!user) {
+    // Optionally redirect or render a login page here
+    // import { redirect } from 'next/navigation';
+    // redirect('/login');
+  }
 	return (
 		<html lang="en">
 			<head>
@@ -30,7 +41,7 @@ export default function RootLayout({
 				{/* <AppRouterCacheProvider options={{ enableCssLayer: true }}> */}
 				<AppRouterCacheProvider >
 					<Providers>
-						<HeaderBar />
+						<HeaderBar user={user}/>
 						{children}
 						<FooterBar />
 					</Providers>
