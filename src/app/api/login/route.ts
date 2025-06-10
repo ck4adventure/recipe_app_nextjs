@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import { SignJWT } from 'jose';
 import { cookies } from 'next/headers';
 
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'dev_secret');
+const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
 export async function POST(req: NextRequest) {
   try {
@@ -35,16 +35,15 @@ export async function POST(req: NextRequest) {
     // Create JWT token using jose
     const token = await new SignJWT({ userId: user.id, username: user.username })
       .setProtectedHeader({ alg: 'HS256' })
-      .setExpirationTime('5m')
+      .setExpirationTime('7d')
       .sign(JWT_SECRET);
 
-		// set token for 5 mins
-		// TODO reset token to better time on deployment
+		// set token for 7 days to start with
 		cookies().set('token', token, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'strict',
-			maxAge: 60 * 5, // 5 mins
+			maxAge: 60 * 60 * 24 * 7, // 7 days
 			path: '/',
 		});
 		
