@@ -11,8 +11,6 @@ export async function GET() {
   }
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET);
-		// feel like missing something here   
-		console.log("payload is: ", payload)
 		return NextResponse.json({ user: { username: payload.username } });
   } catch {
     return NextResponse.json({ user: null });
