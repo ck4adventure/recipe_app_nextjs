@@ -27,7 +27,10 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 	return (
 		<Card className="w-full max-w-2xl shadow-2xl p-2 m-4">
 			<CardHeader >
-				<CardTitle className="mb-1">{recipe.recipe_title}</CardTitle>
+				<div className="flex justify-between">
+					<CardTitle className="mb-1">{recipe.recipe_title}</CardTitle>
+					<div>LOGO</div>
+				</div>
 				<CardDescription >
 					<div>Category:&nbsp;<Link href={`/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
 				</CardDescription>
