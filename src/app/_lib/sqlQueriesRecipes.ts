@@ -68,6 +68,7 @@ export const GET_RECIPES_FOR_CATEGORY_SLUG = async (categorySlug: string) => {
 export const GET_RECIPE_BY_SLUG = async (slug: string) => {
 	const results = await sql`
 		SELECT r.id as recipe_id, r.title as recipe_title,
+			r.slug as recipe_slug,
 			c.id as category_id, c.name as category_name,
 			s.id as source_id, s.title as source_title,
 			a.id as author_id, a.name as author_name,

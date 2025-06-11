@@ -33,6 +33,7 @@ export interface DoughFormData {
 export interface Recipe {
   recipe_id: number;
   recipe_title: string;
+	recipe_slug: string;
 	category_id?: number;
 	category_name?: string;
 	source_id?: number;

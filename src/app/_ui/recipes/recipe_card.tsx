@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import Link from 'next/link';
 import { Recipe } from '../../loafer/definitions';
 import React from "react";
+import { SquarePenIcon } from "lucide-react";
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 	const hasRecipeDetails = recipe && recipe.ingredients && recipe.steps;
@@ -27,7 +28,10 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 	return (
 		<Card className="w-full max-w-2xl shadow-2xl p-2 m-4">
 			<CardHeader >
-				<CardTitle className="mb-1">{recipe.recipe_title}</CardTitle>
+				<div className="flex justify-between">
+					<CardTitle className="mb-1">{recipe.recipe_title}</CardTitle>
+					<div><Link href={`/recipes/${recipe.recipe_slug}/edit`}><SquarePenIcon /></Link></div>
+				</div>
 				<CardDescription >
 					<div>Category:&nbsp;<Link href={`/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
 				</CardDescription>
