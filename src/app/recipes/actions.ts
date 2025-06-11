@@ -37,7 +37,7 @@ export const createRecipeAndRedirect = async (title: string, categoryID: number,
 
 export const updateRecipeAndRedirect = async (recipeID: number, title: string, categoryID: number, sourceID: number, authorID: number, ingredients: string[], steps: string[]) => {
 	// TODO write validations for incoming data
-	const slug = await UPDATE_RECIPE(recipeID, title, categoryID, sourceID, authorID);
+	const slugrow = await UPDATE_RECIPE(recipeID, title, categoryID, sourceID, authorID);
 	await DELETE_RECIPE_INGREDIENTS(recipeID)
 	await DELETE_RECIPE_STEPS(recipeID)
 	if (ingredients && ingredients.length > 0) {
@@ -50,6 +50,7 @@ export const updateRecipeAndRedirect = async (recipeID: number, title: string, c
 			await ADD_STEP_TO_RECIPE(recipeID, step)
 		}
 	}
-	revalidatePath(`/recipes/${slug}`);
-	redirect(`/recipes/${slug}`);
+	console.log(slugrow)
+	revalidatePath(`/recipes/${slugrow.slug}`);
+	redirect(`/recipes/${slugrow.slug}`);
 };
