@@ -1,4 +1,4 @@
-import { GET_SOURCE_AND_RECIPES_BY_ID, GET_SOURCE_DATA_BY_ID } from "../../_lib/sqlQueriesRecipes";
+import { GET_SOURCE_AND_RECIPES_BY_ID, GET_SOURCE_DATA_BY_ID } from "@/app/_lib/sqlQueriesRecipes";
 import Link from 'next/link';
 
 // Source Detail Page should show the source, a list of recipes and authors

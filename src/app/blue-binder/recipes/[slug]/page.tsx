@@ -1,6 +1,6 @@
 
-import { GET_RECIPE_BY_SLUG } from '../../../_lib/sqlQueriesRecipes';
-import { Recipe } from '../../../loafer/definitions';
+import { GET_RECIPE_BY_SLUG } from '@/app/_lib/sqlQueriesRecipes';
+import { Recipe } from '@/app/loafer/definitions';
 // import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
 import RecipeCard from '@/app/_ui/recipes/recipe_card';
 
