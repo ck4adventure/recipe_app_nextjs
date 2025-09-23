@@ -13,7 +13,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 	const [categoryID, setCategoryID] = useState<number>(recipe ? recipe.category_id : 1);
 	const [ingredients, setIngredients] = useState<string[]>((recipe && recipe.ingredients) ? recipe.ingredients : ['', '']);
 	const [steps, setSteps] = useState<string[]>((recipe && recipe.steps) ? recipe.steps : ['', '']);
-	const [notes, setNotes] = useState<string[]>((recipe && recipe.notes) ? recipe.notes : []);
+	const [notes, setNotes] = useState<string[]>((recipe && recipe.notes) ? recipe.notes : ['']);
 	const [authorID, setAuthorID] = useState<number>(recipe ? recipe.author_id : 1);
 	const [sourceID, setSourceID] = useState<number>(recipe ? recipe.source_id : 1);
 
