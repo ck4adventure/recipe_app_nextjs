@@ -13,7 +13,9 @@
 // import { createProductsTable } from "./migrations/0014_products.mjs";
 // import { createProductRecipesTable } from "./migrations/0015_product_recipes.mjs";
 
-import { createUsersTable } from "./migrations/0016_users.mjs";
+// import { createUsersTable } from "./migrations/0016_users.mjs";
+
+import {createRecipeNotesTable} from "./migrations/0017_recipe_notes.mjs"
 
 
 // migrateTables takes a pool/client and runs all sql migrations in numerical order
@@ -51,7 +53,10 @@ export const migrateTables = async (client) => {
 		// await createProductRecipesTable(client);
 
 		// custom users
-		await createUsersTable(client);
+		// await createUsersTable(client);
+
+		// re-enable recipe forms
+		await createRecipeNotesTable(client);
 		
 		console.log('Tables migrated successfully');
 	} catch (error) {

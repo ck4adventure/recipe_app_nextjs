@@ -24,6 +24,6 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/chef/:path*', '/loafer/:path*', '/recipes/create', '/recipes/:slug/edit'],
 
+  matcher: ['/chef/:path*', '/recipes/:path*', '/loafer/:path*'],
 };

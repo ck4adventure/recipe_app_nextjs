@@ -11,7 +11,7 @@ import { useUser } from '../../_context/UserContext';
 
 export default function HeaderBar() {
 
-	  const { user } = useUser();
+	const { user } = useUser();
 
 	return (
 		<div data-cy='headerbar' className="flex justify-between bg-white items-center m-4 border-b-2">
@@ -21,20 +21,19 @@ export default function HeaderBar() {
 			</div>
 
 
-			<div className='flex flex-row'>
-				<Link href={"/chef"} className='mx-2'>Chefs Corner</Link>
-				<Link href={"/recipes"} className='mx-2'>Personal Recipes</Link>
-			</div>
-			<div>
-				{user ? (
-					<>
-						<span>Hello, {user.username}!</span>
+			{user ? (
+				<>
+
+					<div>
+						<span className='mr-4'>Hello, {user.username}!</span>
 						<LogoutButton />
-					</>
-				) : (
-					<div><Link href={"/login"}>Log in</Link></div>
-				)}
-			</div>
+					</div>
+				</>
+			) : (
+				<div><Link href={"/login"}>Log in</Link></div>
+			)}
+
+
 		</div>
 	)
 }

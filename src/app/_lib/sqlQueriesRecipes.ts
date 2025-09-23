@@ -72,7 +72,7 @@ export const GET_RECIPE_BY_SLUG = async (slug: string) => {
 			c.id as category_id, c.name as category_name,
 			s.id as source_id, s.title as source_title,
 			a.id as author_id, a.name as author_name,
-			ingredients, steps
+			ingredients, steps, notes
 		FROM recipes r
 		INNER JOIN categories c ON r.category_id = c.id
 		INNER JOIN sources s on r.source_id = s.id
@@ -87,8 +87,14 @@ export const GET_RECIPE_BY_SLUG = async (slug: string) => {
 			FROM recipe_steps
 			GROUP BY recipe_id
 		) rs ON r.id = rs.recipe_id
+		LEFT JOIN (
+			SELECT recipe_id, array_agg(note) as notes
+			FROM recipe_notes
+			GROUP BY recipe_id
+		) rn ON r.id = rn.recipe_id
 		WHERE r.slug = ${slug}
 	`;
+
 	return results.rows[0];
 };
 
@@ -117,6 +123,16 @@ export const ADD_STEP_TO_RECIPE = async (recipeId: number, step: string) => {
 
 export const DELETE_RECIPE_STEPS = async (recipeId: number) => {
 	await sql`DELETE FROM recipe_steps WHERE recipe_id = ${recipeId}`;
+};
+
+export const ADD_NOTE_TO_RECIPE = async (recipeId: number, note: string) => {
+	await sql`
+		INSERT INTO recipe_notes (recipe_id, note) VALUES (${recipeId}, ${note})
+	`;
+};
+
+export const DELETE_RECIPE_NOTES = async (recipeId: number) => {
+	await sql`DELETE FROM recipe_notes WHERE recipe_id = ${recipeId}`;
 };
 
 export const UPDATE_RECIPE = async (recipeId: number, title: string, categoryId: number, sourceId: number, authorId: number, ingredients?: string[], steps?: string[]) => {

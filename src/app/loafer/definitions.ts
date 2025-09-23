@@ -42,6 +42,7 @@ export interface Recipe {
 	author_name?: string;
 	ingredients?: string[];
 	steps?: string[];
+	notes?: string[];
 }
 
 export interface Category {
