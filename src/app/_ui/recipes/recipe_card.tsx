@@ -30,13 +30,13 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 			<CardHeader >
 				<div className="flex justify-between">
 					<CardTitle className="mb-1">{recipe.recipe_title}</CardTitle>
-					<div><Link href={`/recipes/${recipe.recipe_slug}/edit`}><SquarePenIcon /></Link></div>
+					<div><Link href={`/blue-binder/recipes/${recipe.recipe_slug}/edit`}><SquarePenIcon /></Link></div>
 				</div>
 				<CardDescription >
-					<div>Category:&nbsp;<Link href={`/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
+					<div>Category:&nbsp;<Link href={`/blue-binder/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
 				</CardDescription>
 				<CardDescription >
-					<div>Source:&nbsp;<Link href={`/sources/${recipe.source_id}`}>{recipe.source_title}</Link>,&nbsp;by:&nbsp;<Link href={`/authors/${recipe.author_id}`}>{recipe.author_name}</Link> </div>
+					<div>Source:&nbsp;<Link href={`/blue-binder/sources/${recipe.source_id}`}>{recipe.source_title}</Link>,&nbsp;by:&nbsp;<Link href={`/authors/${recipe.author_id}`}>{recipe.author_name}</Link> </div>
 				</CardDescription>
 			</CardHeader>
 

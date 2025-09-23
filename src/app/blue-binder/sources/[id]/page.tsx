@@ -26,10 +26,10 @@ export default async function Page ({ params }: { params: { id: number }}) {
 			{/* TODO add cute logo for source type */}
 			{source_url && <div className="text-sm m-2"><Link href={encodeURI(source_url)}>{source_url}</Link></div>}
 			{source_type && <div className="text-sm m-2">{source_type}</div>}
-			{author_slug && <div className="text-sm m-2">By: <Link href={`/authors/${author_id}`}>{author_name}</Link></div>}
+			{author_slug && <div className="text-sm m-2">By: <Link href={`/blue-binder/authors/${author_id}`}>{author_name}</Link></div>}
 			<ul className="w-2/3 m-4">
 				{sourceRecipes.map((data: any, i) => (
-					<li className='m-2' key={i}><Link href={`/recipes/${data.recipe_slug}`}>{data.recipe_title}</Link></li>
+					<li className='m-2' key={i}><Link href={`/blue-binder/recipes/${data.recipe_slug}`}>{data.recipe_title}</Link></li>
 				))}
 			</ul>
 		</div>

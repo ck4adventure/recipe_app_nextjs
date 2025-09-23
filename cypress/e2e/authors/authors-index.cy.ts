@@ -1,6 +1,6 @@
 describe('Authors Index Page', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:3000/recipes/authors');
+		cy.visit('http://localhost:3000/blue-binder/recipes/authors');
 	});
 	context('layout', () => {
 		it('displays a header section', () => {
