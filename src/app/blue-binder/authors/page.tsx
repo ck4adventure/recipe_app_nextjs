@@ -1,6 +1,6 @@
 // authors index page
 import Link from 'next/link';
-import { GET_AUTHORS } from '../_lib/sqlQueriesRecipes';
+import { GET_AUTHORS } from '@/app/_lib/sqlQueriesRecipes';
 export default async function Page() {
 	const authorsRows = await GET_AUTHORS();
 	return (
@@ -8,7 +8,7 @@ export default async function Page() {
 			<div className='font-bold text-lg' data-cy="authors-header">Authors</div>
 				<ul className='m-4 flex flex-col items-center'>
 					{authorsRows.map((author: any) => (
-						<li className='m-2' key={author.id}><Link href={`/authors/${author.id}`}>{author.name}</Link></li>
+						<li className='m-2' key={author.id}><Link href={`/blue-binder/authors/${author.id}`}>{author.name}</Link></li>
 					))}
 				</ul>
 		</div>

@@ -2,7 +2,7 @@
 // with a recipe title input and a select dropdown to choose a category
 // it should manage the state and submit the form
 'use client'
-import { createRecipeAndRedirect, updateRecipeAndRedirect } from "../../recipes/actions";
+import { createRecipeAndRedirect, updateRecipeAndRedirect } from "../../blue-binder/recipes/actions";
 import { useState } from "react";
 import IngredientField from "./ingredient_field";
 import DirectionField from "./direction_field";
@@ -13,13 +13,16 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 	const [categoryID, setCategoryID] = useState<number>(recipe ? recipe.category_id : 1);
 	const [ingredients, setIngredients] = useState<string[]>((recipe && recipe.ingredients) ? recipe.ingredients : ['', '']);
 	const [steps, setSteps] = useState<string[]>((recipe && recipe.steps) ? recipe.steps : ['', '']);
+	const [notes, setNotes] = useState<string[]>((recipe && recipe.notes) ? recipe.notes : []);
 	const [authorID, setAuthorID] = useState<number>(recipe ? recipe.author_id : 1);
 	const [sourceID, setSourceID] = useState<number>(recipe ? recipe.source_id : 1);
 
 
-	const addField = (type: 'ingredients' | 'steps') => {
+	const addField = (type: 'ingredients' | 'steps' | 'notes') => {
 		if (type === 'steps') {
 			setSteps([...steps, '']);
+		} else if (type === 'notes') {
+			setNotes([...notes, '']);
 		} else {
 			setIngredients([...ingredients, '']);
 		}
@@ -48,15 +51,28 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 		newSteps.splice(index, 1);
 		setSteps(newSteps);
 	}
+	
+	const handleNoteChange = (index: number, value: string) => {
+		const newNotes = [...notes];
+		newNotes[index] = value;
+		setNotes(newNotes);
+	}
+
+	const handleNoteDelete = (index: number) => {
+		const newNotes = [...notes];
+		newNotes.splice(index, 1);
+		setNotes(newNotes);
+	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const actualIngredients = ingredients.filter(ingr => ingr.length > 0);
 		const actualSteps = steps.filter(step => step.length > 0);
+		const actualNotes = notes.filter(note => note.length > 0);
 		if (recipe) {
-			await updateRecipeAndRedirect(recipe.recipe_id, recipeTitle, categoryID, sourceID, authorID, actualIngredients, actualSteps);
+			await updateRecipeAndRedirect(recipe.recipe_id, recipeTitle, categoryID, sourceID, authorID, actualIngredients, actualSteps, actualNotes);
 		} else {
-			await createRecipeAndRedirect(recipeTitle, categoryID, sourceID, authorID, actualIngredients, actualSteps);
+			await createRecipeAndRedirect(recipeTitle, categoryID, sourceID, authorID, actualIngredients, actualSteps, actualNotes);
 		}
 	};
 
@@ -156,6 +172,19 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 
 					))}
 					<button type="button" data-cy='add-dir-button' onClick={() => addField("steps")}>+ Add Step</button>
+
+				</fieldset>
+				{/* Notes Section */}
+				<fieldset data-cy='recipe-notes-section' className='my-4'>Notes
+					{notes.map((note, i) => (
+						<DirectionField
+							key={i}
+							value={note}
+							onChange={(value) => handleNoteChange(i, value)}
+							onDelete={() => handleNoteDelete(i)} />
+
+					))}
+					<button type="button" data-cy='add-note-button' onClick={() => addField("notes")}>+ Add Note</button>
 
 				</fieldset>
 				{/* Submit button */}

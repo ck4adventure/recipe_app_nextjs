@@ -1,5 +1,5 @@
 import { RecipeForm } from "@/app/_ui/recipes/recipe_form";
-import { Recipe } from '../../../loafer/definitions';
+import { Recipe } from '@/app/loafer/definitions';
 import { GET_AUTHORS, GET_CATEGORIES, GET_SOURCES, GET_RECIPE_BY_SLUG } from "@/app/_lib/sqlQueriesRecipes";
 
 export default async function Page({ params }: { params: { slug: string } }) {

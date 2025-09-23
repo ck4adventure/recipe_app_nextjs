@@ -1,6 +1,6 @@
 describe('Category Index', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:3000/recipes/category/breakfast');
+		cy.visit('http://localhost:3000/blue-binder/recipes/category/breakfast');
 	});
 	context('layout', () => {
 		it('displays the category name', () => {

@@ -16,7 +16,7 @@ import React from "react";
 import { SquarePenIcon } from "lucide-react";
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
-	const hasRecipeDetails = recipe && recipe.ingredients && recipe.steps;
+	const hasRecipeDetails = recipe && recipe.ingredients && recipe.steps && recipe.notes;
 	const [checked, setChecked] = React.useState<boolean[]>((recipe.steps ?? []).map(() => false));
 
 	const handleCheck = (idx: number) => {
@@ -30,23 +30,23 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 			<CardHeader >
 				<div className="flex justify-between">
 					<CardTitle className="mb-1">{recipe.recipe_title}</CardTitle>
-					<div><Link href={`/recipes/${recipe.recipe_slug}/edit`}><SquarePenIcon /></Link></div>
+					<div><Link href={`/blue-binder/recipes/${recipe.recipe_slug}/edit`}><SquarePenIcon /></Link></div>
 				</div>
 				<CardDescription >
-					<div>Category:&nbsp;<Link href={`/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
+					<div>Category:&nbsp;<Link href={`/blue-binder/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
 				</CardDescription>
 				<CardDescription >
-					<div>Source:&nbsp;<Link href={`/sources/${recipe.source_id}`}>{recipe.source_title}</Link>,&nbsp;by:&nbsp;<Link href={`/authors/${recipe.author_id}`}>{recipe.author_name}</Link> </div>
+					<div>Source:&nbsp;<Link href={`/blue-binder/sources/${recipe.source_id}`}>{recipe.source_title}</Link>,&nbsp;by:&nbsp;<Link href={`/authors/${recipe.author_id}`}>{recipe.author_name}</Link> </div>
 				</CardDescription>
 			</CardHeader>
 
 
 			<CardContent>
-				{!hasRecipeDetails &&
+				{/* {!hasRecipeDetails &&
 					<div className='sm:my-4'>
 						No details yet for this recipe.
 					</div>
-				}
+				} */}
 				{/* ingredients section */}
 				{recipe.ingredients &&
 					<div className='sm:my-4' data-cy="recipe-ingredients-section">
@@ -84,14 +84,35 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 							})}
 						</ol>
 						<div className="m4 flex justify-end" data-cy="recipe-steps-button-clear">
-							<Button onClick={clearAll} className="mr-4">Reset Progress</Button>
+							<Button onClick={clearAll} className="mr-4" size={"sm"} variant={"ghost"}>Reset Steps</Button>
 						</div>
+					</div>
+				}
+
+				{/* notes section */}
+				{recipe.notes &&
+					<div className='sm:my-4' data-cy="recipe-notes-section">
+						<div className='m-2 text-lg' data-cy="recipe-notes-label">Notes</div>
+						<ul className={'list-none'} data-cy="recipe-steps-list">
+							{recipe.notes.map((note, index: number) => {
+								return (
+									<li key={index} className="" data-cy="recipe-note">
+
+										<div className="flex ml-1">
+											{/* <div className="m-2">{index + 1}.</div> */}
+											<div className="m-2">{note}</div>
+										</div>
+									</li>
+								);
+							})}
+						</ul>
 					</div>
 
 				}
 
+
 			</CardContent>
-			<CardFooter>Notes</CardFooter>
+
 		</Card>
 	)
 }

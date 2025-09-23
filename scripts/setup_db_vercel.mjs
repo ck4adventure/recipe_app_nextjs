@@ -1,9 +1,9 @@
 import { createClient } from '@vercel/postgres';
 import dotenv from 'dotenv';
 
-import { dropTables } from '../db/utils/vercel/drop_vercel.mjs';
+// import { dropTables } from '../db/utils/vercel/drop_vercel.mjs';
 import { migrateTables } from '../db/utils/vercel/migrate_vercel.mjs';
-import { loadDataVercel } from '../db/utils/vercel/load_vercel.mjs';
+// import { loadDataVercel } from '../db/utils/vercel/load_vercel.mjs';
 
 
 // Load environment variables from .env file
@@ -21,7 +21,7 @@ const setupDB = async () => {
 
 		// await dropTables(client);
 		await migrateTables(client);
-		await loadDataVercel(client);
+		// await loadDataVercel(client);
 
 		console.log("all scripts run");
 		// await client.end();

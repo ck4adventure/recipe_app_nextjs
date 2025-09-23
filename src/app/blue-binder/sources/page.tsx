@@ -1,4 +1,4 @@
-import { GET_SOURCES } from '../_lib/sqlQueriesRecipes';
+import { GET_SOURCES } from '@/app/_lib/sqlQueriesRecipes';
 import Link from 'next/link';
 
 export default async function Page() {

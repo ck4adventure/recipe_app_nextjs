@@ -17,7 +17,7 @@ const RecipesListView = ({ data }: { data: any[] }) => {
 			<ul className="flex flex-col items-center">
 				{sortedData.map((recipe: any, index: number) => {
 					return (
-						<li className='my-2' key={index}><Link data-cy='recipe-link' href={`/recipes/${recipe.recipe_slug}`}>{recipe.recipe_title}</Link></li>
+						<li className='my-2' key={index}><Link data-cy='recipe-link' href={`/blue-binder/recipes/${recipe.recipe_slug}`}>{recipe.recipe_title}</Link></li>
 					);
 				})}
 			</ul>

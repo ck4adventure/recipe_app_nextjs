@@ -14,7 +14,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Christina's Corner",
-	description: "App for recipe management and product labeling",
+	description: "Project app for dev practice",
 };
 
 export default async function RootLayout({
