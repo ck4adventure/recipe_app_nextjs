@@ -14,15 +14,18 @@ export default async function Page() {
 					<Link href={"/chef/ingrs"} className='m-2 text-xl'>Ingredients</Link>
 				</div>
 			</div> */}
-			<div className='w-[1000px] border-8 border-slate-200 m-4 p-4'>
-				<Link href={"/recipes"} className='font-bold'>Home Cooking</Link>
-				<div className='mx-4 flex'>
+				<div className='w-[400px] h-[100px]  border-8 border-slate-200 m-4 p-4 flex items-center justify-center'>
 					<Link href={"/recipes"} className='m-2 text-xl'>Recipes</Link>
+				</div>
+				<div className='w-[400px] h-[100px] border-8 border-slate-200 m-4 p-4 flex items-center justify-center'>
 					<Link href={"/authors"} className='m-2 text-xl'>Authors</Link>
+				</div>
+				<div className='w-[400px] h-[100px] border-8 border-slate-200 m-4 p-4 flex items-center justify-center'>
 					<Link href={"/sources"} className='m-2 text-xl'>Sources</Link>
+				</div>
+				<div className='w-[400px] h-[100px] border-8 border-slate-200 m-4 p-4 flex items-center justify-center'>
 					<Link href={"/categories"} className='m-2 text-xl'>Categories</Link>
 				</div>
-			</div>
 		</main>
 	);
 }

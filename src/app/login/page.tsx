@@ -25,7 +25,7 @@ export default function LoginPage() {
 
     if (res.ok) {
 			setUser({ username });
-  		window.location.href = '/recipes'; // instead of router.push('/')
+  		window.location.href = '/blue-binder'; // instead of router.push('/')
     } else {
       const data = await res.json();
       setError(data.error || 'Login failed');

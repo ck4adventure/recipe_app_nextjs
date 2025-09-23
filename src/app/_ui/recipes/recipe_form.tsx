@@ -2,7 +2,7 @@
 // with a recipe title input and a select dropdown to choose a category
 // it should manage the state and submit the form
 'use client'
-import { createRecipeAndRedirect, updateRecipeAndRedirect } from "../../recipes/actions";
+import { createRecipeAndRedirect, updateRecipeAndRedirect } from "../../blue-binder/recipes/actions";
 import { useState } from "react";
 import IngredientField from "./ingredient_field";
 import DirectionField from "./direction_field";
