@@ -22,10 +22,10 @@ export default async function Page() {
 
 	return (
 		<main className="min-h-screen flex flex-col items-center">
-			{cards.map(card => {
+			{cards.map((card, i: number) => {
 
 				return (
-					<div className='w-[400px] h-[100px]  border-8 border-slate-200 rounded-lg m-4 p-4 flex items-center justify-center'>
+					<div key={`card-${i}`} className='w-[400px] h-[100px]  border-8 border-slate-200 rounded-lg m-4 p-4 flex items-center justify-center'>
 						<Link href={`${card.link}`} className='m-2 text-xl'>{card.display}</Link>
 					</div>
 				)
