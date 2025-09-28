@@ -23,8 +23,7 @@ export default function HeaderBar() {
 
 			{user ? (
 				<>
-
-					<div>
+					<div className='flex flex-col items-end'>
 						<span className='mr-4'>Hello, {user.username}!</span>
 						<LogoutButton />
 					</div>
