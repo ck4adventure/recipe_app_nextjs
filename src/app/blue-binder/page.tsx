@@ -1,17 +1,22 @@
 import * as React from 'react';
 import Link from 'next/link';
+import AddRecipeButton from '@/app/_ui/recipes/add_recipe_button';
 
 const cards = [
-	{display: "All Recipes",
+	{
+		display: "All Recipes",
 		link: "/blue-binder/recipes"
 	},
-	{display: "Authors",
+	{
+		display: "Authors",
 		link: "/blue-binder/authors"
 	},
-	{display: "Categories",
+	{
+		display: "Categories",
 		link: "/blue-binder/categories"
 	},
-	{display: "Sources",
+	{
+		display: "Sources",
 		link: "/blue-binder/sources"
 	},
 ]
@@ -30,6 +35,9 @@ export default async function Page() {
 					</div>
 				)
 			})}
+			<div>
+				<AddRecipeButton />
+			</div>
 		</main>
 	);
 }
