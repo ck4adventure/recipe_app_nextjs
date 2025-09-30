@@ -1,7 +1,8 @@
 // scripts/seed.ts
 
 // runs with  node --loader ts-node/esm scripts/seed_users_neon.ts
-import * as bcrypt from "bcrypt"
+// use bcryptjs (pure JS, no native build) so it runs with `npx tsx`/ts-node
+import bcrypt from "bcryptjs"
 
 import { createClient } from '@vercel/postgres';
 import * as dotenv from "dotenv";
@@ -23,7 +24,7 @@ const seedUsers = async () => {
 
 
 		const users = [
-			{ id: uuidv4(), username: process.env.MY_USERNAME, password: process.env.MY_PASSWORD },
+			{ id: uuidv4(), username: process.env.CLAY_USERNAME, password: process.env.CLAY_PASSWORD },
 		];
 
 		for (const { id, username, password } of users) {
@@ -31,7 +32,9 @@ const seedUsers = async () => {
 				throw new Error("Id, Username, and password must be defined");
 			}
 
-			const hash = await bcrypt.hash(password, 12);
+			// bcryptjs doesn't provide a Promise-based hash by default — use the
+			// synchronous variant for this small one-off script.
+			const hash = bcrypt.hashSync(password, 12);
 			await client.query(
 				`INSERT INTO users (id, username, password_hash)
        VALUES ($1, $2, $3)

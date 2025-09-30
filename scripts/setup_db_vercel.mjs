@@ -20,7 +20,7 @@ const setupDB = async () => {
 		console.log("client connected");
 
 		// await dropTables(client);
-		await migrateTables(client);
+		// await migrateTables(client);
 		// await loadDataVercel(client);
 
 		console.log("all scripts run");
