@@ -110,7 +110,10 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 
 				}
 
+				{/* delete button */}
+				<div>
 
+				</div>
 			</CardContent>
 
 		</Card>
