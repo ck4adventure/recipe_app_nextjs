@@ -37,7 +37,7 @@ export const createRecipeAndRedirect = async (title: string, categoryID: number,
 	} catch (error) {
 		throw error
 	}
-	redirect(`/recipes/${newRecipeID}`);
+	redirect(`/blue-binder/recipes/${newRecipeID}`);
 };
 
 export const updateRecipeAndRedirect = async (recipeID: number, title: string, categoryID: number, sourceID: number, authorID: number, ingredients: string[], steps: string[], notes: string[]) => {
@@ -70,6 +70,6 @@ export const updateRecipeAndRedirect = async (recipeID: number, title: string, c
 		throw error
 	}
 	console.log(slugrow)
-	revalidatePath(`/recipes/${slugrow.slug}`);
-	redirect(`/recipes/${slugrow.slug}`);
+	revalidatePath(`/blue-binder/recipes/${slugrow.slug}`);
+	redirect(`/blue-binder/recipes/${slugrow.slug}`);
 };
