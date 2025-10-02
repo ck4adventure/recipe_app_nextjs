@@ -100,7 +100,7 @@ export const GET_RECIPE_BY_SLUG = async (slug: string) => {
 
 export const CREATE_RECIPE = async (title: string, categoryId: number, sourceId: number, authorID: number) => {
 	const results = await sql`
-		INSERT INTO recipes (title, category_id, source_id, author_id) VALUES (${title}, ${categoryId}, ${sourceId}, ${authorID}) RETURNING id
+		INSERT INTO recipes (title, category_id, source_id, author_id) VALUES (${title}, ${categoryId}, ${sourceId}, ${authorID}) RETURNING id, slug
 	`;
 	return results.rows[0];
 };
@@ -141,3 +141,7 @@ export const UPDATE_RECIPE = async (recipeId: number, title: string, categoryId:
 	`;
 	return result.rows[0];
 };
+
+export const DELETE_RECIPE_BY_ID = async (recipeId: number) => {
+	await sql`DELETE FROM recipes WHERE id = ${recipeId}`;
+}

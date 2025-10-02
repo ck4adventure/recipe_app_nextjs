@@ -14,9 +14,11 @@ import Link from 'next/link';
 import { Recipe } from '../../loafer/definitions';
 import React from "react";
 import { SquarePenIcon } from "lucide-react";
+import { RotateCcwIcon } from "lucide-react";
+import { DeleteRecipeButton } from "@/app/_ui/recipes/delete_recipe_button";
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
-	const hasRecipeDetails = recipe && recipe.ingredients && recipe.steps && recipe.notes;
+	const hasRecipeDetails = recipe && recipe.ingredients || recipe.steps || recipe.notes;
 	const [checked, setChecked] = React.useState<boolean[]>((recipe.steps ?? []).map(() => false));
 
 	const handleCheck = (idx: number) => {
@@ -26,7 +28,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 	const clearAll = () => setChecked(prev => prev.map(() => false))
 
 	return (
-		<Card className="w-full max-w-2xl shadow-2xl p-2 m-4">
+		<Card className="w-full max-w-2xl shadow p-2 m-4">
 			<CardHeader >
 				<div className="flex justify-between">
 					<CardTitle className="mb-1">{recipe.recipe_title}</CardTitle>
@@ -83,8 +85,8 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 								);
 							})}
 						</ol>
-						<div className="m4 flex justify-end" data-cy="recipe-steps-button-clear">
-							<Button onClick={clearAll} className="mr-4" size={"sm"} variant={"ghost"}>Reset Steps</Button>
+						<div className="m4 flex justify-start" data-cy="recipe-steps-button-clear">
+							<Button onClick={clearAll} className="mr-4" size={"sm"} variant={"ghost"}><RotateCcwIcon />Reset Steps</Button>
 						</div>
 					</div>
 				}
@@ -110,9 +112,10 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 
 				}
 
-				{/* delete button */}
-				<div>
+					{/* delete button */}
+				<div className="flex justify-end">
 
+					<DeleteRecipeButton id={recipe.recipe_id} />
 				</div>
 			</CardContent>
 

@@ -2,7 +2,7 @@
 // import { query } from '../../../db/index.mjs';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { CREATE_RECIPE, UPDATE_RECIPE, ADD_INGREDIENT_TO_RECIPE, ADD_STEP_TO_RECIPE, DELETE_RECIPE_INGREDIENTS, DELETE_RECIPE_STEPS, DELETE_RECIPE_NOTES, ADD_NOTE_TO_RECIPE } from '../../_lib/sqlQueriesRecipes';
+import { CREATE_RECIPE, UPDATE_RECIPE, ADD_INGREDIENT_TO_RECIPE, ADD_STEP_TO_RECIPE, DELETE_RECIPE_INGREDIENTS, DELETE_RECIPE_STEPS, DELETE_RECIPE_NOTES, ADD_NOTE_TO_RECIPE, DELETE_RECIPE_BY_ID } from '../../_lib/sqlQueriesRecipes';
 
 // server side
 // this functions wraps the async vercel sql call, catches the errors
@@ -13,11 +13,12 @@ import { CREATE_RECIPE, UPDATE_RECIPE, ADD_INGREDIENT_TO_RECIPE, ADD_STEP_TO_REC
 
 // createRecipeAndRedirect takea a title and categoryID and creates the recipe and adds it to the category
 export const createRecipeAndRedirect = async (title: string, categoryID: number, sourceID: number, authorID: number, ingredients: string[], steps: string[], notes: string[]) => {
-	let newRecipeID;
+	let newRecipeSlug;
 	try {
 		// TODO write validations for incoming data
 		const result = await CREATE_RECIPE(title, categoryID, sourceID, authorID);
-		newRecipeID = result.id as number;
+		newRecipeSlug = result.slug;
+		const newRecipeID = result.id as number;
 		// add recipe ingredients to recipe_ingredients table
 		if (ingredients && ingredients.length > 0) {
 			for (const ingr of ingredients) {
@@ -37,7 +38,8 @@ export const createRecipeAndRedirect = async (title: string, categoryID: number,
 	} catch (error) {
 		throw error
 	}
-	redirect(`/blue-binder/recipes/${newRecipeID}`);
+	revalidatePath('blue-binder/recipes')
+	redirect(`/blue-binder/recipes/${newRecipeSlug}`);
 };
 
 export const updateRecipeAndRedirect = async (recipeID: number, title: string, categoryID: number, sourceID: number, authorID: number, ingredients: string[], steps: string[], notes: string[]) => {
@@ -72,4 +74,17 @@ export const updateRecipeAndRedirect = async (recipeID: number, title: string, c
 	console.log(slugrow)
 	revalidatePath(`/blue-binder/recipes/${slugrow.slug}`);
 	redirect(`/blue-binder/recipes/${slugrow.slug}`);
+};
+
+
+export const deleteRecipeAndRedirect = async (recipeID: number) => {
+
+	try {
+		await DELETE_RECIPE_BY_ID(recipeID);
+
+	} catch (error) {
+		throw error
+	}
+	revalidatePath('/blue-binder/recipes')
+	redirect(`/blue-binder/recipes`);
 };
