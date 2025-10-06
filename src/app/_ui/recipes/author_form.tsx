@@ -31,7 +31,7 @@ export const AuthorForm = ({ author }: { author?: any}) => {
 	};
 
 	return (
-		<Card className="w-[700px] m-4 p-8 shadow-2xl">
+		<Card className="w-[700px] m-4 p-8 shadow">
 
 			<h1 className="my-2 font-bold">{author ? 'Update' : 'Add'} Author</h1>
 			<form data-cy='author-form' className="my-4 flex flex-col justify-center" onSubmit={handleSubmit}>
@@ -72,10 +72,10 @@ export const AuthorForm = ({ author }: { author?: any}) => {
 				</div>
 		
 				{/* Submit button */}
-				<div className="m-4">
+				<div className="flex justify-center my-4">
 					<button
 						type="submit"
-						className="m-4"
+						className="my-4"
 						data-cy='author-submit-button'
 					>{author ? 'Update' : 'Add'} Author</button>
 				</div>
