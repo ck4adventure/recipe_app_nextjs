@@ -2,7 +2,7 @@
 // import { query } from '../../../db/index.mjs';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-import { CREATE_RECIPE, UPDATE_RECIPE, ADD_INGREDIENT_TO_RECIPE, ADD_STEP_TO_RECIPE, DELETE_RECIPE_INGREDIENTS, DELETE_RECIPE_STEPS, DELETE_RECIPE_NOTES, ADD_NOTE_TO_RECIPE, DELETE_RECIPE_BY_ID } from '../../_lib/sqlQueriesRecipes';
+import { CREATE_RECIPE, UPDATE_RECIPE, ADD_INGREDIENT_TO_RECIPE, ADD_STEP_TO_RECIPE, DELETE_RECIPE_INGREDIENTS, DELETE_RECIPE_STEPS, DELETE_RECIPE_NOTES, ADD_NOTE_TO_RECIPE, DELETE_RECIPE_BY_ID, CREATE_AUTHOR, UPDATE_AUTHOR } from '../../_lib/sqlQueriesRecipes';
 
 // server side
 // this functions wraps the async vercel sql call, catches the errors
@@ -88,3 +88,25 @@ export const deleteRecipeAndRedirect = async (recipeID: number) => {
 	revalidatePath('/blue-binder/recipes')
 	redirect(`/blue-binder/recipes`);
 };
+
+export const createAuthorAndRedirect = async (authorName: string, isProfi: boolean) => {
+	let authorID
+	try {
+		const result = await CREATE_AUTHOR(authorName, isProfi)
+		authorID = result.id;
+	} catch (error) {
+		throw error
+	}
+	revalidatePath('/blue-binder/authors');
+	redirect(`/blue-binder/authors/${authorID}`)
+}
+
+export const updateAuthorAndRedirect = async (authorID: number, authorName: string, isProfi: boolean) => {
+	try {
+		const result = await UPDATE_AUTHOR(authorID, authorName, isProfi)
+	} catch (error) {
+		throw error
+	}
+	revalidatePath(`/blue-binder/authors/${authorID}`);
+	redirect(`/blue-binder/authors/${authorID}`)
+}

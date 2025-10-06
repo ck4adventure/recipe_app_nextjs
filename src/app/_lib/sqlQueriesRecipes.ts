@@ -19,6 +19,21 @@ export const GET_AUTHOR_BY_ID = async (authorId: number) => {
 	return result.rows[0];
 };
 
+export const CREATE_AUTHOR = async (authorName: string, isProfi: boolean) => {
+	console.log("create author: ", authorName, isProfi)
+	const result = await sql`
+		INSERT INTO authors (name, is_profi) VALUES (${authorName}, ${isProfi}) RETURNING id;
+	`
+	return result.rows[0]
+}
+
+export const UPDATE_AUTHOR = async (authorID: number, authorName: string, isProfi: boolean) => {
+		const result = await sql`
+		UPDATE authors SET name = ${authorName}, is_profi = ${isProfi}, WHERE id = ${authorID}
+	`;
+	return result.rows[0];
+}
+
 export const GET_SOURCES = async () => {
 	const results = await sql`SELECT * FROM sources`;
 	return results.rows;

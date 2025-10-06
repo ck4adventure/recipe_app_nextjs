@@ -1,4 +1,5 @@
 import { GET_AUTHOR_AND_SOURCES_BY_ID, GET_AUTHOR_BY_ID } from '@/app/_lib/sqlQueriesRecipes';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
 const filterSourcesAndRecipes = (rows: any[]) => {
@@ -19,10 +20,19 @@ const filterSourcesAndRecipes = (rows: any[]) => {
 }
 
 
-export default async function Page({ params }: { params: { id: number } }) {
-	const recipeRows = await GET_AUTHOR_AND_SOURCES_BY_ID(params.id);
+export default async function Page({ params }: { params: { id: string } }) {
+	const authorId = Number(params.id);
+	if (Number.isNaN(authorId)) notFound();
+
+	// First ensure the author exists. If not, return 404.
+	const authorData: any = await GET_AUTHOR_BY_ID(authorId);
+	if (!authorData) {
+		// author not found in DB
+		return notFound();
+	}
+
+	const recipeRows = await GET_AUTHOR_AND_SOURCES_BY_ID(authorId);
 	if (!recipeRows || recipeRows.length === 0) {
-		const authorData: any = await GET_AUTHOR_BY_ID(params.id);
 		const { name, is_profi } = authorData;
 		return (
 		<div className='flex flex-col items-center'>
