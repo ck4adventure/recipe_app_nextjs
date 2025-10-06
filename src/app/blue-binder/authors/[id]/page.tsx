@@ -45,9 +45,9 @@ export default async function Page({ params }: { params: { id: string } }) {
 			</div>
 			<div className='text-sm italic'>{is_profi ? 'Professional' : 'Amateur'} Chef</div>
 			{/* Display by source_type then list the recipes */}
-			<div className='m-4'>
+			<div className='w-2/4 my-4'>
 				{books.length > 0 && (
-					<div className='m-4'>
+					<div className='my-4'>
 						<div className='font-bold'>Books</div>
 						{books.map((book) => (
 							<div key={book.source_id}>

@@ -24,7 +24,7 @@ export const AuthorForm = ({ author }: { author?: any}) => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (author) {
-			await updateAuthorAndRedirect(author.author_id, authorName, isProfi);
+			await updateAuthorAndRedirect(author.id, authorName, isProfi);
 		} else {
 			await createAuthorAndRedirect(authorName, isProfi);
 		}

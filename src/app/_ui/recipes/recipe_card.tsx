@@ -38,7 +38,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 					<div>Category:&nbsp;<Link href={`/blue-binder/categories/${recipe.category_name}`}>{recipe.category_name}</Link></div>
 				</CardDescription>
 				<CardDescription >
-					<div>Source:&nbsp;<Link href={`/blue-binder/sources/${recipe.source_id}`}>{recipe.source_title}</Link>,&nbsp;by:&nbsp;<Link href={`/authors/${recipe.author_id}`}>{recipe.author_name}</Link> </div>
+					<div>Source:&nbsp;<Link href={`/blue-binder/sources/${recipe.source_id}`}>{recipe.source_title}</Link>,&nbsp;by:&nbsp;<Link href={`/blue-binder/authors/${recipe.author_id}`}>{recipe.author_name}</Link> </div>
 				</CardDescription>
 			</CardHeader>
 

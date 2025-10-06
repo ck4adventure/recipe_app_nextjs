@@ -36,9 +36,9 @@ export default async function Page({ params }: { params: { id: number } }) {
 				{source_url && <div className="text-sm m-2"><Link href={encodeURI(source_url)}>{source_url}</Link></div>}
 				{source_type && <div className="text-sm m-2">{source_type}</div>}
 				{author_slug && <div className="text-sm m-2">By: <Link href={`/blue-binder/authors/${author_id}`}>{author_name}</Link></div>}
-				<ul className="w-2/3 m-4">
+				<ul className="flex flex-col items-center w-2/3 my-4">
 					{sourceRecipes.map((data: any, i) => (
-						<li className='m-2' key={i}><Link href={`/blue-binder/recipes/${data.recipe_slug}`}>{data.recipe_title}</Link></li>
+						<li className='my-2' key={i}><Link href={`/blue-binder/recipes/${data.recipe_slug}`}>{data.recipe_title}</Link></li>
 					))}
 				</ul>
 			</div>

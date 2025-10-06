@@ -29,7 +29,7 @@ export const CREATE_AUTHOR = async (authorName: string, isProfi: boolean) => {
 
 export const UPDATE_AUTHOR = async (authorID: number, authorName: string, isProfi: boolean) => {
 		const result = await sql`
-		UPDATE authors SET name = ${authorName}, is_profi = ${isProfi}, WHERE id = ${authorID}
+		UPDATE authors SET name = ${authorName}, is_profi = ${isProfi} WHERE id = ${authorID} RETURNING *
 	`;
 	return result.rows[0];
 }
