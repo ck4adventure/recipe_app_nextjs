@@ -1,6 +1,8 @@
 import { GET_SOURCES } from '@/app/_lib/sqlQueriesRecipes';
 import Link from 'next/link';
 
+export const revalidate = 60; // revalidate in seconds
+
 export default async function Page() {
 	const sourcesRows = await GET_SOURCES();
 	return (
