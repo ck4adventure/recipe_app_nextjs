@@ -4,6 +4,8 @@ import { Recipe } from '@/app/loafer/definitions';
 // import { DeleteRecipeButton } from '@/app/ui/recipes/delete_recipe_button';
 import RecipeCard from '@/app/_ui/recipes/recipe_card';
 
+export const revalidate = 60; // revalidate in seconds
+
 
 // RecipeDetailPage should fetch the recipe by id
 export default async function Page({ params }: { params: { slug: string } }) {
