@@ -37,7 +37,7 @@ export const AuthorForm = ({ author }: { author?: any}) => {
 			<form data-cy='author-form' className="my-4 flex flex-col justify-center" onSubmit={handleSubmit}>
 				{/* Author Name */}
 				<div className="my-2">
-					<label className='flex items-center' htmlFor="author-name">Author's Name
+					<label className='flex items-center' htmlFor="author-name">Author&apos;s Name
 						<input
 							id="author-name"
 							data-cy='author-name-input'
