@@ -2,7 +2,7 @@
 import { sql } from '@vercel/postgres';
 
 export const GET_AUTHORS = async () => {
-	const results = await sql`SELECT * FROM authors`;
+	const results = await sql`SELECT * FROM authors ORDER BY name asc`;
 	return results.rows;
 }
 
@@ -35,7 +35,7 @@ export const UPDATE_AUTHOR = async (authorID: number, authorName: string, isProf
 }
 
 export const GET_SOURCES = async () => {
-	const results = await sql`SELECT * FROM sources`;
+	const results = await sql`SELECT * FROM sources ORDER BY title asc`;
 	return results.rows;
 };
 
