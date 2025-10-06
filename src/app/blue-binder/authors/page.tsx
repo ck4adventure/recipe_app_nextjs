@@ -1,6 +1,7 @@
 // authors index page
 import Link from 'next/link';
 import { GET_AUTHORS } from '@/app/_lib/sqlQueriesRecipes';
+import AddAuthorButton from '@/app/_ui/recipes/add_author_button';
 
 export const revalidate = 60; // revalidate in seconds
 
@@ -9,11 +10,14 @@ export default async function Page() {
 	return (
 		<div className='flex flex-col items-center'>
 			<div className='font-bold text-lg' data-cy="authors-header">Authors</div>
-				<ul className='m-4 flex flex-col items-center'>
-					{authorsRows.map((author: any) => (
-						<li className='m-2' key={author.id}><Link href={`/blue-binder/authors/${author.id}`}>{author.name}</Link></li>
-					))}
-				</ul>
+			<ul className='m-4 flex flex-col items-center'>
+				{authorsRows.map((author: any) => (
+					<li className='m-2' key={author.id}><Link href={`/blue-binder/authors/${author.id}`}>{author.name}</Link></li>
+				))}
+			</ul>
+			<div>
+				<AddAuthorButton />
+			</div>
 		</div>
 	);
 }
