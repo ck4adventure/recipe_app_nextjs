@@ -6,6 +6,27 @@ import RecipeCard from '@/app/_ui/recipes/recipe_card';
 
 export const revalidate = 60; // revalidate in seconds
 
+import type { Metadata, ResolvingMetadata } from 'next'
+ 
+ 
+export async function generateMetadata(
+  { params }:{ params: { slug: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const { slug } = await params
+ 
+  // fetch data
+  const recipe = await GET_RECIPE_BY_SLUG(slug)
+ 
+  // optionally access and extend (rather than replace) parent metadata
+  // const previousImages = (await parent).openGraph?.images || []
+ 
+  return {
+    title: `${recipe.recipe_title} | Blue Binder`,
+  }
+}
+
 
 // RecipeDetailPage should fetch the recipe by id
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -16,7 +37,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
 	return (
 		<div id='recipe_page'>
-			<title>Recipe</title>
 			<main className='flex flex-col items-center'>
 				{recipe && <RecipeCard recipe={recipe} />}
 
