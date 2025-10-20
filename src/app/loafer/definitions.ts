@@ -45,6 +45,18 @@ export interface Recipe {
 	notes?: string[];
 }
 
+export interface RecipeAI {
+  recipe_title: string;
+	recipe_slug: string;
+	category_name?: string;
+	source_title?: string;
+	author_name?: string;
+	special_equipment: string[];
+	ingredients?: string[];
+	steps?: string[];
+	notes?: string[];
+}
+
 export interface Category {
 	id: number;
 	name: string;
