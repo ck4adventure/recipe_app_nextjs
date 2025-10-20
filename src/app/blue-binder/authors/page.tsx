@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { GET_AUTHORS } from '@/app/_lib/sqlQueriesRecipes';
 import AddAuthorButton from '@/app/_ui/recipes/add_author_button';
 
-export const revalidate = 60; // revalidate in seconds
+export const revalidate = 5; // revalidate in seconds
 
 export default async function Page() {
 	const authorsRows = await GET_AUTHORS();

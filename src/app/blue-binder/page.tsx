@@ -2,7 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import AddRecipeButton from '@/app/_ui/recipes/add_recipe_button';
 
-export const revalidate = 60; // revalidate in seconds
+export const revalidate = 3600; // revalidate in seconds
 
 const cards = [
 	{
