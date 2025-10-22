@@ -14,6 +14,7 @@ export const GET_AUTHOR_AND_SOURCES_BY_ID = async (authorId: number) => {
 		WHERE r.author_id = ${authorId}`;
 	return results.rows;
 }
+
 export const GET_AUTHOR_BY_ID = async (authorId: number) => {
 	const result = await sql`SELECT * FROM authors WHERE id = ${authorId}`;
 	return result.rows[0];
@@ -56,6 +57,21 @@ export const GET_SOURCE_DATA_BY_ID = async (sourceId: number) => {
 	const results = await sql`SELECT * FROM sources WHERE id = ${sourceId}`;
 	return results.rows[0];
 };
+
+export const CREATE_SOURCE = async (name: string, source_type: string, url: string, singleAuthor: boolean) => {
+	const result = await sql`INSERT into SOURCES (title, source_type, source_url, single_author) VALUES (${name}, ${source_type}, ${url}, ${singleAuthor})`
+	return result.rows;
+}
+
+export const UPDATE_SOURCE = async (sourceId: number, name: string, source_type: string, url: string, singleAuthor: boolean) => {
+	const result = await sql`
+		UPDATE sources
+		SET title = ${name}, source_type = ${source_type}, source_url = ${url}, single_author = ${singleAuthor}
+		WHERE id = ${sourceId}
+		RETURNING *;
+	`;
+	return result.rows;
+}
 
 export const GET_CATEGORIES = async () => {
 	const results = await sql`SELECT * FROM categories`;

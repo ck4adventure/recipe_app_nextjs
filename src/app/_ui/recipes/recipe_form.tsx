@@ -4,6 +4,7 @@
 'use client'
 import { createRecipeAndRedirect, updateRecipeAndRedirect } from "../../blue-binder/recipes/actions";
 import { createAuthorAndRefresh, getAuthors } from "@/app/blue-binder/authors/actions";
+import { createSource, getSources } from "@/app/blue-binder/sources/actions";
 import { useState } from "react";
 import IngredientField from "./ingredient_field";
 import DirectionField from "./direction_field";
@@ -13,12 +14,14 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 
+import { SOURCE_TYPES } from "../../../../types";
 
 
 export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: { authorsRows: any, sourcesRows: any, categoryRows: any, recipe?: any }) => {
 	const [recipeTitle, setRecipeTitle] = useState<string>(recipe ? recipe.recipe_title : '');
 	const [categoryID, setCategoryID] = useState<number>(recipe ? recipe.category_id : 1);
 	const [authors, setAuthors] = useState(authorsRows);
+	const [sources, setSources] = useState(sourcesRows);
 	const [ingredients, setIngredients] = useState<string[]>((recipe && recipe.ingredients) ? recipe.ingredients : ['', '']);
 	const [steps, setSteps] = useState<string[]>((recipe && recipe.steps) ? recipe.steps : ['', '']);
 	const [notes, setNotes] = useState<string[]>((recipe && recipe.notes) ? recipe.notes : ['']);
@@ -29,6 +32,11 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 	const [authorName, setAuthorName] = useState<string>("");
 	const [authorIsProfi, setAuthorIsProfi] = useState<boolean>(false);
 
+	const [sourceModalOpen, setSourceModalOpen] = useState<boolean>(false);
+	const [sourceName, setSourceName] = useState<string>("");
+	const [sourceType, setSourceType] = useState<string>("SITE"); //'BOOK', 'SITE', 'PERSONAL', 'OTHER'
+	const [sourceURL, setSourceURL] = useState<string>("");
+	const [sourceSingleAuthor, setSourceSingleAuthor] = useState<boolean>(true);
 
 
 
@@ -82,6 +90,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 	const handleRecipeSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		try {
+			console.log("in handle recipe submit")
 			const actualIngredients = ingredients.filter(ingr => ingr.length > 0);
 			const actualSteps = steps.filter(step => step.length > 0);
 			const actualNotes = notes.filter(note => note.length > 0);
@@ -97,7 +106,6 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 	};
 
 	const handleNameChange = (value: string) => {
-		console.log("changing name to: ", value)
 		setAuthorName(value);
 	}
 
@@ -122,9 +130,40 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 		}
 	}
 
+	const handleSourceNameChange = (value: string) => {
+		setSourceName(value);
+	}
+
+	const handleSourceTypeChange = (value: string) => {
+		setSourceType(value);
+	}
+
+	const handleSourceURLChange = (value: string) => {
+		//todo ensure string is safe
+		const trimmed = value.trim();
+		setSourceURL(trimmed);
+	}
+
+	const handleSourceSingleAuthorChange = (value: boolean) => {
+		setSourceSingleAuthor(value);
+	}
+
+	const handleSourceSubmit = async (e: React.FormEvent): Promise<void> => {
+		e.preventDefault();
+		try {
+			console.log("in source add modal submit for: ", sourceName);
+			await createSource(sourceName, sourceType, sourceURL, sourceSingleAuthor);
+			setSourceModalOpen(false);
+			// After successful source creation
+			const res = await getSources();
+			setSources(res);
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	return (
 		<Card className="w-[700px] m-4 p-8 shadow">
-
 			<h1 className="my-2 font-bold">{recipe ? 'Update' : 'Add'} Recipe</h1>
 			<form data-cy='recipe-form' className="my-4 flex flex-col justify-center" onSubmit={handleRecipeSubmit}>
 
@@ -171,7 +210,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 							data-cy='recipe-source-select'
 							value={sourceID}
 						>
-							{sourcesRows.map((row: any) => (
+							{sources.map((row: any) => (
 								<option
 									key={row.id}
 									value={row.id}>
@@ -179,8 +218,90 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 								</option>))}
 						</select>
 					</label>
-					{/* TODO: add modal for source creation, on submit it goes to db, but also right back to this form, no redirect */}
 
+					{/* TODO: add modal for source creation, on submit it goes to db, but also right back to this form, no redirect */}
+					<Dialog open={sourceModalOpen} onOpenChange={setSourceModalOpen} >
+						<div>
+							<DialogTrigger asChild>
+								<Button variant="outline" size={"sm"}>Add Source</Button>
+							</DialogTrigger>
+							<DialogContent className="sm:max-w-[425px]">
+								<DialogHeader>
+									<DialogTitle>Add Source</DialogTitle>
+									<DialogDescription>
+										Add source information here. Click save when you&apos;re
+										done.
+									</DialogDescription>
+								</DialogHeader>
+								<div className="grid gap-4">
+									{/* title */}
+									<div className="grid gap-3">
+										<Label htmlFor="source-title">Title</Label>
+										<Input id="source-title" name="source-title" defaultValue="source title goes here" onChange={e => handleSourceNameChange(e.target.value)} />
+									</div>
+									{/* sourceTypeSelect */}
+									<label htmlFor="source-type-select" className="w-[350px] flex justify-between items-center">Source Type
+										<select
+											id="source-type-select"
+											className="w-[250px]"
+											onChange={e => handleSourceTypeChange(e.target.value)}
+											data-cy='add-sourcetype-select'
+											value={sourceType}
+										>
+											{SOURCE_TYPES.map((v: string, i: number) => (
+												<option
+													key={`source-type-${i}`}
+													value={v}>
+													{v}
+												</option>))}
+										</select>
+									</label>
+									{/* if web, url */}
+									<label className='flex items-center' htmlFor="source-url">Source Url
+										<input
+											id="source-url"
+											data-cy='source-url-input'
+											className="grow border-b border-slate-300"
+											onChange={e => handleSourceURLChange(e.target.value)}
+										>
+										</input>
+									</label>
+									{/* singleAuthor */}
+									<div className="grid gap-3">
+										<label htmlFor="singleAuthor-select" className="w-[350px] flex justify-between items-center">Single Author?
+											<select
+												id="singleAuthor-select"
+												className="w-[225px]"
+												data-cy='singleAuthor-select'
+												onChange={e => handleSourceSingleAuthorChange(JSON.parse(e.target.value))}
+												value={sourceSingleAuthor.toString()}
+											>
+												<option
+													key={"true"}
+													value={"true"}>
+													True
+												</option>
+												<option
+													key={"false"}
+													value={"false"}>
+													False
+												</option>
+											</select>
+										</label>
+									</div>
+								</div>
+								<DialogFooter>
+									<DialogClose asChild>
+										<Button variant="outline">Cancel</Button>
+									</DialogClose>
+									<DialogClose asChild>
+										<Button type="button" onClick={handleSourceSubmit}>Save</Button>
+									</DialogClose>
+								</DialogFooter>
+							</DialogContent>
+
+						</div>
+					</Dialog>
 				</div>
 
 				{/* Author Select */}
@@ -269,6 +390,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 					))}
 					<button type="button" data-cy='add-ingr-button' onClick={() => addField("ingredients")}>+ Add Ingredient</button>
 				</fieldset>
+
 				{/* Steps Section */}
 				<fieldset data-cy='recipe-steps-section' className='my-4'>Steps
 					{steps.map((direction, i) => (
@@ -282,6 +404,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 					<button type="button" data-cy='add-dir-button' onClick={() => addField("steps")}>+ Add Step</button>
 
 				</fieldset>
+
 				{/* Notes Section */}
 				<fieldset data-cy='recipe-notes-section' className='my-4'>Notes
 					{notes.map((note, i) => (
@@ -295,6 +418,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 					<button type="button" data-cy='add-note-button' onClick={() => addField("notes")}>+ Add Note</button>
 
 				</fieldset>
+
 				{/* Submit button */}
 				<div className="m-4">
 					<button

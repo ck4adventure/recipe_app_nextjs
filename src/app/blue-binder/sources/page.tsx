@@ -1,4 +1,5 @@
 import { GET_SOURCES } from '@/app/_lib/sqlQueriesRecipes';
+import AddSourceButton from '@/app/_ui/recipes/add_source_button';
 import Link from 'next/link';
 
 export const revalidate = 5; // revalidate in seconds
@@ -13,6 +14,9 @@ export default async function Page() {
 					<li className='m-2' key={i}><Link href={`/blue-binder/sources/${source.id}`}>{source.title}</Link></li>
 				))}
 			</ul>
+			<div>
+				<AddSourceButton />
+			</div>
 		</div>
 	);
 }

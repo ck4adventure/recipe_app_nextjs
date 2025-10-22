@@ -1,4 +1,7 @@
 export const GENERAL_ALLERGENS = "milk, eggs, tree nuts, peanuts, wheat, soy"
+
+export const SOURCE_TYPES = ["BOOK", "SITE", "PERSONAL", "OTHER"];
+
 // food ingredients contains commonly used listings
 export interface Food {
 	brand: string;
