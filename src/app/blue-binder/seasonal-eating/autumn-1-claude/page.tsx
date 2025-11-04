@@ -11,7 +11,7 @@ export default function FallMealsClaudePage() {
           Some days call for comfort. Some days call for nourishment. This meal plan gives you both—a luxurious turkey and brie sandwich that feels like a warm hug, paired with a vibrant roasted vegetable and lentil bowl that feeds your body at the cellular level.
         </p>
         <p>
-          Together, these meals create a nutritionally complete day that's high in protein, packed with fiber, rich in healthy fats, and bursting with the colors and flavors of fall. At around 1,700 calories, this plan works beautifully for maintenance eating, mindful nourishment, or anyone who wants to eat well without overthinking it.
+          Together, these meals create a nutritionally complete day that&apos;s high in protein, packed with fiber, rich in healthy fats, and bursting with the colors and flavors of fall. At around 1,700 calories, this plan works beautifully for maintenance eating, mindful nourishment, or anyone who wants to eat well without overthinking it.
         </p>
         <ul className="list-disc ml-6 my-2">
           <li>75-80g protein (muscle maintenance, satiety, immune support)</li>
@@ -29,10 +29,10 @@ export default function FallMealsClaudePage() {
         <h2 className="text-2xl font-bold mb-2">🥪 Recipe 1: Turkey, Brie & Arugula Sandwich on Flax Wheat Bread</h2>
         <h3 className="text-lg font-semibold mb-1">The Story</h3>
         <p>
-          This isn't just a sandwich—it's an experience. Creamy, buttery brie meets peppery arugula and lean turkey, all nestled between hearty homemade bread with a nutty flax crunch. A swipe of grainy mustard cuts through the richness, and if you're feeling fancy, a few thin apple slices add a sweet-tart surprise.
+          This isn&apos;t just a sandwich—it&apos;s an experience. Creamy, buttery brie meets peppery arugula and lean turkey, all nestled between hearty homemade bread with a nutty flax crunch. A swipe of grainy mustard cuts through the richness, and if you&apos;re feeling fancy, a few thin apple slices add a sweet-tart surprise.
         </p>
         <p>
-          It's the kind of sandwich that makes lunch feel like an event, not an afterthought.
+          It&apos;s the kind of sandwich that makes lunch feel like an event, not an afterthought.
         </p>
         <h4 className="font-semibold mt-4">Nutritional Snapshot (per sandwich)</h4>
         <ul className="list-disc ml-6 my-2">
@@ -80,7 +80,7 @@ export default function FallMealsClaudePage() {
           <li>Combine: Pour yeast mixture and olive oil into dry ingredients. Stir until a shaggy dough forms.</li>
           <li>Knead: Turn out onto a floured surface and knead 8-10 minutes until smooth and elastic (or use a stand mixer with dough hook for 5-6 minutes).</li>
           <li>First rise: Place in an oiled bowl, cover with a damp towel, and let rise in a warm spot for 1 hour or until doubled.</li>
-          <li>Shape: Punch down dough, shape into a loaf, and place in a greased 9x5" loaf pan. Brush top with water and sprinkle with whole flax seeds.</li>
+          <li>Shape: Punch down dough, shape into a loaf, and place in a greased 9x5&quot; loaf pan. Brush top with water and sprinkle with whole flax seeds.</li>
           <li>Second rise: Cover and let rise 30-45 minutes until dough rises above the pan edge.</li>
           <li>Bake: Preheat oven to 375°F. Bake 35-40 minutes until golden and hollow-sounding when tapped. Internal temp should reach 190°F.</li>
           <li>Cool: Remove from pan and cool completely on a wire rack before slicing.</li>
@@ -111,10 +111,10 @@ export default function FallMealsClaudePage() {
         <h2 className="text-2xl font-bold mb-2">🍲 Recipe 2: Roasted Vegetable & Lentil Bowl with Tahini Drizzle</h2>
         <h3 className="text-lg font-semibold mb-1">The Story</h3>
         <p>
-          This is the bowl that changes how you think about vegetables. Deeply caramelized edges. Earthy lentils. A creamy, garlicky tahini sauce that makes you want to lick the bowl. It's hearty without being heavy, colorful without being fussy, and satisfying in a way that makes you feel <em>good</em> hours later.
+          This is the bowl that changes how you think about vegetables. Deeply caramelized edges. Earthy lentils. A creamy, garlicky tahini sauce that makes you want to lick the bowl. It&apos;s hearty without being heavy, colorful without being fussy, and satisfying in a way that makes you feel <em>good</em> hours later.
         </p>
         <p>
-          This is the meal that does the quiet, unsexy work of keeping your body humming—gut health, steady energy, glowing skin, strong bones. But it tastes so good, you'd eat it even if it didn't.
+          This is the meal that does the quiet, unsexy work of keeping your body humming—gut health, steady energy, glowing skin, strong bones. But it tastes so good, you&apos;d eat it even if it didn&apos;t.
         </p>
         <h4 className="font-semibold mt-4">Nutritional Snapshot (per bowl)</h4>
         <ul className="list-disc ml-6 my-2">
@@ -125,7 +125,7 @@ export default function FallMealsClaudePage() {
           <li>Fiber: 25-30g</li>
           <li>Calcium: 350-400mg</li>
         </ul>
-        <p className="mb-2"><strong>What it provides:</strong> Complete plant protein from lentils, a full day's fiber in one meal, calcium from tahini and feta, anti-inflammatory fats, and a spectrum of vitamins A, C, K, and folate.</p>
+        <p className="mb-2"><strong>What it provides:</strong> Complete plant protein from lentils, a full day&apos;s fiber in one meal, calcium from tahini and feta, anti-inflammatory fats, and a spectrum of vitamins A, C, K, and folate.</p>
 
         <h4 className="font-semibold mt-4">Ingredients (serves 1 generously, or 2 moderate portions)</h4>
         <ul className="list-disc ml-6 my-2">
@@ -142,7 +142,7 @@ export default function FallMealsClaudePage() {
           <li>2 Tbsp toasted pumpkin or sunflower seeds (100 cal)</li>
           <li>Fresh parsley or cilantro</li>
           <li>Lemon wedge</li>
-          <li>Pinch of za'atar or cumin</li>
+          <li>Pinch of za&apos;atar or cumin</li>
         </ul>
         <h5 className="font-semibold mt-2">Optional Grain:</h5>
         <ul className="list-disc ml-6 my-2">
@@ -181,12 +181,12 @@ export default function FallMealsClaudePage() {
           <li>Add a dollop of labneh</li>
           <li>Roast whole garlic cloves</li>
           <li>Finish with microgreens and edible flowers</li>
-          <li>Add a side of warm pita brushed with za'atar butter</li>
+          <li>Add a side of warm pita brushed with za&apos;atar butter</li>
         </ul>
         <h5 className="font-semibold mt-2">Crispy Roasted Chickpeas (Lentil Substitute)</h5>
         <ul className="list-disc ml-6 my-2">
           <li>Dry chickpeas thoroughly, toss with oil and salt, roast at 400°F for 25-35 min, add spices at end.</li>
-          <li>Flavor profiles: Za'atar & Lemon, Smoky Paprika, Curry Spiced, Garlic & Herb, Sweet & Savory (see full recipe for details).</li>
+          <li>Flavor profiles: Za&apos;atar & Lemon, Smoky Paprika, Curry Spiced, Garlic & Herb, Sweet & Savory (see full recipe for details).</li>
           <li>Store airtight, recrisp in oven if needed.</li>
         </ul>
         <h5 className="font-semibold mt-2">Quinoa Power Bowl Variation</h5>
