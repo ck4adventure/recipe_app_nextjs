@@ -6,6 +6,10 @@ export const revalidate = 3600; // revalidate in seconds
 
 const cards = [
 	{
+		display: "Seasonal Eating Ideas",
+		link: "/blue-binder/seasonal-eating"
+	},
+	{
 		display: "All Recipes",
 		link: "/blue-binder/recipes"
 	},
