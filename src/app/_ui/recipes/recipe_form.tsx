@@ -175,6 +175,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 							data-cy='recipe-title-input'
 							className="grow border-b border-slate-300"
 							onChange={e => setRecipeTitle(e.target.value)}
+							value={recipeTitle}
 						>
 						</input>
 					</label>
