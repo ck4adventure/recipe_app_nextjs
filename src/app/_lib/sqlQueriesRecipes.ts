@@ -58,8 +58,9 @@ export const GET_SOURCE_DATA_BY_ID = async (sourceId: number) => {
 	return results.rows[0];
 };
 
-export const CREATE_SOURCE = async (name: string, source_type: string, url: string, singleAuthor: boolean) => {
-	const result = await sql`INSERT into SOURCES (title, source_type, source_url, single_author) VALUES (${name}, ${source_type}, ${url}, ${singleAuthor})`
+export const CREATE_SOURCE = async (name: string, sourceType: string, url: string, singleAuthor: boolean) => {
+	console.log("title: ", name, ", type: ", sourceType, ", url: ", url, ", single?: ", singleAuthor)
+	const result = await sql`INSERT into SOURCES (title, source_type, source_url, single_author) VALUES (${name}, ${sourceType}, ${url}, ${singleAuthor})`
 	return result.rows;
 }
 

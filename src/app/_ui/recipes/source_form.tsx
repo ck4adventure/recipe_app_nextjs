@@ -10,11 +10,12 @@ import { Card } from "@/components/ui/card";
 
 export const SourceForm = ({ source }: { source?: any }) => {
 	const [sourceTitle, setSourceTitle] = useState<string>(source ? source.title : '');
-	const [sourceType, setSourceType] = useState<string>(source ? source.source_type : false);
+	const [sourceType, setSourceType] = useState<string>(source ? source.source_type : SOURCE_TYPES.at(0));
 	const [sourceURL, setSourceURL] = useState<string>(source ? source.source_url : false);
 	const [sourceSingleAuthor, setSourceSingleAuthor] = useState<boolean>(source ? source.single_author : true);
 
 	const handleSourceTitleChange = (value: string) => {
+
 		setSourceTitle(value);
 	}
 
@@ -72,12 +73,14 @@ export const SourceForm = ({ source }: { source?: any }) => {
 						data-cy='recipe-source-select'
 						value={sourceType}
 					>
-						{SOURCE_TYPES.map((v: string, i: number) => (
+						{SOURCE_TYPES.map((v: string, i: number) => {
+							return (
 							<option
 								key={`source-type-${i}`}
 								value={v}>
 								{v}
-							</option>))}
+							</option>)}
+							)}
 					</select>
 				</label>
 
