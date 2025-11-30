@@ -81,8 +81,17 @@ export const GET_CATEGORIES = async () => {
 
 export const GET_CATEGORIES_AND_RECIPES = async () => {
 	const results = await sql`
-		SELECT c.id AS category_id, c.name AS category_name, r.id AS recipe_id, r.title AS recipe_title, r.slug AS recipe_slug
-		FROM categories c LEFT JOIN recipes r ON c.id = r.category_id
+		SELECT 
+			c.id AS category_id, 
+			c.name AS category_name, 
+			COUNT(r.id) AS recipe_count,
+			ARRAY_AGG(r.id) FILTER (WHERE r.id IS NOT NULL) AS recipe_ids,
+			ARRAY_AGG(r.title) FILTER (WHERE r.title IS NOT NULL) AS recipe_titles,
+			ARRAY_AGG(r.slug) FILTER (WHERE r.slug IS NOT NULL) AS recipe_slugs
+		FROM categories c 
+		LEFT JOIN recipes r ON c.id = r.category_id
+		GROUP BY c.id, c.name
+		ORDER BY COUNT(r.id) DESC
 	`;
 	return results.rows;
 };
