@@ -24,7 +24,9 @@ const CategoryCard = ({ category, categoryRecipes }: {
 					{formattedCategory}
 				</Link>
 				{typeof categoryRecipes.count === 'number' && (
-					<span className="ml-2 text-xs text-gray-500">({categoryRecipes.count} recipes)</span>
+					<span className="ml-2 text-xs text-gray-500">
+						({categoryRecipes.count} {categoryRecipes.count === 1 ? 'recipe' : 'recipes'})
+					</span>
 				)}
 			</h2>
 			<ul data-cy='recipe-list'>
