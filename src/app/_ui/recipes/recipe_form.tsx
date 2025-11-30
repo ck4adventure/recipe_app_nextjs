@@ -195,7 +195,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 	}
 
 	return (
-		<Card className="w-full md:w-1/2 m-4 p-8 shadow">
+		<Card className="w-full md:w-3/4 m-4 p-8 shadow">
 			<h1 className="my-2 font-bold">{recipe ? 'Update' : 'Add'} Recipe</h1>
 			<form data-cy='recipe-form' className="my-4 flex flex-col justify-center" onSubmit={handleRecipeSubmit}>
 
@@ -206,7 +206,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 					</div>
 				)}
 
-				
+
 				{/* Recipe Title */}
 				<div className="my-2">
 					<label className='flex items-center' htmlFor="recipe-title">Recipe Title
@@ -425,11 +425,43 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 				{/* Ingredients Section */}
 				<fieldset data-cy='recipe-ingredients-section' className='my-4'>Ingredients
 					{ingredients.map((ingredient, i) => (
-						<IngredientField
-							key={i}
-							value={ingredient}
-							onChange={(value) => handleIngredientChange(i, value)}
-							onDelete={() => handleIngredientDelete(i)} />
+						<div key={i} className="flex items-center gap-2 mb-2">
+							<div className="flex-1">
+								<IngredientField
+									value={ingredient}
+									onChange={(value) => handleIngredientChange(i, value)}
+									onDelete={() => handleIngredientDelete(i)}
+								/>
+							</div>
+							<div className="flex flex-col gap-1">
+								<button
+									type="button"
+									aria-label="Move ingredient up"
+									disabled={i === 0}
+									className="text-xs px-1 border rounded disabled:opacity-50"
+									onClick={() => {
+										if (i > 0) {
+											const newIngredients = [...ingredients];
+											[newIngredients[i - 1], newIngredients[i]] = [newIngredients[i], newIngredients[i - 1]];
+											setIngredients(newIngredients);
+										}
+									}}
+								>↑</button>
+								<button
+									type="button"
+									aria-label="Move ingredient down"
+									disabled={i === ingredients.length - 1}
+									className="text-xs px-1 border rounded disabled:opacity-50"
+									onClick={() => {
+										if (i < ingredients.length - 1) {
+											const newIngredients = [...ingredients];
+											[newIngredients[i], newIngredients[i + 1]] = [newIngredients[i + 1], newIngredients[i]];
+											setIngredients(newIngredients);
+										}
+									}}
+								>↓</button>
+							</div>
+						</div>
 					))}
 					<button type="button" data-cy='add-ingr-button' onClick={() => addField("ingredients")}>+ Add Ingredient</button>
 				</fieldset>
