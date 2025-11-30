@@ -5,7 +5,7 @@
 import { createRecipeAndRedirect, updateRecipeAndRedirect } from "../../blue-binder/recipes/actions";
 import { createAuthorAndRefresh, getAuthors } from "@/app/blue-binder/authors/actions";
 import { createSource, getSources } from "@/app/blue-binder/sources/actions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IngredientField from "./ingredient_field";
 import DirectionField from "./direction_field";
 import { Card } from "@/components/ui/card";
@@ -39,7 +39,16 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 	const [sourceSingleAuthor, setSourceSingleAuthor] = useState<boolean>(true);
 
 
+	const [formError, setFormError] = useState<string | null>(null);
 
+	// Scroll to top when an error occurs
+	useEffect(() => {
+		if (formError) {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		}
+	}, [formError]);
+
+	// do not overwrite this code
 	const addField = (type: 'ingredients' | 'steps' | 'notes') => {
 		if (type === 'steps') {
 			setSteps([...steps, '']);
@@ -89,18 +98,41 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 
 	const handleRecipeSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
+		setFormError(null);
 		try {
-			console.log("in handle recipe submit")
 			const actualIngredients = ingredients.filter(ingr => ingr.length > 0);
 			const actualSteps = steps.filter(step => step.length > 0);
 			const actualNotes = notes.filter(note => note.length > 0);
+			let result;
 			if (recipe) {
-				await updateRecipeAndRedirect(recipe.recipe_id, recipeTitle, categoryID, sourceID, authorID, actualIngredients, actualSteps, actualNotes);
+				result = await updateRecipeAndRedirect(
+					recipe.recipe_id,
+					recipeTitle,
+					categoryID,
+					sourceID,
+					authorID,
+					actualIngredients,
+					actualSteps,
+					actualNotes
+				);
 			} else {
-				await createRecipeAndRedirect(recipeTitle, categoryID, sourceID, authorID, actualIngredients, actualSteps, actualNotes);
+				result = await createRecipeAndRedirect(
+					recipeTitle,
+					categoryID,
+					sourceID,
+					authorID,
+					actualIngredients,
+					actualSteps,
+					actualNotes
+				);
 			}
-		} catch (error) {
-			// Optionally show an error message to the user
+			// If the server action returns an error object, handle it
+			if (result && result.error) {
+				setFormError(result.message || 'An error occurred. Please try again.');
+				return;
+			}
+		} catch (error: any) {
+			setFormError(error?.message || 'Failed to submit recipe.');
 			console.error("Failed to submit recipe:", error);
 		}
 	};
@@ -167,6 +199,14 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 			<h1 className="my-2 font-bold">{recipe ? 'Update' : 'Add'} Recipe</h1>
 			<form data-cy='recipe-form' className="my-4 flex flex-col justify-center" onSubmit={handleRecipeSubmit}>
 
+
+				{formError && (
+					<div className="mb-4 text-red-600 font-semibold" data-cy="recipe-form-error">
+						{formError}
+					</div>
+				)}
+
+				
 				{/* Recipe Title */}
 				<div className="my-2">
 					<label className='flex items-center' htmlFor="recipe-title">Recipe Title
@@ -180,6 +220,8 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 						</input>
 					</label>
 				</div>
+
+
 
 				{/* Category Select */}
 				<div className="my-2 flex">

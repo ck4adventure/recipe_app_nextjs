@@ -35,10 +35,16 @@ export const createRecipeAndRedirect = async (title: string, categoryID: number,
 				await ADD_NOTE_TO_RECIPE(newRecipeID, note);
 			}
 		}
-	} catch (error) {
-		throw error
+	} catch (error: any) {
+		// Check for unique constraint violation (duplicate slug)
+		// Postgres error code for unique_violation is '23505'
+		if (error && (error.code === '23505' || (error.message && error.message.includes('duplicate key value')))) {
+			return { error: 'duplicate_slug', message: 'A recipe with this title already exists. Please choose another title.' };
+		}
+		// Other errors
+		return { error: 'server_error', message: error?.message || 'An unknown error occurred.' };
 	}
-	revalidatePath('blue-binder/recipes')
+	revalidatePath('blue-binder/recipes');
 	redirect(`/blue-binder/recipes/${newRecipeSlug}`);
 };
 
