@@ -163,7 +163,7 @@ export const RecipeForm = ({ authorsRows, sourcesRows, categoryRows, recipe }: {
 	}
 
 	return (
-		<Card className="w-[700px] m-4 p-8 shadow">
+		<Card className="w-full md:w-1/2 m-4 p-8 shadow">
 			<h1 className="my-2 font-bold">{recipe ? 'Update' : 'Add'} Recipe</h1>
 			<form data-cy='recipe-form' className="my-4 flex flex-col justify-center" onSubmit={handleRecipeSubmit}>
 
