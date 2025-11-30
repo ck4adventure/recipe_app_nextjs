@@ -7,6 +7,7 @@ import RecipeCard from '@/app/_ui/recipes/recipe_card';
 export const revalidate = 60; // revalidate in seconds
 
 import type { Metadata, ResolvingMetadata } from 'next'
+import AddRecipeButtonSquare from '@/app/_ui/recipes/add_recipe_button_square';
  
  
 export async function generateMetadata(
@@ -45,6 +46,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 						<div>The recipe for <b>{params.slug}</b> could not be found. Please check the db.</div>
 					</div>
 				)}
+				{recipe && <div className='mt-8'>
+					<AddRecipeButtonSquare/>
+				</div>}
 			</main>
 		</div>
 	);
